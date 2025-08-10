@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+@layer base {
+    :root {
+        --background: oklch(1 0 0);
+        --footer-bg: #1E293B;
+        --danger: #EA4335;
+        --rate: #2563EB;
+        --placeholder: #94A3B8;
+        --revenue1-graph: #0FC6C2;
+        --revenue1-bg: #3BB34633;
+        --revenue2-graph: #165DFF;
+        --revenue2-bg: #165DFF33;
+        --primary: #587DBD;
+        --secondary: #AEAEB2;
+        --secondary-dark: #334155;
+        --secondary-background: #F8FAFC;
+        --border: #E9EBED;
+        --border-card: #E2E8F0;
+        --input: #FAFAFA;
+        --category: #E0F2FE;
+        --category-icon: #3B82F6;
+        --success: #5BAE61;
+    }
+}
+
+@utility container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    @media (min-width: 640px) {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    @media (min-width: 1280px) {
+        max-width: 75rem;
+        margin-inline: auto;
+    }
+}
