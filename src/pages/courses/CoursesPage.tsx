@@ -1,10 +1,10 @@
 import React from 'react'
-import Categories from '../../components/courses/Categories'
+import CategoriesCourses from '../../components/courses/CategoriesCourses'
 
 function CoursesPage() {
   return (
      <>
-      <Categories />
+      <CategoriesCourses />
      </>
     
   )
