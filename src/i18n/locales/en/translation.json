@@ -1,8 +1,14 @@
 {
+  "common": {
+    "home": "Home",
+    "instructor": "Instructor"
+  },
   "instructor": {
     "reviews": "Reviews",
     "courseName": "Course Name",
     "rating": "Rating",
-    "review": "Review"
+    "review": "Review",
+    "courses": "My Courses",
+    "profile": "Profile"
   }
 }
