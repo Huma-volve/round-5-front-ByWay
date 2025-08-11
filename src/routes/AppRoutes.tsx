@@ -1,5 +1,6 @@
 import { Routes, Route, BrowserRouter as Router, Link } from "react-router-dom";
 import InstructorReviews from "../pages/instructor/InstructorReviews";
+import CoursesPage from "../pages/courses/CoursesPage";
 export default function AppRoutes() {
   return (
     <Router>
@@ -15,6 +16,9 @@ export default function AppRoutes() {
         />
         <Route path="/instructor">
           <Route path="reviews" element={<InstructorReviews />} />
+        </Route>
+        <Route path="/courses">
+          <Route index element={<CoursesPage />} />
         </Route>
       </Routes>
     </Router>
