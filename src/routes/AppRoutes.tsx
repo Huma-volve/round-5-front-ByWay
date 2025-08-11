@@ -1,11 +1,15 @@
-import { Routes , Route, BrowserRouter as Router} from 'react-router-dom'
+import { Routes , Route, BrowserRouter as Router, Link} from 'react-router-dom'
+import InstructorReviews from '../pages/instructor/InstructorReviews'
 export default function AppRoutes() {
     return (
       <Router>
         <Routes>
-          <Route path="/" element={<div>Home</div>} />
-          <Route path="/about" element={<div>About</div>} />
-          <Route path="/contact" element={<div>Contact</div>} />
+                <Route path="/" element={<div>Home
+                    <Link to="/instructor/reviews">Instructor Reviews</Link>
+          </div>} />
+                <Route path='/instructor' >
+                    <Route path='reviews' element={<InstructorReviews />} />
+                </Route>
         </Routes>
       </Router>
   )
