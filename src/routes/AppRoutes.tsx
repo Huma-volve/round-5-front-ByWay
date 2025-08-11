@@ -6,6 +6,7 @@ export default function AppRoutes() {
           <Route path="/" element={<div>Home</div>} />
           <Route path="/about" element={<div>About</div>} />
           <Route path="/contact" element={<div>Contact</div>} />
+          <Route path="/close-account" element={<div>Contact</div>} />
         </Routes>
       </Router>
   )
