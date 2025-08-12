@@ -12,6 +12,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
     "@tanstack/react-query": "^5.84.2",
+    "@tanstack/react-table": "^8.21.3",
     "axios": "^1.11.0",
     "formik": "^2.4.6",
     "i18next": "^25.3.4",
