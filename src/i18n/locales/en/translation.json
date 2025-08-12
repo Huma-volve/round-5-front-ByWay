@@ -10,5 +10,17 @@
     "review": "Review",
     "courses": "My Courses",
     "profile": "Profile"
+  },
+  "profile": {
+    "First Name": "First Name",
+    "Last Name": "Last Name",
+    "Headline": "Headline",
+    "About": "About",
+    "Links": "Links",
+    "X(Formerly twitter)": "X(Formerly twitter",
+    "Linkedin": "Linkedin",
+    "Youtube": "Youtube",
+    "Facebook": "Facebook",
+    "Edit Profile":"Edit Profile"
   }
 }

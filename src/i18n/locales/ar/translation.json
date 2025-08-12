@@ -1,14 +1,26 @@
 {
-    "common": {
-        "home": "الرئيسية",
-        "instructor": "المدرب"
-    },
-    "instructor": {
-        "reviews": "المراجعات",
-        "courseName": "اسم الدورة",
-        "rating": "التقييم",
-        "review": "المراجعة",
-        "courses": "دوراتي",
-        "profile": "الملف الشخصي"
-    }
+  "common": {
+    "home": "الرئيسية",
+    "instructor": "المدرب"
+  },
+  "instructor": {
+    "reviews": "المراجعات",
+    "courseName": "اسم الدورة",
+    "rating": "التقييم",
+    "review": "المراجعة",
+    "courses": "دوراتي",
+    "profile": "الملف الشخصي"
+  },
+  "profile": {
+    "First Name": "الاسم الاول ",
+    "Last Name": "الاسم الاخير",
+    "Headline": "العنوان",
+    "About": "حول",
+    "Links": "الروابط",
+    "X(Formerly twitter)": "تويتر",
+    "Linkedin": "لنكدان",
+    "Youtube": "يوتيوب",
+    "Facebook": "فيسبوك",
+    "Edit Profile":"تعديل الملف الشخصى"
+  }
 }

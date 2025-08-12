@@ -1,8 +1,18 @@
-import profile from "../assets/images/icons/profile.svg"
-const STUDENT_PROFILE = [
+import profile from "../assets/images/icons/profile.svg";
+export interface userProfile {
+  id?: number;
+  image: string;
+  fname: string;
+  lname: string;
+  headline: string;
+  about: string;
+  links: { x: string; linkedin: string; youtube: string; facebook: string };
+}
+
+const USER_PROFILE: userProfile[] = [
   {
     id: 1,
-    image: { profile },
+    image: profile ,
     fname: "Omnya",
     lname: "Mohamed",
     headline: "A student passionate about learning design and user experience.",
@@ -15,14 +25,4 @@ const STUDENT_PROFILE = [
     },
   },
 ];
-export default STUDENT_PROFILE
-
-// export type StudentProfile={
-//     id?:number,
-//     image:string,
-//     fname:string,
-//     lname:string,
-//     headline:string,
-//     about:string,
-//     links:string[],
-// }
+export default USER_PROFILE;
