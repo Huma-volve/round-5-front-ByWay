@@ -1,5 +1,9 @@
-import { Routes , Route, BrowserRouter as Router, Link} from 'react-router-dom'
+import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'
+import AppLayout from "@/components/AppLayout";
+import Home from "@/pages/Home";
 import InstructorReviews from '../pages/instructor/InstructorReviews'
+import Revenue from '../pages/instructor/Revenue'
+import GetPaid from '@/pages/instructor/GetPaid';
 import Favourites from '../pages/Favourites/Favourites'
 import NotificationPage from "../pages/Notifications/NotificationPage"; 
 import SettingsPage from '../pages/Settings/SettingsPage';
@@ -9,14 +13,6 @@ export default function AppRoutes() {
     return (
       <Router>
         <Routes>
-                <Route path="/" element={
-                  <div className='flex gap-8'>Home
-                    <Link to="/instructor/reviews">Instructor Reviews</Link>
-                    <Link to="/favourites">Favourites</Link>
-                    <Link to="/notifications">Notifications</Link>
-                    <Link to="/settings">Settings</Link>
-                  </div>
-        } />
                 <Route path='/instructor' >
                     <Route path='reviews' element={<InstructorReviews />} />
                 </Route>
@@ -27,7 +23,17 @@ export default function AppRoutes() {
                 <Route path='/settings/paymethod' element={<PaymethodPage />} />
                 <Route path='/settings/payhistory' element={<PayHistoryPage />} />
                 {/*End of children for BrowserCourse */}
+                
+        <Route element={<AppLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<div>About</div>} />
+          <Route path="/contact" element={<div>Contact</div>} />
+          <Route path='/instructor' >
+            <Route path='reviews' element={<InstructorReviews />} />
+            <Route path='revenue' element={<Revenue />} />
+            <Route path='get-paid' element={<GetPaid />} />
+          </Route>
+        </Route>
         </Routes>
       </Router>
-  )
-}
+    )}

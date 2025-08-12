@@ -23,10 +23,10 @@ export default function NotificationPage() {
           />
           <div className="flex flex-col items-center gap-2">
             <h2 className="text-lg md:text-xl font-semibold">
-              {t("You are all up to date")}
+              {t("notifications.You are all up to date")}
             </h2>
             <h3 className="text-secondary text-xs md:text-lg">
-              {t("No new notifications - come back soon")}
+              {t("notifications.No new notifications - come back soon")}
             </h3>
           </div>
         </div>

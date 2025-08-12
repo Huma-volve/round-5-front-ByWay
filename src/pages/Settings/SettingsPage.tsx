@@ -17,14 +17,14 @@ export default function SettingsPage() {
       {/* payment method */}
       <div className="mt-8 ml-4 md:ml-24 w-[90%] md:w-[50%]">
         <Link to="paymethod" className="flex justify-between w-full items-center">
-        <h4 className="text-base font-semibold md:text-lg">{t("Payment Methods")}</h4>
+        <h4 className="text-base font-semibold md:text-lg">{t("settings.Payment Methods")}</h4>
         <img src={arrow} alt="drop down" className="w-3 h-3" />
         </Link>
       </div>
       {/* payment history */}
       <div className="mt-8 ml-4 md:ml-24 w-[90%] md:w-[50%]">
         <Link to="payhistory" className="flex justify-between w-full items-center">
-        <h4 className="text-base font-semibold md:text-lg">{t("Payment History")}</h4>
+        <h4 className="text-base font-semibold md:text-lg">{t("settings.Payment History")}</h4>
         <img src={arrow} alt="drop down" className="w-3 h-3" />
         </Link>
       </div>

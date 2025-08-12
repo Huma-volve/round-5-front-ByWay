@@ -10,11 +10,11 @@ export default function Review({
 }: InstructorReview) {
   const { t } = useTranslation();
   return (
-    <div className="border p-4 rounded-2xl shadow-sm mb-4 flex flex-col gap-3">
-      <h3 className="flex items-center gap-2">
-        {t("instructor.courseName")}: <p className="font-bold">{courseName}</p>
+    <div className="border p-4 rounded-2xl shadow-sm mb-4 flex flex-col gap-3 mx-8 lg:mx-0 hover:shadow-md transition-shadow duration-200">
+      <h3 className="flex  sm:items-center gap-2">
+        <p className="whitespace-nowrap">{t("instructor.courseName")}: </p><p className="font-bold">{courseName}</p>
       </h3>
-      <p className="flex gap-2">
+      <p className="flex flex-col md:gap-2 md:flex-row ">
         {t("instructor.review")}: <span className="">{review}</span>
       </p>
       <p className="flex items-center gap-2">
@@ -24,6 +24,7 @@ export default function Review({
             .fill(0)
             .map((_, i) => (
               <img
+                loading="lazy"
                 key={i}
                 src={activeStarIcon}
                 alt="Star"
@@ -34,6 +35,7 @@ export default function Review({
             .fill(0)
             .map((_, i) => (
               <img
+                loading="lazy"
                 key={i}
                 src={inactiveStarIcon}
                 alt="Star"

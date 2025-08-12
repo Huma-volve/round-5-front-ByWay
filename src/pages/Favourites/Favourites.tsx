@@ -9,6 +9,7 @@ export default function Favourites() {
   const { t } = useTranslation();
   const { getAutoBreadcrumb } = useBreadcrumb();
   const [activeButton, setActiveButton] = useState<"btn1" | "btn2">("btn1");
+ 
   return (
     <div className="bg-background container ">
       <div className="ml-4">
@@ -17,24 +18,24 @@ export default function Favourites() {
           <Breadcrumb items={getAutoBreadcrumb()} className="mb-6 mt-5" />
         </div>
         {/* Buttons */}
-        <div className="mb-4 flex font-semibold bg-gray-100 rounded-full w-fit">
+        <div className="mb-4 flex font-semibold bg-[#F1F1F1] rounded-full w-fit">
           <button
             className={`px-5 py-2 rounded-full transition-all duration-300 ${
               activeButton === "btn1"
-                ? "bg-secondary"
+                ? "bg-[#72727242]"
                 : "bg-transparent text-gray-700"
             }`}
             onClick={() => setActiveButton("btn1")}>
-            {t("Courses")}
+            {t("favourite.Courses")}
           </button>
           <button
             className={`px-5 py-2 rounded-full transition-all duration-300 ${
               activeButton === "btn2"
-                ? "bg-secondary"
+                ? "bg-[#72727242]"
                 : "bg-transparent text-gray-700"
             }`}
             onClick={() => setActiveButton("btn2")}>
-            {t("Instructor")}
+            {t("favourite.Instractor")}
           </button>
         </div>
         {/* Fav Cards */}

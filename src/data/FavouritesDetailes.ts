@@ -1,4 +1,4 @@
-import favIcon from "../assets/react.svg";
+import favIcon from "../assets/images/icons/star-active-icon.svg";
 
 export interface FavouriteItem {
   id: string | number;

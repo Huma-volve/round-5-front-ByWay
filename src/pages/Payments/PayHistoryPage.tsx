@@ -19,10 +19,10 @@ export default function PayHistoryPage() {
         <table className="hidden md:table w-full table-auto border-collapse border border-border rounded-lg">
           <thead className="border border-border">
             <tr className="text-left text-sm text-primary">
-              <th className="px-4 py-2">{t("Date")}</th>
-              <th className="px-4 py-2">{t("Course")}</th>
-              <th className="px-4 py-2">{t("Amount")}</th>
-              <th className="px-4 py-2">{t("Method")}</th>
+              <th className="px-4 py-2">{t("payments.Date")}</th>
+              <th className="px-4 py-2">{t("payments.Course")}</th>
+              <th className="px-4 py-2">{t("payments.Amount")}</th>
+              <th className="px-4 py-2">{t("payments.Method")}</th>
             </tr>
           </thead>
 
@@ -46,19 +46,19 @@ export default function PayHistoryPage() {
               className="bg-white rounded-lg shadow-sm border border-border p-4"
             >
               <div className="flex justify-between mb-3">
-                <span className="font-semibold text-gray-800 text-sm">{t("Date")}:</span>
+                <span className="font-semibold text-gray-800 text-sm">{t("payments.Date")}:</span>
                 <span className="text-gray-600 text-sm">{his.date}</span>
               </div>
               <div className="flex justify-between mb-3">
-                <span className="font-semibold text-gray-800 text-sm">{t("Course")}:</span>
+                <span className="font-semibold text-gray-800 text-sm">{t("payments.Course")}:</span>
                 <span className="text-success text-sm">{his.course}</span>
               </div>
               <div className="flex justify-between mb-3">
-                <span className="font-semibold text-gray-800 text-sm">{t("Amount")}:</span>
+                <span className="font-semibold text-gray-800 text-sm">{t("payments.Amount")}:</span>
                 <span className="text-gray-700 text-sm">{his.amount} EGP</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="font-semibold text-gray-800">{t("Method")}:</span>
+                <span className="font-semibold text-gray-800">{t("payments.Method")}:</span>
                 <span className="text-secondaryDark text-sm">{his.method}</span>
               </div>
             </div>
