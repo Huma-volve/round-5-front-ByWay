@@ -8,7 +8,7 @@ body {
 
 @layer base {
     :root {
-        --background: 0 0% 100%;
+        --background: oklch(1 0 0);
         --footer-bg: #1E293B;
         --danger: #EA4335;
         --rate: #2563EB;
@@ -21,9 +21,9 @@ body {
         --secondary: #AEAEB2;
         --secondary-dark: #334155;
         --secondary-background: #F8FAFC;
-        --border: 0 0% 89.8%;
+        --border: #E9EBED;
         --border-card: #E2E8F0;
-        --input: 0 0% 89.8%;
+        --input: #FAFAFA;
         --category: #E0F2FE;
         --category-icon: #3B82F6;
         --success: #5BAE61;

@@ -31,10 +31,7 @@ export default {
   			categoryIcon: 'var(--category-icon)',
   			success: 'var(--success)',
   			foreground: 'hsl(var(--foreground))',
-  			card: {
-  				DEFAULT: 'hsl(var(--card))',
-  				foreground: 'hsl(var(--card-foreground))'
-  			},
+  			card: 'var(--card)',
   			popover: {
   				DEFAULT: 'hsl(var(--popover))',
   				foreground: 'hsl(var(--popover-foreground))'
