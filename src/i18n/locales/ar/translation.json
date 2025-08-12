@@ -10,5 +10,25 @@
         "review": "المراجعة",
         "courses": "دوراتي",
         "profile": "الملف الشخصي"
+    },
+    "favourite":{
+        "Courses" : "الدورات",
+        "Instractor" : "المدرب"
+    },
+    "notifications":{
+        "You are all up to date" : "لقد اطلعت علي جميع التحديثات",
+        "No new notifications - come back soon" : "لا توجد إشعارات جديدة - عد قريبًا"
+    },
+    "settings":{
+        "Payment Methods" : "طرق الدفع",
+        "Payment History" : "تاريخ الدفع"
+    },
+    "payments":{
+        "Choose your payment method" : "اختار طريقه الدفع",
+        "Select your preferred way to pay for your courses" : "اختار طريقه الدفع المناسبه لك  لتقوم بشراء الدورات",
+        "Date" : "التاريخ",
+        "Course" : "الدورة",
+        "Method" : "طريقه الدفع",
+        "Amount" : "القيمه"
     }
 }
