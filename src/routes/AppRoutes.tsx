@@ -3,6 +3,7 @@ import AppLayout from "@/components/AppLayout";
 import Home from "@/pages/Home";
 import InstructorReviews from '../pages/instructor/InstructorReviews'
 import Revenue from '../pages/instructor/Revenue'
+import GetPaid from '@/pages/instructor/GetPaid';
 
 export default function AppRoutes() {
   return (
@@ -15,6 +16,7 @@ export default function AppRoutes() {
           <Route path='/instructor' >
             <Route path='reviews' element={<InstructorReviews />} />
             <Route path='revenue' element={<Revenue />} />
+            <Route path='get-paid' element={<GetPaid />} />
           </Route>
         </Route>
       </Routes>

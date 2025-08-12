@@ -9,6 +9,42 @@
         "rating": "التقييم",
         "review": "المراجعة",
         "courses": "دوراتي",
-        "profile": "الملف الشخصي"
+        "profile": "الملف الشخصي",
+        "revenue": {
+            "name": "الإيرادات",
+            "title": "تحليلات الإيرادات",
+            "paidMessage":"احصل على أفضل الأفكار حول أدائك",
+            "getPaid": "احصل على أموالك",
+            "selectTimePeriod": "اختر الفترة",
+            "currentPeriod": "الفترة الحالية",
+            "lastPeriod": "الفترة السابقة",
+            "stats": {
+                "totalProfits": "إجمالي الأرباح",
+                "availableBalance": "الرصيد المتاح",
+                "lastTransaction": "آخر معاملة"
+            }
+        },
+        "income": {
+            "title": "المعاملات",
+            "table": {
+                "customer": "العميل",
+                "date": "التاريخ",
+                "paymentType": "نوع الدفع",
+                "amount": "المبلغ",
+                "scrollHint": "مرر أفقياً لرؤية جميع الأعمدة"
+            },
+            "search": {
+                "placeholder": "البحث بالعميل..."
+            },
+            "filters": {
+                "paymentPlaceholder": "تصفية حسب نوع الدفع",
+                "all": "الكل"
+            },
+            "paymentTypes": {
+                "cash": "نقداً",
+                "creditCard": "بطاقة ائتمان",
+                "bankTransfer": "تحويل بنكي"
+            }
+        }
     }
 }

@@ -9,6 +9,42 @@
     "rating": "Rating",
     "review": "Review",
     "courses": "My Courses",
-    "profile": "Profile"
+    "profile": "Profile",
+    "revenue": {
+      "name": "Revenue",
+      "title": "Revenue Analytics",
+      "paidMessage": "Get top insights about your performance",
+      "getPaid": "Get Paid",
+      "selectTimePeriod": "Select Period",
+      "currentPeriod": "Current Period",
+      "lastPeriod": "Last Period",
+      "stats": {
+        "totalProfits": "Total Profits",
+        "availableBalance": "Available Balance",
+        "lastTransaction": "Last Transaction"
+      }
+    },
+    "income": {
+      "title": "Transactions",
+      "table": {
+        "customer": "Customer",
+        "date": "Date",
+        "paymentType": "Payment Type",
+        "amount": "Amount",
+        "scrollHint": "Scroll horizontally to see all columns"
+      },
+      "search": {
+        "placeholder": "Search by customer..."
+      },
+      "filters": {
+        "paymentPlaceholder": "Filter by payment",
+        "all": "All"
+      },
+      "paymentTypes": {
+        "cash": "Cash",
+        "creditCard": "Credit Card",
+        "bankTransfer": "Bank Transfer"
+      }
+    }
   }
 }
