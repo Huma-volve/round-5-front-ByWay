@@ -2,6 +2,7 @@ import ComputerIcon from "../assets/images/icons/computer-icon.svg";
 import DevelopmentIcon from "../assets/images/icons/development-icon.svg";
 import PhysicsIcon from "../assets/images/icons/Physics-icon.svg";
 import MarketingIcon from "../assets/images/icons/Marketing-icon.svg";
+import ProductImg1 from "../assets/images/ui-product.png"
 
 export const categories = [
   {
@@ -60,7 +61,7 @@ export const courses = [
     ratings: 1200,
     duration: "22 Total Hours. 155 Lectures. Beginner",
     price: "499 EGP",
-    image: "https://via.placeholder.com/300x200?text=Course+1",
+    image:ProductImg1,
   },
   {
     id: 2,
@@ -69,7 +70,7 @@ export const courses = [
     ratings: 980,
     duration: "18 Total Hours. 120 Lectures. Intermediate",
     price: "699 EGP",
-    image: "https://via.placeholder.com/300x200?text=Course+2",
+    image:ProductImg1,
   },
   {
     id: 3,
@@ -78,7 +79,7 @@ export const courses = [
     ratings: 1500,
     duration: "25 Total Hours. 200 Lectures. Advanced",
     price: "799 EGP",
-    image: "https://via.placeholder.com/300x200?text=Course+3",
+    image:ProductImg1,
   },
   {
     id: 4,
@@ -87,7 +88,7 @@ export const courses = [
     ratings: 2100,
     duration: "40 Total Hours. 300 Lectures. All Levels",
     price: "999 EGP",
-    image: "https://via.placeholder.com/300x200?text=Course+4",
+    image:ProductImg1,
   },
   {
     id: 5,
@@ -96,7 +97,7 @@ export const courses = [
     ratings: 1750,
     duration: "30 Total Hours. 220 Lectures. Intermediate",
     price: "899 EGP",
-    image: "https://via.placeholder.com/300x200?text=Course+5",
+    image:ProductImg1,
   },
   {
     id: 6,
@@ -105,7 +106,7 @@ export const courses = [
     ratings: 2500,
     duration: "35 Total Hours. 250 Lectures. Advanced",
     price: "1099 EGP",
-    image: "https://via.placeholder.com/300x200?text=Course+6",
+    image:ProductImg1,
   },
   {
     id: 7,
@@ -114,7 +115,7 @@ export const courses = [
     ratings: 1100,
     duration: "20 Total Hours. 150 Lectures. Beginner",
     price: "649 EGP",
-    image: "https://via.placeholder.com/300x200?text=Course+7",
+    image:ProductImg1,
   },
   {
     id: 8,
@@ -123,7 +124,7 @@ export const courses = [
     ratings: 890,
     duration: "15 Total Hours. 100 Lectures. Beginner",
     price: "599 EGP",
-    image: "https://via.placeholder.com/300x200?text=Course+8",
+    image:ProductImg1,
   },
   {
     id: 9,
@@ -132,7 +133,7 @@ export const courses = [
     ratings: 670,
     duration: "12 Total Hours. 80 Lectures. Beginner",
     price: "399 EGP",
-    image: "https://via.placeholder.com/300x200?text=Course+9",
+    image:ProductImg1,
   },
   {
     id: 10,
@@ -141,7 +142,7 @@ export const courses = [
     ratings: 1340,
     duration: "28 Total Hours. 190 Lectures. Intermediate",
     price: "799 EGP",
-    image: "https://via.placeholder.com/300x200?text=Course+10",
+    image: ProductImg1,
   },
   {
     id: 11,
@@ -150,7 +151,7 @@ export const courses = [
     ratings: 1950,
     duration: "32 Total Hours. 210 Lectures. All Levels",
     price: "899 EGP",
-    image: "https://via.placeholder.com/300x200?text=Course+11",
+    image: ProductImg1,
   },
   {
     id: 12,
@@ -159,7 +160,7 @@ export const courses = [
     ratings: 2200,
     duration: "38 Total Hours. 270 Lectures. Advanced",
     price: "1099 EGP",
-    image: "https://via.placeholder.com/300x200?text=Course+12",
+    image: ProductImg1,
   },
 ];
 
