@@ -24,6 +24,7 @@ export default function Review({
             .fill(0)
             .map((_, i) => (
               <img
+                loading="lazy"
                 key={i}
                 src={activeStarIcon}
                 alt="Star"
@@ -34,6 +35,7 @@ export default function Review({
             .fill(0)
             .map((_, i) => (
               <img
+                loading="lazy"
                 key={i}
                 src={inactiveStarIcon}
                 alt="Star"

@@ -24,7 +24,7 @@ export default {
   			secondary: 'var(--secondary)',
   			secondaryDark: 'var(--secondary-dark)',
   			secondaryBackground: 'var(--secondary-background)',
-  			border: 'hsl(var(--border))',
+  			border: 'var(--border)',
   			borderCard: 'var(--border-card)',
   			input: 'hsl(var(--input))',
   			category: 'var(--category)',
