@@ -15,7 +15,7 @@ function CardCourse() {
               loading="lazy"
             />
           </div>
-          <div className="border w-full border-[--category] rounded-2xl mt-3 px-4 py-3">
+          <div className="border border-2 w-full border-[--category] rounded-2xl mt-3 px-4 py-3 shadow">
             <h5 className="font-[600] text-lg lg:text-xl">{course.title}</h5>
             <p className="text-sm my-2 text-[--secondary-dark]">By {course.instructor}</p>
             <div className="flex items-center">
