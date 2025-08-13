@@ -17,6 +17,7 @@ import EditUserProfile from "@/pages/profile/EditUserProfile";
 import InstructorReviews from "@/pages/instructor/InstructorReviews";
 import CoursesPage from "@/pages/courses/CoursesPage";
 import CourseDetails from "@/components/courses/CourseDetails";
+import InstructorDetails from "@/components/instructor/InstractorDetails/InstructorDetails";
 
 export default function AppRoutes() {
   return (
@@ -27,6 +28,7 @@ export default function AppRoutes() {
           <Route path="/about" element={<div>About</div>} />
           <Route path="/contact" element={<div>Contact</div>} />
           <Route path='/instructor' >
+            <Route path=':instructorId' element={<InstructorDetails />} />
             <Route path='reviews' element={<InstructorReviews />} />
             <Route path='revenue' element={<Revenue />} />
             <Route path='get-paid' element={<GetPaid />} />
