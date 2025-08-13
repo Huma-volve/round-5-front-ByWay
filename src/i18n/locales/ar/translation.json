@@ -16,7 +16,7 @@
     "instructor": "المدرب",
     "settings": "الاعدادات",
     "notifications": "الاشعارات",
-    "favourite": "المفضله",
+    "favourites": "المفضله",
     "paymethod": "طرق الدفع",
     "payhistory": "تواريخ الدفع"
   },
@@ -64,7 +64,39 @@
       }
     }
   },
-  "favourite": {
+"withdraw": {
+    "Enter Payment Details": "ادخل تفاصيل الدفع",
+    "Payment Method": "طريقه الدفع",
+    "Please Select": "من فضلك اختر",
+    "PayPal": "باي بال",
+    "Bank Transfer": "تحويل بنكي",
+    "Fawry": "فورى",
+    "Account Name": "اسم الحساب",
+    "Account Number": "رقم الحساب",
+    "Account Email" : "البريد الالكتروني للحساب",
+    "Enter Account Name": "ادخل اسم الحساب",
+    "Enter Account Number": "ادخل رقم الحساب",
+    "Enter Account Email": "ادخل البريد الحساب الالكتروني",
+    "Enter Amount" : "ادخل الرصيد",
+    "Bank Name": "اسم البنك",
+    "Save These Details": "احفظ هذه التفاصيل",
+    "Continue": "استمر",
+    "Please select a payment method": "من فضلك ادخل طريقه الدفع",
+    "Please select a bank": "من فضلك اختر البنك",
+    "Please enter a valid account Name": "من فضلك ادخل اسم حساب مناسب",
+    "Please enter your account email": "من فضلك ادخل البريد الالكتروني لحسابك",
+    "Please enter your account number": "من فضلك ادخل رقم حسابك",
+    "Account number must be at least 6 digits": "رقم الحساب لابد ان يكون على الاقل 6 ارقام",
+    "Please enter a valid email": "من فضلك ادخل بريد الكتروني صحيح",
+    "Withdraw Amount" : "سحب المبلغ",
+    "Next" : "التالي",
+    "Available Balance" : "الرصيد المتاح",
+    "Minimum Withdrawal" : "الحد الادني للسحب",
+    "and" : "و",
+    "You can withdraw any amount between" : "يمكنك ان تسحب اي رصيد بين",
+    "Enter a valid amount" : "ادخل قيمه صالحه"
+  },
+ "favourite": {
     "Courses": "الدورات",
     "Instractor": "المدرب"
   },
@@ -83,6 +115,7 @@
     "Course": "الدورة",
     "Method": "طريقه الدفع",
     "Amount": "القيمه",
-    "profile": "الملف الشخصي"
+    "profile": "الملف الشخصي",
+    "Save Payment Method" : "حفظ طريقه الدفع"
   }
 }

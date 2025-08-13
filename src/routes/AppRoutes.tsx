@@ -1,19 +1,20 @@
-import { Routes, Route, BrowserRouter as Router, Link } from "react-router-dom";
-import InstructorReviews from "../pages/instructor/InstructorReviews";
+import { Routes, Route, BrowserRouter as Router} from "react-router-dom";
 import CloseAccount from "../pages/close account/CloseAccount";
 import Success from "../pages/success/Success";
-
 import AppLayout from "@/components/AppLayout";
-import Revenue from "../pages/instructor/Revenue";
+import Home from "@/pages/Home";
+import Revenue from '../pages/instructor/Revenue'
+import GetPaid from '@/pages/instructor/GetPaid';
+import Favourites from '../pages/Favourites/Favourites'
+import NotificationPage from "../pages/Notifications/NotificationPage"; 
+import SettingsPage from '../pages/Settings/SettingsPage';
+import PaymethodPage from '../pages/Payments/PaymethodPage';
+import PayHistoryPage from '../pages/Payments/PayHistoryPage';
+import Withdraw from '@/pages/instructor/Withdraw';
 import USER_PROFILE from "@/data/userProfile";
 import UserProfilePage from "@/pages/profile/UserProfilePage";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
-import GetPaid from "@/pages/instructor/GetPaid";
-import Favourites from "../pages/Favourites/Favourites";
-import NotificationPage from "../pages/Notifications/NotificationPage";
-import SettingsPage from "../pages/Settings/SettingsPage";
-import PaymethodPage from "../pages/Payments/PaymethodPage";
-import PayHistoryPage from "../pages/Payments/PayHistoryPage";
+import InstructorReviews from "@/pages/instructor/InstructorReviews";
 import CoursesPage from "@/pages/courses/CoursesPage";
 import CourseDetails from "@/components/courses/CourseDetails";
 import InstructorDetails from "@/components/instructor/InstractorDetails/InstructorDetails";
@@ -32,8 +33,6 @@ export default function AppRoutes() {
           }
         />
         <Route path="/instructor">
-          <Route path=":instructorId" element={<InstructorDetails />} />
-          <Route path="reviews" element={<InstructorReviews />} />
           <Route path="reviews" element={<InstructorReviews />} />
         </Route>
         <Route path="/close-account" element={<CloseAccount />} />
@@ -58,14 +57,6 @@ export default function AppRoutes() {
         <Route path="/settings/paymethod" element={<PaymethodPage />} />
         <Route path="/settings/payhistory" element={<PayHistoryPage />} />
         {/*End of children for BrowserCourse */}
-
-        <Route element={<AppLayout />}>
-          <Route path="/instructor">
-            <Route path="reviews" element={<InstructorReviews />} />
-            <Route path="revenue" element={<Revenue />} />
-            <Route path="get-paid" element={<GetPaid />} />
-          </Route>
-        </Route>
       </Routes>
     </Router>
   );
