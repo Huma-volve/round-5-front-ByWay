@@ -1,7 +1,8 @@
 {
     "common": {
         "home": "الرئيسية",
-        "instructor": "المدرب"
+        "instructor": "المدرب",
+        "addCourse": "إضافة دورة"
     },
     "instructor": {
         "reviews": "المراجعات",
@@ -45,6 +46,13 @@
                 "creditCard": "بطاقة ائتمان",
                 "bankTransfer": "تحويل بنكي"
             }
+        },
+        "addCourse": {
+            "title": "إضافة دورة",
+            "description": "املأ التفاصيل لإنشاء دورة جديدة",
+            "courseName": "اسم الدورة",
+            "courseDescription": "وصف الدورة",
+            "submitButton": "إنشاء دورة"
         }
     }
 }

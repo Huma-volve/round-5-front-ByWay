@@ -1,7 +1,8 @@
 {
   "common": {
     "home": "Home",
-    "instructor": "Instructor"
+    "instructor": "Instructor",
+    "addCourse": "Add Course"
   },
   "instructor": {
     "reviews": "Reviews",
@@ -45,6 +46,13 @@
         "creditCard": "Credit Card",
         "bankTransfer": "Bank Transfer"
       }
+    },
+    "addCourse": {
+      "title": "Add Course",
+      "description": "Fill in the details to create a new course",
+      "courseName": "Course Name",
+      "courseDescription": "Course Description",
+      "submitButton": "Create Course"
     }
   }
 }

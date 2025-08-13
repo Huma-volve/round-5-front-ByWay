@@ -11,7 +11,7 @@ export const useBreadcrumb = () => {
     "/": "common.home",
     "/instructor": "common.instructor",
     "/instructor/reviews": "instructor.reviews",
-
+    "/instructor/add-course": "common.addCourse"
   };
 
   const createBreadcrumb = (
