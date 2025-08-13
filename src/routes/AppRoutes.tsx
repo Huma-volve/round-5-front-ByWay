@@ -9,6 +9,7 @@ import NotificationPage from "../pages/Notifications/NotificationPage";
 import SettingsPage from '../pages/Settings/SettingsPage';
 import PaymethodPage from '../pages/Payments/PaymethodPage';
 import PayHistoryPage from '../pages/Payments/PayHistoryPage';
+import Withdraw from '@/pages/instructor/Withdraw';
 export default function AppRoutes() {
     return (
       <Router>
@@ -32,6 +33,7 @@ export default function AppRoutes() {
             <Route path='reviews' element={<InstructorReviews />} />
             <Route path='revenue' element={<Revenue />} />
             <Route path='get-paid' element={<GetPaid />} />
+            <Route path='withdraw' element={<Withdraw />} />
           </Route>
         </Route>
         </Routes>

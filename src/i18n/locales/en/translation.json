@@ -4,7 +4,7 @@
     "instructor": "Instructor",
     "settings" : "Settings",
     "notifications" : "Notifications",
-    "favourite" :  "Favourite",
+    "favourites" :  "Favourite",
     "paymethod": "Payment Method",
     "payhistory": "Payment History"
   },
@@ -14,7 +14,8 @@
     "rating": "Rating",
     "review": "Review",
     "courses": "My Courses",
-    "profile" : "Profile","revenue": {
+    "profile" : "Profile",
+    "revenue": {
       "name": "Revenue",
       "title": "Revenue Analytics",
       "paidMessage": "Get top insights about your performance",
@@ -50,6 +51,39 @@
         "bankTransfer": "Bank Transfer"
       }
     }
+ },
+
+ "withdraw" : {
+  "Enter Payment Details" : "Enter Payment Details",
+  "Payment Method": "Payment Method",
+  "Please Select" : "Please Select",
+  "PayPal" : "PayPal",
+  "Bank Transfer": "Bank Transfer" ,
+  "Fawry" : "Fawry",
+  "Account Name": "Account Name",
+  "Account Number": "Account Number",
+  "Account Email" : "Account Email",
+  "Enter Account Name" : "Enter Account Name",
+  "Enter Account Number" : "Enter Account Number",
+  "Enter Account Email" : "Enter Account Email",
+  "Enter Amount" : "Enter Amount",
+  "Bank Name" : "Bank Name",
+  "Save These Details" : "Save These Details",
+  "Continue" : "Continue",
+  "Please select a payment method" : "Please select a payment method",
+  "Please select a bank" : "Please select a bank",
+  "Please enter a valid account Name" : "Please enter a valid account Name",
+  "Please enter your account email" : "Please enter your account email",
+  "Please enter your account number" : "Please enter your account number",
+  "Account number must be at least 6 digits" : "Account number must be at least 6 digits",
+  "Please enter a valid email" : "Please enter a valid email",
+  "Withdraw Amount" : "Withdraw Amount",
+  "Next" : "Next",
+  "Available Balance" : "Available Balance",
+  "Minimum Withdrawal" : "Minimun Withdrawal",
+  "and" : "and",
+  "You can withdraw any amount between" : "You can withdraw any amount between",
+  "Enter a valid amount" : "Enter a valid amount"
  },
   "favourite":{
         "Courses" : "Courses",
