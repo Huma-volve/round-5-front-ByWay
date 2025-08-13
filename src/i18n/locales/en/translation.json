@@ -14,7 +14,7 @@
     "rating": "Rating",
     "review": "Review",
     "courses": "My Courses",
-    "profile" : "Profile",
+    "profile": "Profile",
     "revenue": {
       "name": "Revenue",
       "title": "Revenue Analytics",
@@ -51,7 +51,7 @@
         "bankTransfer": "Bank Transfer"
       }
     }
- },
+},
 
  "withdraw" : {
   "Enter Payment Details" : "Enter Payment Details",
@@ -103,7 +103,19 @@
         "Date" : "Date",
         "Course" : "Course",
         "Method" : "Method",
-        "Amount" : "Amount"
+        "Amount" : "Amount",
+        "Save Payment Method" : "Save Payment Method"
     },
-    "profile": "Profile"
+  "profile": {
+    "First Name": "First Name",
+    "Last Name": "Last Name",
+    "Headline": "Headline",
+    "About": "About",
+    "Links": "Links",
+    "X(Formerly twitter)": "X(Formerly twitter",
+    "Linkedin": "Linkedin",
+    "Youtube": "Youtube",
+    "Facebook": "Facebook",
+    "Edit Profile": "Edit Profile"
   }
+}

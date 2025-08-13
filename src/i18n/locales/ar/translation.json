@@ -1,4 +1,16 @@
 {
+  "profile": {
+    "First Name": "الاسم الاول ",
+    "Last Name": "الاسم الاخير",
+    "Headline": "العنوان",
+    "About": "حول",
+    "Links": "الروابط",
+    "X(Formerly twitter)": "تويتر",
+    "Linkedin": "لنكدان",
+    "Youtube": "يوتيوب",
+    "Facebook": "فيسبوك",
+    "Edit Profile": "تعديل الملف الشخصى"
+  },
   "common": {
     "home": "الرئيسية",
     "instructor": "المدرب",
@@ -52,7 +64,7 @@
       }
     }
   },
-  "withdraw": {
+"withdraw": {
     "Enter Payment Details": "ادخل تفاصيل الدفع",
     "Payment Method": "طريقه الدفع",
     "Please Select": "من فضلك اختر",
@@ -84,7 +96,7 @@
     "You can withdraw any amount between" : "يمكنك ان تسحب اي رصيد بين",
     "Enter a valid amount" : "ادخل قيمه صالحه"
   },
-  "favourite": {
+ "favourite": {
     "Courses": "الدورات",
     "Instractor": "المدرب"
   },
@@ -103,6 +115,7 @@
     "Course": "الدورة",
     "Method": "طريقه الدفع",
     "Amount": "القيمه",
-    "profile": "الملف الشخصي"
+    "profile": "الملف الشخصي",
+    "Save Payment Method" : "حفظ طريقه الدفع"
   }
 }
