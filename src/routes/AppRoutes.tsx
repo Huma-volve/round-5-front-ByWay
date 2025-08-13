@@ -17,23 +17,21 @@ import EditUserProfile from "@/pages/profile/EditUserProfile";
 import InstructorReviews from "@/pages/instructor/InstructorReviews";
 import CoursesPage from "@/pages/courses/CoursesPage";
 import CourseDetails from "@/components/courses/CourseDetails";
-import InstructorDetails from "@/components/instructor/InstractorDetails/InstructorDetails";
 
 export default function AppRoutes() {
   return (
     <Router>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
-              Home
-              <Link to="/instructor/reviews">Instructor Reviews</Link>
-            </div>
-          }
-        />
-        <Route path="/instructor">
-          <Route path="reviews" element={<InstructorReviews />} />
+        <Route element={<AppLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<div>About</div>} />
+          <Route path="/contact" element={<div>Contact</div>} />
+          <Route path='/instructor' >
+            <Route path='reviews' element={<InstructorReviews />} />
+            <Route path='revenue' element={<Revenue />} />
+            <Route path='get-paid' element={<GetPaid />} />
+            <Route path='withdraw' element={<Withdraw />} />
+        </Route>
         </Route>
         <Route path="/close-account" element={<CloseAccount />} />
         <Route path="/success" element={<Success />} />
@@ -46,6 +44,9 @@ export default function AppRoutes() {
           element={<EditUserProfile user={USER_PROFILE[0]} />}
         />
 
+        <Route path="/instructor">
+          <Route path="reviews" element={<InstructorReviews />} />
+        </Route>
         <Route path="/courses">
           <Route index element={<CoursesPage />} />
           <Route path=":courseId" element={<CourseDetails />} />

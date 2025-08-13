@@ -42,7 +42,9 @@ function CourseDetails() {
       <div>
         <div className="flex items-center gap-14 border w-fit py-3 px-7 rounded-xl mb-8">
           <img className="w-7 md:w:10" src={VideoIcon} alt="VideoIcon" />
-          <p className="md:text-xl text-md font-[500]">Lesson 1: Introduction to UI/UX</p>
+          <p className="md:text-xl text-md font-[500]">
+            Lesson 1: Introduction to UI/UX
+          </p>
         </div>
       </div>
     </div>
