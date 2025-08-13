@@ -9,6 +9,53 @@
     "rating": "Rating",
     "review": "Review",
     "courses": "My Courses",
-    "profile": "Profile"
-  }
+    "profile": "Profile",
+  "firstName": "First Name",
+  "enterFirstName": "Enter your First Name",
+  "lastName": "Last Name",
+  "enterLastName": "Enter your Last Name",
+  "headline": "Headline",
+  "about": "About",
+  "skills": "Skills",
+  "effectiveCommunication": "Effective Communication",
+  "subjectMatterExpertise": "Subject Matter Expertise",
+  "firstNameRequired": "First name is required",
+  "firstNameMin": "First name must be at least 2 characters",
+   "enterHeadline": "Enter your Headline",
+    "enterAbout": "Write something about yourself",
+    "lastNameRequired": "Last name is required",
+    "lastNameMin": "Last name must be at least 2 characters",
+    "headlineRequired": "Headline is required",
+    "headlineMax": "Headline cannot be more than 50 characters",
+    "aboutRequired": "About is required",
+    "aboutMax": "About section cannot be more than 200 characters",
+    "skillsRequired": "Please select a skill"
+    
+},
+"workExperience":
+{
+ "jobTitle": "Job Title",
+  "enterJobTitle": "Enter your Job Title",
+  "companyName": "Company Name",
+  "enterCompanyName": "Enter Company Name",
+  "startDate": "Start Date",
+  "endDate": "End Date",
+  "jobTitleRequired": "Job title is required",
+  "jobTitleMin": "Job title must be at least 2 characters",
+  "companyNameRequired": "Company name is required",
+  "companyNameMin": "Company name must be at least 2 characters",
+  "startDateRequired": "Start date is required",
+  "endDateRequired": "End date is required",
+  "invalidDate": "Invalid date",
+  "endDateBeforeStartDate": "End date cannot be before start date",
+  "addAnotherExperience": "Add another Experience" 
+},
+"save":
+{
+    "Save":"Save"
+}
+
+
+ 
+
 }

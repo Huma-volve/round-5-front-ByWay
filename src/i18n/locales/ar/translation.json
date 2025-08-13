@@ -2,6 +2,7 @@
     "common": {
         "home": "الرئيسية",
         "instructor": "المدرب"
+        
     },
     "instructor": {
         "reviews": "المراجعات",
@@ -9,6 +10,52 @@
         "rating": "التقييم",
         "review": "المراجعة",
         "courses": "دوراتي",
-        "profile": "الملف الشخصي"
-    }
+        "profile": "الملف الشخصي",
+          "firstName": "الاسم الأول",
+  "enterFirstName": "أدخل الاسم الأول",
+  "lastName": "اسم العائلة",
+  "enterLastName": "أدخل اسم العائلة",
+  "headline": "العنوان",
+  "about": "نبذة عنك",
+  "skills": "المهارات",
+  "effectiveCommunication": "التواصل الفعال",
+  "subjectMatterExpertise": "الخبرة المتخصصة",
+  "classroomManagement": "إدارة الفصول",
+  "curriculumDevelopment": "تطوير المناهج",
+  "adaptabilityAndFlexibility": "القدرة على التكيف والمرونة",
+  "firstNameRequired": "الاسم الأول مطلوب",
+  "firstNameMin": "الاسم الأول يجب أن يكون على الأقل حرفين",
+  "lastNameRequired": "اسم العائلة مطلوب",
+  "lastNameMin": "اسم العائلة يجب أن يكون على الأقل حرفين",
+  "headlineRequired": "العنوان مطلوب",
+  "headlineMax": "العنوان لا يمكن أن يزيد عن 50 حرفًا",
+  "aboutRequired": "النبذة مطلوبة",
+  "aboutMax": "النبذة لا يمكن أن تزيد عن 200 حرف",
+  "skillsRequired": "يرجى اختيار مهارة",
+  "enterHeadline": "ادخل العنوان",
+  "enterAbout": "اكتب نبذة عن نفسك"
+   
+ },
+ "workExperience":
+{"jobTitle": "المسمى الوظيفي",
+    "enterJobTitle": "أدخل المسمى الوظيفي",
+    "companyName": "اسم الشركة",
+    "enterCompanyName": "أدخل اسم الشركة",
+    "startDate": "تاريخ البداية",
+    "endDate": "تاريخ النهاية",
+    "jobTitleRequired": "المسمى الوظيفي مطلوب",
+    "jobTitleMin": "المسمى الوظيفي يجب أن يكون على الأقل حرفين",
+    "companyNameRequired": "اسم الشركة مطلوب",
+    "companyNameMin": "اسم الشركة يجب أن يكون على الأقل حرفين",
+    "startDateRequired": "تاريخ البداية مطلوب",
+    "endDateRequired": "تاريخ النهاية مطلوب",
+    "invalidDate": "تاريخ غير صالح",
+    "endDateBeforeStartDate": "تاريخ النهاية لا يمكن أن يكون قبل تاريخ البداية",
+    "addAnotherExperience": "أضف خبرة أخرى"
+},
+"save":
+{
+    "Save":"حفظ"
+}
+
 }
