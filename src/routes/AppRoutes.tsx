@@ -15,6 +15,7 @@ import USER_PROFILE from "@/data/userProfile";
 import UserProfilePage from "@/pages/profile/UserProfilePage";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
 import InstructorReviews from "@/pages/instructor/InstructorReviews";
+import CoursesPage from "@/pages/courses/CoursesPage";
 
 export default function AppRoutes() {
   return (
@@ -44,6 +45,9 @@ export default function AppRoutes() {
 
         <Route path="/instructor">
           <Route path="reviews" element={<InstructorReviews />} />
+        </Route>
+        <Route path="/courses">
+          <Route index element={<CoursesPage />} />
         </Route>
         {/* it must add as a child for BrowserCourses */}
         <Route path="/favourites" element={<Favourites />} />
