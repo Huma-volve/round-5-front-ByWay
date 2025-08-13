@@ -4,7 +4,7 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
+  // NavigationMenuTrigger,
 } from "@radix-ui/react-navigation-menu";
 import { Link } from "react-router-dom";
 
@@ -13,7 +13,7 @@ function AppNavbar() {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
+          {/* <NavigationMenuTrigger>Item One</NavigationMenuTrigger> */}
           <NavigationMenuContent>
             <NavigationMenuLink asChild>
               <Link to="/about"></Link>

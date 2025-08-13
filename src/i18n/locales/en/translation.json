@@ -2,7 +2,12 @@
   "common": {
     "home": "Home",
     "instructor": "Instructor",
-    "addCourse": "Add Course"
+    "addCourse": "Add Course",
+    "settings": "Settings",
+    "notifications": "Notifications",
+    "favourite": "Favourite",
+    "paymethod": "Payment Method",
+    "payhistory": "Payment History"
   },
   "instructor": {
     "reviews": "Reviews",
@@ -54,5 +59,37 @@
       "courseDescription": "Course Description",
       "submitButton": "Create Course"
     }
+  },
+  "favourite": {
+    "Courses": "Courses",
+    "Instractor": "Instractor"
+  },
+  "notifications": {
+    "You are all up to date": "You are all up to date",
+    "No new notifications - come back soon": "No new notifications - come back soon"
+  },
+  "settings": {
+    "Payment Methods": "Payment Methods",
+    "Payment History": "Payment History"
+  },
+  "payments": {
+    "Choose your payment method": "Choose your payment method",
+    "Select your preferred way to pay for your courses": "Select your preferred way to pay for your courses",
+    "Date": "Date",
+    "Course": "Course",
+    "Method": "Method",
+    "Amount": "Amount"
+  },
+  "profile": {
+    "First Name": "First Name",
+    "Last Name": "Last Name",
+    "Headline": "Headline",
+    "About": "About",
+    "Links": "Links",
+    "X(Formerly twitter)": "X(Formerly twitter",
+    "Linkedin": "Linkedin",
+    "Youtube": "Youtube",
+    "Facebook": "Facebook",
+    "Edit Profile": "Edit Profile"
   }
 }

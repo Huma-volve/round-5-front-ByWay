@@ -48,7 +48,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className = '' }) => {
             <span
               className={`${
                 item.isActive
-                  ? 'text-categoryIcon font-medium'
+                  ? 'text-categoryIcon font-medium '
                   : 'text-gray-500'
               }`}
             >
