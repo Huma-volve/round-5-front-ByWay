@@ -20,6 +20,7 @@ export default function AppRoutes() {
   return (
     <Router>
       <Routes>
+        <Route element={<AppLayout />}>
         <Route
           path="/"
           element={
@@ -29,9 +30,6 @@ export default function AppRoutes() {
             </div>
           }
         />
-        <Route path="/instructor">
-          <Route path="reviews" element={<InstructorReviews />} />
-        </Route>
         <Route path="/close-account" element={<CloseAccount />} />
         <Route path="/success" element={<Success />} />
         <Route
@@ -43,9 +41,6 @@ export default function AppRoutes() {
           element={<EditUserProfile user={USER_PROFILE[0]} />}
         />
 
-        <Route path="/instructor">
-          <Route path="reviews" element={<InstructorReviews />} />
-        </Route>
         {/* it must add as a child for BrowserCourses */}
         <Route path="/favourites" element={<Favourites />} />
         <Route path="/notifications" element={<NotificationPage />} />
@@ -54,7 +49,6 @@ export default function AppRoutes() {
         <Route path="/settings/payhistory" element={<PayHistoryPage />} />
         {/*End of children for BrowserCourse */}
 
-        <Route element={<AppLayout />}>
           <Route path="/instructor">
             <Route path="reviews" element={<InstructorReviews />} />
             <Route path="revenue" element={<Revenue />} />
