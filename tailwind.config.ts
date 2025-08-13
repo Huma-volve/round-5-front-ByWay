@@ -20,27 +20,18 @@ export default {
   			revenue1Bg: 'var(--revenue1-bg)',
   			revenue2Graph: 'var(--revenue2-graph)',
   			revenue2Bg: 'var(--revenue2-bg)',
-  			primary: {
-  				DEFAULT: 'hsl(var(--primary))',
-  				foreground: 'hsl(var(--primary-foreground))'
-  			},
-  			secondary: {
-  				DEFAULT: 'hsl(var(--secondary))',
-  				foreground: 'hsl(var(--secondary-foreground))'
-  			},
+  			primary: 'var(--primary)',
+  			secondary: 'var(--secondary)',
   			secondaryDark: 'var(--secondary-dark)',
   			secondaryBackground: 'var(--secondary-background)',
-  			border: 'hsl(var(--border))',
+  			border: 'var(--border)',
   			borderCard: 'var(--border-card)',
-  			input: 'hsl(var(--input))',
+  			input: 'var(--input)',
   			category: 'var(--category)',
   			categoryIcon: 'var(--category-icon)',
   			success: 'var(--success)',
   			foreground: 'hsl(var(--foreground))',
-  			card: {
-  				DEFAULT: 'hsl(var(--card))',
-  				foreground: 'hsl(var(--card-foreground))'
-  			},
+  			card: 'var(--card)',
   			popover: {
   				DEFAULT: 'hsl(var(--popover))',
   				foreground: 'hsl(var(--popover-foreground))'

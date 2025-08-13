@@ -8,7 +8,7 @@ body {
 
 @layer base {
     :root {
-        --background: 0 0% 100%;
+        --background: oklch(1 0 0);
         --footer-bg: #1E293B;
         --danger: #EA4335;
         --rate: #2563EB;
@@ -17,13 +17,13 @@ body {
         --revenue1-bg: #3BB34633;
         --revenue2-graph: #165DFF;
         --revenue2-bg: #165DFF33;
-        --primary: 0 0% 9%;
-        --secondary: 0 0% 96.1%;
+        --primary: #587DBD;
+        --secondary: #AEAEB2;
         --secondary-dark: #334155;
         --secondary-background: #F8FAFC;
-        --border: 0 0% 89.8%;
+        --border: #E9EBED;
         --border-card: #E2E8F0;
-        --input: 0 0% 89.8%;
+        --input: #FAFAFA;
         --category: #E0F2FE;
         --category-icon: #3B82F6;
         --success: #5BAE61;
@@ -48,7 +48,8 @@ body {
         --chart-5: 27 87% 67%;
         --radius: 0.5rem;
     }
-  .dark {
+
+    .dark {
         --background: 0 0% 3.9%;
         --foreground: 0 0% 98%;
         --card: 0 0% 3.9%;
@@ -78,36 +79,50 @@ body {
 
 @layer utilities {
     .container {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
 
-    @media (min-width: 640px) {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-    }
+        @media (min-width: 640px) {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
 
-    @media (min-width: 768px) {
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
+        @media (min-width: 768px) {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
 
-    @media (min-width: 1280px) {
-        max-width: 75rem;
-        margin-inline: auto;
+        @media (min-width: 1280px) {
+            max-width: 75rem;
+            margin-inline: auto;
+        }
     }
-  }
 }
 
 
 
 @layer base {
-  * {
-    @apply border-border;
+    * {
+        @apply border-border;
     }
-  body {
-    @apply bg-background text-foreground;
+
+    body {
+        @apply bg-background text-foreground;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        /* Always show scrollbar to prevent layout shifts */
+    }
+
+    html {
+        overflow-x: hidden;
+    }
+
+    /* Prevent layout shifts when dropdowns open */
+    [data-radix-popper-content-wrapper] {
+        z-index: 50 !important;
+        position: fixed !important;
     }
 }
