@@ -15,6 +15,8 @@ import SettingsPage from "../pages/Settings/SettingsPage";
 import PaymethodPage from "../pages/Payments/PaymethodPage";
 import PayHistoryPage from "../pages/Payments/PayHistoryPage";
 import CoursesPage from "@/pages/courses/CoursesPage";
+import CourseDetails from "@/components/courses/CourseDetails";
+import InstructorDetails from "@/components/instructor/InstractorDetails/InstructorDetails";
 
 export default function AppRoutes() {
   return (
@@ -30,6 +32,8 @@ export default function AppRoutes() {
           }
         />
         <Route path="/instructor">
+          <Route path=":instructorId" element={<InstructorDetails />} />
+          <Route path="reviews" element={<InstructorReviews />} />
           <Route path="reviews" element={<InstructorReviews />} />
         </Route>
         <Route path="/close-account" element={<CloseAccount />} />
@@ -43,11 +47,9 @@ export default function AppRoutes() {
           element={<EditUserProfile user={USER_PROFILE[0]} />}
         />
 
-        <Route path="/instructor">
-          <Route path="reviews" element={<InstructorReviews />} />
-        </Route>
         <Route path="/courses">
           <Route index element={<CoursesPage />} />
+          <Route path=":courseId" element={<CourseDetails />} />
         </Route>
         {/* it must add as a child for BrowserCourses */}
         <Route path="/favourites" element={<Favourites />} />
