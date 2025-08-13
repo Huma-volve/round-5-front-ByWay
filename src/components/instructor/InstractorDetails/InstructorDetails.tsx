@@ -7,6 +7,9 @@ function InstructorDetails() {
         <p className="mx-4 font-[600] text-sm md:text-lg">{">"}</p>
         <p className="text-[--rate] text-sm md:text-lg">details Courses</p>
       </div>
+      <div>
+        
+      </div>
     </div>
   );
 }
