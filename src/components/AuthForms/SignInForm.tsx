@@ -4,11 +4,10 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import FormError from "@/components/AuthForms/FormError";
 import { Link } from "react-router-dom";
+import { useSignIn } from "@/hooks/useSignIn";
 
 function SignInForm() {
-  const mutate = (values: {}) => {
-    console.log(values);
-  };
+  const { mutate, data, isPending, error,  } = useSignIn();
 
   //Regex
   const regexes = {
@@ -26,10 +25,6 @@ function SignInForm() {
       .string()
       .required("This filed is required")
       .matches(regexes.password, "Please enter a valid password"),
-    confirm_password: yup
-      .string()
-      .required("This filed is required")
-      .oneOf([yup.ref("password")], "password doesn't match"),
   });
 
   const formik = useFormik({
@@ -38,8 +33,8 @@ function SignInForm() {
       password: "",
     },
     validationSchema: scheme,
-    onSubmit: (values) => {
-      mutate(values);
+    onSubmit: (formData) => {
+      mutate(formData);
     },
   });
 

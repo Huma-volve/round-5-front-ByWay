@@ -111,7 +111,7 @@ body {
     @apply text-lg font-semibold ml-1 text-slate-700
   }
   .auth-link {
-    @apply text-placeholder hover:underline
+    @apply text-placeholder hover:underline cursor-pointer
   }
 
 

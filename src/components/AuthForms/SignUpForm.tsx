@@ -6,8 +6,9 @@ import FormError from "@/components/AuthForms/FormError";
 import { useSignUp } from "@/hooks/useSignUp";
 
 function SignUpForm() {
-  const { mutate, data, isPending, error,  } = useSignUp();
+  
   //data from useSignUp returns the response from the server
+  const { mutate, data, isPending, error,  } = useSignUp();
 
   //Regex
   const regexes = {

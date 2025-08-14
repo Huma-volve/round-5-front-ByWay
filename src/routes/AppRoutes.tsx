@@ -19,7 +19,7 @@ export default function AppRoutes() {
           <Route path="/signup" element={<SignUp/>} />
           <Route path="/forgot" element={<ForgotForm/>} />
           <Route path="/reset/:id" element={<ResetForm/>} />
-          <Route path="/otp/:id" element={<OTPForm/>} />
+          <Route path="/otp" element={<OTPForm/>} />
         </Route>
       </Routes>
     </Router>

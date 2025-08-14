@@ -7,6 +7,9 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
+import { useLocation } from "react-router-dom";
+import { useOTP } from "@/hooks/useOTP";
+import { useGenerateOTP } from "@/hooks/useGenerateOTP";
 
 const validationSchema = Yup.object({
   otp: Yup.string()
@@ -14,23 +17,25 @@ const validationSchema = Yup.object({
     .required("OTP is required"),
 });
 
-interface OTPFormValues {
-  otp: string;
-}
-
 export function OTPForm() {
-  const initialValues: OTPFormValues = {
+  const { mutate: sendOTP } = useOTP();
+  const { mutate: getOTP } = useGenerateOTP();
+
+  const email = useLocation().state;
+
+  const initialValues = {
     otp: "",
   };
 
-  const handleSubmit = async (values: OTPFormValues) => {
-    // Ready for API call
+  const handleSubmit = (values: { otp: string }) => {
+    const formData = { ...values, email };
+    sendOTP(formData);
     console.log("OTP submitted:", values.otp);
-    // Call your API here
-    // await verifyOTP(values.otp)
   };
 
-  const handleResendCode = () => {
+  const handleResendCode = (resetForm) => {
+    getOTP({ email });
+    resetForm();
     // Ready for resend API call
     console.log("Resend code requested");
     // await resendOTP()
@@ -43,7 +48,7 @@ export function OTPForm() {
         <p className="text-placeholder mt-2"></p> We have just sent you a 4
         digit code via
         <br />
-        your email <span className="font-medium">example@gmail.com</span>
+        your email <span className="auth-link">{email}</span>
       </div>
 
       <Formik
@@ -51,7 +56,7 @@ export function OTPForm() {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ values, setFieldValue, errors, touched }) => (
+        {({ values, setFieldValue, errors, touched, resetForm }) => (
           <Form className="auth-form">
             <div className="flex justify-between">
               <InputOTP
@@ -73,17 +78,14 @@ export function OTPForm() {
               <p className="text-red-500 text-sm text-center">{errors.otp}</p>
             )}
 
-            <Button
-              type="submit"
-              className="auth-button"
-            >
+            <Button type="submit" className="auth-button">
               Continue
             </Button>
 
             <div className="">
               <button
                 type="button"
-                onClick={handleResendCode}
+                onClick={() => handleResendCode(resetForm)}
                 className="auth-link"
               >
                 Didn't receive code? Resend Code
