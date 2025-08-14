@@ -85,10 +85,7 @@ export default function ViewLessonsContent() {
                     })}
                   </span>
                   <span>
-                    {course.totalDuration}{" "}
-                    {t("instructor.lessons.duration", { minutes: "" })
-                      .replace("{{minutes}}", "")
-                      .trim()}
+                    {t("instructor.lessons.duration", { minutes: course.totalDuration })}
                   </span>
                   <span className="capitalize">{course.status}</span>
                 </div>
@@ -127,7 +124,10 @@ export default function ViewLessonsContent() {
             <p className="text-muted-foreground mb-6">
               {t("instructor.lessons.noLessonsDescription")}
             </p>
-            <Button onClick={handleAddNewLesson} className="gap-2 text-primary hover:text-white bg-white hover:bg-primary">
+            <Button
+              onClick={handleAddNewLesson}
+              className="gap-2 text-primary hover:text-white bg-white hover:bg-primary"
+            >
               <Plus className="h-4 w-4" />
               {t("instructor.lessons.addFirstLesson")}
             </Button>

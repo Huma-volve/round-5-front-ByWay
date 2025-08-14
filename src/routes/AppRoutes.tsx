@@ -30,8 +30,6 @@ export default function AppRoutes() {
       <Routes>
         <Route element={<AppLayout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<div>About</div>} />
-          <Route path="/contact" element={<div>Contact</div>} />
           <Route path='/instructor' >
             <Route path=':instructorId' element={<InstructorDetails />} />
             <Route path='reviews' element={<InstructorReviews />} />
