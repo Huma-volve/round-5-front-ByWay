@@ -56,6 +56,126 @@
 "save":
 {
     "Save":"حفظ"
+},
+
+ "profile": {
+    "First Name": "الاسم الاول ",
+    "Last Name": "الاسم الاخير",
+    "Headline": "العنوان",
+    "About": "حول",
+    "Links": "الروابط",
+    "X(Formerly twitter)": "تويتر",
+    "Linkedin": "لنكدان",
+    "Youtube": "يوتيوب",
+    "Facebook": "فيسبوك",
+    "Edit Profile": "تعديل الملف الشخصى"
+  },
+  "common": {
+    "home": "الرئيسية",
+    "instructor": "المدرب",
+    "settings": "الاعدادات",
+    "notifications": "الاشعارات",
+    "favourites": "المفضله",
+    "paymethod": "طرق الدفع",
+    "payhistory": "تواريخ الدفع"
+  },
+  "instructor": {
+    "reviews": "المراجعات",
+    "courseName": "اسم الدورة",
+    "rating": "التقييم",
+    "review": "المراجعة",
+    "courses": "دوراتي",
+    "profile": "الملف الشخصي",
+    "revenue": {
+      "name": "الإيرادات",
+      "title": "تحليلات الإيرادات",
+      "paidMessage": "احصل على أفضل الأفكار حول أدائك",
+      "getPaid": "احصل على أموالك",
+      "selectTimePeriod": "اختر الفترة",
+      "currentPeriod": "الفترة الحالية",
+      "lastPeriod": "الفترة السابقة",
+      "stats": {
+        "totalProfits": "إجمالي الأرباح",
+        "availableBalance": "الرصيد المتاح",
+        "lastTransaction": "آخر معاملة"
+      }
+    },
+    "income": {
+      "title": "المعاملات",
+      "table": {
+        "customer": "العميل",
+        "date": "التاريخ",
+        "paymentType": "نوع الدفع",
+        "amount": "المبلغ",
+        "scrollHint": "مرر أفقياً لرؤية جميع الأعمدة"
+      },
+      "search": {
+        "placeholder": "البحث بالعميل..."
+      },
+      "filters": {
+        "paymentPlaceholder": "تصفية حسب نوع الدفع",
+        "all": "الكل"
+      },
+      "paymentTypes": {
+        "cash": "نقداً",
+        "creditCard": "بطاقة ائتمان",
+        "bankTransfer": "تحويل بنكي"
+      }
+    }
+  },
+"withdraw": {
+    "Enter Payment Details": "ادخل تفاصيل الدفع",
+    "Payment Method": "طريقه الدفع",
+    "Please Select": "من فضلك اختر",
+    "PayPal": "باي بال",
+    "Bank Transfer": "تحويل بنكي",
+    "Fawry": "فورى",
+    "Account Name": "اسم الحساب",
+    "Account Number": "رقم الحساب",
+    "Account Email" : "البريد الالكتروني للحساب",
+    "Enter Account Name": "ادخل اسم الحساب",
+    "Enter Account Number": "ادخل رقم الحساب",
+    "Enter Account Email": "ادخل البريد الحساب الالكتروني",
+    "Enter Amount" : "ادخل الرصيد",
+    "Bank Name": "اسم البنك",
+    "Save These Details": "احفظ هذه التفاصيل",
+    "Continue": "استمر",
+    "Please select a payment method": "من فضلك ادخل طريقه الدفع",
+    "Please select a bank": "من فضلك اختر البنك",
+    "Please enter a valid account Name": "من فضلك ادخل اسم حساب مناسب",
+    "Please enter your account email": "من فضلك ادخل البريد الالكتروني لحسابك",
+    "Please enter your account number": "من فضلك ادخل رقم حسابك",
+    "Account number must be at least 6 digits": "رقم الحساب لابد ان يكون على الاقل 6 ارقام",
+    "Please enter a valid email": "من فضلك ادخل بريد الكتروني صحيح",
+    "Withdraw Amount" : "سحب المبلغ",
+    "Next" : "التالي",
+    "Available Balance" : "الرصيد المتاح",
+    "Minimum Withdrawal" : "الحد الادني للسحب",
+    "and" : "و",
+    "You can withdraw any amount between" : "يمكنك ان تسحب اي رصيد بين",
+    "Enter a valid amount" : "ادخل قيمه صالحه"
+  },
+ "favourite": {
+    "Courses": "الدورات",
+    "Instractor": "المدرب"
+  },
+  "notifications": {
+    "You are all up to date": "لقد اطلعت علي جميع التحديثات",
+    "No new notifications - come back soon": "لا توجد إشعارات جديدة - عد قريبًا"
+  },
+  "settings": {
+    "Payment Methods": "طرق الدفع",
+    "Payment History": "تاريخ الدفع"
+  },
+  "payments": {
+    "Choose your payment method": "اختار طريقه الدفع",
+    "Select your preferred way to pay for your courses": "اختار طريقه الدفع المناسبه لك  لتقوم بشراء الدورات",
+    "Date": "التاريخ",
+    "Course": "الدورة",
+    "Method": "طريقه الدفع",
+    "Amount": "القيمه",
+    "profile": "الملف الشخصي",
+    "Save Payment Method" : "حفظ طريقه الدفع"
+  }
 }
 
-}

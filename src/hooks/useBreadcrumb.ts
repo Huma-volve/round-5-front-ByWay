@@ -11,6 +11,11 @@ export const useBreadcrumb = () => {
     "/": "common.home",
     "/instructor": "common.instructor",
     "/instructor/reviews": "instructor.reviews",
+    "/settings": "common.settings",
+    "/settings/paymethod": "common.paymethod",
+    "/settings/payhistory": "common.payhistory",
+    "/favourites": "common.favourites",
+    "/notifications": "common.notifications",
 
   };
 

@@ -34,12 +34,14 @@ export default function Review({
       <p className="flex items-center gap-2 text-sm sm:text-base">
         <span className="font-medium">{t("instructor.rating")}:</span>
         <span className="flex gap-1">
+
           {Array(rating).fill(0).map((_, i) => (
             <img key={i} src={activeStarIcon} alt="Star" className="w-4 h-4" />
           ))}
           {Array(5 - rating).fill(0).map((_, i) => (
             <img key={i} src={inactiveStarIcon} alt="Star" className="w-4 h-4 opacity-50" />
           ))}
+
         </span>
       </p>
     </>

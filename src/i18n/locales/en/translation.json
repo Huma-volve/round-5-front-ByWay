@@ -1,7 +1,12 @@
 {
   "common": {
     "home": "Home",
-    "instructor": "Instructor"
+    "instructor": "Instructor",
+    "settings" : "Settings",
+    "notifications" : "Notifications",
+    "favourites" :  "Favourite",
+    "paymethod": "Payment Method",
+    "payhistory": "Payment History"
   },
   "instructor": {
     "reviews": "Reviews",
@@ -10,6 +15,7 @@
     "review": "Review",
     "courses": "My Courses",
     "profile": "Profile",
+
   "firstName": "First Name",
   "enterFirstName": "Enter your First Name",
   "lastName": "Last Name",
@@ -53,9 +59,108 @@
 "save":
 {
     "Save":"Save"
-}
+},
+ "revenue": {
+      "name": "Revenue",
+      "title": "Revenue Analytics",
+      "paidMessage": "Get top insights about your performance",
+      "getPaid": "Get Paid",
+      "selectTimePeriod": "Select Period",
+      "currentPeriod": "Current Period",
+      "lastPeriod": "Last Period",
+      "stats": {
+        "totalProfits": "Total Profits",
+        "availableBalance": "Available Balance",
+        "lastTransaction": "Last Transaction"
+      }
+    },
+    "income": {
+      "title": "Transactions",
+      "table": {
+        "customer": "Customer",
+        "date": "Date",
+        "paymentType": "Payment Type",
+        "amount": "Amount",
+        "scrollHint": "Scroll horizontally to see all columns"
+      },
+      "search": {
+        "placeholder": "Search by customer..."
+      },
+      "filters": {
+        "paymentPlaceholder": "Filter by payment",
+        "all": "All"
+      },
+      "paymentTypes": {
+        "cash": "Cash",
+        "creditCard": "Credit Card",
+        "bankTransfer": "Bank Transfer"
+      }
+    },
 
 
- 
-
+ "withdraw" : {
+  "Enter Payment Details" : "Enter Payment Details",
+  "Payment Method": "Payment Method",
+  "Please Select" : "Please Select",
+  "PayPal" : "PayPal",
+  "Bank Transfer": "Bank Transfer" ,
+  "Fawry" : "Fawry",
+  "Account Name": "Account Name",
+  "Account Number": "Account Number",
+  "Account Email" : "Account Email",
+  "Enter Account Name" : "Enter Account Name",
+  "Enter Account Number" : "Enter Account Number",
+  "Enter Account Email" : "Enter Account Email",
+  "Enter Amount" : "Enter Amount",
+  "Bank Name" : "Bank Name",
+  "Save These Details" : "Save These Details",
+  "Continue" : "Continue",
+  "Please select a payment method" : "Please select a payment method",
+  "Please select a bank" : "Please select a bank",
+  "Please enter a valid account Name" : "Please enter a valid account Name",
+  "Please enter your account email" : "Please enter your account email",
+  "Please enter your account number" : "Please enter your account number",
+  "Account number must be at least 6 digits" : "Account number must be at least 6 digits",
+  "Please enter a valid email" : "Please enter a valid email",
+  "Withdraw Amount" : "Withdraw Amount",
+  "Next" : "Next",
+  "Available Balance" : "Available Balance",
+  "Minimum Withdrawal" : "Minimun Withdrawal",
+  "and" : "and",
+  "You can withdraw any amount between" : "You can withdraw any amount between",
+  "Enter a valid amount" : "Enter a valid amount"
+ },
+  "favourite":{
+        "Courses" : "Courses",
+        "Instractor" : "Instractor"
+    },
+    "notifications":{
+        "You are all up to date" : "You are all up to date",
+        "No new notifications - come back soon" : "No new notifications - come back soon"
+    },
+    "settings":{
+        "Payment Methods" : "Payment Methods",
+        "Payment History" : "Payment History"
+    },
+    "payments":{
+        "Choose your payment method" : "Choose your payment method",
+        "Select your preferred way to pay for your courses" : "Select your preferred way to pay for your courses",
+        "Date" : "Date",
+        "Course" : "Course",
+        "Method" : "Method",
+        "Amount" : "Amount",
+        "Save Payment Method" : "Save Payment Method"
+    },
+  "profile": {
+    "First Name": "First Name",
+    "Last Name": "Last Name",
+    "Headline": "Headline",
+    "About": "About",
+    "Links": "Links",
+    "X(Formerly twitter)": "X(Formerly twitter",
+    "Linkedin": "Linkedin",
+    "Youtube": "Youtube",
+    "Facebook": "Facebook",
+    "Edit Profile": "Edit Profile"
+  }
 }
