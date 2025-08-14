@@ -9,7 +9,9 @@
     "favourites": "Favourite",
     "paymethod": "Payment Method",
     "payhistory": "Payment History",
-    "rate": "rate"
+    "rate": "rate",
+    "coursedetailes" : "Course Detailes",
+    "learnermycourse" : "My Courses"
   },
   "instructor": {
     "reviews": "Reviews",
@@ -169,5 +171,15 @@
     "Edit Profile": "Edit Profile",
     "Learner Reviews": "Learner Reviews",
     "View more Reviews": "View more Reviews"
+  },
+  "user" : {
+    "Send Feedback" : "Send Feedback"
+  },
+  "feedbackModal" : {
+    "Give" : "Give Feedback",
+    "What" : "What is Your Opinion ?",
+    "Write" : "Write Your Feedback here...",
+    "Cancel" : "Cancel",
+    "Confirm" : "Confirm"
   }
 }

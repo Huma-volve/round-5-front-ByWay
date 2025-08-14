@@ -1,15 +1,18 @@
-import React from "react";
 import StarIcon from "../../assets/images/icons/StarIcon.svg";
 import VideoIcon from "../../assets/images/icons/VideoIcon.svg";
+import Review from "../instructor/reviews/Review";
+import Breadcrumb from "../../components/common/Breadcrumb";
+import { useBreadcrumb } from "../../hooks/useBreadcrumb";
 
 function CourseDetails() {
+  
+    const { getAutoBreadcrumb } = useBreadcrumb();
   return (
     <div className="md:mx-24 mx-5 mt-12">
-      <div className="flex mb-14">
-        <p className="text-sm md:text-lg">Browse Courses</p>
-        <p className="mx-4 font-[600] text-sm md:text-lg">{">"}</p>
-        <p className="text-[--rate] text-sm md:text-lg">Details Courses</p>
-      </div>
+      {/* The Stack pages */}
+        <div>
+          <Breadcrumb items={getAutoBreadcrumb()} className="mb-6 mt-5" />
+        </div>
       <div>
         <h3 className="text-[--rate] font-[600] text-2xl">UI/UX Design</h3>
         <p className="secondary-dark mt-1 mb-5">Created by Omnya Ali</p>
@@ -47,6 +50,18 @@ function CourseDetails() {
           </p>
         </div>
       </div>
+              <Review variant="user"
+        name="john albert" 
+        review="I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down" 
+        rating={3}
+        date="Aug 2025" />
+
+              <Review variant="user"
+        name="john albert" 
+        review="I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down" 
+        rating={3}
+        date="Aug 2025" />
+
     </div>
   );
 }
