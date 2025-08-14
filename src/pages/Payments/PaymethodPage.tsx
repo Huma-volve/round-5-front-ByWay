@@ -83,7 +83,7 @@ export default function PaymethodPage() {
             </div>
           </label>
         </div>
-        <button className="mt-14 px-2 py-3 bg-success text-white rounded-md w-[200px] md:w-[300px] hover:bg-green-600 transition-all duration-300">Save Payment Method</button>
+        <button className="mt-14 px-2 py-3 bg-success text-white rounded-md w-[200px] md:w-[300px] hover:bg-green-600 transition-all duration-300">{t("payments.Save Payment Method")}</button>
       </div>
     </div>
   );

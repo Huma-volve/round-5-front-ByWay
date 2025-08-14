@@ -17,7 +17,7 @@ export const useBreadcrumb = () => {
     "/settings": "common.settings",
     "/settings/paymethod": "common.paymethod",
     "/settings/payhistory": "common.payhistory",
-    "/favourite": "common.favourite",
+    "/favourites": "common.favourites",
     "/notifications": "common.notifications",
   };
 
