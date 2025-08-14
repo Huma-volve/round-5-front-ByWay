@@ -1,42 +1,53 @@
 {
+  "common": {
+    "home": "الرئيسية",
+    "instructor": "المدرب",
+    "addCourse": "إضافة دورة",
+    "settings": "الإعدادات",
+    "notifications": "الإشعارات",
+    "favourite": "المفضلة",
+    "favourites": "المفضلة",
+    "paymethod": "طرق الدفع",
+    "payhistory": "تاريخ الدفع",
+    "rate":"التقييم"  },
   "instructor": {
-    "reviews": "المراجعات",
-  "rating": "التقييم",
-  "review": "المراجعة",
-  "courses": "دوراتي",
-  "profile": "الملف الشخصي",
-  "firstName": "الاسم الأول",
-  "enterFirstName": "أدخل الاسم الأول",
-  "lastName": "اسم العائلة",
-  "enterLastName": "أدخل اسم العائلة",
-  "headline": "العنوان",
-  "about": "نبذة عنك",
-  "skills": "المهارات",
-  "lessons": "دروسك",
-  "effectiveCommunication": "التواصل الفعال",
-  "subjectMatterExpertise": "الخبرة المتخصصة",
-  "classroomManagement": "إدارة الفصول",
-  "curriculumDevelopment": "تطوير المناهج",
-  "adaptabilityAndFlexibility": "القدرة على التكيف والمرونة",
-  "firstNameRequired": "الاسم الأول مطلوب",
-  "firstNameMin": "الاسم الأول يجب أن يكون على الأقل حرفين",
-  "lastNameRequired": "اسم العائلة مطلوب",
-  "lastNameMin": "اسم العائلة يجب أن يكون على الأقل حرفين",
-  "headlineRequired": "العنوان مطلوب",
-  "headlineMax": "العنوان لا يمكن أن يزيد عن 50 حرفًا",
-  "aboutRequired": "النبذة مطلوبة",
-  "aboutMax": "النبذة لا يمكن أن تزيد عن 200 حرف",
-  "skillsRequired": "يرجى اختيار مهارة",
-  "enterHeadline": "ادخل العنوان",
-  "courseName": "اسم الدورة",
-  "Total Students": "إجمالي الطلاب",
+
+    "Total Students": "إجمالي الطلاب",
   "Courses": "دروسك",
   "SortBy": "ترتيب حسب",
   "Relevance": "الأكثر صلة",
   "Filter": "تصفية",
   "AddCourse": "إضافة كورس",
-  "enterAbout": "اكتب نبذة عن نفسك",
-      "revenue": {
+  "reviews": "المراجعات",
+    "courseName": "اسم الدورة",
+    "rating": "التقييم",
+    "review": "المراجعة",
+    "courses": "دوراتي",
+    "profile": "الملف الشخصي",
+    "firstName": "الاسم الأول",
+    "enterFirstName": "أدخل الاسم الأول",
+    "lastName": "اسم العائلة",
+    "enterLastName": "أدخل اسم العائلة",
+    "headline": "العنوان",
+    "about": "نبذة عنك",
+    "skills": "المهارات",
+    "effectiveCommunication": "التواصل الفعال",
+    "subjectMatterExpertise": "الخبرة المتخصصة",
+    "classroomManagement": "إدارة الفصول",
+    "curriculumDevelopment": "تطوير المناهج",
+    "adaptabilityAndFlexibility": "القدرة على التكيف والمرونة",
+    "firstNameRequired": "الاسم الأول مطلوب",
+    "firstNameMin": "الاسم الأول يجب أن يكون على الأقل حرفين",
+    "lastNameRequired": "اسم العائلة مطلوب",
+    "lastNameMin": "اسم العائلة يجب أن يكون على الأقل حرفين",
+    "headlineRequired": "العنوان مطلوب",
+    "headlineMax": "العنوان لا يمكن أن يزيد عن 50 حرفًا",
+    "aboutRequired": "النبذة مطلوبة",
+    "aboutMax": "النبذة لا يمكن أن تزيد عن 200 حرف",
+    "skillsRequired": "يرجى اختيار مهارة",
+    "enterHeadline": "ادخل العنوان",
+    "enterAbout": "اكتب نبذة عن نفسك",
+    "revenue": {
       "name": "الإيرادات",
       "title": "تحليلات الإيرادات",
       "paidMessage": "احصل على أفضل الأفكار حول أدائك",
@@ -180,52 +191,9 @@
       "delete": "حذف",
       "deleting": "جاري الحذف..."
     }
- 
- },
-
-
-   
-  "common": {
-    "home": "الرئيسية",
-    "instructor": "المدرب",
-    "addCourse": "إضافة دورة",
-    "settings": "الإعدادات",
-    "notifications": "الإشعارات",
-    "favourite": "المفضلة",
-    "favourites": "المفضلة",
-    "paymethod": "طرق الدفع",
-    "payhistory": "تاريخ الدفع",
-    "rate":"التقييم"
- 
-   },
- 
-
-   
-"save":
-{
-    "Save":"حفظ"
-},
-
- "profile": {
-    "First Name": "الاسم الاول ",
-    "Last Name": "الاسم الاخير",
-    "Headline": "العنوان",
-    "About": "حول",
-    "Links": "الروابط",
-    "X(Formerly twitter)": "تويتر",
-    "Linkedin": "لنكدان",
-    "Youtube": "يوتيوب",
-    "Facebook": "فيسبوك",
-    "Edit Profile": "تعديل الملف الشخصى",
-    "Learner Reviews":"تقييمات المتدربين",
-    "View more Reviews":"عرض المزيد من التقييمات"
- },
- 
-
-"withdraw": {
-
+  },
   "withdraw": {
-  "Enter Payment Details": "ادخل تفاصيل الدفع",
+    "Enter Payment Details": "ادخل تفاصيل الدفع",
     "Payment Method": "طريقه الدفع",
     "Please Select": "من فضلك اختر",
     "PayPal": "باي بال",
@@ -255,6 +223,9 @@
     "and": "و",
     "You can withdraw any amount between": "يمكنك ان تسحب اي رصيد بين",
     "Enter a valid amount": "ادخل قيمه صالحه"
+
+
+   
   },
   "favourite": {
     "Courses": "الدورات",
@@ -273,15 +244,26 @@
     "Select your preferred way to pay for your courses": "اختر الطريقة المفضلة لدفع ثمن دوراتك",
     "Date": "التاريخ",
     "Course": "الدورة",
+    "Method": "الطريقة",
+    "Amount": "المبلغ",
+    "Save Payment Method": "حفظ طريقه الدفع"
+  },
+  "profile": {
+    "First Name": "الاسم الأول",
+    "Last Name": "الاسم الأخير",
+    "Headline": "العنوان",
+    "About": "حول",
+    "Links": "الروابط",
+    "X(Formerly twitter)": "تويتر",
+    "Linkedin": "لينكدإن",
+    "Youtube": "يوتيوب",
+    "Facebook": "فيسبوك",
+    "Edit Profile": "تعديل الملف الشخصي",
+   "Learner Reviews":"تقييمات المتدربين",
+    "View more Reviews":"عرض المزيد من التقييمات"
 
-    "Method": "طريقه الدفع",
-    "Amount": "القيمه",
-    "profile": "الملف الشخصي",
-    "Save Payment Method" : "حفظ طريقه الدفع"
-  }
-},
-   
 
+  },
   "workExperience": {
     "jobTitle": "المسمى الوظيفي",
     "enterJobTitle": "أدخل المسمى الوظيفي",
@@ -297,6 +279,11 @@
     "endDateRequired": "تاريخ النهاية مطلوب",
     "invalidDate": "تاريخ غير صالح",
     "endDateBeforeStartDate": "تاريخ النهاية لا يمكن أن يكون قبل تاريخ البداية",
-    "addAnotherExperience": "أضف خبرة أخرى" }
-
+    "addAnotherExperience": "أضف خبرة أخرى"
+    
+ 
+  },
+  "save": {
+    "Save": "حفظ"
+  }
 }
