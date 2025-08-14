@@ -9,7 +9,7 @@ export default function SettingsPage() {
   const { getAutoBreadcrumb } = useBreadcrumb();
 
   return (
-    <div className="bg-background">
+    <div className="container bg-background">
       {/* the stack of pathes */}
       <div className="m-4 mt-8">
         <Breadcrumb items={getAutoBreadcrumb()} className="mb-6 mt-5" />

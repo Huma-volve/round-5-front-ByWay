@@ -10,7 +10,7 @@ type userType = {
 const UserProfilePage: React.FC<userType> = ({ user }) => {
   const { t, i18n } = useTranslation();
   useEffect(() => {
-    i18n.changeLanguage("ar");
+    i18n.changeLanguage("en");
   }, []);
   useEffect(() => {
     const currentLang = i18n.language;
@@ -32,7 +32,7 @@ const UserProfilePage: React.FC<userType> = ({ user }) => {
           alt="edit"
           loading="lazy"
           className={`w-8 h-8  curser-pointer bg-border  mt-[-20px]   py-2 rounded-full absolute ${
-            i18n.language === "ar" ? "left-16" : "right-16"
+            i18n.language === "ar" ? "left-16 lg:left-60" : "right-16 lg:right-60"
           }`}
         />
       </Link>
