@@ -8,7 +8,10 @@
     "favourite": "Favourite",
     "favourites": "Favourite",
     "paymethod": "Payment Method",
-    "payhistory": "Payment History"
+    "payhistory": "Payment History",
+    "rate": "rate",
+    "coursedetailes" : "Course Detailes",
+    "learnermycourse" : "My Courses"
   },
   "instructor": {
     "reviews": "Reviews",
@@ -17,6 +20,9 @@
     "review": "Review",
     "courses": "My Courses",
     "profile": "Profile",
+    "Total Students": "Total Students",
+    "Reviews": "Reviews",
+    "Courses": "Courses",
     "firstName": "First Name",
     "enterFirstName": "Enter your First Name",
     "lastName": "Last Name",
@@ -37,6 +43,11 @@
     "aboutRequired": "About is required",
     "aboutMax": "About section cannot be more than 200 characters",
     "skillsRequired": "Please select a skill",
+    "SortBy": "Sort By",
+    "Relevance": "Relevance",
+    "Filter": "Filter",
+    "AddCourse": "Add Course",
+    "lessons": "lessons",
     "revenue": {
       "name": "Revenue",
       "title": "Revenue Analytics",
@@ -50,6 +61,26 @@
         "availableBalance": "Available Balance",
         "lastTransaction": "Last Transaction"
       }
+    },
+    "workExperience": {
+      "jobTitle": "Job Title",
+      "enterJobTitle": "Enter your Job Title",
+      "companyName": "Company Name",
+      "enterCompanyName": "Enter Company Name",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "jobTitleRequired": "Job title is required",
+      "jobTitleMin": "Job title must be at least 2 characters",
+      "companyNameRequired": "Company name is required",
+      "companyNameMin": "Company name must be at least 2 characters",
+      "startDateRequired": "Start date is required",
+      "endDateRequired": "End date is required",
+      "invalidDate": "Invalid date",
+      "endDateBeforeStartDate": "End date cannot be before start date",
+      "addAnotherExperience": "Add another Experience"
+    },
+    "save": {
+      "Save": "Save"
     },
     "income": {
       "title": "Transactions",
@@ -72,114 +103,6 @@
         "creditCard": "Credit Card",
         "bankTransfer": "Bank Transfer"
       }
-    },
-    "addCourse": {
-      "title": "Add Course",
-      "description": "Fill in the details to create a new course",
-      "courseName": "Course Name",
-      "courseDescription": "Course Description",
-      "submitButton": "Create Course",
-      "courseTitle": "Course Title",
-      "courseTitlePlaceholder": "Enter course title",
-      "courseCategory": "Course Category",
-      "courseCategoryPlaceholder": "Select course category",
-      "courseLevel": {
-        "title": "Course Level",
-        "beginner": "Beginner",
-        "intermediate": "Intermediate",
-        "advanced": "Advanced"
-      },
-      "courseDescriptionPlaceholder": "Enter course description",
-      "videoTitle": "Video Title",
-      "videoTitlePlaceholder": "Enter video title",
-      "coursePrice": "Course Price",
-      "coursePricePlaceholder": "Enter course price",
-      "courseThumbnail": "Course Thumbnail",
-      "introVideo": "Intro Video"
-    },
-    "upload": {
-      "videoTitle": "Upload Course Video",
-      "clickToBrowse": "Click to browse or drag and drop",
-      "videoFileTypes": "MP4, MOV, AVI up to 500MB",
-      "chooseFile": "Choose File",
-      "thumbnailTitle": "Upload Course Thumbnail",
-      "imageFileTypes": "JPG, PNG up to 5MB",
-      "courseMaterials": "Add Course Materials",
-      "courseMaterialsFileTypes": "PDF, DOC, DOCX, TXT, Images up to 10MB each"
-    },
-    "courseManagement": {
-      "title": "Course Management",
-      "courseDetails": "Course Details",
-      "description": "Manage your course content and settings",
-      "actions": {
-        "addLessons": {
-          "title": "Add Lessons",
-          "description": "Create and upload video lessons for your course"
-        },
-        "viewLessons": {
-          "title": "View Lessons",
-          "description": "View and manage existing course lessons"
-        },
-        "deleteCourse": {
-          "title": "Delete Course",
-          "description": "Permanently delete this course and all its content"
-        }
-      },
-      "tips": {
-        "title": "Course Management Tips:",
-        "tip1": "Add lessons to make your course content available to students",
-        "tip2": "Use the preview option to offer free sample lessons",
-        "tip3": "Regularly update and organize your course content",
-        "tip4": "Monitor student engagement and feedback"
-      }
-    },
-    "lessons": {
-      "title": "Lessons",
-      "noLessons": "No lessons yet",
-      "noLessonsDescription": "Start by adding your first lesson to this course",
-      "addFirstLesson": "Add First Lesson",
-      "backToCourse": "Back to Course",
-      "editLesson": "Edit Lesson",
-      "updateLesson": "Update Lesson",
-      "addLessons": "Add Lessons",
-      "lessonTitle": "Lesson Title",
-      "lessonTitlePlaceholder": "Enter lesson title",
-      "lessonDescription": "Lesson Description",
-      "lessonDescriptionPlaceholder": "Enter lesson description",
-      "lessonDuration": "Lesson Duration (minutes)",
-      "lessonDurationPlaceholder": "Enter duration in minutes",
-      "lessonVideo": "Lesson Video",
-      "lessonMaterials": "Lesson Materials (Optional)",
-      "freePreview": "Make this lesson available as a free preview",
-      "addAnotherLesson": "Add Another Lesson",
-      "saveLessons": "Save Lessons & Continue",
-      "updatingLesson": "Updating Lesson...",
-      "uploadingLessons": "Uploading Lessons...",
-      "backToLessons": "Back to Lessons",
-      "updateLessonDescription": "Update the lesson information below",
-      "duration": "{{minutes}} min",
-      "materials": "{{count}} material",
-      "materials_plural": "{{count}} materials",
-      "videoLesson": "Video Lesson",
-      "previewBadge": "Preview",
-      "lesson": "Lesson {{order}}",
-      "updated": "Updated {{date}}",
-      "moreFiles": "+{{count}} more files",
-      "editAction": "Edit lesson",
-      "deleteAction": "Delete lesson",
-      "previewAvailable": "Preview available",
-      "totalLessons": "{{count}} lesson",
-      "totalLessons_plural": "{{count}} lessons"
-    },
-    "deleteModal": {
-      "deleteTitle": "Delete {{itemType}}",
-      "deleteDescription": "Are you sure you want to delete this {{itemType}}? This action cannot be undone.",
-      "courseDeleteDescription": "Are you sure you want to delete this course? This action cannot be undone and will remove all lessons, materials, and student progress.",
-      "lessonDeleteDescription": "Are you sure you want to delete this lesson? This action cannot be undone.",
-      "itemToDelete": "Item to be deleted:",
-      "cancel": "Cancel",
-      "delete": "Delete",
-      "deleting": "Deleting..."
     }
   },
   "withdraw": {
@@ -245,26 +168,18 @@
     "Linkedin": "Linkedin",
     "Youtube": "Youtube",
     "Facebook": "Facebook",
-    "Edit Profile": "Edit Profile"
+    "Edit Profile": "Edit Profile",
+    "Learner Reviews": "Learner Reviews",
+    "View more Reviews": "View more Reviews"
   },
-  "workExperience": {
-    "jobTitle": "Job Title",
-    "enterJobTitle": "Enter your Job Title",
-    "companyName": "Company Name",
-    "enterCompanyName": "Enter Company Name",
-    "startDate": "Start Date",
-    "endDate": "End Date",
-    "jobTitleRequired": "Job title is required",
-    "jobTitleMin": "Job title must be at least 2 characters",
-    "companyNameRequired": "Company name is required",
-    "companyNameMin": "Company name must be at least 2 characters",
-    "startDateRequired": "Start date is required",
-    "endDateRequired": "End date is required",
-    "invalidDate": "Invalid date",
-    "endDateBeforeStartDate": "End date cannot be before start date",
-    "addAnotherExperience": "Add another Experience"
+  "user" : {
+    "Send Feedback" : "Send Feedback"
   },
-  "save": {
-    "Save": "Save"
+  "feedbackModal" : {
+    "Give" : "Give Feedback",
+    "What" : "What is Your Opinion ?",
+    "Write" : "Write Your Feedback here...",
+    "Cancel" : "Cancel",
+    "Confirm" : "Confirm"
   }
 }

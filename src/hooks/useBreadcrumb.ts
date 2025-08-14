@@ -19,6 +19,9 @@ export const useBreadcrumb = () => {
     "/settings/payhistory": "common.payhistory",
     "/favourites": "common.favourites",
     "/notifications": "common.notifications",
+    "/courses/course-details": "common.coursedetailes",
+    "/learner-myCourses": "common.learnermycourse",
+    "/learner-myCourses/course-details": "common.coursedetailes"
   };
 
   const createBreadcrumb = (
@@ -49,26 +52,33 @@ export const useBreadcrumb = () => {
       isActive: currentPath === "/",
     });
 
-    // Handle dynamic routes with IDs - replace with user-friendly names
+    // Process segments to replace IDs with friendly labels
     const processedSegments = pathSegments.map((segment, index) => {
       const previousSegments = pathSegments.slice(0, index);
 
-      // Handle course ID segments
+      // Detect course ID in `/courses/{id}`
       if (
         previousSegments.includes("courses") &&
-        segment.match(/^[a-zA-Z0-9-_]+$/) &&
-        !["select", "manage", "lessons", "add", "edit"].includes(segment)
+        segment.match(/^[a-zA-Z0-9-_]+$/)
       ) {
-        return "course-details"; // Replace course ID with generic name
+        return "course-details";
       }
 
-      // Handle lesson ID segments
+      // Detect learner course ID in `/learner-myCourses/{id}`
+      if (
+        previousSegments.includes("learner-myCourses") &&
+        segment.match(/^[a-zA-Z0-9-_]+$/)
+      ) {
+        return "course-details";
+      }
+
+      // Detect lesson ID in `/lessons/edit/{id}`
       if (
         previousSegments.includes("lessons") &&
         previousSegments.includes("edit") &&
         segment.match(/^[a-zA-Z0-9-_]+$/)
       ) {
-        return "lesson-details"; // Replace lesson ID with generic name
+        return "lesson-details";
       }
 
       return segment;
@@ -78,20 +88,17 @@ export const useBreadcrumb = () => {
     let buildPath = "";
     processedSegments.forEach((processedSegment, index) => {
       const originalSegment = pathSegments[index];
-      buildPath += `/${originalSegment}`; // Keep original path for navigation
+      buildPath += `/${originalSegment}`;
       const isLast = index === processedSegments.length - 1;
 
-      // Skip course ID segments - don't create breadcrumb items for them
-
-      // Special handling for dynamic course routes
       let translationKey = pathMapping[buildPath];
       let fallbackLabel = processedSegment;
 
       if (processedSegment === "course-details") {
-        translationKey = "instructor.courseManagement.courseDetails";
+        translationKey = "common.coursedetailes";
         fallbackLabel = "Course Details";
       }
-      // Handle course management routes
+
       if (buildPath.includes("/instructor/courses/") && !translationKey) {
         if (buildPath.endsWith("/manage")) {
           translationKey = "instructor.courseManagement.title";
@@ -108,12 +115,9 @@ export const useBreadcrumb = () => {
         }
       }
 
-      // Get final label
       const label = translationKey
         ? t(translationKey)
-        : fallbackLabel
-            .replace("-", " ")
-            .replace(/\b\w/g, (l) => l.toUpperCase());
+        : fallbackLabel.replace("-", " ").replace(/\b\w/g, (l) => l.toUpperCase());
 
       breadcrumbs.push({
         label,
@@ -125,7 +129,6 @@ export const useBreadcrumb = () => {
     return breadcrumbs;
   };
 
-  // Predefined breadcrumbs for common pages (still available for custom use)
   return {
     createBreadcrumb,
     getAutoBreadcrumb,
