@@ -24,6 +24,8 @@ import AddLessons from "@/pages/instructor/AddLessons";
 import ViewLessons from "@/pages/instructor/ViewLessons";
 import EditLesson from "@/pages/instructor/EditLesson";
 
+import MyCourses from '@/pages/Courses/MyCourses/MyCourses'
+import CourseDetails from '@/pages/Courses/CourseDetails/CourseDetails'
 export default function AppRoutes() {
   return (
     <Router>
@@ -56,7 +58,8 @@ export default function AppRoutes() {
               element={<EditLesson />}
             />
           </Route>
-          </Route>
+          <Route path="course-details" element={<CourseDetails />} />
+        </Route>
         <Route path="/close-account" element={<CloseAccount />} />
         <Route path="/success" element={<Success />} />
         <Route
