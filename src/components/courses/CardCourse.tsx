@@ -1,11 +1,12 @@
-import React from "react";
-import productImg from "../../assets/images/ui-product.png";
+
+import { Link } from "react-router-dom";
 import StarIcon from "../../assets/images/icons/StarIcon.svg";
 import { courses } from "../../data/BrowseCourses";
 function CardCourse() {
   return (
     <>
-      {courses.map((course, index) => (
+      {courses.map((course) => (
+        <Link to={`${course.id}`} >
         <div className="mb-20">
           <div>
             <img
@@ -15,7 +16,7 @@ function CardCourse() {
               loading="lazy"
             />
           </div>
-          <div className="border border-2 w-full border-[--category] rounded-2xl mt-3 px-4 py-3 shadow">
+          <div className="border-2 w-full border-[--category] rounded-2xl mt-3 px-4 py-3 shadow">
             <h5 className="font-[600] text-lg lg:text-lg xl:text-xl truncate">
               {course.title}
             </h5>
@@ -37,6 +38,7 @@ function CardCourse() {
             </div>
           </div>
         </div>
+        </Link>
       ))}
     </>
   );

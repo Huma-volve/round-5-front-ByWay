@@ -1,18 +1,25 @@
 {
-  "common": {
-    "home": "الرئيسية",
-    "instructor": "المدرب",
-    "addCourse": "إضافة دورة",
-    "settings": "الإعدادات",
-    "notifications": "الإشعارات",
-    "favourite": "المفضلة",
-    "favourites": "المفضلة",
-    "paymethod": "طرق الدفع",
-    "payhistory": "تاريخ الدفع"
-  },
-  "instructor": {
+ "workExperience":
+{"jobTitle": "المسمى الوظيفي",
+    "enterJobTitle": "أدخل المسمى الوظيفي",
+    "companyName": "اسم الشركة",
+    "enterCompanyName": "أدخل اسم الشركة",
+    "startDate": "تاريخ البداية",
+    "endDate": "تاريخ النهاية",
+    "jobTitleRequired": "المسمى الوظيفي مطلوب",
+    "jobTitleMin": "المسمى الوظيفي يجب أن يكون على الأقل حرفين",
+    "companyNameRequired": "اسم الشركة مطلوب",
+    "companyNameMin": "اسم الشركة يجب أن يكون على الأقل حرفين",
+    "startDateRequired": "تاريخ البداية مطلوب",
+    "endDateRequired": "تاريخ النهاية مطلوب",
+    "invalidDate": "تاريخ غير صالح",
+    "endDateBeforeStartDate": "تاريخ النهاية لا يمكن أن يكون قبل تاريخ البداية",
+    "addAnotherExperience": "أضف خبرة أخرى"
+},
+   "instructor": {
     "reviews": "المراجعات",
     "courseName": "اسم الدورة",
+      "Total Students":"إجمالي الطلاب",
     "rating": "التقييم",
     "review": "المراجعة",
     "courses": "دوراتي",
@@ -40,6 +47,11 @@
     "skillsRequired": "يرجى اختيار مهارة",
     "enterHeadline": "ادخل العنوان",
     "enterAbout": "اكتب نبذة عن نفسك",
+    "Courses":"دروسك",
+      "SortBy": "ترتيب حسب",
+  "Relevance": "الأكثر صلة",
+  "Filter": "تصفية",
+  "AddCourse": "إضافة كورس",
     "revenue": {
       "name": "الإيرادات",
       "title": "تحليلات الإيرادات",
@@ -185,8 +197,36 @@
       "deleting": "جاري الحذف..."
     }
   },
-  "withdraw": {
-    "Enter Payment Details": "ادخل تفاصيل الدفع",
+ 
+ "profile": {
+    "First Name": "الاسم الاول ",
+    "Last Name": "الاسم الاخير",
+    "Headline": "العنوان",
+    "About": "حول",
+    "Links": "الروابط",
+    "X(Formerly twitter)": "تويتر",
+    "Linkedin": "لنكدان",
+    "Youtube": "يوتيوب",
+    "Facebook": "فيسبوك",
+    "Edit Profile": "تعديل الملف الشخصى",
+    "Learner Reviews":"تقييمات المتدربين",
+    "View more Reviews":"عرض المزيد من التقييمات"
+  },
+  "common": {
+    "home": "الرئيسية",
+    "instructor": "المدرب",
+    "settings": "الاعدادات",
+    "notifications": "الاشعارات",
+    "favourites": "المفضله",
+    "paymethod": "طرق الدفع",
+    "payhistory": "تواريخ الدفع",
+    "rate":"التقييم",
+    "coursedetailes" : "تفاصيل الدورة",
+    "learnmycourse" : "كورساتي"
+    },
+
+"withdraw": {
+   "Enter Payment Details": "ادخل تفاصيل الدفع",
     "Payment Method": "طريقه الدفع",
     "Please Select": "من فضلك اختر",
     "PayPal": "باي بال",
@@ -215,7 +255,8 @@
     "Minimum Withdrawal": "الحد الادني للسحب",
     "and": "و",
     "You can withdraw any amount between": "يمكنك ان تسحب اي رصيد بين",
-    "Enter a valid amount": "ادخل قيمه صالحه"
+    "Enter a valid amount": "ادخل قيمه صالحه",
+    "Save" : "حفظ"
   },
   "favourite": {
     "Courses": "الدورات",
@@ -238,36 +279,17 @@
     "Amount": "المبلغ",
     "Save Payment Method": "حفظ طريقه الدفع"
   },
-  "profile": {
-    "First Name": "الاسم الأول",
-    "Last Name": "الاسم الأخير",
-    "Headline": "العنوان",
-    "About": "حول",
-    "Links": "الروابط",
-    "X(Formerly twitter)": "تويتر",
-    "Linkedin": "لينكدإن",
-    "Youtube": "يوتيوب",
-    "Facebook": "فيسبوك",
-    "Edit Profile": "تعديل الملف الشخصي"
-  },
-  "workExperience": {
-    "jobTitle": "المسمى الوظيفي",
-    "enterJobTitle": "أدخل المسمى الوظيفي",
-    "companyName": "اسم الشركة",
-    "enterCompanyName": "أدخل اسم الشركة",
-    "startDate": "تاريخ البداية",
-    "endDate": "تاريخ النهاية",
-    "jobTitleRequired": "المسمى الوظيفي مطلوب",
-    "jobTitleMin": "المسمى الوظيفي يجب أن يكون على الأقل حرفين",
-    "companyNameRequired": "اسم الشركة مطلوب",
-    "companyNameMin": "اسم الشركة يجب أن يكون على الأقل حرفين",
-    "startDateRequired": "تاريخ البداية مطلوب",
-    "endDateRequired": "تاريخ النهاية مطلوب",
-    "invalidDate": "تاريخ غير صالح",
-    "endDateBeforeStartDate": "تاريخ النهاية لا يمكن أن يكون قبل تاريخ البداية",
-    "addAnotherExperience": "أضف خبرة أخرى"
-  },
   "save": {
     "Save": "حفظ"
+  },
+  "user" : {
+    "Send Feedback" : "ارسال الملاحظات"
+  },
+  "feedbackModal" : {
+    "Give" : "اعطنا ملاحظاتك",
+    "What" : "ما هو رايك ؟",
+    "Write" : "اكتب تعليقاتك هنا...",
+    "Cancel" : "الغاء",
+    "Confirm" : "تاكيد"
   }
 }
