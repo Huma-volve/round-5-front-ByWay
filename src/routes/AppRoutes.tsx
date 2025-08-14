@@ -15,34 +15,55 @@ import USER_PROFILE from "@/data/userProfile";
 import UserProfilePage from "@/pages/profile/UserProfilePage";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
 import InstructorReviews from "@/pages/instructor/InstructorReviews";
+ 
 import CourseDetails from "@/components/courses/CourseDetails";
 import InstructorDetails from "@/components/instructor/InstractorDetails/InstructorDetails";
-import CoursesPage from "@/pages/Courses/CoursesPage";
-import Profile from "@/pages/instructor/profile/Profile";
-import MyCourses from "@/pages/Courses/MyCourses/MyCourses";
-import Instructor from "@/pages/instructor/Instructor";
-import CourseDetail from "@/pages/Courses/CourseDetails/CourseDetail";
-export default function AppRoutes() {
+import AddCourse from "@/pages/instructor/AddCourse";
+import CourseSelection from "@/pages/instructor/CourseSelection";
+import AddLessons from "@/pages/instructor/AddLessons";
+import ViewLessons from "@/pages/instructor/ViewLessons";
+import EditLesson from "@/pages/instructor/EditLesson";
 
-   
+import InstructorProfile from "@/pages/instructor/profile/InstructorProfile";
+import InstructorCourseDetails from "@/pages/Courses/CourseDetails/InstructorCourseDetails";
+import MyCourses from "@/pages/Courses/MyCourses/MyCourses";
+import CoursesPage from "@/pages/Courses/CoursesPage";
+import Instructor from "@/pages/instructor/Instructor";
+export default function AppRoutes() {
   return (
     <Router>
       <Routes>
         <Route element={<AppLayout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<div>About</div>} />
-          <Route path="/contact" element={<div>Contact</div>} />
-           <Route path="/Profile" element={<Profile />} />
-           <Route path="/MyCourses" element={<MyCourses/>} />
-           <Route path="/CourseDetail" element={<CourseDetail/>} />
-           <Route path="/Instructor" element={<Instructor/>} />
+          
+          <Route path='Instructor' element={<Instructor />} />
           <Route path='/instructor' >
             <Route path=':instructorId' element={<InstructorDetails />} />
             <Route path='reviews' element={<InstructorReviews />} />
+            
             <Route path='revenue' element={<Revenue />} />
             <Route path='get-paid' element={<GetPaid />} />
             <Route path='withdraw' element={<Withdraw />} />
-        </Route>
+           <Route path="add-course" element={<AddCourse />} />
+            <Route path="add-lessons" element={<AddLessons />} />
+            <Route path="courses/select" element={<CourseSelection />} />
+            <Route
+              path="courses/:courseId/manage"
+              element={<CourseSelection />}
+            />
+            <Route path="courses/:courseId/lessons" element={<ViewLessons />} />
+            <Route
+              path="courses/:courseId/lessons/add"
+              element={<AddLessons />}
+            />
+            <Route
+              path="courses/:courseId/lessons/edit/:lessonId"
+              element={<EditLesson />}
+            />
+            <Route path="my-courses" element={<MyCourses />} />
+            <Route path="course-details" element={<InstructorCourseDetails />} />
+            <Route path="profile" element={<InstructorProfile />} />
+          </Route>
         </Route>
         <Route path="/close-account" element={<CloseAccount />} />
         <Route path="/success" element={<Success />} />
@@ -55,9 +76,6 @@ export default function AppRoutes() {
           element={<EditUserProfile user={USER_PROFILE[0]} />}
         />
 
-        <Route path="/instructor">
-          <Route path="reviews" element={<InstructorReviews />} />
-        </Route>
         <Route path="/courses">
           <Route index element={<CoursesPage />} />
           <Route path=":courseId" element={<CourseDetails />} />
@@ -69,6 +87,7 @@ export default function AppRoutes() {
         <Route path="/settings/paymethod" element={<PaymethodPage />} />
         <Route path="/settings/payhistory" element={<PayHistoryPage />} />
         {/*End of children for BrowserCourse */}
+
       </Routes>
     </Router>
   );

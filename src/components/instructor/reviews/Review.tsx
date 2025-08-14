@@ -2,7 +2,7 @@ import type { InstructorReview } from "@/data/instructorReviewsData";
 import { useTranslation } from "react-i18next";
 import activeStarIcon from "../../../assets/images/icons/star-active-icon.svg";
 import inactiveStarIcon from "../../../assets/images/icons/star-inactive-icon.svg";
-import person from "../../../assets/images/person.png"
+import person from "../../../assets/images/person.png";
 type ReviewProps = InstructorReview & {
   variant?: "course" | "user";
 };
@@ -19,6 +19,7 @@ export default function Review({
 
   return (
     <>
+
  <div className="border p-4 rounded-2xl shadow-sm mb-4 flex flex-col gap-3 mx-auto lg:mx-0 hover:shadow-md transition-shadow duration-200 lg:w-[80%]  ">
   {variant === "course" ? (
     <>
@@ -27,7 +28,7 @@ export default function Review({
         <span className="font-bold">{courseName}</span>
       </h3>
 
-      <p className="flex flex-col md:flex-row md:items-center md:gap-2 text-sm sm:text-base">
+      <p className="flex flex-col md:flex-row  md:gap-2 text-sm sm:text-base">
         <span className="font-medium">{t("instructor.review")}:</span>
         <span>{review}</span>
       </p>
@@ -76,6 +77,7 @@ export default function Review({
 </div>
 
 
+  
     </>
   );
 }

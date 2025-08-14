@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 
-export default function Profile() {
+export default function InstructorProfile() {
      const { t } = useTranslation();
    const [workForms, setWorkForms] = useState<number[]>([1]);
     function addExperience() {

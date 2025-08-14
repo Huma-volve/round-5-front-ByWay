@@ -1,12 +1,14 @@
 import LessonCard from "@/components/course/LessonCard"
-import courseDetails from "../../../assets/images/courseDetails.png"
 import Review from "@/components/instructor/reviews/Review"
 import { useTranslation } from "react-i18next";
+import courseDetails from '../../../assets/images/courseDetails.png'
 
 
-export default function CourseDetail() {
+export default function InstructorCourseDetails() {
   const {t} = useTranslation()
-  return (
+
+
+ return (
        <section className="container py-12 space-y-6 ">
       <div className="space-y-3 ">
          <img src={courseDetails} alt="courseDetails image" className="max-h-[350px] lg:max-h-[400px] object-fill w-full " />
@@ -30,6 +32,7 @@ export default function CourseDetail() {
 <div className="">
   <Review variant="user"    name="tom albert" review="I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down" rating={2} date="Mar 2025" />
 <Review variant="user"    name="john albert" review="I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down" rating={3} date="Aug 2025" />
+<Review variant="course"    name="john albert" review="I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down" rating={3} date="Aug 2025" />
 
 </div>
    

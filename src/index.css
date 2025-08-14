@@ -80,16 +80,15 @@ body {
 
 @layer utility {
 
-@layer utilities {
-    .container {
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        padding-left: 1rem;
-        padding-right: 1rem;
+    @layer utilities {
+        .container {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
 
-
-    @media(min-width: 640px) {
+  @media(min-width: 640px) {
         padding-left: 1.5rem;
         padding-right: 1.5rem;
     }
@@ -98,13 +97,26 @@ body {
             padding-right: 2rem;
         }
 
-        @media (min-width: 1280px) {
-            max-width: 75rem;
-            margin-inline: auto;
+            @media(min-width: 640px) {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            @media (min-width: 768px) {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+
+            @media (min-width: 1280px) {
+                max-width: 75rem;
+                margin-inline: auto;
+            }
         }
     }
+
 }
-}
+
 @layer components{
     .input{
         @apply focus:outline-none px-2 bg-white rounded-md grow py-1 border border-border focus:ring-2 focus:ring-border
@@ -128,8 +140,7 @@ body {
         @apply bg-background text-foreground;
         overflow-x: hidden;
       
-        /* Always show scrollbar to prevent layout shifts */
-    }
+  }
 
     html {
         overflow-x: hidden;
@@ -142,4 +153,40 @@ body {
         position: fixed !important;
     }
 }
+
+
+
+    @layer components {
+        .input {
+            @apply focus:outline-none px-2 bg-white rounded-md grow py-1 border border-border focus:ring-2 focus:ring-border
+        }
+
+        .btn {
+
+            @apply px-4 py-1.5 rounded-md text-white bg-success shadow-md w-full transition-all duration-300
+        }
+    }
+
+    @layer base {
+        * {
+            @apply border-border;
+        }
+
+        body {
+            @apply bg-background text-foreground;
+            overflow-x: hidden;
+            /* overflow-y: scroll; */
+            /* Always show scrollbar to prevent layout shifts */
+        }
+
+        html {
+            overflow-x: hidden;
+        }
+
+        /* Prevent layout shifts when dropdowns open */
+        [data-radix-popper-content-wrapper] {
+            z-index: 50 !important;
+            position: fixed !important;
+        }
+    }
 
