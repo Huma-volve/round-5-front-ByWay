@@ -1,5 +1,6 @@
 import LessonCard from "@/components/course/LessonCard"
 import courseDetails from "../../../assets/images/courseDetails.png"
+import Review from "@/components/instructor/reviews/Review"
 
 export default function CourseDetails() {
   return (
@@ -22,7 +23,10 @@ export default function CourseDetails() {
   <LessonCard/>
   <LessonCard/>
 </div>
-   
+
+  <Review variant="course" courseName="React Basics" review="I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down" rating={4} name="John" />
+<Review variant="user"    name="Mohamed" review="I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down" rating={5} date="Aug 2025" />
+
    
   </section>
   )
