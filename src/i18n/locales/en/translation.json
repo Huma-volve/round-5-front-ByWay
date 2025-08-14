@@ -9,11 +9,10 @@
     "favourites": "Favourite",
     "paymethod": "Payment Method",
     "payhistory": "Payment History",
-    "rate":"rate"
-   
-  },
+    "rate":"rate"},
+ 
   "instructor": {
-    "reviews": "Reviews",
+     "reviews": "Reviews",
     "courseName": "Course Name",
     "rating": "Rating",
     "review": "Review",
@@ -35,7 +34,6 @@
     "firstNameRequired": "First name is required",
     "firstNameMin": "First name must be at least 2 characters",
     "enterHeadline": "Enter your Headline",
-
     "enterAbout": "Write something about yourself",
     "lastNameRequired": "Last name is required",
     "lastNameMin": "Last name must be at least 2 characters",
@@ -44,19 +42,16 @@
     "aboutRequired": "About is required",
     "aboutMax": "About section cannot be more than 200 characters",
     "skillsRequired": "Please select a skill",
-
-     "SortBy": "Sort By",
+    "SortBy": "Sort By",
   "Relevance": "Relevance",
   "Filter": "Filter",
   "AddCourse": "Add Course",
-  "lessons": "lessons"
+  "lessons": "lessons",
     
-},
-
- "revenue": {
-
+   
+    
     "revenue": {
-   "name": "Revenue",
+      "name": "Revenue",
       "title": "Revenue Analytics",
       "paidMessage": "Get top insights about your performance",
       "getPaid": "Get Paid",
@@ -91,61 +86,6 @@
         "bankTransfer": "Bank Transfer"
       }
     },
-
- "withdraw" : {
-  "Enter Payment Details" : "Enter Payment Details",
-  "Payment Method": "Payment Method",
-  "Please Select" : "Please Select",
-  "PayPal" : "PayPal",
-  "Bank Transfer": "Bank Transfer" ,
-  "Fawry" : "Fawry",
-  "Account Name": "Account Name",
-  "Account Number": "Account Number",
-  "Account Email" : "Account Email",
-  "Enter Account Name" : "Enter Account Name",
-  "Enter Account Number" : "Enter Account Number",
-  "Enter Account Email" : "Enter Account Email",
-  "Enter Amount" : "Enter Amount",
-  "Bank Name" : "Bank Name",
-  "Save These Details" : "Save These Details",
-  "Continue" : "Continue",
-  "Please select a payment method" : "Please select a payment method",
-  "Please select a bank" : "Please select a bank",
-  "Please enter a valid account Name" : "Please enter a valid account Name",
-  "Please enter your account email" : "Please enter your account email",
-  "Please enter your account number" : "Please enter your account number",
-  "Account number must be at least 6 digits" : "Account number must be at least 6 digits",
-  "Please enter a valid email" : "Please enter a valid email",
-  "Withdraw Amount" : "Withdraw Amount",
-  "Next" : "Next",
-  "Available Balance" : "Available Balance",
-  "Minimum Withdrawal" : "Minimun Withdrawal",
-  "and" : "and",
-  "You can withdraw any amount between" : "You can withdraw any amount between",
-  "Enter a valid amount" : "Enter a valid amount"
- },
-  "favourite":{
-        "Courses" : "Courses",
-        "Instractor" : "Instractor"
-    },
-    "notifications":{
-        "You are all up to date" : "You are all up to date",
-        "No new notifications - come back soon" : "No new notifications - come back soon"
-    },
-    "settings":{
-        "Payment Methods" : "Payment Methods",
-        "Payment History" : "Payment History"
-    },
-    "payments":{
-        "Choose your payment method" : "Choose your payment method",
-        "Select your preferred way to pay for your courses" : "Select your preferred way to pay for your courses",
-        "Date" : "Date",
-        "Course" : "Course",
-        "Method" : "Method",
-        "Amount" : "Amount",
-        "Save Payment Method" : "Save Payment Method"
-    },
-
     "addCourse": {
       "title": "Add Course",
       "description": "Fill in the details to create a new course",
@@ -307,8 +247,7 @@
     "Method": "Method",
     "Amount": "Amount",
     "Save Payment Method": "Save Payment Method"
-  },
-
+    },
   "profile": {
     "First Name": "First Name",
     "Last Name": "Last Name",
@@ -319,12 +258,10 @@
     "Linkedin": "Linkedin",
     "Youtube": "Youtube",
     "Facebook": "Facebook",
-
     "Edit Profile": "Edit Profile",
-    "Learner Reviews":"Learner Reviews",
+   "Learner Reviews":"Learner Reviews",
     "View more Reviews":"View more Reviews"
   },
-
   "workExperience": {
     "jobTitle": "Job Title",
     "enterJobTitle": "Enter your Job Title",
@@ -341,7 +278,6 @@
     "invalidDate": "Invalid date",
     "endDateBeforeStartDate": "End date cannot be before start date",
     "addAnotherExperience": "Add another Experience"
-  
   },
   "save": {
     "Save": "Save"
