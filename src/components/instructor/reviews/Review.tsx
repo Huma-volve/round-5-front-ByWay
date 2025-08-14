@@ -2,7 +2,7 @@ import type { InstructorReview } from "@/data/instructorReviewsData";
 import { useTranslation } from "react-i18next";
 import activeStarIcon from "../../../assets/images/icons/star-active-icon.svg";
 import inactiveStarIcon from "../../../assets/images/icons/star-inactive-icon.svg";
-import person from "../../../assets/images/person.png"
+import person from "../../../assets/images/person.png";
 type ReviewProps = InstructorReview & {
   variant?: "course" | "user";
 };
@@ -19,63 +19,95 @@ export default function Review({
 
   return (
     <>
- <div className="border p-4 rounded-2xl shadow-sm mb-4 flex flex-col gap-3 mx-auto lg:mx-0 hover:shadow-md transition-shadow duration-200 lg:w-[80%]  ">
-  {variant === "course" ? (
-    <>
-    <h3 className="flex flex-wrap items-center gap-2 text-sm sm:text-base">
-        <span className="whitespace-nowrap font-medium">{t("instructor.courseName")}:</span>
-        <span className="font-bold">{courseName}</span>
-      </h3>
+      <div className="border p-4 rounded-2xl shadow-sm mb-4 flex flex-col gap-3 mx-auto lg:mx-0 hover:shadow-md transition-shadow duration-200 lg:w-[80%]  ">
+        {variant === "course" ? (
+          <>
+            <h3 className="flex flex-wrap items-center gap-2 text-sm sm:text-base">
+              <span className="whitespace-nowrap font-medium">
+                {t("instructor.courseName")}:
+              </span>
+              <span className="font-bold">{courseName}</span>
+            </h3>
 
-      <p className="flex flex-col md:flex-row md:items-center md:gap-2 text-sm sm:text-base">
-        <span className="font-medium">{t("instructor.review")}:</span>
-        <span>{review}</span>
-      </p>
-      <p className="flex items-center gap-2 text-sm sm:text-base">
-        <span className="font-medium">{t("instructor.rating")}:</span>
-        <span className="flex gap-1">
+            <p className="flex items-center gap-2 text-sm sm:text-base">
+              <span className="font-medium">{t("instructor.rating")}:</span>
+              <span className="flex gap-1">
+                {Array(rating)
+                  .fill(0)
+                  .map((_, i) => (
+                    <img
+                      key={i}
+                      src={activeStarIcon}
+                      alt="Star"
+                      loading="lazy"
+                      className="w-4 h-4"
+                    />
+                  ))}
+                {Array(5 - rating)
+                  .fill(0)
+                  .map((_, i) => (
+                    <img
+                      key={i}
+                      src={inactiveStarIcon}
+                      alt="Star"
+                      loading="lazy"
+                      className="w-4 h-4 opacity-50"
+                    />
+                  ))}
+              </span>
+            </p>
+            <p className="flex flex-col md:flex-row  md:gap-2 text-sm sm:text-base">
+              <span className="font-medium">{t("instructor.review")}:</span>
+              <span>{review}</span>
+            </p>
+          </>
+        ) : (
+          <>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div className="flex gap-3 items-center">
+                <img
+                  src={person}
+                  loading="lazy"
+                  alt={name}
+                  className="size-12 rounded-full object-cover"
+                />
+                <p className="font-bold text-sm sm:text-base">{name}</p>
+              </div>
 
-          {Array(rating).fill(0).map((_, i) => (
-            <img key={i} src={activeStarIcon} alt="Star" loading="lazy" className="w-4 h-4" />
-          ))}
-          {Array(5 - rating).fill(0).map((_, i) => (
-            <img key={i} src={inactiveStarIcon} alt="Star" loading="lazy" className="w-4 h-4 opacity-50" />
-          ))}
+              <div className="flex items-center gap-1">
+                {/* <span className="text-sm font-medium">{`${rating} Ratings`}</span> */}
+                <span className="flex gap-1">
+                  {Array(rating)
+                    .fill(0)
+                    .map((_, i) => (
+                      <img
+                        key={i}
+                        src={activeStarIcon}
+                        alt="Star"
+                        className="w-4 h-4"
+                      />
+                    ))}
+                  {Array(5 - rating)
+                    .fill(0)
+                    .map((_, i) => (
+                      <img
+                        key={i}
+                        src={inactiveStarIcon}
+                        alt="Star"
+                        className="w-4 h-4 opacity-50"
+                      />
+                    ))}
+                </span>
+              </div>
 
-        </span>
-      </p>
-    </>
-  ) : (
-    <>
-
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-        <div className="flex gap-3 items-center">
-          <img src={person} loading="lazy" alt={name} className="size-12 rounded-full object-cover" />
-          <p className="font-bold text-sm sm:text-base">{name}</p>
-        </div>
-
-          <div className="flex items-center gap-1">
-            {/* <span className="text-sm font-medium">{`${rating} Ratings`}</span> */}
-            <span className="flex gap-1">
-              {Array(rating).fill(0).map((_, i) => (
-                <img key={i} src={activeStarIcon} alt="Star" className="w-4 h-4" />
-              ))}
-              {Array(5 - rating).fill(0).map((_, i) => (
-                <img key={i} src={inactiveStarIcon} alt="Star" className="w-4 h-4 opacity-50" />
-              ))}
-            </span>
-          </div>
-
-          <span className="text-xs text-gray-500">{date}</span>
-      
+              <span className="text-xs text-gray-500">{date}</span>
+            </div>
+            <p className="max-w-lg text-sm sm:text-base leading-relaxed">
+              {review}
+            </p>
+          </>
+        )}
       </div>
-    </>
-  )}
-
-  <p className="max-w-lg text-sm sm:text-base leading-relaxed">{review}</p>
-</div>
-
-
     </>
   );
 }
