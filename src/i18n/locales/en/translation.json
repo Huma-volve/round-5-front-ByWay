@@ -57,7 +57,109 @@
       "description": "Fill in the details to create a new course",
       "courseName": "Course Name",
       "courseDescription": "Course Description",
-      "submitButton": "Create Course"
+      "submitButton": "Create Course",
+      "courseTitle": "Course Title",
+      "courseTitlePlaceholder": "Enter course title",
+      "courseCategory": "Course Category",
+      "courseCategoryPlaceholder": "Select course category",
+      "courseLevel":{
+        "title":"Course Level",
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced"
+      } ,
+      "courseDescriptionPlaceholder": "Enter course description",        
+      "videoTitle":"Video Title",
+      "videoTitlePlaceholder": "Enter video title",
+      "coursePrice":"Course Price",
+      "coursePricePlaceholder": "Enter course price",
+      "courseThumbnail": "Course Thumbnail",
+      "introVideo":"Intro Video"
+    },
+    "upload":{
+      "videoTitle": "Upload Course Video",
+      "clickToBrowse": "Click to browse or drag and drop",
+      "videoFileType": "MP4, MOV, AVI up to 500MB",
+      "chooseFile": "Choose File",
+      "thumbnailTitle": "Upload Course Thumbnail",
+      "imageFileTypes": "JPG, PNG up to 5MB",
+      "courseMaterials":"Add Course Materials",
+      "courseMaterialsFileTypes": "PDF, DOC, DOCX, TXT, Images up to 10MB each"
+    },
+    "courseManagement": {
+      "title": "Course Management",
+      "courseDetails": "Course Details",
+      "description": "Manage your course content and settings",
+      "actions": {
+        "addLessons": {
+          "title": "Add Lessons",
+          "description": "Create and upload video lessons for your course"
+        },
+        "viewLessons": {
+          "title": "View Lessons",
+          "description": "View and manage existing course lessons"
+        },
+        "deleteCourse": {
+          "title": "Delete Course",
+          "description": "Permanently delete this course and all its content"
+        }
+      },
+      "tips": {
+        "title": "Course Management Tips:",
+        "tip1": "Add lessons to make your course content available to students",
+        "tip2": "Use the preview option to offer free sample lessons",
+        "tip3": "Regularly update and organize your course content",
+        "tip4": "Monitor student engagement and feedback"
+      }
+    },
+    "lessons": {
+      
+      "title": "Lessons",
+      "noLessons": "No lessons yet",
+      "noLessonsDescription": "Start by adding your first lesson to this course",
+      "addFirstLesson": "Add First Lesson",
+      "backToCourse": "Back to Course",
+      "editLesson": "Edit Lesson",
+      "updateLesson": "Update Lesson",
+      "addLessons": "Add Lessons",
+      "lessonTitle": "Lesson Title",
+      "lessonTitlePlaceholder": "Enter lesson title",
+      "lessonDescription": "Lesson Description",
+      "lessonDescriptionPlaceholder": "Enter lesson description", 
+      "lessonDuration": "Lesson Duration (minutes)",
+      "lessonDurationPlaceholder": "Enter duration in minutes",
+      "lessonVideo": "Lesson Video",
+      "lessonMaterials": "Lesson Materials (Optional)",
+      "freePreview": "Make this lesson available as a free preview",
+      "addAnotherLesson": "Add Another Lesson",
+      "saveLessons": "Save Lessons & Continue",
+      "updatingLesson": "Updating Lesson...",
+      "uploadingLessons": "Uploading Lessons...",
+      "backToLessons": "Back to Lessons",
+      "updateLessonDescription": "Update the lesson information below",
+      "duration": "{{minutes}} min",
+      "materials": "{{count}} material",
+      "materials_plural": "{{count}} materials",
+      "videoLesson": "Video Lesson",
+      "previewBadge": "Preview",
+      "lesson": "Lesson {{order}}",
+      "updated": "Updated {{date}}",
+      "moreFiles": "+{{count}} more files",
+      "editAction": "Edit lesson",
+      "deleteAction": "Delete lesson",
+      "previewAvailable": "Preview available",
+      "totalLessons": "{{count}} lesson",
+      "totalLessons_plural": "{{count}} lessons"
+    },
+    "deleteModal": {
+      "deleteTitle": "Delete {{itemType}}",
+      "deleteDescription": "Are you sure you want to delete this {{itemType}}? This action cannot be undone.",
+      "courseDeleteDescription": "Are you sure you want to delete this course? This action cannot be undone and will remove all lessons, materials, and student progress.",
+      "lessonDeleteDescription": "Are you sure you want to delete this lesson? This action cannot be undone.",
+      "itemToDelete": "Item to be deleted:",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "deleting": "Deleting..."
     }
   },
   "favourite": {
