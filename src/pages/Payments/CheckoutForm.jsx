@@ -2,8 +2,17 @@ import React, { useState, useEffect } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 export default function CheckoutForm() {
+      const { t, i18n } = useTranslation();
+    useEffect(() => {
+      i18n.changeLanguage("ar");
+    }, []);
+    useEffect(() => {
+      const currentLang = i18n.language;
+      document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
+    }, [i18n.language]);
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
@@ -11,7 +20,7 @@ export default function CheckoutForm() {
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-  const token = "F2MReAvK5VBnWnuyiIhZCXYI1NTO9ixVBUjTZvSR3a89572d";
+  const token = "4|xagT7BiKYVP79QInYoxwYqrV4mTFzrNdBFnG8LC9492e7148";
 
   useEffect(() => {
     axios
@@ -82,7 +91,7 @@ export default function CheckoutForm() {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow">
+    <div className="max-w-md mx-auto ">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="bg-gray-50 p-4 rounded border">
           <CardElement
@@ -105,10 +114,10 @@ export default function CheckoutForm() {
           className={`w-full py-3 px-4 rounded text-white font-medium ${
             !stripe || !elements || !clientSecret
               ? "bg-gray-400 cursor-not-allowed"
-              : "bg-blue-600 hover:bg-blue-700"
+              : "bg-primary hover:opacity-[0.8] transition duration-300"
           }`}
         >
-          {loading ? "Saving..." : "Save Payment Method"}
+          {loading ? `${t("cart.Saving")}...` : `${t("cart.Save Payment Method")}`}
         </button>
         
         {message && (

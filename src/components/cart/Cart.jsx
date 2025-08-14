@@ -1,9 +1,19 @@
 import shopping from "../../assets/images/shopping cart.svg";
 import rating from "../../assets/images/icons/rating.svg";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 const Cart = () => {
+    const { t, i18n } = useTranslation();
+  useEffect(() => {
+    i18n.changeLanguage("ar");
+  }, []);
+  useEffect(() => {
+    const currentLang = i18n.language;
+    document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
+  }, [i18n.language]);
   return (
     <div className="w-[100%] lg:w-[65%] my-2">
-      <h1 className="text-seconary mb-2">1 Course in cart</h1>
+      <h1 className="text-seconary mb-2">1 {t("cart.Course in cart")}</h1>
       <hr className="border-t-2 border-border w-full" />
       <div className="my-4 w-[100%] gap-3 flex flex-wrap">
         <img src={shopping} alt="shopping cart" />

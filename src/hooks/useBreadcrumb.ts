@@ -19,6 +19,13 @@ export const useBreadcrumb = () => {
     "/settings/payhistory": "common.payhistory",
     "/favourites": "common.favourites",
     "/notifications": "common.notifications",
+    "/profile": "profile.profile",
+    "/edit-user-profile": "profile.editUserProfile",
+    "/success":"success.success",
+    "/shopping-cart": "cart.Shopping Cart",
+    "/checkout": "cart.Checkout",
+    "/close-account": "closeAccount.Close Account",
+
   };
 
   const createBreadcrumb = (

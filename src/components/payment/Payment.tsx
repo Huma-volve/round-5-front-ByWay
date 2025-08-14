@@ -1,21 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 const Payment = () => {
+  const { t, i18n } = useTranslation();
+  useEffect(() => {
+    i18n.changeLanguage("ar");
+  }, []);
+  useEffect(() => {
+    const currentLang = i18n.language;
+    document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
+  }, [i18n.language]);
   const [selected, setSelected] = useState<string>("");
   return (
     <div className="m-8">
       <h1 className="font-bold  ">
-        Course: <span className="text-primary">
+        {t("cart.Course")}: <span className="text-primary">
           Graphic Design
-          </span>
-      </h1> 
+        </span>
+      </h1>
       <h2 className="font-bold my-4 mx-4 text-[15px]">
-        Price: <span className="text-success">
+        {t("cart.Price")}: <span className="text-success">
           400 EGP
-          </span>
+        </span>
 
       </h2>
       <h1 className="mt-8 text-secondaryDark font-bold">
-        Choose your payment method:
+        {t("cart.Choose your payment method")}:
       </h1>
       <div className="mt-5 flex flex-col  w-80">
         {/* Fawry */}

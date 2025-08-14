@@ -10,7 +10,7 @@ type userType = {
 const UserProfilePage: React.FC<userType> = ({ user }) => {
   const { t, i18n } = useTranslation();
   useEffect(() => {
-    i18n.changeLanguage("en");
+    i18n.changeLanguage("ar");
   }, []);
   useEffect(() => {
     const currentLang = i18n.language;
@@ -38,16 +38,16 @@ const UserProfilePage: React.FC<userType> = ({ user }) => {
       </Link>
       <div className="flex gap-8 flex-wrap justify-center mt-[50px] text-secondary">
         <Link className="hover:text-primary" to={user.links.x}>
-          X
+          {t("profile.X(Formerly twitter)")}
         </Link>
         <Link className="hover:text-primary" to={user.links.linkedin}>
-          Linkedin
+          {t("profile.Linkedin")}
         </Link>
         <Link className="hover:text-primary" to={user.links.youtube}>
-          Youtube
+          {t("profile.Youtube")}
         </Link>
         <Link className="hover:text-primary" to={user.links.facebook}>
-          Facebook
+          {t("profile.Facebook")}
         </Link>
       </div>
       <div className=" ml-[10%] lg:ml-[25%] flex flex-col m-auto justify-center">
