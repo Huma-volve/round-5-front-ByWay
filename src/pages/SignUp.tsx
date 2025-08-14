@@ -3,9 +3,12 @@ import SignUpForm from "@/components/AuthForms/SignUpForm";
 
 function SignUp() {
   return (
-    <div className="auth-container">
+    <div className="container auth-container">
       <h2 className="auth-header">Create an account</h2>
-      <SignUpForm></SignUpForm>
+      <div className="flex items-center">
+        <SignUpForm></SignUpForm>
+        <img className="w-1/2" src="auth-image.jpg" alt="" />
+      </div>
       <ExternalAuth/>
     </div>
   )

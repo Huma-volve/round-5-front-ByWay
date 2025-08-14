@@ -33,7 +33,7 @@ export function OTPForm() {
     console.log("OTP submitted:", values.otp);
   };
 
-  const handleResendCode = (resetForm) => {
+  const handleResendCode = (resetForm: any) => {
     getOTP({ email });
     resetForm();
     // Ready for resend API call
