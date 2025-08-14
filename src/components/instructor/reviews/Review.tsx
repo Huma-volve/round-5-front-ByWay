@@ -22,7 +22,7 @@ export default function Review({
       <div className="border p-4 rounded-2xl shadow-sm mb-4 flex flex-col gap-3 mx-8 lg:mx-0 hover:shadow-md transition-shadow duration-200">
         {variant === "course" ? (
           <>
-            {" "}
+            
             <h3 className="flex sm:items-center gap-2">
               <p className="whitespace-nowrap">{t("instructor.courseName")}:</p>
               <p className="font-bold">{courseName}</p>
@@ -31,7 +31,7 @@ export default function Review({
               {t("instructor.review")}: <span className="">{review}</span>
             </p>
             <p className="flex items-center gap-2">
-              {t("instructor.rating")}:{" "}
+              {t("instructor.rating")}:
               <span className="flex gap-1">
                 {Array(rating)
                   .fill(0)

@@ -133,6 +133,21 @@ export default function AddLessonsForm({
     return Boolean(touched);
   };
 
+  // Check if all required fields in the last lesson are filled
+  const isLastLessonComplete = () => {
+    const lastLessonIndex = formik.values.lessons.length - 1;
+    const lastLesson = formik.values.lessons[lastLessonIndex];
+
+    if (!lastLesson) return false;
+
+    return (
+      lastLesson.lessonTitle.trim() !== "" &&
+      lastLesson.lessonDescription.trim() !== "" &&
+      lastLesson.lessonDuration > 0 &&
+      lastLesson.lessonVideo !== null
+    );
+  };
+
   return (
     <FormikProvider value={formik}>
       <div className="w-full">
@@ -295,7 +310,8 @@ export default function AddLessonsForm({
                         type="button"
                         variant="outline"
                         onClick={addNewLesson}
-                        className="w-full max-w-md bg-white hover:shadow-md hover:bg-white"
+                        disabled={!isLastLessonComplete()}
+                        className="w-full max-w-md bg-white hover:shadow-md hover:bg-gray-500 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         <Plus className="h-4 w-4 mr-2" />
                         {t("instructor.lessons.addAnotherLesson")}
