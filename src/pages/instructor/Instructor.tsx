@@ -5,7 +5,9 @@ import Review from "@/components/instructor/reviews/Review";
 import { Button } from "@/components/ui/button";
 import RatingsOverview from "@/components/instructor/reviews/RatingsOverview";
 import InstructorCard from "@/components/instructor/InstructorCard/InstructorCard";
+import { useTranslation } from "react-i18next";
 export default function Instructor() {
+  const {t} = useTranslation()
   return (
     <main  className="container py-12 space-y-12">
         <section className="space-y-3">
@@ -21,31 +23,10 @@ export default function Instructor() {
 }</div>
   </section>
      
-{/* <section className="space-y-3">
-    
-   <h2 className="text-xl lg:text-2xl font-semibold">Learner Reviews</h2>
-  <div className="md:grid md:grid-cols-3">
-<div className=" md:col-span-1  ">
-    <RatingsOverview/>
-</div>
 
-    <div className="md:col-span-2 ">
-<div className="mb-9">
- <Review variant="user" name="Mohamed" review="I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down" rating={5} date="Aug 2025" />
-<Review variant="user" name="Mohamed" review="I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down" rating={3} date="Aug 2025" />
-<Review variant="user" name="Mohamed" review="I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down" rating={2} date="Aug 2025" />
-
-</div>
-
-<div className="flex justify-center">
-    <Button className="bg-white text-black hover:bg-revenue2Bg  transition duration-300">View more Reviews</Button>
-</div>
-    </div>
-  </div>
-</section> */}
 
 <section className="space-y-3 px-4 sm:px-6">
-  <h2 className="text-xl lg:text-2xl font-semibold">Learner Reviews</h2>
+  <h2 className="text-xl lg:text-2xl font-semibold">{t("profile.Learner Reviews")}</h2>
 
   <div className="md:grid md:grid-cols-3 md:gap-6">
     <div className="md:col-span-1">
@@ -61,7 +42,7 @@ export default function Instructor() {
 
       <div className="flex justify-center">
         <Button className="bg-white text-black hover:bg-revenue2Bg transition duration-300">
-          View more Reviews
+          {t("profile.View more Reviews")}
         </Button>
       </div>
     </div>

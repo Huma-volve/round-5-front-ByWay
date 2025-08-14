@@ -1,4 +1,3 @@
-
 import { Routes, Route, BrowserRouter as Router} from "react-router-dom";
 import CloseAccount from "../pages/close account/CloseAccount";
 import Success from "../pages/success/Success";
@@ -19,6 +18,10 @@ import InstructorReviews from "@/pages/instructor/InstructorReviews";
 import CourseDetails from "@/components/courses/CourseDetails";
 import InstructorDetails from "@/components/instructor/InstractorDetails/InstructorDetails";
 import CoursesPage from "@/pages/Courses/CoursesPage";
+import Profile from "@/pages/instructor/profile/Profile";
+import MyCourses from "@/pages/Courses/MyCourses/MyCourses";
+import Instructor from "@/pages/instructor/Instructor";
+import CourseDetail from "@/pages/Courses/CourseDetails/CourseDetail";
 export default function AppRoutes() {
 
    
@@ -29,6 +32,10 @@ export default function AppRoutes() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<div>About</div>} />
           <Route path="/contact" element={<div>Contact</div>} />
+           <Route path="/Profile" element={<Profile />} />
+           <Route path="/MyCourses" element={<MyCourses/>} />
+           <Route path="/CourseDetail" element={<CourseDetail/>} />
+           <Route path="/Instructor" element={<Instructor/>} />
           <Route path='/instructor' >
             <Route path=':instructorId' element={<InstructorDetails />} />
             <Route path='reviews' element={<InstructorReviews />} />

@@ -1,19 +1,24 @@
+import { useTranslation } from "react-i18next"
+import { Link } from "react-router-dom";
+
 export default function InstructorCard() {
+     const {t} =useTranslation()
   return (
-    <div className="flex  justify-between py-6  w-full ">
+ 
+    <Link to="/CourseDetail" className="flex  justify-between py-6  w-full ">
      
       <div>
-        <p className="text-sm text-gray-500">Instructor</p>
+        <p className="text-sm text-gray-500">{t('common.instructor')}</p>
         <h2 className="text-lg font-semibold">Omnya Ali</h2>
         <p className="text-sm text-gray-600"> Web developer, UX/UI Designer, and Teacher</p>
 
         <div className="flex gap-6 mt-4">
           <div>
-            <p className="text-success font-medium">Total Students</p>
+            <p className="text-success font-medium">{t('instructor.Total Students')}</p>
             <p className="font-semibold">1000</p>
           </div>
           <div>
-            <p className="text-danger font-medium">Reviews</p>
+            <p className="text-danger font-medium">{t('instructor.reviews')}</p>
             <p className="font-semibold">154</p>
           </div>
         </div>
@@ -26,6 +31,6 @@ export default function InstructorCard() {
 
        
       </div>
-    </div>
+    </Link>
   );
 }

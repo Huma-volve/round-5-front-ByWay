@@ -6,7 +6,9 @@
     "notifications" : "Notifications",
     "favourites" :  "Favourite",
     "paymethod": "Payment Method",
-    "payhistory": "Payment History"
+    "payhistory": "Payment History",
+    "rate":"rate"
+   
   },
   "instructor": {
     "reviews": "Reviews",
@@ -15,7 +17,9 @@
     "review": "Review",
     "courses": "My Courses",
     "profile": "Profile",
-
+   "Total Students":"Total Students",
+   "Reviews":"Reviews",
+   "Courses":"Courses",
   "firstName": "First Name",
   "enterFirstName": "Enter your First Name",
   "lastName": "Last Name",
@@ -35,7 +39,12 @@
     "headlineMax": "Headline cannot be more than 50 characters",
     "aboutRequired": "About is required",
     "aboutMax": "About section cannot be more than 200 characters",
-    "skillsRequired": "Please select a skill"
+    "skillsRequired": "Please select a skill",
+     "SortBy": "Sort By",
+  "Relevance": "Relevance",
+  "Filter": "Filter",
+  "AddCourse": "Add Course",
+  "lessons": "lessons"
     
 },
 "workExperience":
@@ -161,6 +170,8 @@
     "Linkedin": "Linkedin",
     "Youtube": "Youtube",
     "Facebook": "Facebook",
-    "Edit Profile": "Edit Profile"
+    "Edit Profile": "Edit Profile",
+    "Learner Reviews":"Learner Reviews",
+    "View more Reviews":"View more Reviews"
   }
 }

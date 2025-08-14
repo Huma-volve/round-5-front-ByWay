@@ -1,6 +1,7 @@
 import courseImg from '../../../assets/images/course.png'
 import type { Course_Card_Data as CourseCardType } from "../../../data/CourseCardData";
 import instructorCourse from "../../../assets/images/instructorcourse.jpg"
+import { Link } from 'react-router-dom';
 
 type cardProps = CourseCardType & {
   variant?: "myCourses" | "instructor";
@@ -9,7 +10,7 @@ export default function CourseCard({name, title , rate , variant="instructor"}:c
   
  return (
     <>
-    <div className="w-full rounded-2xl shadow-lg overflow-hidden bg-white border border-gray-100 flex flex-col h-full">
+    <Link to="/CourseDetail" className="w-full rounded-2xl shadow-lg overflow-hidden bg-white border border-gray-100 flex flex-col h-full">
      
       <div className="h-48 overflow-hidden">
      {
@@ -60,7 +61,7 @@ export default function CourseCard({name, title , rate , variant="instructor"}:c
    
       
       </div>
-    </div>
+    </Link>
     
     </>
   )

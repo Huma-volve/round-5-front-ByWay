@@ -127,12 +127,13 @@ body {
     body {
         @apply bg-background text-foreground;
         overflow-x: hidden;
-        overflow-y: scroll;
+      
         /* Always show scrollbar to prevent layout shifts */
     }
 
     html {
         overflow-x: hidden;
+      
     }
 
     /* Prevent layout shifts when dropdowns open */

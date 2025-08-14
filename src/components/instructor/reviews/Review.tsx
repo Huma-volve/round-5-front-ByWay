@@ -19,7 +19,7 @@ export default function Review({
 
   return (
     <>
- <div className="border p-4 rounded-2xl shadow-sm mb-4 flex flex-col gap-3 mx-auto lg:mx-0 hover:shadow-md transition-shadow duration-200 w-[90%] sm:w-[95%] lg:w-full">
+ <div className="border p-4 rounded-2xl shadow-sm mb-4 flex flex-col gap-3 mx-auto lg:mx-0 hover:shadow-md transition-shadow duration-200 lg:w-[80%]  ">
   {variant === "course" ? (
     <>
     <h3 className="flex flex-wrap items-center gap-2 text-sm sm:text-base">
@@ -36,10 +36,10 @@ export default function Review({
         <span className="flex gap-1">
 
           {Array(rating).fill(0).map((_, i) => (
-            <img key={i} src={activeStarIcon} alt="Star" className="w-4 h-4" />
+            <img key={i} src={activeStarIcon} alt="Star" loading="lazy" className="w-4 h-4" />
           ))}
           {Array(5 - rating).fill(0).map((_, i) => (
-            <img key={i} src={inactiveStarIcon} alt="Star" className="w-4 h-4 opacity-50" />
+            <img key={i} src={inactiveStarIcon} alt="Star" loading="lazy" className="w-4 h-4 opacity-50" />
           ))}
 
         </span>
@@ -50,13 +50,12 @@ export default function Review({
 
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div className="flex gap-3 items-center">
-          <img src={person} alt={name} className="size-12 rounded-full object-cover" />
+          <img src={person} loading="lazy" alt={name} className="size-12 rounded-full object-cover" />
           <p className="font-bold text-sm sm:text-base">{name}</p>
         </div>
 
-        <div className="flex flex-col sm:flex-row sm:items-center gap-2">
           <div className="flex items-center gap-1">
-            <span className="text-sm font-medium">{`${rating} Ratings`}</span>
+            {/* <span className="text-sm font-medium">{`${rating} Ratings`}</span> */}
             <span className="flex gap-1">
               {Array(rating).fill(0).map((_, i) => (
                 <img key={i} src={activeStarIcon} alt="Star" className="w-4 h-4" />
@@ -66,8 +65,9 @@ export default function Review({
               ))}
             </span>
           </div>
+
           <span className="text-xs text-gray-500">{date}</span>
-        </div>
+      
       </div>
     </>
   )}
