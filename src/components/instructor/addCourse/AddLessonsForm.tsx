@@ -20,7 +20,7 @@ interface AddLessonsFormProps {
 }
 
 export default function AddLessonsForm({
-  editMode = true,
+  editMode = false,
   courseId: propCourseId,
   existingLesson,
 }: AddLessonsFormProps) {

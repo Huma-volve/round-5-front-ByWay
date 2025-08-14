@@ -24,8 +24,9 @@ import AddLessons from "@/pages/instructor/AddLessons";
 import ViewLessons from "@/pages/instructor/ViewLessons";
 import EditLesson from "@/pages/instructor/EditLesson";
 
-import MyCourses from '@/pages/Courses/MyCourses/MyCourses';
+import MyCourses from '@/pages/courses/MyCourses/MyCourses';
 import InstructorCourseDetails from '@/pages/courses/CourseDetails/InstructorCourseDetails'
+import InstructorProfile from "@/pages/instructor/profile/InstructorProfile";
 export default function AppRoutes() {
   return (
     <Router>
@@ -57,8 +58,10 @@ export default function AppRoutes() {
               path="courses/:courseId/lessons/edit/:lessonId"
               element={<EditLesson />}
             />
+            <Route path="my-courses" element={<MyCourses />} />
+            <Route path="course-details" element={<InstructorCourseDetails />} />
+            <Route path="profile" element={<InstructorProfile />} />
           </Route>
-          <Route path="course-details" element={<InstructorCourseDetails />} />
         </Route>
         <Route path="/close-account" element={<CloseAccount />} />
         <Route path="/success" element={<Success />} />
@@ -83,7 +86,6 @@ export default function AppRoutes() {
         <Route path="/settings/payhistory" element={<PayHistoryPage />} />
         {/*End of children for BrowserCourse */}
 
-          <Route path="/my-courses" element={<MyCourses />} />
       </Routes>
     </Router>
   );

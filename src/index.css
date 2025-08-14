@@ -124,7 +124,7 @@ body {
         body {
             @apply bg-background text-foreground;
             overflow-x: hidden;
-            overflow-y: scroll;
+            /* overflow-y: scroll; */
             /* Always show scrollbar to prevent layout shifts */
         }
 

@@ -5,7 +5,6 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import FormField from "@/components/ui/FormField";
 import type { CourseData } from "@/data/addCourseData";
-import { courseLevels } from "@/data/addCourseData";
 import { courseValidationSchema } from "@/utils/courseSchema";
 import VideoUploadField from "./VideoUploadField";
 import ImageUploadField from "./ImageUploadField";
@@ -13,7 +12,17 @@ import { useTranslation } from "react-i18next";
 
 export default function AddCourseForm() {
   const navigate = useNavigate();
-  const {t} = useTranslation();
+  const { t } = useTranslation();
+
+  // Define course levels with translations inside the component
+  const courseLevels = [
+    { id: "beginner", label: t("instructor.addCourse.courseLevel.beginner") },
+    {
+      id: "intermediate",
+      label: t("instructor.addCourse.courseLevel.intermediate"),
+    },
+    { id: "advanced", label: t("instructor.addCourse.courseLevel.advanced") },
+  ];
 
   const formik = useFormik<CourseData>({
     initialValues: {
@@ -82,7 +91,9 @@ export default function AddCourseForm() {
 
           {/* Course Level */}
           <div className="space-y-3">
-            <Label className="text-base">{t("instructor.addCourse.courseLevel.title")}</Label>
+            <Label className="text-base">
+              {t("instructor.addCourse.courseLevel.title")}
+            </Label>
             <div className="flex flex-col gap-3 bg-white w-fit p-4 rounded-lg shadow-sm">
               {courseLevels.map((level) => (
                 <div key={level.id} className="flex items-center space-x-2 ">
@@ -140,7 +151,7 @@ export default function AddCourseForm() {
           <FormField
             id="coursePrice"
             name="coursePrice"
-            label={t("instructor.addCourse.coursePrice")+ " ($)"}
+            label={t("instructor.addCourse.coursePrice") + " ($)"}
             type="number"
             placeholder="0.00"
             value={formik.values.coursePrice || ""}
@@ -154,7 +165,9 @@ export default function AddCourseForm() {
 
           {/* Course Thumbnail */}
           <div className="space-y-2">
-            <Label className="text-base">{t("instructor.addCourse.courseThumbnail")}</Label>
+            <Label className="text-base">
+              {t("instructor.addCourse.courseThumbnail")}
+            </Label>
             <ImageUploadField
               value={formik.values.courseThumbnail || undefined}
               onChange={(file) => formik.setFieldValue("courseThumbnail", file)}
@@ -168,7 +181,9 @@ export default function AddCourseForm() {
 
           {/* Intro Video Upload */}
           <div className="space-y-2">
-            <Label className="text-base">{t("instructor.addCourse.introVideo")}</Label>
+            <Label className="text-base">
+              {t("instructor.addCourse.introVideo")}
+            </Label>
             <VideoUploadField
               value={formik.values.introVideo || undefined}
               onChange={(file) => formik.setFieldValue("introVideo", file)}

@@ -1,5 +1,3 @@
-import { t } from "i18next";
-
 export interface CourseData {
   courseTitle: string;
   courseCategory: string;
@@ -10,9 +8,3 @@ export interface CourseData {
   courseThumbnail: File | null;
   introVideo: File | null;
 }
-
-export const courseLevels = [
-  { id: "beginner", label: t("instructor.addCourse.courseLevel.beginner") },
-  { id: "intermediate", label: t("instructor.addCourse.courseLevel.intermediate") },
-  { id: "advanced", label: t("instructor.addCourse.courseLevel.advanced") },
-];
