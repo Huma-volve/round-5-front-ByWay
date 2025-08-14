@@ -34,7 +34,8 @@ export default function MyCourses() {
      id={course.id}
     name={course.name}
     title={course.title}
-    rate={course.rate}/>))
+    rate={course.rate}
+    variant="myCourses"/>))
 }
         </div>
 
