@@ -26,7 +26,7 @@ export default {
   			secondaryBackground: 'var(--secondary-background)',
   			border: 'var(--border)',
   			borderCard: 'var(--border-card)',
-  			input: 'hsl(var(--input))',
+  			input: 'var(--input)',
   			category: 'var(--category)',
   			categoryIcon: 'var(--category-icon)',
   			success: 'var(--success)',

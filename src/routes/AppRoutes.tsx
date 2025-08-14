@@ -14,6 +14,8 @@ import NotificationPage from "../pages/Notifications/NotificationPage";
 import SettingsPage from "../pages/Settings/SettingsPage";
 import PaymethodPage from "../pages/Payments/PaymethodPage";
 import PayHistoryPage from "../pages/Payments/PayHistoryPage";
+import CheckoutPage from "../pages/Payments/CheckoutPage";
+import ShoppingCartPage from "../pages/cart/ShoppingCartPage";
 
 export default function AppRoutes() {
   return (
@@ -41,6 +43,8 @@ export default function AppRoutes() {
           path="/edit-user-profile"
           element={<EditUserProfile user={USER_PROFILE[0]} />}
         />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/shopping-cart" element={<ShoppingCartPage />} />
 
         <Route path="/instructor">
           <Route path="reviews" element={<InstructorReviews />} />

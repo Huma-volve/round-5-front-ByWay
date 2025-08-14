@@ -2,6 +2,8 @@ import { type userProfile } from "@/data/userProfile";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import edit from "../../assets/images/icons/edit.svg";
+
 type userType = {
   user: userProfile;
 };
@@ -11,10 +13,9 @@ const UserProfilePage: React.FC<userType> = ({ user }) => {
     i18n.changeLanguage("ar");
   }, []);
   useEffect(() => {
-  const currentLang = i18n.language;
-  document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
-}, [i18n.language]);
-
+    const currentLang = i18n.language;
+    document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
+  }, [i18n.language]);
 
   return (
     <div className="container m-8 p-12  rounded-[10px] border-2  border-border">
@@ -25,7 +26,16 @@ const UserProfilePage: React.FC<userType> = ({ user }) => {
           className="w-32 h-32 mb-[-20px] rounded-[50%]"
         />
       </div>
-
+      <Link to="/edit-user-profile">
+        <img
+          src={edit}
+          alt="edit"
+          loading="lazy"
+          className={`w-8 h-8  curser-pointer bg-border  mt-[-20px]   py-2 rounded-full absolute ${
+            i18n.language === "ar" ? "left-16" : "right-16"
+          }`}
+        />
+      </Link>
       <div className="flex gap-8 flex-wrap justify-center mt-[50px] text-secondary">
         <Link className="hover:text-primary" to={user.links.x}>
           X
