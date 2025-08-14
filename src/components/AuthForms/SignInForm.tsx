@@ -72,7 +72,7 @@ function SignInForm() {
         ) : null}
       </div>
 
-      <div className="flex items-center justify-between">
+      <div className="responsive-action-row">
         <Button className="auth-button" type="submit">
           Sign in
         </Button>

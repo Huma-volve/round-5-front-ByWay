@@ -32,18 +32,18 @@ function ForgotForm() {
   });
 
   return (
-    <div className="auth-container">
+    <div className="w-[100%]">
       <div>
         <h2 className="auth-header">Forgot Password</h2>
         <p className="text-placeholder mt-2">Recover your account password</p>
       </div>
       <form
-        className="auth-form"
+        className="auth-form lg:w-[50%]"
         onReset={formik.handleReset}
         onSubmit={formik.handleSubmit}
       >
         {/* Email || username*/}
-        <div>
+        <div className="">
           <label className="form-label" htmlFor="email">
             E-mail
           </label>
@@ -53,7 +53,7 @@ function ForgotForm() {
             placeholder="Email"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            className="w-1/2 mt-2"
+            className=""
           />
           {formik.touched.email && formik.errors.email ? (
             <FormError error={formik.errors.email} />

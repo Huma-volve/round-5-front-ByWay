@@ -38,7 +38,7 @@ function ResetForm() {
   });
 
   return (
-    <div className="auth-container">
+    <div className="auth-container w-full max-w-md mx-auto p-6 sm:p-8">
       <div>
         <h2 className="auth-header">Create a New Password</h2>
         <p className="text-placeholder mt-2">Recover your account password</p>
@@ -49,39 +49,30 @@ function ResetForm() {
         onReset={formik.handleReset}
         onSubmit={formik.handleSubmit}
       >
-        {/* Passwords */}
+        {/* Password */}
         <div>
           <label className="form-label" htmlFor="password">
             New Password
           </label>
-
-          <Input
-            value={formik.values.password}
-            name="password"
-            placeholder="Password"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.password && formik.errors.password ? (
+          <Input {...formik.getFieldProps("password")} placeholder="Password" />
+          {formik.touched.password && formik.errors.password && (
             <FormError error={formik.errors.password} />
-          ) : null}
+          )}
         </div>
 
+        {/* Confirm Password */}
         <div>
           <label className="form-label" htmlFor="confirm_password">
             Confirm Password
           </label>
-
           <Input
-            value={formik.values.confirm_password}
-            name="confirm_password"
+            {...formik.getFieldProps("confirm_password")}
             placeholder="Confirm Password"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
           />
-          {formik.touched.confirm_password && formik.errors.confirm_password ? (
-            <FormError error={formik.errors.confirm_password} />
-          ) : null}
+          {formik.touched.confirm_password &&
+            formik.errors.confirm_password && (
+              <FormError error={formik.errors.confirm_password} />
+            )}
         </div>
 
         <Button className="auth-button" type="submit">

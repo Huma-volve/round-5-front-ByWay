@@ -8,7 +8,7 @@ import SignInForm from "@/components/AuthForms/SignInForm"
 
 function SignIn() {
   return (
-    <div className="auth-container">
+    <div className="">
       <h2 className="auth-header">Log in into your account</h2>
       <SignInForm/>
       <ExternalAuth/>

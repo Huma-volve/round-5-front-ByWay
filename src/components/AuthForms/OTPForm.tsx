@@ -42,7 +42,7 @@ export function OTPForm() {
   };
 
   return (
-    <div className="auth-container">
+    <div className="">
       <div>
         <h2 className="auth-header">Enter OTP</h2>
         <p className="text-placeholder mt-2"></p> We have just sent you a 4

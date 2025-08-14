@@ -1,15 +1,15 @@
 import { Outlet } from "react-router-dom";
-import AppNavbar from "./NavBar/AppNavbar";
-import AppFooter from "./Footer/AppFooter";
+import AppNavbar from "../NavBar/AppNavbar";
+import AppFooter from "../Footer/AppFooter";
 
 function AppLayout() {
   return (
-    <div className="flex flex-col h-[100vh]">
+    <div className="layout">
       <AppNavbar />
       <main className="flex-1 flex justify-center">
-        <Outlet/>
+        <Outlet />
       </main>
-      <AppFooter/>
+      <AppFooter />
     </div>
   );
 }

@@ -9,22 +9,20 @@ function AppSearchBar() {
     console.log(searchValue);
   }
   return (
-    <div className="h-[60%] w-1/2 relative">
+    <div className="relative flex-1 max-w-lg hidden md:flex">
       <Search
         onClick={handleSearch}
-        className="absolute top-1/2 left-[25px] transform -translate-x-1/2 -translate-y-1/2 stroke-secondaryDark hover:stroke-sky-700 hover:stroke-2 cursor-pointer"
-        size={25}
+        className="absolute top-1/2 left-3 -translate-y-1/2 stroke-secondaryDark hover:stroke-sky-700 hover:stroke-2 cursor-pointer"
+        size={22}
         strokeWidth={1}
       />
       <Input
         onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            handleSearch();
-          }
+          if (e.key === "Enter") handleSearch();
         }}
-        className="h-full border-secondaryDark px-12"
+        className="w-full border-secondaryDark pl-10 pr-3"
         onChange={(e) => setSearchValue(e.target.value)}
-      ></Input>
+      />
     </div>
   );
 }
