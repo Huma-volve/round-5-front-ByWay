@@ -2,7 +2,7 @@ import LessonCard from "@/components/course/LessonCard"
 import courseDetails from "../../../assets/images/courseDetails.png"
 import Review from "@/components/instructor/reviews/Review"
 
-export default function CourseDetails() {
+export default function InstructorCourseDetails() {
   return (
        <section className="container py-12 space-y-6 ">
       <div className="space-y-3 ">

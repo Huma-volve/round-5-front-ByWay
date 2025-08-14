@@ -85,7 +85,9 @@ export default function ViewLessonsContent() {
                     })}
                   </span>
                   <span>
-                    {t("instructor.lessons.duration", { minutes: course.totalDuration })}
+                    {t("instructor.lessons.duration", {
+                      minutes: course.totalDuration,
+                    })}
                   </span>
                   <span className="capitalize">{course.status}</span>
                 </div>
