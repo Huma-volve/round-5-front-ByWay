@@ -1,24 +1,14 @@
 {
-  "profile": {
-    "First Name": "الاسم الاول ",
-    "Last Name": "الاسم الاخير",
-    "Headline": "العنوان",
-    "About": "حول",
-    "Links": "الروابط",
-    "X(Formerly twitter)": "تويتر",
-    "Linkedin": "لنكدان",
-    "Youtube": "يوتيوب",
-    "Facebook": "فيسبوك",
-    "Edit Profile": "تعديل الملف الشخصى"
-  },
   "common": {
     "home": "الرئيسية",
     "instructor": "المدرب",
-    "settings": "الاعدادات",
-    "notifications": "الاشعارات",
-    "favourites": "المفضله",
+    "addCourse": "إضافة دورة",
+    "settings": "الإعدادات",
+    "notifications": "الإشعارات",
+    "favourite": "المفضلة",
+    "favourites": "المفضلة",
     "paymethod": "طرق الدفع",
-    "payhistory": "تواريخ الدفع"
+    "payhistory": "تاريخ الدفع"
   },
   "instructor": {
     "reviews": "المراجعات",
@@ -27,6 +17,29 @@
     "review": "المراجعة",
     "courses": "دوراتي",
     "profile": "الملف الشخصي",
+    "firstName": "الاسم الأول",
+    "enterFirstName": "أدخل الاسم الأول",
+    "lastName": "اسم العائلة",
+    "enterLastName": "أدخل اسم العائلة",
+    "headline": "العنوان",
+    "about": "نبذة عنك",
+    "skills": "المهارات",
+    "effectiveCommunication": "التواصل الفعال",
+    "subjectMatterExpertise": "الخبرة المتخصصة",
+    "classroomManagement": "إدارة الفصول",
+    "curriculumDevelopment": "تطوير المناهج",
+    "adaptabilityAndFlexibility": "القدرة على التكيف والمرونة",
+    "firstNameRequired": "الاسم الأول مطلوب",
+    "firstNameMin": "الاسم الأول يجب أن يكون على الأقل حرفين",
+    "lastNameRequired": "اسم العائلة مطلوب",
+    "lastNameMin": "اسم العائلة يجب أن يكون على الأقل حرفين",
+    "headlineRequired": "العنوان مطلوب",
+    "headlineMax": "العنوان لا يمكن أن يزيد عن 50 حرفًا",
+    "aboutRequired": "النبذة مطلوبة",
+    "aboutMax": "النبذة لا يمكن أن تزيد عن 200 حرف",
+    "skillsRequired": "يرجى اختيار مهارة",
+    "enterHeadline": "ادخل العنوان",
+    "enterAbout": "اكتب نبذة عن نفسك",
     "revenue": {
       "name": "الإيرادات",
       "title": "تحليلات الإيرادات",
@@ -62,9 +75,117 @@
         "creditCard": "بطاقة ائتمان",
         "bankTransfer": "تحويل بنكي"
       }
+    },
+    "addCourse": {
+      "title": "إضافة دورة",
+      "description": "املأ التفاصيل لإنشاء دورة جديدة",
+      "courseName": "اسم الدورة",
+      "courseDescription": "وصف الدورة",
+      "submitButton": "إنشاء دورة",
+      "courseTitle": "عنوان الدورة",
+      "courseTitlePlaceholder": "أدخل عنوان الدورة",
+      "courseCategory": "فئة الدورة",
+      "courseCategoryPlaceholder": "اختر فئة الدورة",
+      "courseLevel": {
+        "title": "مستوى الدورة",
+        "beginner": "مبتدئ",
+        "intermediate": "متوسط",
+        "advanced": "متقدم"
+      },
+      "courseDescriptionPlaceholder": "أدخل وصف الدورة",
+      "videoTitle": "عنوان الفيديو",
+      "videoTitlePlaceholder": "أدخل عنوان الفيديو",
+      "coursePrice": "سعر الدورة",
+      "coursePricePlaceholder": "أدخل سعر الدورة",
+      "courseThumbnail": "صورة الدورة",
+      "introVideo": "فيديو تقديمي"
+    },
+    "upload": {
+      "videoTitle": "رفع فيديو الدورة",
+      "clickToBrowse": "انقر لتصفح أو اسحب وأفلت",
+      "videoFileTypes": "MP4، MOV، AVI حتى 500MB",
+      "chooseFile": "اختر ملف",
+      "thumbnailTitle": "رفع صورة الدورة",
+      "imageFileTypes": "JPG، PNG حتى 5MB",
+      "courseMaterials": "مواد الدورة",
+      "courseMaterialsFileTypes": "PDF، DOC، DOCX، TXT، صور حتى 10MB لكل منها"
+    },
+    "courseManagement": {
+      "title": "إدارة الدورة",
+      "courseDetails": "تفاصيل الدورة",
+      "description": "إدارة محتوى الدورة والإعدادات",
+      "actions": {
+        "addLessons": {
+          "title": "إضافة دروس",
+          "description": "إنشاء ورفع دروس فيديو للدورة"
+        },
+        "viewLessons": {
+          "title": "عرض الدروس",
+          "description": "عرض وإدارة دروس الدورة الموجودة"
+        },
+        "deleteCourse": {
+          "title": "حذف الدورة",
+          "description": "حذف الدورة نهائياً مع جميع محتوياتها"
+        }
+      },
+      "tips": {
+        "title": "نصائح إدارة الدورة:",
+        "tip1": "أضف دروساً لجعل محتوى الدورة متاحاً للطلاب",
+        "tip2": "استخدم خيار المعاينة لتقديم دروس مجانية تجريبية",
+        "tip3": "حدّث ونظم محتوى الدورة بانتظام",
+        "tip4": "راقب تفاعل الطلاب والتعليقات"
+      }
+    },
+    "lessons": {
+      "title": "الدروس",
+      "noLessons": "لا توجد دروس بعد",
+      "noLessonsDescription": "ابدأ بإضافة أول درس لهذه الدورة",
+      "addFirstLesson": "إضافة أول درس",
+      "backToCourse": "العودة للدورة",
+      "editLesson": "تعديل الدرس",
+      "updateLesson": "تحديث الدرس",
+      "addLessons": "إضافة دروس",
+      "lessonTitle": "عنوان الدرس",
+      "lessonTitlePlaceholder": "أدخل عنوان الدرس",
+      "lessonDescription": "وصف الدرس",
+      "lessonDescriptionPlaceholder": "أدخل وصف الدرس",
+      "lessonDuration": "مدة الدرس (بالدقائق)",
+      "lessonDurationPlaceholder": "أدخل المدة بالدقائق",
+      "lessonVideo": "فيديو الدرس",
+      "lessonMaterials": "مواد الدرس (اختيارية)",
+      "freePreview": "جعل هذا الدرس متاحاً كمعاينة مجانية",
+      "addAnotherLesson": "إضافة درس آخر",
+      "saveLessons": "حفظ الدروس والمتابعة",
+      "updatingLesson": "جاري تحديث الدرس...",
+      "uploadingLessons": "جاري رفع الدروس...",
+      "backToLessons": "العودة للدروس",
+      "updateLessonDescription": "قم بتحديث معلومات الدرس أدناه",
+      "duration": "{{minutes}} دقيقة",
+      "materials": "{{count}} مادة",
+      "materials_plural": "{{count}} مواد",
+      "videoLesson": "درس فيديو",
+      "previewBadge": "معاينة",
+      "lesson": "الدرس {{order}}",
+      "updated": "محدث {{date}}",
+      "moreFiles": "+{{count}} ملف إضافي",
+      "editAction": "تعديل الدرس",
+      "deleteAction": "حذف الدرس",
+      "previewAvailable": "معاينة متاحة",
+      "totalLessons": "{{count}} درس",
+      "totalLessons_plural": "{{count}} دروس"
+    },
+    "deleteModal": {
+      "deleteTitle": "حذف {{itemType}}",
+      "deleteDescription": "هل أنت متأكد من حذف هذا {{itemType}}؟ لا يمكن التراجع عن هذا الإجراء.",
+      "courseDeleteDescription": "هل أنت متأكد من حذف هذه الدورة؟ لا يمكن التراجع عن هذا الإجراء وسيؤدي إلى إزالة جميع الدروس والمواد وتقدم الطلاب.",
+      "lessonDeleteDescription": "هل أنت متأكد من حذف هذا الدرس؟ لا يمكن التراجع عن هذا الإجراء.",
+      "itemToDelete": "العنصر المراد حذفه:",
+      "cancel": "إلغاء",
+      "delete": "حذف",
+      "deleting": "جاري الحذف..."
     }
   },
-"withdraw": {
+  "withdraw": {
     "Enter Payment Details": "ادخل تفاصيل الدفع",
     "Payment Method": "طريقه الدفع",
     "Please Select": "من فضلك اختر",
@@ -73,11 +194,11 @@
     "Fawry": "فورى",
     "Account Name": "اسم الحساب",
     "Account Number": "رقم الحساب",
-    "Account Email" : "البريد الالكتروني للحساب",
+    "Account Email": "البريد الالكتروني للحساب",
     "Enter Account Name": "ادخل اسم الحساب",
     "Enter Account Number": "ادخل رقم الحساب",
     "Enter Account Email": "ادخل البريد الحساب الالكتروني",
-    "Enter Amount" : "ادخل الرصيد",
+    "Enter Amount": "ادخل الرصيد",
     "Bank Name": "اسم البنك",
     "Save These Details": "احفظ هذه التفاصيل",
     "Continue": "استمر",
@@ -88,20 +209,20 @@
     "Please enter your account number": "من فضلك ادخل رقم حسابك",
     "Account number must be at least 6 digits": "رقم الحساب لابد ان يكون على الاقل 6 ارقام",
     "Please enter a valid email": "من فضلك ادخل بريد الكتروني صحيح",
-    "Withdraw Amount" : "سحب المبلغ",
-    "Next" : "التالي",
-    "Available Balance" : "الرصيد المتاح",
-    "Minimum Withdrawal" : "الحد الادني للسحب",
-    "and" : "و",
-    "You can withdraw any amount between" : "يمكنك ان تسحب اي رصيد بين",
-    "Enter a valid amount" : "ادخل قيمه صالحه"
+    "Withdraw Amount": "سحب المبلغ",
+    "Next": "التالي",
+    "Available Balance": "الرصيد المتاح",
+    "Minimum Withdrawal": "الحد الادني للسحب",
+    "and": "و",
+    "You can withdraw any amount between": "يمكنك ان تسحب اي رصيد بين",
+    "Enter a valid amount": "ادخل قيمه صالحه"
   },
- "favourite": {
+  "favourite": {
     "Courses": "الدورات",
     "Instractor": "المدرب"
   },
   "notifications": {
-    "You are all up to date": "لقد اطلعت علي جميع التحديثات",
+    "You are all up to date": "أنت محدث بالكامل",
     "No new notifications - come back soon": "لا توجد إشعارات جديدة - عد قريبًا"
   },
   "settings": {
@@ -109,13 +230,44 @@
     "Payment History": "تاريخ الدفع"
   },
   "payments": {
-    "Choose your payment method": "اختار طريقه الدفع",
-    "Select your preferred way to pay for your courses": "اختار طريقه الدفع المناسبه لك  لتقوم بشراء الدورات",
+    "Choose your payment method": "اختر طريقة الدفع",
+    "Select your preferred way to pay for your courses": "اختر الطريقة المفضلة لدفع ثمن دوراتك",
     "Date": "التاريخ",
     "Course": "الدورة",
-    "Method": "طريقه الدفع",
-    "Amount": "القيمه",
-    "profile": "الملف الشخصي",
-    "Save Payment Method" : "حفظ طريقه الدفع"
+    "Method": "الطريقة",
+    "Amount": "المبلغ",
+    "Save Payment Method": "حفظ طريقه الدفع"
+  },
+  "profile": {
+    "First Name": "الاسم الأول",
+    "Last Name": "الاسم الأخير",
+    "Headline": "العنوان",
+    "About": "حول",
+    "Links": "الروابط",
+    "X(Formerly twitter)": "تويتر",
+    "Linkedin": "لينكدإن",
+    "Youtube": "يوتيوب",
+    "Facebook": "فيسبوك",
+    "Edit Profile": "تعديل الملف الشخصي"
+  },
+  "workExperience": {
+    "jobTitle": "المسمى الوظيفي",
+    "enterJobTitle": "أدخل المسمى الوظيفي",
+    "companyName": "اسم الشركة",
+    "enterCompanyName": "أدخل اسم الشركة",
+    "startDate": "تاريخ البداية",
+    "endDate": "تاريخ النهاية",
+    "jobTitleRequired": "المسمى الوظيفي مطلوب",
+    "jobTitleMin": "المسمى الوظيفي يجب أن يكون على الأقل حرفين",
+    "companyNameRequired": "اسم الشركة مطلوب",
+    "companyNameMin": "اسم الشركة يجب أن يكون على الأقل حرفين",
+    "startDateRequired": "تاريخ البداية مطلوب",
+    "endDateRequired": "تاريخ النهاية مطلوب",
+    "invalidDate": "تاريخ غير صالح",
+    "endDateBeforeStartDate": "تاريخ النهاية لا يمكن أن يكون قبل تاريخ البداية",
+    "addAnotherExperience": "أضف خبرة أخرى"
+  },
+  "save": {
+    "Save": "حفظ"
   }
 }

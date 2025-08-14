@@ -5,6 +5,9 @@ const INSTRUCTOR_REVIEWS_DATA = [
     review:
       "I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down complex concepts into easily digestible modules. The video lectures were engaging, and the real-world examples really helped solidify my understanding.",
     rating: 5,
+    date:"Reviewed on 22nd March, 2024",
+
+    name: "john albert"
   },
   {
     id: 2,
@@ -12,6 +15,9 @@ const INSTRUCTOR_REVIEWS_DATA = [
     review:
       "I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down complex concepts into easily digestible modules. The video lectures were engaging, and the real-world examples really helped solidify my understanding.",
     rating: 4,
+    date:"Reviewed on 22nd March, 2024",
+
+    name: "salsabeel"
   },
   {
     id: 3,
@@ -19,20 +25,27 @@ const INSTRUCTOR_REVIEWS_DATA = [
     review:
       "I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down complex concepts into easily digestible modules. The video lectures were engaging, and the real-world examples really helped solidify my understanding.",
     rating: 3,
-  },
+  date:"Reviewed on 22nd March, 2024",
+},
+
   {
     id: 4,
     courseName: "Introduction to Machine Learning",
     review:
       "I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down complex concepts into easily digestible modules. The video lectures were engaging, and the real-world examples really helped solidify my understanding.",
     rating: 5,
-  },
+  date:"Reviewed on 22nd March, 2024",
+},
+
   {
     id: 5,
     courseName: "Data Science Bootcamp",
     review:
       "I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down complex concepts into easily digestible modules. The video lectures were engaging, and the real-world examples really helped solidify my understanding.",
     rating: 4,
+    date:"Reviewed on 22nd March, 2024",
+
+    name: "salsabeel"
   },
   {
     id: 6,
@@ -40,6 +53,9 @@ const INSTRUCTOR_REVIEWS_DATA = [
     review:
       "I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down complex concepts into easily digestible modules. The video lectures were engaging, and the real-world examples really helped solidify my understanding.",
     rating: 5,
+    date:"Reviewed on 22nd March, 2024",
+
+    name: "salsabeel"
   },
   {
     id: 7,
@@ -47,6 +63,9 @@ const INSTRUCTOR_REVIEWS_DATA = [
     review:
       "I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down complex concepts into easily digestible modules. The video lectures were engaging, and the real-world examples really helped solidify my understanding.",
     rating: 5,
+    date:"Reviewed on 22nd March, 2024",
+
+    name: "salsabeel"
   },
   {
     id: 8,
@@ -54,6 +73,9 @@ const INSTRUCTOR_REVIEWS_DATA = [
     review:
       "I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down complex concepts into easily digestible modules. The video lectures were engaging, and the real-world examples really helped solidify my understanding.",
     rating: 4,
+    date:"Reviewed on 22nd March, 2024",
+
+    name: "salsabeel"
   },
   {
     id: 9,
@@ -61,6 +83,9 @@ const INSTRUCTOR_REVIEWS_DATA = [
     review:
       "I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down complex concepts into easily digestible modules. The video lectures were engaging, and the real-world examples really helped solidify my understanding.",
     rating: 5,
+    date:"Reviewed on 22nd March, 2024",
+
+    name: "salsabeel"
   },
   {
     id: 10,
@@ -68,6 +93,9 @@ const INSTRUCTOR_REVIEWS_DATA = [
     review:
       "I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down complex concepts into easily digestible modules. The video lectures were engaging, and the real-world examples really helped solidify my understanding.",
     rating: 5,
+    date:"Reviewed on 22nd March, 2024",
+
+    name: "salsabeel"
   },
   {
     id: 11,
@@ -75,6 +103,9 @@ const INSTRUCTOR_REVIEWS_DATA = [
     review:
       "I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down complex concepts into easily digestible modules. The video lectures were engaging, and the real-world examples really helped solidify my understanding.",
     rating: 5,
+    date:"Reviewed on 22nd March, 2024",
+
+    name: "salsabeel"
   },
   {
     id: 12,
@@ -82,6 +113,9 @@ const INSTRUCTOR_REVIEWS_DATA = [
     review:
       "I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down complex concepts into easily digestible modules. The video lectures were engaging, and the real-world examples really helped solidify my understanding.",
     rating: 5,
+    date:"Reviewed on 22nd March, 2024",
+
+    name: "salsabeel"
   },
 ];
 
@@ -89,7 +123,10 @@ export default INSTRUCTOR_REVIEWS_DATA;
 
 export type InstructorReview = {
   id?: number;
-  courseName: string;
+  courseName?: string;
   review: string;
+  date?:string,
   rating: number;
+
+  name?: string
 };
