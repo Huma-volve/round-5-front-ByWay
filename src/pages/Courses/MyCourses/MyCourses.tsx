@@ -11,18 +11,42 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+
 export default function MyCourses() {
+  const {t} = useTranslation()
   return (
     <>
       <section className="container py-12">
         <div className="flex justify-between items-center">
-        <h1 className="text-bold text-xl lg:text-2xl mb-4">Courses (12)</h1>
-<div className="flex gap-3 mb-3 ">
-  <span>Sort By</span>
-  <span className=" ">Relevance</span>
+        <h1 className="text-bold text-xl lg:text-2xl mb-4">{t("instructor.Courses")} (12)</h1>
+
+<div className="flex items-center gap-4 mb-4 p-3 rounded-md shadow-sm">
+ 
+   <select className="border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-400">
+   <option value=""  disabled selected hidden >
+    {t("instructor.SortBy")} 
+  </option>
+    <option>{t("instructor.Relevance")}</option>
+    <option>{t("common.rate")}</option>
+    </select>
+ 
+
+
   
-  <span className="">Filter</span>
-  <span className="">Add course</span>
+
+  <Button className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-rate transition-colors">
+    {t("instructor.Filter")}
+  </Button>
+
+  <Link 
+    to="/" 
+    className="bg-success text-white px-3 py-1 rounded-md hover:bg-green-600 transition-colors"
+  >
+    {t("instructor.AddCourse")}
+  </Link>
 </div>
 
 </div>
@@ -34,7 +58,8 @@ export default function MyCourses() {
      id={course.id}
     name={course.name}
     title={course.title}
-    rate={course.rate}/>))
+    rate={course.rate}
+    variant="myCourses"/>))
 }
         </div>
 
