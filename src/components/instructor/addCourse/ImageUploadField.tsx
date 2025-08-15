@@ -37,13 +37,13 @@ export default function ImageUploadField({
   const handleFileSelect = (file: File) => {
     // Validate file type
     if (!file.type.startsWith("image/")) {
-      alert("Please select an image file");
+      alert(t("instructor.upload.pleaseSelectImageFile"));
       return;
     }
 
     // Validate file size (5MB limit)
     if (file.size > 5 * 1024 * 1024) {
-      alert("File size must be less than 5MB");
+      alert(t("instructor.upload.fileSizeImageError"));
       return;
     }
 
@@ -155,8 +155,12 @@ export default function ImageUploadField({
           </div>
 
           <div className="space-y-1">
-            <p className=" font-medium text-gray-900">{t("instructor.upload.thumbnailTitle")}</p>
-            <p className=" text-gray-400">{t("instructor.upload.imageFileTypes")}</p>
+            <p className=" font-medium text-gray-900">
+              {t("instructor.upload.thumbnailTitle")}
+            </p>
+            <p className=" text-gray-400">
+              {t("instructor.upload.imageFileTypes")}
+            </p>
           </div>
         </div>
       </div>

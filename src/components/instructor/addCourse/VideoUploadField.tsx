@@ -37,13 +37,13 @@ export default function VideoUploadField({
   const handleFileSelect = (file: File) => {
     // Validate file type
     if (!file.type.startsWith("video/")) {
-      alert("Please select a video file");
+      alert(t("instructor.upload.pleaseSelectVideoFile"));
       return;
     }
 
     // Validate file size (500MB limit)
     if (file.size > 500 * 1024 * 1024) {
-      alert("File size must be less than 500MB");
+      alert(t("instructor.upload.fileSizeVideoError"));
       return;
     }
 
@@ -152,17 +152,19 @@ export default function VideoUploadField({
 
         <div className="text-center space-y-4">
           <div className="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">
-            <Video  className="h-8 w-8 text-gray-400" />
+            <Video className="h-8 w-8 text-gray-400" />
           </div>
 
           <div className="space-y-2">
             <p className="text-sm font-medium text-gray-900">
-              {t('instructor.upload.videoTitle')}
+              {t("instructor.upload.videoTitle")}
             </p>
             <p className="text-xs text-gray-500">
               {t("instructor.upload.clickToBrowse")}
             </p>
-            <p className="text-xs text-gray-400">{t("instructor.upload.videoFileTypes")}</p>
+            <p className="text-xs text-gray-400">
+              {t("instructor.upload.videoFileTypes")}
+            </p>
           </div>
 
           <Button

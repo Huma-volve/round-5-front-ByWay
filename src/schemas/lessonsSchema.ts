@@ -4,6 +4,81 @@ import {
   supportedMaterialFormats,
 } from "@/data/addLessonsData";
 
+export const createLessonSchema = (t: (key: string) => string) =>
+  Yup.object().shape({
+    lessonTitle: Yup.string()
+      .min(3, t("validation.lesson.lessonTitleMin"))
+      .max(100, t("validation.lesson.lessonTitleMax"))
+      .required(t("validation.lesson.lessonTitleRequired")),
+
+    lessonDescription: Yup.string()
+      .min(10, t("validation.lesson.lessonDescriptionMin"))
+      .max(500, t("validation.lesson.lessonDescriptionMax"))
+      .required(t("validation.lesson.lessonDescriptionRequired")),
+
+    lessonDuration: Yup.number()
+      .min(1, t("validation.lesson.lessonDurationMin"))
+      .max(180, t("validation.lesson.lessonDurationMax"))
+      .required(t("validation.lesson.lessonDurationRequired")),
+
+    lessonVideo: Yup.mixed()
+      .required(t("validation.lesson.lessonVideoRequired"))
+      .test(
+        "fileSize",
+        t("validation.lesson.lessonVideoSizeLimit"),
+        (value) => {
+          if (!value || typeof value === "string") return true;
+          const file = value as File;
+          return file.size <= 500 * 1024 * 1024; // 500MB
+        }
+      )
+      .test(
+        "fileType",
+        t("validation.lesson.uploadValidVideoFile"),
+        (value) => {
+          if (!value || typeof value === "string") return true;
+          const file = value as File;
+          return supportedVideoFormats.includes(file.type);
+        }
+      ),
+
+    lessonMaterials: Yup.array()
+      .of(
+        Yup.mixed()
+          .test(
+            "fileSize",
+            t("validation.lesson.materialFileSizeLimit"),
+            (value) => {
+              if (!value) return true;
+              const file = value as File;
+              return file.size <= 10 * 1024 * 1024; // 10MB
+            }
+          )
+          .test(
+            "fileType",
+            t("validation.lesson.uploadValidMaterialFiles"),
+            (value) => {
+              if (!value) return true;
+              const file = value as File;
+              return supportedMaterialFormats.includes(file.type);
+            }
+          )
+      )
+      .nullable(),
+
+    isPreview: Yup.boolean(),
+  });
+
+export const createAddLessonsValidationSchema = (t: (key: string) => string) =>
+  Yup.object().shape({
+    courseId: Yup.string(),
+    lessons: Yup.array()
+      .of(createLessonSchema(t))
+      .min(1, t("validation.lesson.atLeastOneLessonRequired"))
+      .required(t("validation.lesson.lessonsRequired")),
+  });
+
+// Keep old exports for backward compatibility
 const lessonSchema = Yup.object().shape({
   lessonTitle: Yup.string()
     .min(3, "Lesson title must be at least 3 characters")
