@@ -18,6 +18,7 @@ export default function Home() {
       <Link to="/settings">Settings</Link>
       <Link to="/settings/paymethod">Pay Method</Link>
       <Link to="/settings/payhistory">Pay History</Link>
+            
     </nav>
   );
 }

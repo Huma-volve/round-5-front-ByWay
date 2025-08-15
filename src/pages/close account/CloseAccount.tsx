@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const CloseAccount = () => {
   const { t, i18n } = useTranslation();
@@ -21,6 +22,9 @@ const CloseAccount = () => {
       <h4 className="font-medium lg:text-[17px] w-[80%] mx-auto my-4">
        {t("closeAccount.warning2")}
       </h4>
+      <Link to="/" className="bg-danger text-white px-6 py-2 rounded-md font-bold hover:opacity-[.8] transition-colors duration-300">
+      {t("confirm")}
+      </Link>
     </div>
   );
 };

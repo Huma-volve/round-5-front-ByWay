@@ -8,7 +8,7 @@ import VideoUploadField from "./VideoUploadField";
 import MaterialsUploadField from "./MaterialsUploadField";
 import type { AddLessonsData, LessonData } from "@/data/addLessonsData";
 import type { Lesson } from "@/data/coursesData";
-import { addLessonsValidationSchema } from "@/schemas/lessonsSchema";
+import { createAddLessonsValidationSchema } from "@/schemas/lessonsSchema";
 import { useLesson } from "@/hooks/useCourseData";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
@@ -68,7 +68,7 @@ export default function AddLessonsForm({
           ? [convertLessonForEdit(lessonToEdit)]
           : [initialLesson],
     },
-    validationSchema: addLessonsValidationSchema,
+    validationSchema: createAddLessonsValidationSchema(t),
     enableReinitialize: true, // This allows form to reinitialize when lessonToEdit changes
     onSubmit: (values) => {
       console.log("Lessons submitted:", values);

@@ -8,7 +8,10 @@
     "favourite": "Favourite",
     "favourites": "Favourite",
     "paymethod": "Payment Method",
-    "payhistory": "Payment History"
+    "payhistory": "Payment History",
+    "rate": "rate",
+    "coursedetailes": "Course Details",
+    "learnermycourse": "My Courses"
   },
   "instructor": {
     "reviews": "Reviews",
@@ -17,6 +20,9 @@
     "review": "Review",
     "courses": "My Courses",
     "profile": "Profile",
+    "Total Students": "Total Students",
+    "Reviews": "Reviews",
+    "Courses": "Courses",
     "firstName": "First Name",
     "enterFirstName": "Enter your First Name",
     "lastName": "Last Name",
@@ -26,6 +32,9 @@
     "skills": "Skills",
     "effectiveCommunication": "Effective Communication",
     "subjectMatterExpertise": "Subject Matter Expertise",
+    "classroomManagement": "Classroom Management",
+    "curriculumDevelopment": "Curriculum Development",
+    "adaptabilityAndFlexibility": "Adaptability and Flexibility",
     "firstNameRequired": "First name is required",
     "firstNameMin": "First name must be at least 2 characters",
     "enterHeadline": "Enter your Headline",
@@ -37,6 +46,11 @@
     "aboutRequired": "About is required",
     "aboutMax": "About section cannot be more than 200 characters",
     "skillsRequired": "Please select a skill",
+    "SortBy": "Sort By",
+    "Relevance": "Relevance",
+    "Filter": "Filter",
+    "AddCourse": "Add Course",
+    "yourCourses": "Your courses",
     "revenue": {
       "name": "Revenue",
       "title": "Revenue Analytics",
@@ -50,6 +64,27 @@
         "availableBalance": "Available Balance",
         "lastTransaction": "Last Transaction"
       }
+    },
+    "workExperience": {
+      "jobTitle": "Job Title",
+      "enterJobTitle": "Enter your Job Title",
+      "companyName": "Company Name",
+      "enterCompanyName": "Enter Company Name",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "jobTitleRequired": "Job title is required",
+      "jobTitleMin": "Job title must be at least 2 characters",
+      "companyNameRequired": "Company name is required",
+      "companyNameMin": "Company name must be at least 2 characters",
+      "startDateRequired": "Start date is required",
+      "endDateRequired": "End date is required",
+      "invalidDate": "Invalid date",
+      "endDateBeforeStartDate": "End date cannot be before start date",
+      "addAnotherExperience": "Add another Experience",
+      "Work Experience": "Work Experience"
+    },
+    "save": {
+      "Save": "Save"
     },
     "income": {
       "title": "Transactions",
@@ -105,7 +140,11 @@
       "thumbnailTitle": "Upload Course Thumbnail",
       "imageFileTypes": "JPG, PNG up to 5MB",
       "courseMaterials": "Add Course Materials",
-      "courseMaterialsFileTypes": "PDF, DOC, DOCX, TXT, Images up to 10MB each"
+      "courseMaterialsFileTypes": "PDF, DOC, DOCX, TXT, Images up to 10MB each",
+      "pleaseSelectImageFile": "Please select an image file",
+      "pleaseSelectVideoFile": "Please select a video file",
+      "fileSizeImageError": "File size must be less than 5MB",
+      "fileSizeVideoError": "File size must be less than 500MB"
     },
     "courseManagement": {
       "title": "Course Management",
@@ -182,6 +221,49 @@
       "deleting": "Deleting..."
     }
   },
+  "validation": {
+    "course": {
+      "courseTitleRequired": "Course title is required",
+      "courseTitleMin": "Course title must be at least 3 characters",
+      "courseTitleMax": "Course title must be less than 100 characters",
+      "courseCategoryRequired": "Course category is required",
+      "courseLevelRequired": "Course level is required",
+      "courseLevelMin": "At least one course level must be selected",
+      "courseDescriptionRequired": "Course description is required",
+      "courseDescriptionMin": "Course description must be at least 10 characters",
+      "courseDescriptionMax": "Course description must be less than 1000 characters",
+      "videoTitleRequired": "Video title is required",
+      "videoTitleMin": "Video title must be at least 3 characters",
+      "videoTitleMax": "Video title must be less than 100 characters",
+      "coursePriceRequired": "Course price is required",
+      "coursePricePositive": "Course price must be a positive number",
+      "coursePriceMax": "Course price must be less than $9999",
+      "courseThumbnailRequired": "Course thumbnail is required",
+      "onlyImageFilesAllowed": "Only image files are allowed",
+      "imageSizeLimit": "File size must be less than 5MB",
+      "introVideoRequired": "Intro video is required",
+      "onlyVideoFilesAllowed": "Only video files are allowed",
+      "videoSizeLimit": "File size must be less than 100MB"
+    },
+    "lesson": {
+      "lessonTitleRequired": "Lesson title is required",
+      "lessonTitleMin": "Lesson title must be at least 3 characters",
+      "lessonTitleMax": "Lesson title must be less than 100 characters",
+      "lessonDescriptionRequired": "Lesson description is required",
+      "lessonDescriptionMin": "Description must be at least 10 characters",
+      "lessonDescriptionMax": "Description must be less than 500 characters",
+      "lessonDurationRequired": "Lesson duration is required",
+      "lessonDurationMin": "Duration must be at least 1 minute",
+      "lessonDurationMax": "Duration must be less than 3 hours",
+      "lessonVideoRequired": "Lesson video is required",
+      "lessonVideoSizeLimit": "Video file size must be less than 500MB",
+      "uploadValidVideoFile": "Please upload a valid video file",
+      "materialFileSizeLimit": "File size must be less than 10MB",
+      "uploadValidMaterialFiles": "Please upload valid material files",
+      "atLeastOneLessonRequired": "At least one lesson is required",
+      "lessonsRequired": "Lessons are required"
+    }
+  },
   "withdraw": {
     "Enter Payment Details": "Enter Payment Details",
     "Payment Method": "Payment Method",
@@ -245,7 +327,10 @@
     "Linkedin": "Linkedin",
     "Youtube": "Youtube",
     "Facebook": "Facebook",
-    "Edit Profile": "Edit Profile"
+    "Edit Profile": "Edit Profile",
+    "Learner Reviews": "Learner Reviews",
+    "View more Reviews": "View more Reviews",
+    "link required": "Please enter a link"
   },
   "workExperience": {
     "jobTitle": "Job Title",
@@ -292,5 +377,16 @@
     "Choose your payment method": "Choose your payment method",
     "Saving": "Saving",
     "Save Payment Method": "Save Payment Method"
+  },
+  "user": {
+    "Send Feedback": "Send Feedback"
+  },
+  "feedbackModal": {
+    "Give": "Give Feedback",
+    "What": "What is Your Opinion ?",
+    "Write": "Write Your Feedback here...",
+    "Cancel": "Cancel",
+    "Confirm": "Confirm"
+
   }
 }

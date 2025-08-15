@@ -40,15 +40,23 @@ const EditUserProfile: React.FC<userType> = ({ user }) => {
           },
         }}
         validationSchema={Yup.object({
-          fname: Yup.string().max(15).required(),
-          lname: Yup.string().max(15).required(),
-          headline: Yup.string().required(),
-          about: Yup.string().required(),
+        fname: Yup.string()
+          .min(2, t('instructor.firstNameMin'))
+          .required(t('instructor.firstNameRequired')),
+        lname: Yup.string()
+          .min(2, t('instructor.lastNameMin'))
+          .required(t('instructor.lastNameRequired')),
+        headline: Yup.string()
+          .max(50, t('instructor.headlineMax'))
+          .required(t('instructor.headlineRequired')),
+        about: Yup.string()
+          .max(200, t('instructor.aboutMax'))
+          .required(t('instructor.aboutRequired')),
           links: Yup.object({
-            x: Yup.string().url().required(),
-            linkedin: Yup.string().url().required(),
-            youtube: Yup.string().url().required(),
-            facebook: Yup.string().url().required()
+            x: Yup.string().required(t('profile.link required')),
+            linkedin: Yup.string().required(t('profile.link required')),
+            youtube: Yup.string().required(t('profile.link required')),
+            facebook: Yup.string().required(t('profile.link required'))
           })
         })}
         onSubmit={(values, { setSubmitting }) => {

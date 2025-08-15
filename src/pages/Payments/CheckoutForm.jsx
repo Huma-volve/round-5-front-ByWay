@@ -20,7 +20,7 @@ export default function CheckoutForm() {
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-  const token = "4|xagT7BiKYVP79QInYoxwYqrV4mTFzrNdBFnG8LC9492e7148";
+  const token = "5|4PA4cCHitqNhFkhHbewkIEPKxe5FzaBCRNFClMYRb608a877";
 
   useEffect(() => {
     axios
@@ -56,11 +56,11 @@ export default function CheckoutForm() {
           card: elements.getElement(CardElement),
         },
       });
-
+      console.log("Stripe Result:", result);
       if (result.error) {
         setMessage(result.error.message);
-      } else {
-        const paymentMethodId = result.setupIntent.payment_method;
+        console.log("result:", result);
+        const paymentMethodId = result.setupIntent.id;
         console.log("Payment Method ID:", paymentMethodId);
    
         await axios.post(

@@ -1,27 +1,42 @@
 import courseImg from '../../../assets/images/course.png'
 import type { Course_Card_Data as CourseCardType } from "../../../data/CourseCardData";
-export default function CourseCard({name, title , rate}:CourseCardType) {
+import instructorCourse from "../../../assets/images/instructorcourse.jpg"
+import { Link } from 'react-router-dom';
+
+type cardProps = CourseCardType & {
+  variant?: "myCourses" | "instructor";
+};
+export default function CourseCard({name, title , rate , variant="instructor"}:cardProps) {
   
  return (
     <>
-    <div className="w-full rounded-2xl shadow-lg overflow-hidden bg-white border border-gray-100 flex flex-col h-full">
+    <Link to="/instructor/course-details" className="w-full rounded-2xl shadow-lg overflow-hidden bg-white border border-gray-100 flex flex-col h-full">
      
       <div className="h-48 overflow-hidden">
-        <img
+     {
+      variant ==="instructor"?  <img
+          src={instructorCourse}
+          alt="Instructor"
+          className="w-full h-full object-cover"
+        />:  <img
           src={courseImg}
           alt="Instructor"
           className="w-full h-full object-cover"
         />
+     }  
       </div>
 
     
       <div className="p-4">
+              { variant ==="instructor"? 
+ <h2 className="text-xl font-semibold text-gray-800">Beginner’s Guide to UI UX</h2> :   <h2 className="text-xl font-semibold text-gray-800">{name}</h2>
+
+} 
       
-        <h2 className="text-xl font-semibold text-gray-800">{name}</h2>
-
-        
-        <p className="text-gray-500 text-sm mb-4">{title}</p>
-
+      
+       { variant ==="instructor"? 
+     <p className="text-gray-500 text-sm mb-4">By Omnya Ali</p>  : <p className="text-gray-500 text-sm mb-4">{title}</p>
+} 
        
         <div className="flex items-center mb-4">
           {[...Array(5)].map((_, i) => (
@@ -36,10 +51,17 @@ export default function CourseCard({name, title , rate}:CourseCardType) {
           ))}
           <span className="ml-2 text-gray-600 text-sm">({rate})</span>
         </div>
-
+       
+       { variant ==="instructor"? 
+   <>
+   <p className="text-gray-500 text-sm ">22 Total Hours. 155 Lectures. Beginner</p> 
+   <h3 className='font-semibold'>400 EGP</h3>
+   </>   : ""
+} 
+   
       
       </div>
-    </div>
+    </Link>
     
     </>
   )
