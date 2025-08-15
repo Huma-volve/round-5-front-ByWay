@@ -10,7 +10,7 @@ export default function CourseCard({name, title , rate , variant="instructor"}:c
   
  return (
     <>
-    <Link to="/CourseDetail" className="w-full rounded-2xl shadow-lg overflow-hidden bg-white border border-gray-100 flex flex-col h-full">
+    <Link to="/instructor/course-details" className="w-full rounded-2xl shadow-lg overflow-hidden bg-white border border-gray-100 flex flex-col h-full">
      
       <div className="h-48 overflow-hidden">
      {

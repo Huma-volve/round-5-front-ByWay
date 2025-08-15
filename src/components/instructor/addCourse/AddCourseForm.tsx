@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import FormField from "@/components/ui/FormField";
 import type { CourseData } from "@/data/addCourseData";
-import { courseValidationSchema } from "@/utils/courseSchema";
+import { createCourseValidationSchema } from "@/utils/courseSchema";
 import VideoUploadField from "./VideoUploadField";
 import ImageUploadField from "./ImageUploadField";
 import { useTranslation } from "react-i18next";
@@ -35,7 +35,7 @@ export default function AddCourseForm() {
       courseThumbnail: null,
       introVideo: null,
     },
-    validationSchema: courseValidationSchema,
+    validationSchema: createCourseValidationSchema(t),
     onSubmit: (values) => {
       // handle form submission here
       console.log("Form submitted:", values);

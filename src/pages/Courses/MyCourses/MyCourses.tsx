@@ -42,7 +42,7 @@ export default function MyCourses() {
   </Button>
 
   <Link 
-    to="/" 
+    to="/instructor/add-course" 
     className="bg-success text-white px-3 py-1 rounded-md hover:bg-green-600 transition-colors"
   >
     {t("instructor.AddCourse")}
