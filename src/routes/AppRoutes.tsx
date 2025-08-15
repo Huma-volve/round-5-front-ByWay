@@ -1,21 +1,21 @@
-import { Routes, Route, BrowserRouter as Router} from "react-router-dom";
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import CloseAccount from "../pages/close account/CloseAccount";
 import Success from "../pages/success/Success";
 import AppLayout from "@/components/AppLayout";
 import Home from "@/pages/Home";
-import Revenue from '../pages/instructor/Revenue'
-import GetPaid from '@/pages/instructor/GetPaid';
-import Favourites from '../pages/Favourites/Favourites'
-import NotificationPage from "../pages/Notifications/NotificationPage"; 
-import SettingsPage from '../pages/Settings/SettingsPage';
-import PaymethodPage from '../pages/Payments/PaymethodPage';
-import PayHistoryPage from '../pages/Payments/PayHistoryPage';
-import Withdraw from '@/pages/instructor/Withdraw';
+import Revenue from "../pages/instructor/Revenue";
+import GetPaid from "@/pages/instructor/GetPaid";
+import Favourites from "../pages/Favourites/Favourites";
+import NotificationPage from "../pages/Notifications/NotificationPage";
+import SettingsPage from "../pages/Settings/SettingsPage";
+import PaymethodPage from "../pages/Payments/PaymethodPage";
+import PayHistoryPage from "../pages/Payments/PayHistoryPage";
+import Withdraw from "@/pages/instructor/Withdraw";
 import USER_PROFILE from "@/data/userProfile";
 import UserProfilePage from "@/pages/profile/UserProfilePage";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
 import InstructorReviews from "@/pages/instructor/InstructorReviews";
- 
+
 import CourseDetails from "@/components/courses/CourseDetails";
 import InstructorDetails from "@/components/instructor/InstractorDetails/InstructorDetails";
 import AddCourse from "@/pages/instructor/AddCourse";
@@ -33,23 +33,22 @@ import Instructor from "@/pages/instructor/Instructor";
 import LearnerMyCourses from "@/pages/courses/MyCourses/LearnerMyCourses";
 import LearnerCourseDetails from "@/pages/courses/CourseDetails/LearnerCourseDetailes";
 
-
 export default function AppRoutes() {
   return (
     <Router>
       <Routes>
         <Route element={<AppLayout />}>
           <Route path="/" element={<Home />} />
-          
-          <Route path='Instructor' element={<Instructor />} />
-          <Route path='/instructor' >
-            <Route path=':instructorId' element={<InstructorDetails />} />
-            <Route path='reviews' element={<InstructorReviews />} />
-            
-            <Route path='revenue' element={<Revenue />} />
-            <Route path='get-paid' element={<GetPaid />} />
-            <Route path='withdraw' element={<Withdraw />} />
-           <Route path="add-course" element={<AddCourse />} />
+
+          <Route path="Instructor" element={<Instructor />} />
+          <Route path="/instructor">
+            <Route path=":instructorId" element={<InstructorDetails />} />
+            <Route path="reviews" element={<InstructorReviews />} />
+
+            <Route path="revenue" element={<Revenue />} />
+            <Route path="get-paid" element={<GetPaid />} />
+            <Route path="withdraw" element={<Withdraw />} />
+            <Route path="add-course" element={<AddCourse />} />
             <Route path="add-lessons" element={<AddLessons />} />
             <Route path="courses/select" element={<CourseSelection />} />
             <Route
@@ -66,7 +65,10 @@ export default function AppRoutes() {
               element={<EditLesson />}
             />
             <Route path="my-courses" element={<MyCourses />} />
-            <Route path="course-details" element={<InstructorCourseDetails />} />
+            <Route
+              path="course-details"
+              element={<InstructorCourseDetails />}
+            />
             <Route path="profile" element={<InstructorProfile />} />
           </Route>
         </Route>
@@ -80,11 +82,11 @@ export default function AppRoutes() {
           path="/edit-user-profile"
           element={<EditUserProfile user={USER_PROFILE[0]} />}
         />
-{/* Learner courses */}
-          <Route path="/learner-myCourses" element={<LearnerMyCourses />} >
+        {/* Learner courses */}
+        <Route path="/learner-myCourses" element={<LearnerMyCourses />}>
           <Route path=":learnerCourseId" element={<LearnerCourseDetails />} />
-          </Route>
-          {/* End Leaner Courses */}
+        </Route>
+        {/* End Leaner Courses */}
 
         <Route path="/courses">
           <Route index element={<CoursesPage />} />
@@ -97,7 +99,6 @@ export default function AppRoutes() {
         <Route path="/settings/paymethod" element={<PaymethodPage />} />
         <Route path="/settings/payhistory" element={<PayHistoryPage />} />
         {/*End of children for BrowserCourse */}
-
       </Routes>
     </Router>
   );
