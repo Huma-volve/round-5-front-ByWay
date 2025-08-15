@@ -14,6 +14,11 @@ import Withdraw from "@/pages/instructor/Withdraw";
 import USER_PROFILE from "@/data/userProfile";
 import UserProfilePage from "@/pages/profile/UserProfilePage";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
+
+
+import CheckoutPage from "../pages/Payments/CheckoutPage";
+import ShoppingCartPage from "../pages/cart/ShoppingCartPage";
+
 import InstructorReviews from "@/pages/instructor/InstructorReviews";
 
 import CourseDetails from "@/components/courses/CourseDetails";
@@ -24,10 +29,13 @@ import AddLessons from "@/pages/instructor/AddLessons";
 import ViewLessons from "@/pages/instructor/ViewLessons";
 import EditLesson from "@/pages/instructor/EditLesson";
 
-import InstructorProfile from "@/pages/instructor/profile/InstructorProfile";
-import InstructorCourseDetails from "@/pages/courses/CourseDetails/InstructorCourseDetails";
 
-import MyCourses from "@/pages/courses/MyCourses/MyCourses";
+
+import MyCourses from '@/pages/courses/MyCourses/MyCourses';
+import InstructorCourseDetails from '@/pages/courses/CourseDetails/InstructorCourseDetails'
+
+import InstructorProfile from "@/pages/instructor/profile/InstructorProfile";
+
 import CoursesPage from "@/pages/courses/CoursesPage";
 import Instructor from "@/pages/instructor/Instructor";
 import LearnerMyCourses from "@/pages/courses/MyCourses/LearnerMyCourses";
@@ -82,11 +90,16 @@ export default function AppRoutes() {
           path="/edit-user-profile"
           element={<EditUserProfile user={USER_PROFILE[0]} />}
         />
+
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/shopping-cart" element={<ShoppingCartPage />} />
+
         {/* Learner courses */}
         <Route path="/learner-myCourses" element={<LearnerMyCourses />}>
           <Route path=":learnerCourseId" element={<LearnerCourseDetails />} />
         </Route>
         {/* End Leaner Courses */}
+
 
         <Route path="/courses">
           <Route index element={<CoursesPage />} />

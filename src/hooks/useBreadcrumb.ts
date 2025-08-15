@@ -19,9 +19,17 @@ export const useBreadcrumb = () => {
     "/settings/payhistory": "common.payhistory",
     "/favourites": "common.favourites",
     "/notifications": "common.notifications",
+
+    "/profile": "profile.profile",
+    "/edit-user-profile": "profile.editUserProfile",
+    "/success": "success.success",
+    "/shopping-cart": "cart.Shopping Cart",
+    "/checkout": "cart.Checkout",
+    "/close-account": "closeAccount.Close Account",
+
     "/courses/course-details": "common.coursedetailes",
     "/learner-myCourses": "common.learnermycourse",
-    "/learner-myCourses/course-details": "common.coursedetailes"
+    "/learner-myCourses/course-details": "common.coursedetailes",
   };
 
   const createBreadcrumb = (
@@ -117,7 +125,9 @@ export const useBreadcrumb = () => {
 
       const label = translationKey
         ? t(translationKey)
-        : fallbackLabel.replace("-", " ").replace(/\b\w/g, (l) => l.toUpperCase());
+        : fallbackLabel
+            .replace("-", " ")
+            .replace(/\b\w/g, (l) => l.toUpperCase());
 
       breadcrumbs.push({
         label,

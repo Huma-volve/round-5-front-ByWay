@@ -30,7 +30,7 @@ export default function InstructorProfile() {
           <MainForm/>
 
  {workForms.map((id) => (
-          <WorkExperienceForm key={id}  title={`Work Experience ${id}`} 
+          <WorkExperienceForm key={id}  title={`${t("workExperience.Work Experience")} ${id}`} 
            onAdd={addExperience} />))}
 
 <Button type="submit" className='btn space-y-4 bg-success hover:bg-green-600 '>{t("save.Save")}</Button>

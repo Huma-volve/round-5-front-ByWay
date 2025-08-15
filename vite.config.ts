@@ -4,7 +4,8 @@ import { defineConfig } from "vite"
 
 export default defineConfig({
   plugins: [react()], // No tailwindcss plugin here
-  resolve: {
+  resolve: { 
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
