@@ -32,6 +32,8 @@ import CoursesPage from "@/pages/courses/CoursesPage";
 import Instructor from "@/pages/instructor/Instructor";
 import LearnerMyCourses from "@/pages/courses/MyCourses/LearnerMyCourses";
 import LearnerCourseDetails from "@/pages/courses/CourseDetails/LearnerCourseDetailes";
+
+
 export default function AppRoutes() {
   return (
     <Router>
@@ -83,6 +85,7 @@ export default function AppRoutes() {
           <Route path=":learnerCourseId" element={<LearnerCourseDetails />} />
           </Route>
           {/* End Leaner Courses */}
+
         <Route path="/courses">
           <Route index element={<CoursesPage />} />
           <Route path=":courseId" element={<CourseDetails />} />

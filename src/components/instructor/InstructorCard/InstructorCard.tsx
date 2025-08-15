@@ -5,7 +5,7 @@ export default function InstructorCard() {
      const {t} =useTranslation()
   return (
  
-    <Link to="/CourseDetail" className="flex  justify-between py-6  w-full ">
+    <Link to="/instructor/course-details" className="flex  justify-between py-6  w-full ">
      
       <div>
         <p className="text-sm text-gray-500">{t('common.instructor')}</p>
