@@ -125,45 +125,78 @@ body {
       margin-inline: auto;
     }
   }
+
+  .layout {
+    @apply flex flex-col min-h-screen;
+  }
+
+  .responsive-action-row {
+    @apply flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between;
+  }
+
+  .auth-content {
+    @apply flex flex-col lg:flex-row flex-1;
+  }
+
+  .auth-container {
+    @apply flex flex-col w-full max-w-md mx-auto p-6 sm:p-8 lg:p-10;
+  }
+
+  .auth-header {
+    @apply text-2xl sm:text-3xl lg:text-4xl font-bold text-secondaryDark;
+  }
+
+  .auth-form {
+    @apply flex flex-col gap-4 py-6;
+  }
+
+  .auth-field {
+    @apply w-full max-w-md;
+  }
+
+  .auth-input-group {
+    @apply flex flex-col sm:flex-row gap-4 sm:gap-6 w-full;
+  }
+
+  .auth-button {
+    @apply bg-success w-full sm:w-auto px-6 py-2;
+  }
+
+  .form-label {
+    @apply text-lg font-semibold ml-1 text-slate-700;
+  }
+
+  .auth-link {
+    @apply text-placeholder hover:underline cursor-pointer;
+  }
+
+  .drop-link {
+    @apply cursor-pointer;
+  }
+
+  .drop-item {
+    @apply flex items-center px-3 py-3 text-sm hover:bg-red-50 rounded-md transition-colors cursor-pointer w-full;
+  }
+
+  .footer-item {
+    @apply flex flex-col text-gray-200 py-3;
+  }
+
+  .footer-header {
+    @apply text-white font-semibold mb-2;
+  }
+
+  .link-group {
+    @apply flex flex-wrap gap-3;
+  }
 }
-
-
-
-
-
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    overflow-x: hidden;
-
-  }
-
-  html {
-    overflow-x: hidden;
-
-  }
-
-  /* Prevent layout shifts when dropdowns open */
-  [data-radix-popper-content-wrapper] {
-    z-index: 50 !important;
-    position: fixed !important;
-  }
-}
-
-
 
 @layer components {
   .input {
-    @apply focus:outline-none px-2 bg-white rounded-md grow py-1 border border-border focus:ring-2 focus:ring-border
+    @apply focus:outline-none px-2 bg-white rounded-md grow py-1 border border-border focus:ring-2 focus:ring-border;
   }
 
   .btn {
-
-    @apply px-4 py-1.5 rounded-md text-white bg-success shadow-md w-full transition-all duration-300
+    @apply px-4 py-1.5 rounded-md text-white bg-success shadow-md w-full transition-all duration-300;
   }
 }

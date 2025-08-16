@@ -1,0 +1,76 @@
+import logo from "@/assets/images/icons/logo-text.svg"
+
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { NavigationMenu } from "@radix-ui/react-navigation-menu";
+
+import AppSearchBar from "./AppSearchBar";
+import { CircleUserRound, Heart, ShoppingCart } from "lucide-react";
+import { Button } from "../ui/button";
+import NavDropdown from "./NavDropdown";
+import BellWithBadge from "./BellWithBadge";
+import MobileSearch from "./MobileSearch";
+
+function AppNavbar() {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const isUser = true;
+
+  const searchHandler = (value:string) => {
+    console.log("Searching for:", value);
+    // add your search logic here
+  };
+
+  return (
+    <>
+      <NavigationMenu className="flex justify-center items-center shadow-md shadow-accent ">
+        <div className="container flex items-center gap-4 lg:gap-24 mt-3 py-3">
+          {/* Logo */}
+          <Link to="/" className="flex-shrink-0">
+            <img
+              src={logo}
+              alt="Logo"
+              className="h-8 w-auto sm:h-10"
+              loading="lazy"
+            />
+          </Link>
+
+          {/* Desktop Search */}
+          <AppSearchBar />
+
+          {/* Actions */}
+          <div className="ml-auto flex items-center gap-4 *:stroke-secondaryDark">
+            <Link to="/shopping">
+              <ShoppingCart size={20} className="hover:fill-blue-500" />
+            </Link>
+            {!isUser ? (
+              <Link to={pathname === "/signin" ? "/signup" : "/signin"}>
+                <Button className="bg-secondaryDark">
+                  {pathname === "/signin" ? "Sign up" : "Sign in"}
+                </Button>
+              </Link>
+            ) : (
+              <>
+                <Link to="/favourites">
+                  <Heart size={20} className="hover:stroke-red-600" />
+                </Link>
+                <div className="relative">
+                  <BellWithBadge
+                    count={5}
+                    onClick={() => navigate("/notifications")}
+                  />
+                </div>
+                <NavDropdown
+                  icon={
+                    <CircleUserRound className="cursor-pointer" size={20} />
+                  }
+                />
+              </>
+            )}
+          </div>
+        </div>
+      </NavigationMenu>
+      <MobileSearch onSearch={searchHandler} />
+    </>
+  );
+}
+export default AppNavbar;

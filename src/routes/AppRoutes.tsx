@@ -1,7 +1,7 @@
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import CloseAccount from "../pages/close account/CloseAccount";
 import Success from "../pages/success/Success";
-import AppLayout from "@/components/AppLayout";
+import AppLayout from "@/components/Layouts/AppLayout";
 import Home from "@/pages/Home";
 import Revenue from "../pages/instructor/Revenue";
 import GetPaid from "@/pages/instructor/GetPaid";
@@ -24,24 +24,32 @@ import CourseSelection from "@/pages/instructor/CourseSelection";
 import AddLessons from "@/pages/instructor/AddLessons";
 import ViewLessons from "@/pages/instructor/ViewLessons";
 import EditLesson from "@/pages/instructor/EditLesson";
-
-
-
 import MyCourses from '@/pages/courses/MyCourses/MyCourses';
 import InstructorCourseDetails from '@/pages/courses/CourseDetails/InstructorCourseDetails'
-
 import InstructorProfile from "@/pages/instructor/profile/InstructorProfile";
-
 import CoursesPage from "@/pages/courses/CoursesPage";
 import Instructor from "@/pages/instructor/Instructor";
 import LearnerMyCourses from "@/pages/courses/MyCourses/LearnerMyCourses";
 import LearnerCourseDetails from "@/pages/courses/CourseDetails/LearnerCourseDetailes";
-
+import ForgotForm from "@/components/AuthForms/ForgotForm";
+import { OTPForm } from "@/components/AuthForms/OTPForm";
+import ResetForm from "@/components/AuthForms/ResetForm";
+import SignIn from "@/pages/SignIn";
+import SignUp from "@/pages/SignUp";
+import AuthLayout from "@/components/Layouts/AuthLayout";
+import ProtectedRoute from "./ProtectedRoute";
 export default function AppRoutes() {
   return (
     <Router>
       <Routes>
-        <Route element={<AppLayout />}>
+        //Protect those routes
+        <Route
+          element={
+            <ProtectedRoute>
+              <AppLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route path="/" element={<Home />} />
 
           <Route path="Instructor" element={<Instructor />} />
@@ -75,8 +83,7 @@ export default function AppRoutes() {
             />
             <Route path="profile" element={<InstructorProfile />} />
           </Route>
-        </Route>
-        <Route path="/close-account" element={<CloseAccount />} />
+          <Route path="/close-account" element={<CloseAccount />} />
         <Route path="/success" element={<Success />} />
         <Route
           path="/profile"
@@ -108,6 +115,15 @@ export default function AppRoutes() {
         <Route path="/settings/paymethod" element={<PaymethodPage />} />
         <Route path="/settings/payhistory" element={<PayHistoryPage />} />
         {/*End of children for BrowserCourse */}
+            {/* Auth pages */}
+        <Route element={<AuthLayout />}>
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/forgot" element={<ForgotForm />} />
+          <Route path="/reset/:id" element={<ResetForm />} />
+          <Route path="/otp" element={<OTPForm />} />
+        </Route>
+        </Route>
       </Routes>
     </Router>
   );
