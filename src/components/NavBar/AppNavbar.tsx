@@ -13,7 +13,7 @@ import MobileSearch from "./MobileSearch";
 function AppNavbar() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const isUser = true;
+  const user_id = localStorage.getItem("user_id") || null;
 
   const searchHandler = (value:string) => {
     console.log("Searching for:", value);
@@ -42,7 +42,7 @@ function AppNavbar() {
             <Link to="/shopping">
               <ShoppingCart size={20} className="hover:fill-blue-500" />
             </Link>
-            {!isUser ? (
+            {!user_id ? (
               <Link to={pathname === "/signin" ? "/signup" : "/signin"}>
                 <Button className="bg-secondaryDark">
                   {pathname === "/signin" ? "Sign up" : "Sign in"}

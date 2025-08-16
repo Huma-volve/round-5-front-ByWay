@@ -5,11 +5,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { DropdownMenuArrow } from "@radix-ui/react-dropdown-menu";
-import { ChevronDown } from "lucide-react";
 import type { ReactElement } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signOut } from "@/api/auth-api";
 
 function NavDropdown({ icon }: { icon: ReactElement }) {
+  const navigate = useNavigate();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -58,12 +60,12 @@ function NavDropdown({ icon }: { icon: ReactElement }) {
         </DropdownMenuItem>
         <div className="h-px bg-gray-200 my-1" />
         <DropdownMenuItem asChild>
-          <Link 
+          <button 
+          onClick={()=>signOut(navigate)}
             className="drop-item text-red-600" 
-            to="/logout"
           >
             Sign out
-          </Link>
+          </button>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

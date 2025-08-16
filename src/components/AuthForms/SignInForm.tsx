@@ -5,9 +5,11 @@ import { Button } from "@/components/ui/button";
 import FormError from "@/components/AuthForms/FormError";
 import { Link } from "react-router-dom";
 import { useSignIn } from "@/hooks/useSignIn";
+import { AuthRoleSelect } from "./AuthRoleSelect";
+import { Spinner } from "../common/Spinner";
 
 function SignInForm() {
-  const { mutate, data, isPending, error,  } = useSignIn();
+  const { mutate, isPending, error } = useSignIn();
 
   //Regex
   const regexes = {
@@ -38,6 +40,8 @@ function SignInForm() {
     },
   });
 
+  if (isPending) return <Spinner label="Signing you in"/>
+
   return (
     <form
       className="auth-form"
@@ -61,6 +65,7 @@ function SignInForm() {
       {/* Passwords */}
       <div>
         <Input
+        type="password"
           value={formik.values.password}
           name="password"
           placeholder="Password"
@@ -76,7 +81,9 @@ function SignInForm() {
         <Button className="auth-button" type="submit">
           Sign in
         </Button>
-        <Link className="auth-link" to="/forgot">Forgot your password?</Link>
+        <Link className="auth-link" to="/forgot">
+          Forgot your password?
+        </Link>
       </div>
     </form>
   );

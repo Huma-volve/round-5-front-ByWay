@@ -4,11 +4,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import FormError from "@/components/AuthForms/FormError";
 import { useSignUp } from "@/hooks/useSignUp";
+import { AuthRoleSelect } from "./AuthRoleSelect";
+import { Spinner } from "../common/Spinner";
 
 function SignUpForm() {
-  
   //data from useSignUp returns the response from the server
-  const { mutate, data, isPending, error,  } = useSignUp();
+  const { mutate, isPending, error } = useSignUp();
 
   //Regex
   const regexes = {
@@ -36,10 +37,14 @@ function SignUpForm() {
       .string()
       .required("This filed is required")
       .matches(regexes.password, "Please enter a valid password"),
-    confirm_password: yup
+    password_confirmation: yup
       .string()
       .required("This filed is required")
       .oneOf([yup.ref("password")], "password doesn't match"),
+    role: yup
+      .string()
+      .required("you should specify your role")
+      .oneOf(["learner", "instructor"], "Invalid role Type"),
   });
 
   const formik = useFormik({
@@ -48,13 +53,23 @@ function SignUpForm() {
       last_name: "",
       email: "",
       password: "",
-      confirm_password: "",
+      password_confirmation: "",
+      role: "",
     },
     validationSchema: scheme,
-    onSubmit: (formData) => {
+    onSubmit: (values) => {
+      const formData = {
+        name : values.first_name.concat(" ", values.last_name),
+        email: values.email,
+        password: values.password,
+        password_confirmation: values.password_confirmation,
+        role: values.role
+      }
       mutate(formData);
     },
   });
+
+  if (isPending) return <Spinner label="Signing you up"/>
 
   return (
     <form
@@ -108,6 +123,7 @@ function SignUpForm() {
       <div className="auth-input-group">
         <div>
           <Input
+            type="password"
             value={formik.values.password}
             name="password"
             placeholder="Password"
@@ -120,16 +136,28 @@ function SignUpForm() {
         </div>
         <div>
           <Input
-            value={formik.values.confirm_password}
-            name="confirm_password"
+          type="password"
+            value={formik.values.password_confirmation}
+            name="password_confirmation"
             placeholder="Confirm Password"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.confirm_password && formik.errors.confirm_password ? (
-            <FormError error={formik.errors.confirm_password} />
+          {formik.touched.password_confirmation && formik.errors.password_confirmation ? (
+            <FormError error={formik.errors.password_confirmation} />
           ) : null}
         </div>
+      </div>
+
+      {/* Role */}
+      <div>
+        <AuthRoleSelect
+          value={formik.values.role}
+          onChange={formik.handleChange}
+        />
+        {formik.touched.role && formik.errors.role ? (
+          <FormError error={formik.errors.role} />
+        ) : null}
       </div>
 
       <Button className="auth-button" type="submit">
