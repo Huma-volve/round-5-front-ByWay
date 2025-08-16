@@ -18,7 +18,7 @@ i18n
   .init({
     resources,
     fallbackLng: "en",
-    lng: "ar", // Set default language explicitly
+    lng: "en", // Set default language explicitly
     interpolation: {
       escapeValue: false,
     },
