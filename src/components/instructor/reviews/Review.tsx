@@ -65,17 +65,12 @@ export default function Review({
               ))}
             </span>
           </div>
-
           <span className="text-xs text-gray-500">{date}</span>
-      
       </div>
     </>
   )}
-
   <p className="max-w-lg text-sm sm:text-base leading-relaxed">{review}</p>
 </div>
-
-
     </>
   );
 }
