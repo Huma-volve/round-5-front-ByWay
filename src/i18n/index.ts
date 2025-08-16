@@ -12,18 +12,26 @@ const resources = {
   ar: { translation: arTranslation },
 } as const;
 
+// Get initial language from localStorage or default to English
+const getInitialLanguage = (): string => {
+  const savedLanguage = localStorage.getItem("i18nextLng");
+  return savedLanguage && ["en", "ar"].includes(savedLanguage)
+    ? savedLanguage
+    : "en";
+};
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources,
     fallbackLng: "en",
-    lng: "en", // Set default language explicitly
+    lng: getInitialLanguage(), // Initialize with language from localStorage
     interpolation: {
       escapeValue: false,
     },
     // Add debug to help diagnose fallback issues
-    debug: true,
+    debug: false, // Disabled for production
     // Language detection configuration
     detection: {
       order: [

@@ -11,7 +11,75 @@
     "payhistory": "تواريخ الدفع",
     "rate": "التقييم",
     "coursedetailes": "تفاصيل الدورة",
-    "learnermycourse": "كورساتي"
+    "learnermycourse": "كورساتي",
+    "language": "اللغة",
+    "selectLanguage": "اختر اللغة",
+    "signIn": "تسجيل الدخول",
+    "signUp": "إنشاء حساب",
+    "or": "أو",
+    "ratings": "التقييمات",
+    "addToCart": "أضف للسلة",
+    "by": "بواسطة",
+    "topCategories": "أهم الفئات",
+    "seeAll": "عرض الكل",
+    "courses": "الدورات",
+    "createdBy": "من إنشاء",
+    "duration": "المدة",
+    "weeks": "أسابيع",
+    "bestseller": "الأكثر مبيعاً",
+    "buyNow": "اشتري الآن",
+    "content": "المحتوى",
+    "lesson": "الدرس",
+    "introductionTo": "مقدمة في",
+    "allCourses": "جميع الدورات",
+    "numberOf": "عدد",
+    "profile": "الملف الشخصي",
+    "myCourses": "دوراتي",
+    "paymentHistory": "تاريخ المدفوعات",
+    "signOut": "تسجيل الخروج"
+  },
+  "auth": {
+    "loginToAccount": "سجل الدخول إلى حسابك",
+    "createAccount": "إنشاء حساب",
+    "selectRole": "اختر دوراً",
+    "role": "الدور",
+    "learner": "متعلم",
+    "instructor": "مدرب",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "facebook": "فيسبوك",
+    "google": "جوجل",
+    "microsoft": "مايكروسوفت",
+    "signingUp": "جاري إنشاء الحساب",
+    "signingIn": "جاري تسجيل الدخول",
+    "thisFieldRequired": "هذا الحقل مطلوب",
+    "enterValidName": "يرجى إدخال اسم صحيح",
+    "enterValidEmail": "يرجى إدخال بريد إلكتروني صحيح",
+    "enterValidPassword": "يرجى إدخال كلمة مرور صحيحة",
+    "passwordDoesntMatch": "كلمة المرور غير متطابقة",
+    "specifyRole": "يجب تحديد دورك",
+    "invalidRoleType": "نوع دور غير صحيح"
+  },
+  "footer": {
+    "description": "تمكين المتعلمين من خلال التعليم الإلكتروني المتاح والمثير. ByWay هي منصة تعليمية رائدة عبر الإنترنت مخصصة لتوفير تجارب تعليمية عالية الجودة ومرنة وبأسعار معقولة.",
+    "getHelp": "احصل على المساعدة",
+    "contactUs": "اتصل بنا",
+    "latestArticles": "أحدث المقالات",
+    "faq": "الأسئلة الشائعة",
+    "programs": "البرامج",
+    "artDesign": "الفن والتصميم",
+    "business": "الأعمال",
+    "itSoftware": "تكنولوجيا المعلومات والبرمجيات",
+    "languages": "اللغات",
+    "programming": "البرمجة",
+    "address": "العنوان: 123 الشارع الرئيسي، أي مدينة، كاليفورنيا 12345",
+    "tel": "هاتف: +1 (123) 456-7890",
+    "mail": "بريد: bywayedu@webkul.in",
+    "allRightsReserved": "جميع الحقوق محفوظة"
   },
   "workExperience": {
     "jobTitle": "المسمى الوظيفي",
@@ -339,21 +407,21 @@
     "Save": "حفظ"
   },
 
-  "closeAccount":{
+  "closeAccount": {
     "Close Account": "إغلاق الحساب",
     "Close your account permanently.": "إغلاق حسابك بشكل دائم.",
     "Warning": "تحذير",
     "warning1": ": إذا قمت بإغلاق حسابك، فستتم إلغاء اشتراكك من جميع الدورات الثلاث الخاصة بك وستفقد الوصول إلى حسابك والبيانات المرتبطة بحسابك إلى الأبد، حتى إذا اخترت إنشاء حساب جديد باستخدام نفس عنوان البريد الإلكتروني في المستقبل.",
-    "warning2":"يرجى ملاحظة أنه إذا كنت تريد إعادة تفعيل حسابك بعد تقديم طلب الحذف، فسيكون أمامك 14 يومًا من تاريخ التقديم الأولي للتواصل عبر البريد الإلكتروني privacy@udemy.com لإلغاء هذا الطلب"  
+    "warning2": "يرجى ملاحظة أنه إذا كنت تريد إعادة تفعيل حسابك بعد تقديم طلب الحذف، فسيكون أمامك 14 يومًا من تاريخ التقديم الأولي للتواصل عبر البريد الإلكتروني privacy@udemy.com لإلغاء هذا الطلب"
   },
-  "cart":{
-    "Price":"السعر",
-    "Total":"المجموع",
-    "Discount":"الخصم",
-    "Proceed to Checkout":"المتابعة إلى الدفع",
-    "Course in cart":"دورة في السلة",
-    "Shopping Cart":"عربة التسوق",
-    "Checkout":"الدفع",
+  "cart": {
+    "Price": "السعر",
+    "Total": "المجموع",
+    "Discount": "الخصم",
+    "Proceed to Checkout": "المتابعة إلى الدفع",
+    "Course in cart": "دورة في السلة",
+    "Shopping Cart": "عربة التسوق",
+    "Checkout": "الدفع",
     "Course": "الدورة",
     "Choose your payment method": "اختر طريقة الدفع الخاصة بك",
     "Saving": "جاري الحفظ",
@@ -368,7 +436,5 @@
     "Write": "اكتب تعليقاتك هنا...",
     "Cancel": "الغاء",
     "Confirm": "تاكيد"
-
   }
-
 }

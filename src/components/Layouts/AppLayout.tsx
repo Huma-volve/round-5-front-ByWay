@@ -6,7 +6,7 @@ function AppLayout() {
   return (
     <div className="layout">
       <AppNavbar />
-      <main className="flex-1 flex justify-center">
+      <main className="flex-1 flex flex-col justify-center">
         <Outlet />
       </main>
       <AppFooter />

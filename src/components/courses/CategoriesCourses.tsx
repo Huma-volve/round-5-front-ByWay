@@ -1,14 +1,17 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { lazy } from "react";
 import { categories } from "../../data/BrowseCourses";
+import { useTranslation } from "react-i18next";
 
 function CategoriesCourses() {
+  const { t } = useTranslation();
+
   return (
     <div className="mx-10 mt-12">
       <div className="flex justify-between items-center mb-7">
-        <h3 className="text-lg font-semibold">Top Categories</h3>
-        <Link className="text-[var(--category-icon)] text-sm">See All</Link>
+        <h3 className="text-lg font-semibold">{t("common.topCategories")}</h3>
+        <Link to="/categories" className="text-[var(--category-icon)] text-sm">
+          {t("common.seeAll")}
+        </Link>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center">
         {categories.map((category) => (
@@ -20,7 +23,9 @@ function CategoriesCourses() {
               <img src={category.icon} alt={category.name} loading="lazy" />
             </div>
             <h4 className="my-2">{category.name}</h4>
-            <p>{category.courses} Courses</p>
+            <p>
+              {category.courses} {t("common.courses")}
+            </p>
           </div>
         ))}
       </div>

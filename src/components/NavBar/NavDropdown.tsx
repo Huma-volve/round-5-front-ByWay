@@ -8,9 +8,11 @@ import { DropdownMenuArrow } from "@radix-ui/react-dropdown-menu";
 import type { ReactElement } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "@/api/auth-api";
+import { useTranslation } from "react-i18next";
 
 function NavDropdown({ icon }: { icon: ReactElement }) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <DropdownMenu>
@@ -19,52 +21,40 @@ function NavDropdown({ icon }: { icon: ReactElement }) {
           {icon}
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent 
-        className="mt-1 p-1" 
-        align="end" 
+      <DropdownMenuContent
+        className="mt-1 p-1"
+        align="end"
         side="bottom"
         sideOffset={8}
       >
         <DropdownMenuArrow className="fill-white drop-shadow-sm" />
         <DropdownMenuItem asChild>
-          <Link 
-            className="drop-item" 
-            to="/profile"
-          >
-            Profile
+          <Link className="drop-item" to="/profile">
+            {t("common.profile")}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link 
-            className="drop-item" 
-            to="/courses"
-          >
-            My Courses
+          <Link className="drop-item" to="/courses">
+            {t("common.myCourses")}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link 
-            className="drop-item" 
-            to="/payment-history"
-          >
-            Payment History
+          <Link className="drop-item" to="/payment-history">
+            {t("common.paymentHistory")}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link 
-            className="drop-item" 
-            to="/settings"
-          >
-            Settings
+          <Link className="drop-item" to="/settings">
+            {t("common.settings")}
           </Link>
         </DropdownMenuItem>
         <div className="h-px bg-gray-200 my-1" />
         <DropdownMenuItem asChild>
-          <button 
-          onClick={()=>signOut(navigate)}
-            className="drop-item text-red-600" 
+          <button
+            onClick={() => signOut(navigate)}
+            className="drop-item text-red-600"
           >
-            Sign out
+            {t("common.signOut")}
           </button>
         </DropdownMenuItem>
       </DropdownMenuContent>

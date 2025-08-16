@@ -11,7 +11,75 @@
     "payhistory": "Payment History",
     "rate": "rate",
     "coursedetailes": "Course Details",
-    "learnermycourse": "My Courses"
+    "learnermycourse": "My Courses",
+    "language": "Language",
+    "selectLanguage": "Select Language",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "or": "or",
+    "ratings": "Ratings",
+    "addToCart": "Add to cart",
+    "by": "By",
+    "topCategories": "Top Categories",
+    "seeAll": "See All",
+    "courses": "Courses",
+    "createdBy": "Created by",
+    "duration": "Duration",
+    "weeks": "weeks",
+    "bestseller": "Bestseller",
+    "buyNow": "Buy Now",
+    "content": "Content",
+    "lesson": "Lesson",
+    "introductionTo": "Introduction to",
+    "allCourses": "All courses",
+    "numberOf": "Number of",
+    "profile": "Profile",
+    "myCourses": "My Courses",
+    "paymentHistory": "Payment History",
+    "signOut": "Sign out"
+  },
+  "auth": {
+    "loginToAccount": "Log in into your account",
+    "createAccount": "Create an account",
+    "selectRole": "Select a Role",
+    "role": "Role",
+    "learner": "Learner",
+    "instructor": "Instructor",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "forgotPassword": "Forgot your password?",
+    "facebook": "Facebook",
+    "google": "Google",
+    "microsoft": "Microsoft",
+    "signingUp": "Signing you up",
+    "signingIn": "Signing you in",
+    "thisFieldRequired": "This filed is required",
+    "enterValidName": "Please enter a valid name",
+    "enterValidEmail": "Please enter a valid email",
+    "enterValidPassword": "Please enter a valid password",
+    "passwordDoesntMatch": "password doesn't match",
+    "specifyRole": "you should specify your role",
+    "invalidRoleType": "Invalid role Type"
+  },
+  "footer": {
+    "description": "Empowering learners through accessible and engaging online education. Byway is a leading online learning platform dedicated to providing high-quality, flexible, and affordable educational experiences.",
+    "getHelp": "Get Help",
+    "contactUs": "Contact Us",
+    "latestArticles": "Latest Articles",
+    "faq": "FAQ",
+    "programs": "Programs",
+    "artDesign": "Art & Design",
+    "business": "Business",
+    "itSoftware": "IT & Software",
+    "languages": "Languages",
+    "programming": "Programming",
+    "address": "Address: 123 Main Street, Anytown, CA 12345",
+    "tel": "Tel: +1 (123) 456-7890",
+    "mail": "Mail: bywayedu@webkul.in",
+    "allRightsReserved": "All rights reserved"
   },
   "instructor": {
     "reviews": "Reviews",
@@ -352,25 +420,25 @@
   "save": {
     "Save": "Save"
   },
-    "success": {
+  "success": {
     "You have successfully subscribed to the course UI/UX Design": "You have successfully subscribed to the course UI/UX Design",
     "You Will Receive a confirmation email soon!": "You Will Receive a confirmation email soon!",
     "Go to My Courses": "Go to My Courses",
     "success": "success"
   },
-    "closeAccount":{
+  "closeAccount": {
     "Close Account": "Close Account",
     "Close your account permanently.": "Close your account permanently.",
     "Warning": "Warning",
     "warning1": "If you close your account, you will be unsubscribed from all 3 of your courses and will lose access to your account and data associated with your account forever, even if you choose to create a new account using the same email address in the future.",
-    "warning2":"Please note, if you want to reinstate your account after submitting a deletion request, you will have 14 days after the initial submission date to reach out to"  
-  },  
-  "cart":{
-    "Price":"Price",
-    "Total":"Total",
-    "Discount":"Discount",
-    "Proceed to Checkout":"Proceed to Checkout",
-    "Course in cart":"Course in cart",
+    "warning2": "Please note, if you want to reinstate your account after submitting a deletion request, you will have 14 days after the initial submission date to reach out to"
+  },
+  "cart": {
+    "Price": "Price",
+    "Total": "Total",
+    "Discount": "Discount",
+    "Proceed to Checkout": "Proceed to Checkout",
+    "Course in cart": "Course in cart",
     "Shopping Cart": "Shopping Cart",
     "Checkout": "Checkout",
     "Course": "Course",
@@ -387,6 +455,5 @@
     "Write": "Write Your Feedback here...",
     "Cancel": "Cancel",
     "Confirm": "Confirm"
-
   }
 }

@@ -1,7 +1,8 @@
-import logo from "@/assets/images/icons/logo-text.svg"
+import logo from "@/assets/images/icons/logo-text.svg";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { NavigationMenu } from "@radix-ui/react-navigation-menu";
+import { useTranslation } from "react-i18next";
 
 import AppSearchBar from "./AppSearchBar";
 import { CircleUserRound, Heart, ShoppingCart } from "lucide-react";
@@ -9,20 +10,25 @@ import { Button } from "../ui/button";
 import NavDropdown from "./NavDropdown";
 import BellWithBadge from "./BellWithBadge";
 import MobileSearch from "./MobileSearch";
+import LanguageToggle from "./LanguageToggle";
 
 function AppNavbar() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const user_id = localStorage.getItem("user_id") || null;
 
-  const searchHandler = (value:string) => {
+  const searchHandler = (value: string) => {
     console.log("Searching for:", value);
     // add your search logic here
   };
 
   return (
     <>
-      <NavigationMenu className="flex justify-center items-center shadow-md shadow-accent ">
+      <NavigationMenu
+        className="flex justify-center items-center shadow-md shadow-accent navbar-container"
+        style={{ direction: "ltr" }}
+      >
         <div className="container flex items-center gap-4 lg:gap-24 mt-3 py-3">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0">
@@ -38,14 +44,19 @@ function AppNavbar() {
           <AppSearchBar />
 
           {/* Actions */}
-          <div className="ml-auto flex items-center gap-4 *:stroke-secondaryDark">
+          <div className="ml-auto flex items-center gap-4 *:stroke-secondaryDark navbar-actions">
+            {/* Language Toggle */}
+            <LanguageToggle />
+
             <Link to="/shopping">
               <ShoppingCart size={20} className="hover:fill-blue-500" />
             </Link>
             {!user_id ? (
               <Link to={pathname === "/signin" ? "/signup" : "/signin"}>
                 <Button className="bg-secondaryDark">
-                  {pathname === "/signin" ? "Sign up" : "Sign in"}
+                  {pathname === "/signin"
+                    ? t("common.signUp")
+                    : t("common.signIn")}
                 </Button>
               </Link>
             ) : (
