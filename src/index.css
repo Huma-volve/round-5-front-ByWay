@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 @layer base {
@@ -103,6 +103,9 @@ body {
     }
   }
 
+  .Toastify__toast {
+  }
+
   .layout {
     @apply flex flex-col min-h-screen;
   }
@@ -132,7 +135,7 @@ body {
   }
 
   .auth-input-group {
-    @apply flex flex-col sm:flex-row gap-4 sm:gap-6 w-full;
+    @apply flex flex-col justify-between sm:flex-row gap-4 sm:gap-6 w-full;
   }
 
   .auth-button {

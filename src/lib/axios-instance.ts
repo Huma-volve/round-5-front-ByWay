@@ -2,7 +2,7 @@
 import axios from "axios"
 
 const axiosInstance = axios.create({
-  baseURL: "/",
+  baseURL: "http://round5-byway.huma-volve.com/api/",
   headers: {
     "Content-Type": "application/json",
   },

@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import FormError from "@/components/AuthForms/FormError";
 import { useGenerateOTP } from "@/hooks/useGenerateOTP";
+import { Spinner } from "../common/Spinner";
 
 function ForgotForm() {
   const { mutate, data, isPending, error } = useGenerateOTP();
@@ -30,6 +31,9 @@ function ForgotForm() {
       mutate(formData);
     },
   });
+
+  if (isPending) return <Spinner label="Sending you a otp"/>
+  
 
   return (
     <div className="w-[100%]">

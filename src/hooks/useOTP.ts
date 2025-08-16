@@ -1,5 +1,6 @@
 import { verifyOTP } from '@/api/auth-api';
 import {useMutation} from '@tanstack/react-query'
+import { toast } from 'react-toastify';
 
 /**
  * When user signup app should set the auth + user's info in session or local storage || (cash) user's mail, redirect to otp. 
@@ -9,12 +10,15 @@ export function useOTP() {
         mutationFn: verifyOTP,
         onSuccess: (data)=>{
             console.log(data);
+            toast.success("Successfully Verified")
             /**
-             * If data is success insert in local/session storage 
+             * 
             */
         },
-        onError: (error)=>{
-            console.log(error.message);
+        onError: (error:any)=>{
+            toast.error(error.response.data.message);
+        
+            console.log(error);
         }
     })
 
