@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState , useMemo} from "react";
 import { useTranslation } from "react-i18next";
 import {
   flexRender,
@@ -18,14 +18,8 @@ import {
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { ArrowUpDown, ListFilter, Search } from "lucide-react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { ArrowUpDown, Search } from "lucide-react";
+import { CustomDropdown } from "@/components/ui/custom-dropdown";
 import {
   INCOME_TABLE_DATA,
   PAYMENT_FILTER_OPTIONS,
@@ -33,9 +27,9 @@ import {
 } from "../../../data/incomeTableData";
 export default function IncomeTable() {
   const { t, i18n } = useTranslation();
-  const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [globalFilter, setGlobalFilter] = React.useState("");
-  const [paymentFilter, setPaymentFilter] = React.useState("all");
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [globalFilter, setGlobalFilter] = useState("");
+  const [paymentFilter, setPaymentFilter] = useState("all");
 
   // Detect RTL based on current language
   const isRTL = i18n.language === "ar";
@@ -54,9 +48,9 @@ export default function IncomeTable() {
     }
   };
 
-  const data = React.useMemo<IncomeTableData[]>(() => INCOME_TABLE_DATA, []);
+  const data = useMemo<IncomeTableData[]>(() => INCOME_TABLE_DATA, []);
 
-  const columns = React.useMemo<ColumnDef<IncomeTableData>[]>(
+  const columns = useMemo<ColumnDef<IncomeTableData>[]>(
     () => [
       {
         accessorKey: "customer",
@@ -186,29 +180,14 @@ export default function IncomeTable() {
             className={`${isRTL ? "pl-10" : "pr-10"}`}
           />
         </div>
-        <Select onValueChange={(value) => setPaymentFilter(value)}>
-          <SelectTrigger className="w-full sm:w-[180px] [&>svg]:hidden">
-            <div className="flex items-center justify-between w-full">
-              <SelectValue
-                placeholder={t("instructor.income.filters.paymentPlaceholder")}
-              />
-              <ListFilter className="h-4 w-4 ml-2 text-gray-600" />
-            </div>
-          </SelectTrigger>
-          <SelectContent
-            className="z-50"
-            position="popper"
-            side="bottom"
-            align="start"
-            sideOffset={4}
-          >
-            {PAYMENT_FILTER_OPTIONS.map((option) => (
-              <SelectItem key={option.value} value={option.value}>
-                {t(option.labelKey)}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <CustomDropdown
+          value={paymentFilter}
+          onValueChange={setPaymentFilter}
+          placeholder={t("instructor.income.filters.paymentPlaceholder")}
+          options={PAYMENT_FILTER_OPTIONS}
+          t={t}
+          className="w-full sm:w-[180px]"
+        />
       </div>
 
       {/* Responsive Table Container */}

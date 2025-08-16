@@ -1,17 +1,20 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Withdraw() {
   const { t } = useTranslation();
   const [withdraw, setWithdraw] = useState<number>(0);
   const [isValid, setIsValid] = useState<boolean>(true);
-
+const navigate=useNavigate();
   function handleClick() {
     if (withdraw < 40.340 || withdraw > 44.340) {
       setIsValid(false);
     } else {
       setIsValid(true);
+      navigate("/instructor/revenue")
     }
+
   }
 
   return (
@@ -59,12 +62,14 @@ export default function Withdraw() {
         </div>
 
         {/* button */}
+     
         <button
-          className="mt-8 bg-success w-full lg:w-[400px] px-2 py-2 text-white rounded-lg"
+          className="mt-8 bg-success w-full text-center lg:w-[400px] px-2 py-2 text-white rounded-lg"
           onClick={handleClick}
         >
           {t("withdraw.Next")}
         </button>
+       
       </div>
     </div>
   );

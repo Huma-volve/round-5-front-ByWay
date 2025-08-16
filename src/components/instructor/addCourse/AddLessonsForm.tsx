@@ -8,7 +8,7 @@ import VideoUploadField from "./VideoUploadField";
 import MaterialsUploadField from "./MaterialsUploadField";
 import type { AddLessonsData, LessonData } from "@/data/addLessonsData";
 import type { Lesson } from "@/data/coursesData";
-import { addLessonsValidationSchema } from "@/schemas/lessonsSchema";
+import { createAddLessonsValidationSchema } from "@/schemas/lessonsSchema";
 import { useLesson } from "@/hooks/useCourseData";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
@@ -68,7 +68,7 @@ export default function AddLessonsForm({
           ? [convertLessonForEdit(lessonToEdit)]
           : [initialLesson],
     },
-    validationSchema: addLessonsValidationSchema,
+    validationSchema: createAddLessonsValidationSchema(t),
     enableReinitialize: true, // This allows form to reinitialize when lessonToEdit changes
     onSubmit: (values) => {
       console.log("Lessons submitted:", values);
@@ -131,6 +131,21 @@ export default function AddLessonsForm({
     }
 
     return Boolean(touched);
+  };
+
+  // Check if all required fields in the last lesson are filled
+  const isLastLessonComplete = () => {
+    const lastLessonIndex = formik.values.lessons.length - 1;
+    const lastLesson = formik.values.lessons[lastLessonIndex];
+
+    if (!lastLesson) return false;
+
+    return (
+      lastLesson.lessonTitle.trim() !== "" &&
+      lastLesson.lessonDescription.trim() !== "" &&
+      lastLesson.lessonDuration > 0 &&
+      lastLesson.lessonVideo !== null
+    );
   };
 
   return (
@@ -295,7 +310,8 @@ export default function AddLessonsForm({
                         type="button"
                         variant="outline"
                         onClick={addNewLesson}
-                        className="w-full max-w-md bg-white hover:shadow-md hover:bg-white"
+                        disabled={!isLastLessonComplete()}
+                        className="w-full max-w-md bg-white hover:shadow-md hover:bg-gray-500 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         <Plus className="h-4 w-4 mr-2" />
                         {t("instructor.lessons.addAnotherLesson")}

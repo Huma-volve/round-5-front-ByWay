@@ -1,6 +1,20 @@
 {
- "workExperience":
-{"jobTitle": "المسمى الوظيفي",
+  "common": {
+    "home": "الرئيسية",
+    "instructor": "المدرب",
+    "addCourse": "إضافة كورس",
+    "settings": "الاعدادات",
+    "notifications": "الاشعارات",
+    "favourite": "المفضله",
+    "favourites": "المفضله",
+    "paymethod": "طرق الدفع",
+    "payhistory": "تواريخ الدفع",
+    "rate": "التقييم",
+    "coursedetailes": "تفاصيل الدورة",
+    "learnermycourse": "كورساتي"
+  },
+  "workExperience": {
+    "jobTitle": "المسمى الوظيفي",
     "enterJobTitle": "أدخل المسمى الوظيفي",
     "companyName": "اسم الشركة",
     "enterCompanyName": "أدخل اسم الشركة",
@@ -14,12 +28,19 @@
     "endDateRequired": "تاريخ النهاية مطلوب",
     "invalidDate": "تاريخ غير صالح",
     "endDateBeforeStartDate": "تاريخ النهاية لا يمكن أن يكون قبل تاريخ البداية",
-    "addAnotherExperience": "أضف خبرة أخرى"
-},
-   "instructor": {
+    "addAnotherExperience": "أضف خبرة أخرى",
+    "Work Experience": "خبرة العمل"
+  },
+  "success": {
+    "You have successfully subscribed to the course UI/UX Design": "لقد اشتركت بنجاح في الدورة تصميم واجهة المستخدم وتجربة المستخدم",
+    "You Will Receive a confirmation email soon!": "ستتلقى بريدًا إلكترونيًا للتأكيد قريبًا!",
+    "Go to My Courses": "  انتقل إلى دوراتي",
+    "success": "ناجحة"
+  },
+  "instructor": {
     "reviews": "المراجعات",
     "courseName": "اسم الدورة",
-      "Total Students":"إجمالي الطلاب",
+    "Total Students": "إجمالي الطلاب",
     "rating": "التقييم",
     "review": "المراجعة",
     "courses": "دوراتي",
@@ -47,11 +68,12 @@
     "skillsRequired": "يرجى اختيار مهارة",
     "enterHeadline": "ادخل العنوان",
     "enterAbout": "اكتب نبذة عن نفسك",
-    "Courses":"دروسك",
-      "SortBy": "ترتيب حسب",
-  "Relevance": "الأكثر صلة",
-  "Filter": "تصفية",
-  "AddCourse": "إضافة كورس",
+    "Courses": "دروسك",
+    "SortBy": "ترتيب حسب",
+    "Relevance": "الأكثر صلة",
+    "Filter": "تصفية",
+    "AddCourse": "إضافة كورس",
+    "yourCourses": "دوراتك",
     "revenue": {
       "name": "الإيرادات",
       "title": "تحليلات الإيرادات",
@@ -119,17 +141,21 @@
       "chooseFile": "اختر ملف",
       "thumbnailTitle": "رفع صورة الدورة",
       "imageFileTypes": "JPG، PNG حتى 5MB",
-      "courseMaterials": "مواد الدورة",
-      "courseMaterialsFileTypes": "PDF، DOC، DOCX، TXT، صور حتى 10MB لكل منها"
+      "courseMaterials": "إضافة مواد الدورة",
+      "courseMaterialsFileTypes": "PDF، DOC، DOCX، TXT، صور حتى 10MB لكل منها",
+      "pleaseSelectImageFile": "من فضلك اختر ملف صورة",
+      "pleaseSelectVideoFile": "من فضلك اختر ملف فيديو",
+      "fileSizeImageError": "حجم الملف يجب أن يكون أقل من 5MB",
+      "fileSizeVideoError": "حجم الملف يجب أن يكون أقل من 500MB"
     },
     "courseManagement": {
       "title": "إدارة الدورة",
       "courseDetails": "تفاصيل الدورة",
-      "description": "إدارة محتوى الدورة والإعدادات",
+      "description": "إدارة محتوى دورتك والإعدادات",
       "actions": {
         "addLessons": {
           "title": "إضافة دروس",
-          "description": "إنشاء ورفع دروس فيديو للدورة"
+          "description": "إنشاء ورفع دروس فيديو لدورتك"
         },
         "viewLessons": {
           "title": "عرض الدروس",
@@ -137,14 +163,14 @@
         },
         "deleteCourse": {
           "title": "حذف الدورة",
-          "description": "حذف الدورة نهائياً مع جميع محتوياتها"
+          "description": "حذف هذه الدورة وجميع محتوياتها نهائياً"
         }
       },
       "tips": {
         "title": "نصائح إدارة الدورة:",
-        "tip1": "أضف دروساً لجعل محتوى الدورة متاحاً للطلاب",
-        "tip2": "استخدم خيار المعاينة لتقديم دروس مجانية تجريبية",
-        "tip3": "حدّث ونظم محتوى الدورة بانتظام",
+        "tip1": "أضف دروساً لجعل محتوى دورتك متاحاً للطلاب",
+        "tip2": "استخدم خيار المعاينة لتقديم دروس تجريبية مجانية",
+        "tip3": "حدّث ونظم محتوى دورتك بانتظام",
         "tip4": "راقب تفاعل الطلاب والتعليقات"
       }
     },
@@ -167,21 +193,21 @@
       "lessonMaterials": "مواد الدرس (اختيارية)",
       "freePreview": "جعل هذا الدرس متاحاً كمعاينة مجانية",
       "addAnotherLesson": "إضافة درس آخر",
-      "saveLessons": "حفظ الدروس والمتابعة",
+      "saveLessons": "حفظ الدروس & المتابعة",
       "updatingLesson": "جاري تحديث الدرس...",
       "uploadingLessons": "جاري رفع الدروس...",
       "backToLessons": "العودة للدروس",
       "updateLessonDescription": "قم بتحديث معلومات الدرس أدناه",
-      "duration": "{{minutes}} دقيقة",
+      "duration": "{{minutes}} دق",
       "materials": "{{count}} مادة",
       "materials_plural": "{{count}} مواد",
       "videoLesson": "درس فيديو",
       "previewBadge": "معاينة",
       "lesson": "الدرس {{order}}",
       "updated": "محدث {{date}}",
-      "moreFiles": "+{{count}} ملف إضافي",
-      "editAction": "تعديل الدرس",
-      "deleteAction": "حذف الدرس",
+      "moreFiles": "+{{count}} ملفات إضافية",
+      "editAction": "تعديل درس",
+      "deleteAction": "حذف درس",
       "previewAvailable": "معاينة متاحة",
       "totalLessons": "{{count}} درس",
       "totalLessons_plural": "{{count}} دروس"
@@ -197,8 +223,50 @@
       "deleting": "جاري الحذف..."
     }
   },
- 
- "profile": {
+  "validation": {
+    "course": {
+      "courseTitleRequired": "عنوان الدورة مطلوب",
+      "courseTitleMin": "عنوان الدورة يجب أن يكون على الأقل 3 أحرف",
+      "courseTitleMax": "عنوان الدورة يجب أن يكون أقل من 100 حرف",
+      "courseCategoryRequired": "فئة الدورة مطلوبة",
+      "courseLevelRequired": "مستوى الدورة مطلوب",
+      "courseLevelMin": "يجب اختيار مستوى واحد على الأقل للدورة",
+      "courseDescriptionRequired": "وصف الدورة مطلوب",
+      "courseDescriptionMin": "وصف الدورة يجب أن يكون على الأقل 10 أحرف",
+      "courseDescriptionMax": "وصف الدورة يجب أن يكون أقل من 1000 حرف",
+      "videoTitleRequired": "عنوان الفيديو مطلوب",
+      "videoTitleMin": "عنوان الفيديو يجب أن يكون على الأقل 3 أحرف",
+      "videoTitleMax": "عنوان الفيديو يجب أن يكون أقل من 100 حرف",
+      "coursePriceRequired": "سعر الدورة مطلوب",
+      "coursePricePositive": "سعر الدورة يجب أن يكون رقم موجب",
+      "coursePriceMax": "سعر الدورة يجب أن يكون أقل من $9999",
+      "courseThumbnailRequired": "صورة الدورة مطلوبة",
+      "onlyImageFilesAllowed": "ملفات الصور فقط مسموحة",
+      "imageSizeLimit": "حجم الملف يجب أن يكون أقل من 5 ميجابايت",
+      "introVideoRequired": "فيديو المقدمة مطلوب",
+      "onlyVideoFilesAllowed": "ملفات الفيديو فقط مسموحة",
+      "videoSizeLimit": "حجم الملف يجب أن يكون أقل من 100 ميجابايت"
+    },
+    "lesson": {
+      "lessonTitleRequired": "عنوان الدرس مطلوب",
+      "lessonTitleMin": "عنوان الدرس يجب أن يكون على الأقل 3 أحرف",
+      "lessonTitleMax": "عنوان الدرس يجب أن يكون أقل من 100 حرف",
+      "lessonDescriptionRequired": "وصف الدرس مطلوب",
+      "lessonDescriptionMin": "الوصف يجب أن يكون على الأقل 10 أحرف",
+      "lessonDescriptionMax": "الوصف يجب أن يكون أقل من 500 حرف",
+      "lessonDurationRequired": "مدة الدرس مطلوبة",
+      "lessonDurationMin": "المدة يجب أن تكون دقيقة واحدة على الأقل",
+      "lessonDurationMax": "المدة يجب أن تكون أقل من 3 ساعات",
+      "lessonVideoRequired": "فيديو الدرس مطلوب",
+      "lessonVideoSizeLimit": "حجم ملف الفيديو يجب أن يكون أقل من 500 ميجابايت",
+      "uploadValidVideoFile": "يرجى رفع ملف فيديو صالح",
+      "materialFileSizeLimit": "حجم الملف يجب أن يكون أقل من 10 ميجابايت",
+      "uploadValidMaterialFiles": "يرجى رفع ملفات مواد صالحة",
+      "atLeastOneLessonRequired": "درس واحد على الأقل مطلوب",
+      "lessonsRequired": "الدروس مطلوبة"
+    }
+  },
+  "profile": {
     "First Name": "الاسم الاول ",
     "Last Name": "الاسم الاخير",
     "Headline": "العنوان",
@@ -209,24 +277,12 @@
     "Youtube": "يوتيوب",
     "Facebook": "فيسبوك",
     "Edit Profile": "تعديل الملف الشخصى",
-    "Learner Reviews":"تقييمات المتدربين",
-    "View more Reviews":"عرض المزيد من التقييمات"
+    "Learner Reviews": "تقييمات المتدربين",
+    "View more Reviews": "عرض المزيد من التقييمات",
+    "link required": "الرجاء إدخال رابط"
   },
-  "common": {
-    "home": "الرئيسية",
-    "instructor": "المدرب",
-    "settings": "الاعدادات",
-    "notifications": "الاشعارات",
-    "favourites": "المفضله",
-    "paymethod": "طرق الدفع",
-    "payhistory": "تواريخ الدفع",
-    "rate":"التقييم",
-    "coursedetailes" : "تفاصيل الدورة",
-    "learnmycourse" : "كورساتي"
-    },
-
-"withdraw": {
-   "Enter Payment Details": "ادخل تفاصيل الدفع",
+  "withdraw": {
+    "Enter Payment Details": "ادخل تفاصيل الدفع",
     "Payment Method": "طريقه الدفع",
     "Please Select": "من فضلك اختر",
     "PayPal": "باي بال",
@@ -256,7 +312,7 @@
     "and": "و",
     "You can withdraw any amount between": "يمكنك ان تسحب اي رصيد بين",
     "Enter a valid amount": "ادخل قيمه صالحه",
-    "Save" : "حفظ"
+    "Save": "حفظ"
   },
   "favourite": {
     "Courses": "الدورات",
@@ -282,14 +338,37 @@
   "save": {
     "Save": "حفظ"
   },
-  "user" : {
-    "Send Feedback" : "ارسال الملاحظات"
+
+  "closeAccount":{
+    "Close Account": "إغلاق الحساب",
+    "Close your account permanently.": "إغلاق حسابك بشكل دائم.",
+    "Warning": "تحذير",
+    "warning1": ": إذا قمت بإغلاق حسابك، فستتم إلغاء اشتراكك من جميع الدورات الثلاث الخاصة بك وستفقد الوصول إلى حسابك والبيانات المرتبطة بحسابك إلى الأبد، حتى إذا اخترت إنشاء حساب جديد باستخدام نفس عنوان البريد الإلكتروني في المستقبل.",
+    "warning2":"يرجى ملاحظة أنه إذا كنت تريد إعادة تفعيل حسابك بعد تقديم طلب الحذف، فسيكون أمامك 14 يومًا من تاريخ التقديم الأولي للتواصل عبر البريد الإلكتروني privacy@udemy.com لإلغاء هذا الطلب"  
   },
-  "feedbackModal" : {
-    "Give" : "اعطنا ملاحظاتك",
-    "What" : "ما هو رايك ؟",
-    "Write" : "اكتب تعليقاتك هنا...",
-    "Cancel" : "الغاء",
-    "Confirm" : "تاكيد"
+  "cart":{
+    "Price":"السعر",
+    "Total":"المجموع",
+    "Discount":"الخصم",
+    "Proceed to Checkout":"المتابعة إلى الدفع",
+    "Course in cart":"دورة في السلة",
+    "Shopping Cart":"عربة التسوق",
+    "Checkout":"الدفع",
+    "Course": "الدورة",
+    "Choose your payment method": "اختر طريقة الدفع الخاصة بك",
+    "Saving": "جاري الحفظ",
+    "Save Payment Method": "حفظ طريقة الدفع"
+  },
+  "user": {
+    "Send Feedback": "ارسال الملاحظات"
+  },
+  "feedbackModal": {
+    "Give": "اعطنا ملاحظاتك",
+    "What": "ما هو رايك ؟",
+    "Write": "اكتب تعليقاتك هنا...",
+    "Cancel": "الغاء",
+    "Confirm": "تاكيد"
+
   }
+
 }

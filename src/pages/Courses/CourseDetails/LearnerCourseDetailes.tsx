@@ -49,7 +49,7 @@ export default function LearnerCourseDetails() {
       <div className="space-y-4">
         <div className="flex justify-between">
           <h3 className="border w-fit px-3 py-1 border-rate rounded-md font-bold">
-            {t("instructor.lessons")}
+            {t("instructor.lessons.title")}
           </h3>
           <button
             onClick={() => setIsFeedbackOpen(true)}
