@@ -108,6 +108,7 @@ export default function AppRoutes() {
           <Route index element={<CoursesPage />} />
           <Route path=":courseId" element={<CourseDetails />} />
         </Route>
+        
         {/* it must add as a child for BrowserCourses */}
         <Route path="/favourites" element={<Favourites />} />
         <Route path="/notifications" element={<NotificationPage />} />
@@ -115,6 +116,8 @@ export default function AppRoutes() {
         <Route path="/settings/paymethod" element={<PaymethodPage />} />
         <Route path="/settings/payhistory" element={<PayHistoryPage />} />
         {/*End of children for BrowserCourse */}
+        </Route>
+
             {/* Auth pages */}
         <Route element={<AuthLayout />}>
           <Route path="/signin" element={<SignIn />} />
@@ -122,7 +125,6 @@ export default function AppRoutes() {
           <Route path="/forgot" element={<ForgotForm />} />
           <Route path="/reset/:id" element={<ResetForm />} />
           <Route path="/otp" element={<OTPForm />} />
-        </Route>
         </Route>
       </Routes>
     </Router>
