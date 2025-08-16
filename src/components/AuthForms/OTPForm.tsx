@@ -10,36 +10,48 @@ import {
 import { useLocation } from "react-router-dom";
 import { useOTP } from "@/hooks/useOTP";
 import { useGenerateOTP } from "@/hooks/useGenerateOTP";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
 
 const validationSchema = Yup.object({
-  otp: Yup.string()
-    .matches(/^\d{4}$/, "OTP must be exactly 4 digits")
+  code: Yup.string()
+    .matches(/^\d{6}$/, "OTP must be exactly 4 digits")
     .required("OTP is required"),
 });
 
 export function OTPForm() {
-  const { mutate: sendOTP } = useOTP();
-  const { mutate: getOTP } = useGenerateOTP();
+  const { mutate: sendOTP, isPending: isSendingOTP } = useOTP();
+  const { mutate: getOTP, isPending: isResendingOTP } = useGenerateOTP();
+  const [isDelaySend, setIsDelaySend] = useState(false);
+  const [isDelayResend, setIsDelayResend] = useState(false);
 
-  const email = useLocation().state;
+  //retrieve email from (state set in navigation in case of "forgot password") otherwise from local storage in case of signup
+  const email = useLocation().state || localStorage.getItem("email");
 
   const initialValues = {
-    otp: "",
+    code: "",
   };
 
-  const handleSubmit = (values: { otp: string }) => {
-    const formData = { ...values, email };
-    sendOTP(formData);
-    console.log("OTP submitted:", values.otp);
+  const handleSubmit = (values: { code: string }) => {
+    setIsDelaySend(true);
+    const formData = { ...values, user_id: "15" };
+    setTimeout(() => {
+      sendOTP(formData);
+      setIsDelaySend(false);
+    }, 5000);
   };
 
   const handleResendCode = (resetForm: any) => {
-    getOTP({ email });
+    setIsDelayResend(true);
+    setTimeout(() => {
+      getOTP({ email });
+      setIsDelayResend(false);
+    }, 5000);
+
     resetForm();
-    // Ready for resend API call
-    console.log("Resend code requested");
-    // await resendOTP()
   };
+
+  // if (isSendingOTP || isDebounced) return <Spinner label="Verifying"/>
 
   return (
     <div className="">
@@ -60,9 +72,9 @@ export function OTPForm() {
           <Form className="auth-form">
             <div className="flex justify-between">
               <InputOTP
-                maxLength={4}
-                value={values.otp}
-                onChange={(value) => setFieldValue("otp", value)}
+                maxLength={6}
+                value={values.code}
+                onChange={(value) => setFieldValue("code", value)}
                 className="w-full"
               >
                 <InputOTPGroup className="gap-4 *:rounded-md">
@@ -70,25 +82,34 @@ export function OTPForm() {
                   <InputOTPSlot index={1} />
                   <InputOTPSlot index={2} />
                   <InputOTPSlot index={3} />
+                  <InputOTPSlot index={4} />
+                  <InputOTPSlot index={5} />
                 </InputOTPGroup>
               </InputOTP>
             </div>
 
-            {errors.otp && touched.otp && (
-              <p className="text-red-500 text-sm text-center">{errors.otp}</p>
+            {errors.code && touched.code && (
+              <p className="text-red-500 text-sm text-center">{errors.code}</p>
             )}
 
-            <Button type="submit" className="auth-button">
-              Continue
+            <Button
+              disabled={isSendingOTP || isDelaySend || isResendingOTP}
+              type="submit"
+              className="auth-button"
+            >
+              {isDelaySend || isSendingOTP? <><Loader2 className="animate-spin" size={25} /> {" "} Verifying </>  :  "Continue" }
             </Button>
 
             <div className="">
               <button
+              disabled={isSendingOTP || isDelayResend || isResendingOTP}
                 type="button"
                 onClick={() => handleResendCode(resetForm)}
                 className="auth-link"
               >
-                Didn't receive code? Resend Code
+              {isDelayResend || isResendingOTP? <p className="flex gap-2"><Loader2 className="animate-spin" size={20} /> <span>Resending OTP</span> </p>  :  "Didn't receive code? Resend Code" }
+
+                {/* Didn't receive code? Resend Code */}
               </button>
             </div>
           </Form>

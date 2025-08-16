@@ -5,39 +5,37 @@ import type {
   SignInFormType,
   SignUpFormType,
 } from "@/lib/types";
+import { type NavigateFunction } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export async function signUp(formData: SignUpFormType) {
-  //   make an api call
   const { data } = await axiosInstance.post("register", formData);
   return data;
-
-  // const authToken = 'seifToken4454'
-  // return  authToken
 }
 
 export async function signIn(formData: SignInFormType) {
-  //   make an api call
   const { data } = await axiosInstance.post("login", formData);
   return data;
+}
 
-  // const authToken = 'seifToken4454'
-  // return  authToken
+export async function signOut(navigate:NavigateFunction) {
+  const { data } = await axiosInstance.post("logout");
+  toast.success(data.message);
+
+  localStorage.removeItem("auth_token");
+  localStorage.removeItem("email");
+  localStorage.removeItem("user_id");
+  navigate("/signin");
 }
 
 export async function generateOTP(formData: ForgotFormType) {
-//   const navigate = useNavigate();
-//   const { data, status } = await axiosInstance.post("forgot-password", formData);
-
-//   return data;
-
-  const status = 'success'
-  return  status
+  const { data, status } = await axiosInstance.post("forgot-password", formData);
+  return data;
 }
 
 export async function verifyOTP(formData: OTPFormType) {
+  console.log(formData);
   const { data } = await axiosInstance.post("verify-code", formData);
   return data;
 
-  // const authToken = 'seifToken4454'
-  // return  authToken
 }
