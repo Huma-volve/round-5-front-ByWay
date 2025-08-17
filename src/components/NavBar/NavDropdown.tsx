@@ -43,12 +43,20 @@ function NavDropdown({ icon }: { icon: ReactElement }) {
           </Link>
         </DropdownMenuItem>
         
-        <DropdownMenuItem asChild>
+        
+        {/* <DropdownMenuItem asChild>
           <Link className="drop-item" to="/favourites">
             {t("common.favourites")}
           </Link>
         </DropdownMenuItem>
         
+        <DropdownMenuItem asChild>
+          <Link className="drop-item" to="/settings/paymethod">
+            {t("common.paymethod")}
+          </Link>
+        </DropdownMenuItem>
+         */}
+         
         <DropdownMenuItem asChild>
           <Link className="drop-item" to="/settings/payhistory">
             {t("common.paymentHistory")}

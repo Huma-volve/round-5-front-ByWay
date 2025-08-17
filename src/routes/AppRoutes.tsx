@@ -56,6 +56,14 @@ import CheckoutPage from "@/pages/Payments/CheckoutPage";
 import ShoppingCartPage from "../pages/cart/ShoppingCartPage";
 
 export default function AppRoutes() {
+  const role = localStorage.getItem("role");
+  const HomeRoute =
+    role === "learner" ? (
+      <Route path="/" element={<CoursesPage />} />
+    ) : (
+      <Route path="/" element={<Instructor />} />
+    );
+    
   return (
     <Router>
       <Routes>
@@ -68,11 +76,18 @@ export default function AppRoutes() {
           }
         >
           {/* Home */}
-          <Route path="/" element={<Home />} />
+          {/* <Route path="/" element={<Home />} /> */}
+          {HomeRoute}
 
           {/* User Profile Section */}
-          <Route path="/profile" element={<UserProfilePage user={USER_PROFILE[0]} />} />
-          <Route path="/edit-user-profile" element={<EditUserProfile user={USER_PROFILE[0]} />} />
+          <Route
+            path="/profile"
+            element={<UserProfilePage user={USER_PROFILE[0]} />}
+          />
+          <Route
+            path="/edit-user-profile"
+            element={<EditUserProfile user={USER_PROFILE[0]} />}
+          />
 
           {/* Course Discovery & Learning */}
           <Route path="/courses">
@@ -87,11 +102,11 @@ export default function AppRoutes() {
 
           {/* Instructor Section */}
           <Route path="Instructor" element={<Instructor />} />
-          
+
           <Route path="/instructor">
             {/* Public Instructor Profile */}
             <Route path=":instructorId" element={<InstructorDetails />} />
-            
+
             {/* Instructor Dashboard & Reviews */}
             <Route path="reviews" element={<InstructorReviews />} />
             <Route path="profile" element={<InstructorProfile />} />
@@ -105,16 +120,28 @@ export default function AppRoutes() {
             <Route path="add-course" element={<AddCourse />} />
             <Route path="add-lessons" element={<AddLessons />} />
             <Route path="my-courses" element={<MyCourses />} />
-            <Route path="course-details" element={<InstructorCourseDetails />} />
-            
+            <Route
+              path="course-details"
+              element={<InstructorCourseDetails />}
+            />
+
             {/* Course Selection & Management */}
             <Route path="courses/select" element={<CourseSelection />} />
-            <Route path="courses/:courseId/manage" element={<CourseSelection />} />
-            
+            <Route
+              path="courses/:courseId/manage"
+              element={<CourseSelection />}
+            />
+
             {/* Lesson Management */}
             <Route path="courses/:courseId/lessons" element={<ViewLessons />} />
-            <Route path="courses/:courseId/lessons/add" element={<AddLessons />} />
-            <Route path="courses/:courseId/lessons/edit/:lessonId" element={<EditLesson />} />
+            <Route
+              path="courses/:courseId/lessons/add"
+              element={<AddLessons />}
+            />
+            <Route
+              path="courses/:courseId/lessons/edit/:lessonId"
+              element={<EditLesson />}
+            />
           </Route>
 
           {/* Shopping & Payments */}
@@ -124,7 +151,7 @@ export default function AppRoutes() {
           {/* User Preferences & Settings */}
           <Route path="/favourites" element={<Favourites />} />
           <Route path="/notifications" element={<NotificationPage />} />
-          
+
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/settings/paymethod" element={<PaymethodPage />} />
           <Route path="/settings/payhistory" element={<PayHistoryPage />} />

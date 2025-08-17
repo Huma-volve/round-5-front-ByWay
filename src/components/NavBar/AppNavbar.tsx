@@ -48,7 +48,7 @@ function AppNavbar() {
             {/* Language Toggle */}
             <LanguageToggle />
 
-            <Link to="/shopping">
+            <Link to="/shopping-cart">
               <ShoppingCart size={20} className="hover:fill-blue-500" />
             </Link>
             {!user_id ? (

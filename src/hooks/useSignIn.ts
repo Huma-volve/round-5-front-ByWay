@@ -16,6 +16,7 @@ export function useSignIn() {
       localStorage.setItem("auth_token", data.data.access_token);
       localStorage.setItem("user_id", data.data.user.id);
       localStorage.setItem("email", data.data.user.email);
+      localStorage.setItem("role", data.data.user.role);
 
       toast.success(data.message);
       navigate("/");
