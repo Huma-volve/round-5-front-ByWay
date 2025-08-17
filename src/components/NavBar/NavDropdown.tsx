@@ -3,8 +3,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { DropdownMenuArrow } from "@radix-ui/react-dropdown-menu";
 import type { ReactElement } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "@/api/auth-api";
@@ -22,37 +22,57 @@ function NavDropdown({ icon }: { icon: ReactElement }) {
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className="mt-1 p-1"
+        className="mt-1 p-1 min-w-[200px]"
         align="end"
         side="bottom"
         sideOffset={8}
+        // Fix layout shift by using portal and proper positioning
+        avoidCollisions={true}
+        collisionPadding={8}
+        sticky="always"
       >
-        <DropdownMenuArrow className="fill-white drop-shadow-sm" />
         <DropdownMenuItem asChild>
           <Link className="drop-item" to="/profile">
             {t("common.profile")}
           </Link>
         </DropdownMenuItem>
+        
         <DropdownMenuItem asChild>
-          <Link className="drop-item" to="/courses">
+          <Link className="drop-item" to="/learner-myCourses">
             {t("common.myCourses")}
           </Link>
         </DropdownMenuItem>
+        
         <DropdownMenuItem asChild>
-          <Link className="drop-item" to="/payment-history">
+          <Link className="drop-item" to="/favourites">
+            {t("common.favourites")}
+          </Link>
+        </DropdownMenuItem>
+        
+        <DropdownMenuItem asChild>
+          <Link className="drop-item" to="/settings/payhistory">
             {t("common.paymentHistory")}
           </Link>
         </DropdownMenuItem>
+        
+        <DropdownMenuItem asChild>
+          <Link className="drop-item" to="/notifications">
+            {t("common.notifications")}
+          </Link>
+        </DropdownMenuItem>
+        
         <DropdownMenuItem asChild>
           <Link className="drop-item" to="/settings">
             {t("common.settings")}
           </Link>
         </DropdownMenuItem>
-        <div className="h-px bg-gray-200 my-1" />
+        
+        <DropdownMenuSeparator className="my-1" />
+        
         <DropdownMenuItem asChild>
           <button
             onClick={() => signOut(navigate)}
-            className="drop-item text-red-600"
+            className="drop-item text-red-600 w-full text-left"
           >
             {t("common.signOut")}
           </button>

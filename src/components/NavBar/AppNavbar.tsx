@@ -53,7 +53,7 @@ function AppNavbar() {
             </Link>
             {!user_id ? (
               <Link to={pathname === "/signin" ? "/signup" : "/signin"}>
-                <Button className="bg-secondaryDark">
+                <Button className="bg-secondaryDark text-white">
                   {pathname === "/signin"
                     ? t("common.signUp")
                     : t("common.signIn")}
