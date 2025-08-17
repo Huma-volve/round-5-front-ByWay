@@ -11,6 +11,7 @@ import { signOut } from "@/api/auth-api";
 import { useTranslation } from "react-i18next";
 
 function NavDropdown({ icon }: { icon: ReactElement }) {
+  const role = localStorage.getItem("role")
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -38,7 +39,10 @@ function NavDropdown({ icon }: { icon: ReactElement }) {
         </DropdownMenuItem>
         
         <DropdownMenuItem asChild>
-          <Link className="drop-item" to="/learner-myCourses">
+          {/* <Link className="drop-item" to="/learner-myCourses">
+            {t("common.myCourses")}
+          </Link> */}
+          <Link className="drop-item" to={role === "learner"? "/learner-myCourses" : "/instructor/my-courses"}>
             {t("common.myCourses")}
           </Link>
         </DropdownMenuItem>

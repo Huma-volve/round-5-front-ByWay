@@ -126,7 +126,7 @@ export default function AppRoutes() {
             />
 
             {/* Course Selection & Management */}
-            <Route path="courses/select" element={<CourseSelection />} />
+            <Route path="courses/select" element={<CourseSelection />} /> //placeholder
             <Route
               path="courses/:courseId/manage"
               element={<CourseSelection />}

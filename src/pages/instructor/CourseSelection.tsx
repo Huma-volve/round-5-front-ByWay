@@ -38,6 +38,7 @@ export default function CourseSelection() {
         <h1 className="text-3xl font-bold mb-20 text-center">
           {t("instructor.courseManagement.title")}
         </h1>
+      {/* <h2></h2> */}
 
       <div className="mt-8">
         <div className="mb-6">
