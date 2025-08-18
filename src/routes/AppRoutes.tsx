@@ -9,7 +9,7 @@ import UserProfilePage from "@/pages/profile/UserProfilePage";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
 
 // Course Pages
-import CoursesPage from "@/pages/Courses/CoursesPage";
+import CoursesPage from "../pages/Courses/CoursesPage";
 import CourseDetails from "@/components/courses/CourseDetails";
 import MyCourses from "@/pages/Courses/MyCourses/MyCourses";
 import InstructorCourseDetails from "@/pages/Courses/CourseDetails/InstructorCourseDetails";
@@ -179,12 +179,12 @@ export default function AppRoutes() {
           <Route path="/otp" element={<OTPForm />} />
         </Route>
         {/* admin dashboard Routes */}
-        <Route element={<DashboardLayout />}>
-          <Route index path="/admin" element={<AdminDashboard />} />
-          <Route path="/analytics" element={<div>Analytics</div>} />
-          <Route path="/user-manage" element={<UserManagementPage />} />
+        <Route path="/admin" element={<DashboardLayout />}>
+          <Route index  element={<AdminDashboard />} />
+          <Route path="analytics" element={<div>Analytics</div>} />
+          <Route path="user-manage" element={<UserManagementPage />} />
           <Route
-            path="/user-manage/:userId"
+            path="user-manage/:userId"
             element={<UserManagementDetailes />}
           />
         </Route>
