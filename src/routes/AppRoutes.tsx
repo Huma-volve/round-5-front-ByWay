@@ -38,6 +38,8 @@ import SignIn from "@/pages/SignIn";
 import SignUp from "@/pages/SignUp";
 import AuthLayout from "@/components/Layouts/AuthLayout";
 import ProtectedRoute from "./ProtectedRoute";
+import UserManagementPage from "@/pages/AdminDashboard/UserManagement/UserManagementPage";
+import UserManagementDetailes from "@/pages/AdminDashboard/UserManagement/UserManagementDetailes";
 export default function AppRoutes() {
   return (
     <Router>
@@ -126,6 +128,9 @@ export default function AppRoutes() {
           <Route path="/reset/:id" element={<ResetForm />} />
           <Route path="/otp" element={<OTPForm />} />
         </Route>
+        {/* Trying dashboard */}
+        <Route path="/user-manage" element={<UserManagementPage />} />
+        <Route path="/user-manage/:userId" element={<UserManagementDetailes />} />
       </Routes>
     </Router>
   );
