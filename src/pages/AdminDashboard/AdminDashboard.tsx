@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 export default function AdminDashboard() {
   const { t } = useTranslation();
   return (
-    <div className="">
+    <div className="mt-10">
       <AdminDashboardHeading />
       <h1 className="text-xl md:text-2xl font-bold my-10 text-primary">
         {t("admin.home.MonthlyRevenueOverview")}

@@ -11,6 +11,7 @@ import EditUserProfile from "@/pages/profile/EditUserProfile";
 
 
 // Course Pages
+
 import CoursesPage from "@/pages/Courses/CoursesPage";
 
 import CourseDetails from "@/components/courses/CourseDetails";
@@ -188,15 +189,20 @@ export default function AppRoutes() {
         </Route>
 
         {/* admin dashboard Routes */}
+
         <Route element={<DashboardLayout />}>
-          <Route index path="/admin" element={<AdminDashboard />} />
+
           <Route path="payment-revenue" element={<PaymentRevenue />} />
-          <Route path="/analytics" element={<div>Analytics</div>} />
-          <Route path="/user-manage" element={<UserManagementPage />} />
-          <Route
-            path="/user-manage/:userId"
-            element={<UserManagementDetailes />}
-          />
+
+          <Route path="/admin" element={<DashboardLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="analytics" element={<div>Analytics</div>} />
+            <Route path="user-manage" element={<UserManagementPage />} />
+            <Route
+              path="user-manage/:userId"
+              element={<UserManagementDetailes />}
+            />
+          </Route>
         </Route>
       </Routes>
     </Router>
