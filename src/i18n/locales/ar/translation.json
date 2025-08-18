@@ -36,7 +36,10 @@
     "profile": "الملف الشخصي",
     "myCourses": "دوراتي",
     "paymentHistory": "تاريخ المدفوعات",
-    "signOut": "تسجيل الخروج"
+    "signOut": "تسجيل الخروج",
+    "students": "الطلاب",
+    "aboutMe": "عنّي",
+    "instructorDetails": "تفاصيل المدرب"
   },
   "auth": {
     "loginToAccount": "سجل الدخول إلى حسابك",
@@ -436,5 +439,25 @@
     "Write": "اكتب تعليقاتك هنا...",
     "Cancel": "الغاء",
     "Confirm": "تاكيد"
+  },
+  "admin":{
+    "home": {
+      "dashboard": "لوحة التحكم",
+      "recentPayoutRequests": "طلبات السحب الأخيرة",
+      "totalCourses": "إجمالي الدورات",
+      "totalStudents": "إجمالي الطلاب",
+      "totalInstructors": "إجمالي المدربين",
+      "totalRevenue": "إجمالي الإيرادات",
+      "topRatedCourses": "الدورات الأعلى تقييمًا",
+      "viewAll": "عرض الكل",
+      "recentActivities": "الأنشطة الأخيرة",
+      "activityType": {
+        "courseAdded": "تم إضافة دورة",
+        "courseUpdated": "تم تحديث دورة",
+        "courseDeleted": "تم حذف دورة"
+      },
+      "activityDate": "{{date}} في {{time}}"
+    },
+    "MonthlyRevenueOverview": "نظرة عامة على الإيرادات الشهرية"
   }
 }

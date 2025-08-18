@@ -36,7 +36,10 @@
     "profile": "Profile",
     "myCourses": "My Courses",
     "paymentHistory": "Payment History",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "students": "Students",
+    "aboutMe": "About Me",
+    "instructorDetails": "Instructor Details"
   },
   "auth": {
     "loginToAccount": "Log in into your account",
@@ -455,5 +458,26 @@
     "Write": "Write Your Feedback here...",
     "Cancel": "Cancel",
     "Confirm": "Confirm"
+  },
+  "admin":{
+    "home": {
+      "dashboard": "Dashboard",
+      "MonthlyRevenueOverview": "Monthly Revenue Overview",
+      "recentPayRequests": "Recent Payout Requests",
+      "totalCourses": "Total Courses",
+      "totalStudents": "Total Students",
+      "totalInstructors": "Total Instructors",
+      "totalRevenue": "Total Revenue",
+      "topRatedCourses": "Top Rated Courses",
+      "viewAll": "View All",
+      "recentActivities": "Recent Activities",
+      "activityType": {
+        "courseAdded": "Course Added",
+        "courseUpdated": "Course Updated",
+        "courseDeleted": "Course Deleted"
+      },
+      "activityDate": "{{date}} at {{time}}"
+    }
   }
+
 }

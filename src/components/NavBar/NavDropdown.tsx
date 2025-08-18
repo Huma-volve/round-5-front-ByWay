@@ -11,7 +11,7 @@ import { signOut } from "@/api/auth-api";
 import { useTranslation } from "react-i18next";
 
 function NavDropdown({ icon }: { icon: ReactElement }) {
-  const role = localStorage.getItem("role")
+  const role = localStorage.getItem("role");
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -32,22 +32,42 @@ function NavDropdown({ icon }: { icon: ReactElement }) {
         collisionPadding={8}
         sticky="always"
       >
+        {role === "instructor" && (
+          <DropdownMenuItem asChild>
+            <Link className="drop-item" to="/instructor/home">
+              {t("common.home")}
+            </Link>
+          </DropdownMenuItem>
+        )}
         <DropdownMenuItem asChild>
           <Link className="drop-item" to="/profile">
             {t("common.profile")}
           </Link>
         </DropdownMenuItem>
-        
+
         <DropdownMenuItem asChild>
           {/* <Link className="drop-item" to="/learner-myCourses">
             {t("common.myCourses")}
           </Link> */}
-          <Link className="drop-item" to={role === "learner"? "/learner-myCourses" : "/instructor/my-courses"}>
+          <Link
+            className="drop-item"
+            to={
+              role === "learner"
+                ? "/learner-myCourses"
+                : "/instructor/my-courses"
+            }
+          >
             {t("common.myCourses")}
           </Link>
         </DropdownMenuItem>
-        
-        
+            {
+          role === "instructor" && (
+            <DropdownMenuItem asChild>
+              <Link className="drop-item" to="/instructor/reviews">
+                {t("instructor.reviews")}
+              </Link>
+            </DropdownMenuItem>
+          )}
         {/* <DropdownMenuItem asChild>
           <Link className="drop-item" to="/favourites">
             {t("common.favourites")}
@@ -60,27 +80,28 @@ function NavDropdown({ icon }: { icon: ReactElement }) {
           </Link>
         </DropdownMenuItem>
          */}
-         
+        {
+          role === "instructor" && (
+            <DropdownMenuItem asChild>
+              <Link className="drop-item" to="/instructor/revenue">
+                {t("instructor.revenue.name")}
+              </Link>
+            </DropdownMenuItem>
+          )}
         <DropdownMenuItem asChild>
           <Link className="drop-item" to="/settings/payhistory">
             {t("common.paymentHistory")}
           </Link>
         </DropdownMenuItem>
-        
-        <DropdownMenuItem asChild>
-          <Link className="drop-item" to="/notifications">
-            {t("common.notifications")}
-          </Link>
-        </DropdownMenuItem>
-        
+
         <DropdownMenuItem asChild>
           <Link className="drop-item" to="/settings">
             {t("common.settings")}
           </Link>
         </DropdownMenuItem>
-        
+
         <DropdownMenuSeparator className="my-1" />
-        
+
         <DropdownMenuItem asChild>
           <button
             onClick={() => signOut(navigate)}

@@ -4,9 +4,10 @@ import type { CourseAction } from "@/data/courseActionsData";
 
 interface CourseActionCardProps {
   action: CourseAction;
+  courseName: string;
 }
 
-export default function CourseActionCard({ action }: CourseActionCardProps) {
+export default function CourseActionCard({ action , courseName }: CourseActionCardProps) {
   const IconComponent = action.icon;
 
   return (

@@ -54,6 +54,8 @@ import PaymethodPage from "../pages/Payments/PaymethodPage";
 import PayHistoryPage from "../pages/Payments/PayHistoryPage";
 import CheckoutPage from "@/pages/Payments/CheckoutPage";
 import ShoppingCartPage from "../pages/cart/ShoppingCartPage";
+import AdminDashboard from "@/pages/AdminDashboard/AdminDashboard";
+import AdminLayout from "@/components/Layouts/AdminLayout";
 
 export default function AppRoutes() {
   const role = localStorage.getItem("role");
@@ -101,14 +103,17 @@ export default function AppRoutes() {
           </Route>
 
           {/* Instructor Section */}
-          <Route path="Instructor" element={<Instructor />} />
+            <Route path="/instructor-details/:instructorId" element={<InstructorDetails />} />
 
           <Route path="/instructor">
+            
+            <Route index element={<Instructor />} />
+            <Route index path="home" element={<Instructor />} />
             {/* Public Instructor Profile */}
-            <Route path=":instructorId" element={<InstructorDetails />} />
 
             {/* Instructor Dashboard & Reviews */}
             <Route path="reviews" element={<InstructorReviews />} />
+            <Route path="home/reviews" element={<InstructorReviews />} />
             <Route path="profile" element={<InstructorProfile />} />
 
             {/* Financial Management */}
@@ -121,12 +126,12 @@ export default function AppRoutes() {
             <Route path="add-lessons" element={<AddLessons />} />
             <Route path="my-courses" element={<MyCourses />} />
             <Route
-              path="course-details"
+              path="course-details/:courseId"
               element={<InstructorCourseDetails />}
             />
 
             {/* Course Selection & Management */}
-            <Route path="courses/select" element={<CourseSelection />} /> //placeholder
+            {/* <Route path="courses/select" element={<CourseSelection />} /> //placeholder */}
             <Route
               path="courses/:courseId/manage"
               element={<CourseSelection />}
@@ -168,6 +173,13 @@ export default function AppRoutes() {
           <Route path="/forgot" element={<ForgotForm />} />
           <Route path="/reset/:id" element={<ResetForm />} />
           <Route path="/otp" element={<OTPForm />} />
+        </Route>
+        {/* admin dashboard Routes */}
+        <Route element={<AdminLayout />}>
+          <Route index path="/admin" element={<AdminDashboard />} />
+          {/* <Route path="/admin/users" element={<UserManagement />} /> */}
+          {/* <Route path="/admin/courses" element={<CourseManagement />} /> */}
+          {/* <Route path="/admin/revenue" element={<AdminRevenue />} /> */}
         </Route>
       </Routes>
     </Router>

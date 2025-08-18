@@ -3,12 +3,12 @@ import Review from "@/components/instructor/reviews/Review"
 import { useTranslation } from "react-i18next";
 import courseDetails from '../../../assets/images/courseDetails.png'
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 export default function InstructorCourseDetails() {
   const { t } = useTranslation()
-
+  const { courseId } = useParams<{ courseId: string }>();
 
   return (
     <section className="container py-12 space-y-6 ">
@@ -24,7 +24,7 @@ export default function InstructorCourseDetails() {
       <div className="space-y-4">
         <div className="flex gap-3">
           <h3 className="border w-fit px-3 py-1 border-rate rounded-md font-bold ">{t("instructor.lessons.title")}</h3>
-            <Link to={`/instructor/courses/${15}/manage`}>
+            <Link to={`/instructor/courses/${courseId}/manage`}>
               <Button className="border text-white w-fit px-3 py-1 border-rate rounded-md font-bold">Manage Course</Button>
             </Link>
         </div>
