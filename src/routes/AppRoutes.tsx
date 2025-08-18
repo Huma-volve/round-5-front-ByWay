@@ -1,17 +1,4 @@
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
-
-// Layouts
-import AppLayout from "@/components/Layouts/AppLayout";
-import AuthLayout from "@/components/Layouts/AuthLayout";
-import ProtectedRoute from "./ProtectedRoute";
-
-// Auth Components
-import SignIn from "@/pages/SignIn";
-import SignUp from "@/pages/SignUp";
-import ForgotForm from "@/components/AuthForms/ForgotForm";
-import { OTPForm } from "@/components/AuthForms/OTPForm";
-import ResetForm from "@/components/AuthForms/ResetForm";
-
 // Main Pages
 import CloseAccount from "../pages/close account/CloseAccount";
 import Success from "../pages/success/Success";
@@ -43,6 +30,24 @@ import AddLessons from "@/pages/instructor/AddLessons";
 import ViewLessons from "@/pages/instructor/ViewLessons";
 import EditLesson from "@/pages/instructor/EditLesson";
 
+// Auth Components
+import SignIn from "@/pages/SignIn";
+import SignUp from "@/pages/SignUp";
+import ForgotForm from "@/components/AuthForms/ForgotForm";
+import { OTPForm } from "@/components/AuthForms/OTPForm";
+import ResetForm from "@/components/AuthForms/ResetForm";
+
+// Layouts
+import AppLayout from "@/components/Layouts/AppLayout";
+import AuthLayout from "@/components/Layouts/AuthLayout";
+import ProtectedRoute from "./ProtectedRoute";
+import DashboardLayout from "@/components/Layouts/DashboardLayout";
+
+// Admin
+import UserManagementPage from "@/pages/AdminDashboard/UserManagement/UserManagementPage";
+import UserManagementDetailes from "@/pages/AdminDashboard/UserManagement/UserManagementDetailes";
+import AdminDashboard from "@/pages/AdminDashboard/AdminDashboard";
+
 // General Feature Pages
 import Favourites from "../pages/Favourites/Favourites";
 import NotificationPage from "../pages/Notifications/NotificationPage";
@@ -53,8 +58,7 @@ import PaymethodPage from "../pages/Payments/PaymethodPage";
 import PayHistoryPage from "../pages/Payments/PayHistoryPage";
 import CheckoutPage from "@/pages/Payments/CheckoutPage";
 import ShoppingCartPage from "../pages/cart/ShoppingCartPage";
-import AdminDashboard from "@/pages/AdminDashboard/AdminDashboard";
-import DashboardLayout from "@/components/Layouts/DashboardLayout";
+
 export default function AppRoutes() {
   const role = localStorage.getItem("role");
   const HomeRoute =
@@ -178,6 +182,11 @@ export default function AppRoutes() {
         <Route element={<DashboardLayout />}>
           <Route index path="/admin" element={<AdminDashboard />} />
           <Route path="/analytics" element={<div>Analytics</div>} />
+          <Route path="/user-manage" element={<UserManagementPage />} />
+          <Route
+            path="/user-manage/:userId"
+            element={<UserManagementDetailes />}
+          />
         </Route>
       </Routes>
     </Router>

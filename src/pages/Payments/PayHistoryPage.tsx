@@ -9,16 +9,16 @@ export default function PayHistoryPage() {
 
 
   return (
-    <div className="bg-background">
+    <div className="bg-background w-full">
       <div className="m-4 mt-8">
         <Breadcrumb items={getAutoBreadcrumb()} className="mb-6 mt-5" />
       </div>
 
-      <div className="w-[95%] md:w-[80%] ml-2 md:ml-12 mr:8 md:mr-4 mt-8 overflow-x-auto">
+      <div className="w-[95%] md:w-[80%] mb-12 ml-2 md:ml-20 mr:8 md:mr-4 mt-8 overflow-x-auto">
         {/* Desktop / Tablet */}
         <table className="hidden md:table w-full table-auto border-collapse border border-border rounded-lg">
           <thead className="border border-border">
-            <tr className="text-left text-sm text-primary">
+            <tr className="text-left rtl:text-left text-sm text-primary">
               <th className="px-4 py-2">{t("payments.Date")}</th>
               <th className="px-4 py-2">{t("payments.Course")}</th>
               <th className="px-4 py-2">{t("payments.Amount")}</th>
@@ -28,7 +28,7 @@ export default function PayHistoryPage() {
 
           <tbody className="divide-y divide-border">
             {HISTORY_DETAILES.map((his : HistoryItem) => (
-              <tr key={his.id} className="bg-white hover:bg-gray-50 transition-colors">
+              <tr key={his.id} className="bg-white hover:bg-gray-50 transition-colors text-left rtl:text-right">
                 <td className="px-4 py-2 text-black text-sm">{his.date}</td>
                 <td className="px-4 py-2 text-success text-sm">{his.course}</td>
                 <td className="px-4 py-2 text-sm">{his.amount} EGP</td>

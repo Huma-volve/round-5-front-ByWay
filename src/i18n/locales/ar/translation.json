@@ -440,6 +440,39 @@
     "Cancel": "الغاء",
     "Confirm": "تاكيد"
   },
+  "adminUser": {
+    "User Management": "إدارة المستخدمين",
+    "Manage all registered users including learners and instructors": "إدارة جميع المستخدمين المسجلين بما في ذلك المتعلمين والمدربين",
+    "Search by name or email...": "ابحث بالاسم أو البريد الإلكتروني...",
+    "Name": "الاسم",
+    "Email": "البريد الإلكتروني",
+    "Role": "الدور",
+    "Status": "الحالة",
+    "Date": "التاريخ",
+    "Actions": "الإجراءات",
+    "View Profile": "عرض الملف الشخصي",
+    "Block": "حظر",
+    "UnBlock": "إلغاء الحظر",
+    "Delete User": "حذف المستخدم",
+    "Confirm Delete": "تأكيد الحذف",
+    "Are you sure you want to delete": "هل أنت متأكد أنك تريد حذف",
+    "Cancel": "إلغاء",
+    "Delete": "حذف"
+  },
+  "adminUserDetails": {
+    "User Profile": "ملف المستخدم",
+    "View detailed information about this user": "عرض معلومات تفصيلية حول هذا المستخدم",
+    "Full Name": "الاسم الكامل",
+    "Email Address": "البريد الإلكتروني",
+    "Role": "الدور",
+    "Status": "الحالة",
+    "Nationality": "الجنسية",
+    "Registration Date": "تاريخ التسجيل",
+    "Total Courses": "إجمالي الدورات",
+    "Average Rating": "متوسط التقييم",
+    "Total Earnings": "إجمالي الأرباح",
+    "About Instructor": "عن المدرب"
+  },
   "admin": {
     "home": {
       "dashboard": "لوحة التحكم",

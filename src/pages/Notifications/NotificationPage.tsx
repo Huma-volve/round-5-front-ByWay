@@ -9,7 +9,7 @@ export default function NotificationPage() {
   const { t } = useTranslation();
   const { getAutoBreadcrumb } = useBreadcrumb();
   return (
-    <div className="bg-background">
+    <div className="bg-background w-full">
       <div className="m-4 mt-8 ">
         <Breadcrumb items={getAutoBreadcrumb()} className="mb-6 mt-5" />
       </div>
