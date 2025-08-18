@@ -459,11 +459,11 @@
     "Cancel": "Cancel",
     "Confirm": "Confirm"
   },
-  "admin":{
+  "admin": {
     "home": {
       "dashboard": "Dashboard",
       "MonthlyRevenueOverview": "Monthly Revenue Overview",
-      "recentPayRequests": "Recent Payout Requests",
+      "recentPayoutRequests": "Recent Payout Requests",
       "totalCourses": "Total Courses",
       "totalStudents": "Total Students",
       "totalInstructors": "Total Instructors",
@@ -471,6 +471,13 @@
       "topRatedCourses": "Top Rated Courses",
       "viewAll": "View All",
       "recentActivities": "Recent Activities",
+      "welcomeBack": "Welcome back, Admin",
+      "platformOverview": "Here's a quick overview of your platform performance.",
+      "instructor": "Instructor:",
+      "students": "students",
+      "activeLearners": "Active Learners",
+      "activeInstructors": "Active Instructors",
+      "publishedCourses": "Published Courses",
       "activityType": {
         "courseAdded": "Course Added",
         "courseUpdated": "Course Updated",
@@ -479,5 +486,4 @@
       "activityDate": "{{date}} at {{time}}"
     }
   }
-
 }

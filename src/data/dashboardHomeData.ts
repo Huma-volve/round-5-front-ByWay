@@ -14,19 +14,19 @@ export interface DashboardTopRatedCourses {
 const DASHBOARD_HEADING_DATA: DashboardHeadingData[] = [
   {
     amount: 4200,
-    labelKey: "Active Learners",
+    labelKey: "admin.home.activeLearners",
   },
   {
     amount: 150,
-    labelKey: "Active Instructors",
+    labelKey: "admin.home.activeInstructors",
   },
   {
     amount: 30,
-    labelKey: "Published Courses",
+    labelKey: "admin.home.publishedCourses",
   },
   {
     amount: 1200,
-    labelKey: "Total Revenue",
+    labelKey: "admin.home.totalRevenue",
   },
 ];
 

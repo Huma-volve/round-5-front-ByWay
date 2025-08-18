@@ -169,11 +169,11 @@ export default function IncomeTable({
       {/* Filters & Search */}
       <h1
         className={`text-xl md:text-2xl font-bold mb-2 ps-4 ${
-          isAdmin && "text-primary"
+          isAdmin && "text-primary ps-0"
         }`}
       >
         {isAdmin
-          ? t("admin.home.recentPayRequests")
+          ? t("admin.home.recentPayoutRequests")
           : t("instructor.income.title")}
       </h1>
       {!isAdmin && (

@@ -7,7 +7,7 @@ interface CourseActionCardProps {
   courseName: string;
 }
 
-export default function CourseActionCard({ action , courseName }: CourseActionCardProps) {
+export default function CourseActionCard({ action }: CourseActionCardProps) {
   const IconComponent = action.icon;
 
   return (

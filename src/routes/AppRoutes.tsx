@@ -13,7 +13,6 @@ import { OTPForm } from "@/components/AuthForms/OTPForm";
 import ResetForm from "@/components/AuthForms/ResetForm";
 
 // Main Pages
-import Home from "@/pages/Home";
 import CloseAccount from "../pages/close account/CloseAccount";
 import Success from "../pages/success/Success";
 
@@ -55,8 +54,7 @@ import PayHistoryPage from "../pages/Payments/PayHistoryPage";
 import CheckoutPage from "@/pages/Payments/CheckoutPage";
 import ShoppingCartPage from "../pages/cart/ShoppingCartPage";
 import AdminDashboard from "@/pages/AdminDashboard/AdminDashboard";
-import AdminLayout from "@/components/Layouts/AdminLayout";
-
+import DashboardLayout from "@/components/Layouts/DashboardLayout";
 export default function AppRoutes() {
   const role = localStorage.getItem("role");
   const HomeRoute =
@@ -175,11 +173,10 @@ export default function AppRoutes() {
           <Route path="/otp" element={<OTPForm />} />
         </Route>
         {/* admin dashboard Routes */}
-        <Route element={<AdminLayout />}>
+        <Route element={<DashboardLayout />}>
           <Route index path="/admin" element={<AdminDashboard />} />
-          {/* <Route path="/admin/users" element={<UserManagement />} /> */}
-          {/* <Route path="/admin/courses" element={<CourseManagement />} /> */}
-          {/* <Route path="/admin/revenue" element={<AdminRevenue />} /> */}
+          <Route path="/analytics" element={<div>Analytics</div>} />
+
         </Route>
       </Routes>
     </Router>

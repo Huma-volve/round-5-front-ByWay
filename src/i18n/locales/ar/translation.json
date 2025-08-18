@@ -440,9 +440,10 @@
     "Cancel": "الغاء",
     "Confirm": "تاكيد"
   },
-  "admin":{
+  "admin": {
     "home": {
       "dashboard": "لوحة التحكم",
+      "MonthlyRevenueOverview": "نظرة عامة على الإيرادات الشهرية",
       "recentPayoutRequests": "طلبات السحب الأخيرة",
       "totalCourses": "إجمالي الدورات",
       "totalStudents": "إجمالي الطلاب",
@@ -451,13 +452,19 @@
       "topRatedCourses": "الدورات الأعلى تقييمًا",
       "viewAll": "عرض الكل",
       "recentActivities": "الأنشطة الأخيرة",
+      "welcomeBack": "مرحباً بعودتك، أيها المشرف",
+      "platformOverview": "إليك نظرة سريعة على أداء منصتك.",
+      "instructor": "المدرب:",
+      "students": "طلاب",
+      "activeLearners": "المتعلمون النشطون",
+      "activeInstructors": "المدربون النشطون",
+      "publishedCourses": "الدورات المنشورة",
       "activityType": {
         "courseAdded": "تم إضافة دورة",
         "courseUpdated": "تم تحديث دورة",
         "courseDeleted": "تم حذف دورة"
       },
       "activityDate": "{{date}} في {{time}}"
-    },
-    "MonthlyRevenueOverview": "نظرة عامة على الإيرادات الشهرية"
+    }
   }
 }
