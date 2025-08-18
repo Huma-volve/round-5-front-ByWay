@@ -8,8 +8,12 @@ import USER_PROFILE from "@/data/userProfile";
 import UserProfilePage from "@/pages/profile/UserProfilePage";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
 
+
+
 // Course Pages
-import CoursesPage from "../pages/Courses/CoursesPage";
+
+import CoursesPage from "@/pages/Courses/CoursesPage";
+
 import CourseDetails from "@/components/courses/CourseDetails";
 import MyCourses from "@/pages/Courses/MyCourses/MyCourses";
 import InstructorCourseDetails from "@/pages/Courses/CourseDetails/InstructorCourseDetails";
@@ -41,6 +45,10 @@ import ResetForm from "@/components/AuthForms/ResetForm";
 import AppLayout from "@/components/Layouts/AppLayout";
 import AuthLayout from "@/components/Layouts/AuthLayout";
 import ProtectedRoute from "./ProtectedRoute";
+
+import PaymentRevenue from "@/pages/AdminDashboard/payment & revenue/PaymentRevenue";
+
+
 import DashboardLayout from "@/components/Layouts/DashboardLayout";
 
 // Admin
@@ -58,6 +66,7 @@ import PaymethodPage from "../pages/Payments/PaymethodPage";
 import PayHistoryPage from "../pages/Payments/PayHistoryPage";
 import CheckoutPage from "@/pages/Payments/CheckoutPage";
 import ShoppingCartPage from "../pages/cart/ShoppingCartPage";
+
 
 export default function AppRoutes() {
   const role = localStorage.getItem("role");
@@ -178,15 +187,22 @@ export default function AppRoutes() {
           <Route path="/reset/:id" element={<ResetForm />} />
           <Route path="/otp" element={<OTPForm />} />
         </Route>
+
         {/* admin dashboard Routes */}
-        <Route path="/admin" element={<DashboardLayout />}>
-          <Route index  element={<AdminDashboard />} />
-          <Route path="analytics" element={<div>Analytics</div>} />
-          <Route path="user-manage" element={<UserManagementPage />} />
-          <Route
-            path="user-manage/:userId"
-            element={<UserManagementDetailes />}
-          />
+
+        <Route element={<DashboardLayout />}>
+
+          <Route path="payment-revenue" element={<PaymentRevenue />} />
+
+          <Route path="/admin" element={<DashboardLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="analytics" element={<div>Analytics</div>} />
+            <Route path="user-manage" element={<UserManagementPage />} />
+            <Route
+              path="user-manage/:userId"
+              element={<UserManagementDetailes />}
+            />
+          </Route>
         </Route>
       </Routes>
     </Router>

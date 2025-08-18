@@ -447,7 +447,11 @@
     "Course": "Course",
     "Choose your payment method": "Choose your payment method",
     "Saving": "Saving",
-    "Save Payment Method": "Save Payment Method"
+    "Save Payment Method": "Save Payment Method",
+    "Remove": "Remove",
+    "Save for later": "Save for later",
+    "rating": "Rating",
+    "by": "by"
   },
   "user": {
     "Send Feedback": "Send Feedback"
@@ -458,6 +462,27 @@
     "Write": "Write Your Feedback here...",
     "Cancel": "Cancel",
     "Confirm": "Confirm"
+  },
+
+  "paymentRevenue": {
+    "Date": "Date",
+    "user name": "User Name",
+    "Type": " Type",
+    "Amount": "Amount",
+    "Status": "Status",
+    "Method": "Method",
+    "Action": "Action",
+    "View Details": "View Details",
+    "approve withdrawal": "Approve Withdrawal",
+    "reject request": "Reject Request",
+    "No Payments Found": "No Payments Found",
+    "View": "View",
+    "Payment & Revenue": "Payment & Revenue",
+    "Track": "Track all platform earnings, instructor payouts, and student payments.",
+    "Platform Earnings": "Platform Earnings",
+    "Instructor Earnings": "Instractor Earnings",
+    "Total Withdrow": "Total Withdraw",
+    "Student Payments": "Student Payments"
   },
   "adminUser": {
     "User Management": "User Management",
@@ -518,5 +543,6 @@
       },
       "activityDate": "{{date}} at {{time}}"
     }
+
   }
 }

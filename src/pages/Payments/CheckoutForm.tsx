@@ -1,26 +1,33 @@
-import React, { useState, useEffect } from "react";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { useState, useEffect } from "react";
+import type { FormEvent } from "react";
+import {
+  CardElement,
+  useStripe,
+  useElements,
+} from "@stripe/react-stripe-js";
+import type {
+  StripeCardElement,
+  StripeCardElementOptions,
+  SetupIntentResult,
+} from "@stripe/stripe-js";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 
-export default function CheckoutForm() {
-      const { t, i18n } = useTranslation();
-    useEffect(() => {
-      i18n.changeLanguage("ar");
-    }, []);
-    useEffect(() => {
-      const currentLang = i18n.language;
-      document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
-    }, [i18n.language]);
+interface CheckoutFormProps {}
+
+export default function CheckoutForm({}: CheckoutFormProps) {
+  const { t } = useTranslation();
+
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
 
-  const [clientSecret, setClientSecret] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
-  const token = "5|4PA4cCHitqNhFkhHbewkIEPKxe5FzaBCRNFClMYRb608a877";
+  const [clientSecret, setClientSecret] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
+  const token = localStorage.getItem("auth_token")
+
 
   useEffect(() => {
     axios
@@ -28,15 +35,15 @@ export default function CheckoutForm() {
         "http://round5-byway.huma-volve.com/api/payment-methods/setup-intent",
         {},
         {
-          headers: { 
+          headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       )
       .then((res) => {
         setClientSecret(res.data.data.client_secret);
-        console.log("Client Secret:", res.data.data.client_secret);
+        console.log("Client Secret:", res.data);
       })
       .catch((err) => {
         console.error("Error fetching client_secret:", err);
@@ -44,25 +51,30 @@ export default function CheckoutForm() {
       });
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!stripe || !elements || !clientSecret) return;
 
     setLoading(true);
 
     try {
-      const result = await stripe.confirmCardSetup(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement),
-        },
-      });
+      const result: SetupIntentResult = await stripe.confirmCardSetup(
+        clientSecret,
+        {
+          payment_method: {
+            card: elements.getElement(CardElement) as StripeCardElement,
+          },
+        }
+      );
+
       console.log("Stripe Result:", result);
+
       if (result.error) {
-        setMessage(result.error.message);
-        console.log("result:", result);
+        setMessage(result.error.message ?? "An error occurred");
+      } else if (result.setupIntent) {
         const paymentMethodId = result.setupIntent.id;
         console.log("Payment Method ID:", paymentMethodId);
-   
+
         await axios.post(
           "http://round5-byway.huma-volve.com/api/payment-methods",
           {
@@ -71,18 +83,18 @@ export default function CheckoutForm() {
           {
             headers: {
               "Content-Type": "application/json",
-              "Authorization": `Bearer ${token}`,
+              Authorization: `Bearer ${token}`,
             },
           }
         );
 
         setMessage("Payment method saved successfully!");
-        
+
         setTimeout(() => {
           navigate("/success");
         }, 1000);
       }
-    } catch (err) {
+    } catch (err: any) {
       setMessage("Error: " + err.message);
       console.error(err);
     }
@@ -90,24 +102,24 @@ export default function CheckoutForm() {
     setLoading(false);
   };
 
+  const cardStyle: StripeCardElementOptions = {
+    style: {
+      base: {
+        fontSize: "16px",
+        color: "#32325d",
+        "::placeholder": { color: "#aab7c4" },
+      },
+      invalid: { color: "#fa755a" },
+    },
+  };
+
   return (
     <div className="max-w-md mx-auto ">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="bg-gray-50 p-4 rounded border">
-          <CardElement
-            options={{
-              style: {
-                base: {
-                  fontSize: "16px",
-                  color: "#32325d",
-                  "::placeholder": { color: "#aab7c4" },
-                },
-                invalid: { color: "#fa755a" },
-              },
-            }}
-          />
+          <CardElement options={cardStyle} />
         </div>
-        
+
         <button
           type="submit"
           disabled={!stripe || !elements || !clientSecret}
@@ -117,11 +129,19 @@ export default function CheckoutForm() {
               : "bg-primary hover:opacity-[0.8] transition duration-300"
           }`}
         >
-          {loading ? `${t("cart.Saving")}...` : `${t("cart.Save Payment Method")}`}
+          {loading
+            ? `${t("cart.Saving")}...`
+            : `${t("cart.Save Payment Method")}`}
         </button>
-        
+
         {message && (
-          <p className={`text-sm mt-3 ${message.includes('Error') ? 'text-red-600' : 'text-green-600'}`}>
+          <p
+            className={`text-sm mt-3 ${
+              message.includes("Error")
+                ? "text-red-600"
+                : "text-green-600"
+            }`}
+          >
             {message}
           </p>
         )}
