@@ -54,6 +54,7 @@ import PaymethodPage from "../pages/Payments/PaymethodPage";
 import PayHistoryPage from "../pages/Payments/PayHistoryPage";
 import CheckoutPage from "@/pages/Payments/CheckoutPage";
 import ShoppingCartPage from "../pages/cart/ShoppingCartPage";
+import DashboardLayout from "@/components/Layouts/DashboardLayout";
 
 export default function AppRoutes() {
   const role = localStorage.getItem("role");
@@ -168,6 +169,10 @@ export default function AppRoutes() {
           <Route path="/forgot" element={<ForgotForm />} />
           <Route path="/reset/:id" element={<ResetForm />} />
           <Route path="/otp" element={<OTPForm />} />
+        </Route>
+
+        <Route element={<DashboardLayout/>}>
+          <Route path="/analytics" element={<div>Analytics</div>} />
         </Route>
       </Routes>
     </Router>
