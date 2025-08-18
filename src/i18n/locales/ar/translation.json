@@ -425,7 +425,11 @@
     "Course": "الدورة",
     "Choose your payment method": "اختر طريقة الدفع الخاصة بك",
     "Saving": "جاري الحفظ",
-    "Save Payment Method": "حفظ طريقة الدفع"
+    "Save Payment Method": "حفظ طريقة الدفع",
+    "Remove": "إزالة",
+    "Save for later": "حفظ للوقت لاحق",
+    "rating": "تقييم",
+    "by": "بواسطة"
   },
   "user": {
     "Send Feedback": "ارسال الملاحظات"
@@ -436,5 +440,26 @@
     "Write": "اكتب تعليقاتك هنا...",
     "Cancel": "الغاء",
     "Confirm": "تاكيد"
+  },
+  "paymentRevenue": {
+    "Date": "التاريخ",
+    "user name": "العميل",
+    "Type": "نوع الدفع",
+    "Amount": "المبلغ",
+    "Status": "الحالة",
+    "Method": "طريقة الدفع",
+    "Action": "الإجراءات",
+    "View Details": "عرض التفاصيل",
+    "approve withdrawal": "الموافقة على السحب",
+    "reject request": "رفض الطلب",
+    "No Payments Found": "لم يتم العثور على مدفوعات",
+    "View":"عرض",
+    "Payment & Revenue": "الدفع والإيرادات",
+    "Track": "تتبع جميع أرباح المنصة، ومدفوعات المدربين، ومدفوعات الطلاب.",
+    "Platform Earnings": "أرباح المنصة",
+    "Instructor Earnings": "أرباح المدربين",
+    "Total Withdrow": "إجمالي السحب",
+    "Student Payments": "مدفوعات الطلاب"
   }
+
 }

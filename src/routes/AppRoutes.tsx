@@ -14,8 +14,6 @@ import Withdraw from "@/pages/instructor/Withdraw";
 import USER_PROFILE from "@/data/userProfile";
 import UserProfilePage from "@/pages/profile/UserProfilePage";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
-import CheckoutPage from "@/pages/Payments/CheckoutPage";
-import ShoppingCartPage from "../pages/cart/ShoppingCartPage";
 import InstructorReviews from "@/pages/instructor/InstructorReviews";
 import CourseDetails from "@/components/courses/CourseDetails";
 import InstructorDetails from "@/components/instructor/InstractorDetails/InstructorDetails";
@@ -38,6 +36,12 @@ import SignIn from "@/pages/SignIn";
 import SignUp from "@/pages/SignUp";
 import AuthLayout from "@/components/Layouts/AuthLayout";
 import ProtectedRoute from "./ProtectedRoute";
+// import CheckoutPage from "@/pages/Payments/CheckoutPage";
+import ShoppingCartPage from "@/pages/cart/ShoppingCartPage";
+import PaymentRevenue from "@/pages/AdminDashboard/payment & revenue/PaymentRevenue";
+import WithdrowDetails from "@/pages/AdminDashboard/payment & revenue/WithdrowDetails";
+import PaymentDetails from "@/pages/AdminDashboard/payment & revenue/PaymentDetails";
+import CheckoutPage from "@/pages/Payments/CheckoutPage";
 export default function AppRoutes() {
   return (
     <Router>
@@ -126,6 +130,14 @@ export default function AppRoutes() {
           <Route path="/reset/:id" element={<ResetForm />} />
           <Route path="/otp" element={<OTPForm />} />
         </Route>
+   
+          <Route path="admin" >
+            <Route path="payment-revenue" element={<PaymentRevenue />} />
+            <Route path="withdraw-details" element={<WithdrowDetails />} />
+            {/* <Route path="payment-details" element={<PaymentDetails />} /> */}
+          </Route>
+
+
       </Routes>
     </Router>
   );
