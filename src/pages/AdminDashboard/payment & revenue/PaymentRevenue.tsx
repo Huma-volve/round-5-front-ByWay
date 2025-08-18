@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 function PaymentRevenue() {
     const { t } = useTranslation();
     return (
-        <div className="container mx-4">
+        <div >
             <h1 className="text-2xl font-medium text-primary mt-4 mb-2">{t("paymentRevenue.Payment & Revenue")}</h1>
             <p className="text-[14px] text-gray-500 ">
                 {t("paymentRevenue.Track")}

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import RatingsOverview from "@/components/instructor/reviews/RatingsOverview";
 import InstructorCard from "@/components/instructor/InstructorCard/InstructorCard";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 export default function Instructor() {
   const { t } = useTranslation();
   return (
@@ -13,8 +14,9 @@ export default function Instructor() {
       <section className="space-y-3">
         <InstructorCard />
 
-        <h2 className="text-xl lg:text-2xl font-semibold">
-          {t("instructor.yourCourses")}
+        <h2 className=" flex justify-between items-center">
+          <p className="text-xl lg:text-2xl font-semibold">{t("instructor.yourCourses")}</p>
+          <Link to="/instructor/my-courses" className="px-4 py-1 my-2 bg-blue-500 text-white rounded">{t("common.seeAll")}</Link>
         </h2>
         <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {Course_Card_Data.map((course: CourseCardType) => (
@@ -39,7 +41,7 @@ export default function Instructor() {
             <RatingsOverview />
           </div>
 
-          <div className="md:col-span-2">
+          <div className="md:col-span-2 ">
             <div className="mb-9 space-y-4">
               <Review
                 variant="user"
@@ -65,9 +67,11 @@ export default function Instructor() {
             </div>
 
             <div className="flex justify-center">
-              <Button className="bg-white text-black hover:bg-revenue2Bg transition duration-300">
-                {t("profile.View more Reviews")}
-              </Button>
+              <Link to="reviews">
+                <Button className="bg-white text-black hover:bg-revenue2Bg transition duration-300">
+                  {t("profile.View more Reviews")}
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

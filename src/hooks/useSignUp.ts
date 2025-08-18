@@ -19,6 +19,7 @@ export function useSignUp() {
       localStorage.setItem("auth_token", data.data.token);
       localStorage.setItem("user_id", data.data.user_id);
       localStorage.setItem("email", data.data.email);
+      localStorage.setItem("role", data.data.role);
 
       toast.success(data.data.message);
 

@@ -5,14 +5,11 @@ import Breadcrumb from "@/components/common/Breadcrumb";
 import { useBreadcrumb } from "@/hooks/useBreadcrumb";
 import { useTranslation } from "react-i18next";
 const Success = () => {
-
   const { getAutoBreadcrumb } = useBreadcrumb();
   const { t } = useTranslation();
-
   return (
     <div className="container mt-8">
       <Breadcrumb items={getAutoBreadcrumb()} className="mb-6 mt-5" />
-
       <div className="w-[90%] lg:w-[50%] h-[90dvh] flex flex-col items-center justify-center gap-6 mx-auto text-center">
         <img
           src={success}
@@ -21,6 +18,7 @@ const Success = () => {
           className="w-40 lg:w-60 mb-6"
         />
         <h1 className="font-medium text-[20px] lg:text-[32px]">
+
           {t("success.You have successfully subscribed to the course UI/UX Design")}
         </h1>
         <p className="font-medium text-[15px] lg:text-[24px] text-secondary">

@@ -48,12 +48,12 @@ function AppNavbar() {
             {/* Language Toggle */}
             <LanguageToggle />
 
-            <Link to="/shopping">
+            <Link to="/shopping-cart">
               <ShoppingCart size={20} className="hover:fill-blue-500" />
             </Link>
             {!user_id ? (
               <Link to={pathname === "/signin" ? "/signup" : "/signin"}>
-                <Button className="bg-secondaryDark">
+                <Button className="bg-secondaryDark text-white">
                   {pathname === "/signin"
                     ? t("common.signUp")
                     : t("common.signIn")}

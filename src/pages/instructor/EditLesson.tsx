@@ -31,10 +31,10 @@ export default function EditLesson() {
 
   return (
     <div className="w-full bg-[var(--secondary-background)]">
-      <div className="container py-3">
-        <div className="flex md:gap-52 items-center flex-col gap-4 md:flex-row mb-20">
+      <div className="container py-3 mt-6">
+        <div className="flex flex-col gap-4 mb-14">
           <Breadcrumb items={getAutoBreadcrumb()} />
-          <h1 className="text-3xl font-bold">
+          <h1 className="text-3xl font-bold text-center mt-1">
             {t("instructor.lessons.editLesson")}
           </h1>
         </div>

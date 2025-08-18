@@ -36,7 +36,10 @@
     "profile": "الملف الشخصي",
     "myCourses": "دوراتي",
     "paymentHistory": "تاريخ المدفوعات",
-    "signOut": "تسجيل الخروج"
+    "signOut": "تسجيل الخروج",
+    "students": "الطلاب",
+    "aboutMe": "عنّي",
+    "instructorDetails": "تفاصيل المدرب"
   },
   "auth": {
     "loginToAccount": "سجل الدخول إلى حسابك",
@@ -441,6 +444,7 @@
     "Cancel": "الغاء",
     "Confirm": "تاكيد"
   },
+
   "paymentRevenue": {
     "Date": "التاريخ",
     "user name": "العميل",
@@ -460,6 +464,67 @@
     "Instructor Earnings": "أرباح المدربين",
     "Total Withdrow": "إجمالي السحب",
     "Student Payments": "مدفوعات الطلاب"
+  },
+  "adminUser": {
+    "User Management": "إدارة المستخدمين",
+    "Manage all registered users including learners and instructors": "إدارة جميع المستخدمين المسجلين بما في ذلك المتعلمين والمدربين",
+    "Search by name or email...": "ابحث بالاسم أو البريد الإلكتروني...",
+    "Name": "الاسم",
+    "Email": "البريد الإلكتروني",
+    "Role": "الدور",
+    "Status": "الحالة",
+    "Date": "التاريخ",
+    "Actions": "الإجراءات",
+    "View Profile": "عرض الملف الشخصي",
+    "Block": "حظر",
+    "UnBlock": "إلغاء الحظر",
+    "Delete User": "حذف المستخدم",
+    "Confirm Delete": "تأكيد الحذف",
+    "Are you sure you want to delete": "هل أنت متأكد أنك تريد حذف",
+    "Cancel": "إلغاء",
+    "Delete": "حذف"
+  },
+  "adminUserDetails": {
+    "User Profile": "ملف المستخدم",
+    "View detailed information about this user": "عرض معلومات تفصيلية حول هذا المستخدم",
+    "Full Name": "الاسم الكامل",
+    "Email Address": "البريد الإلكتروني",
+    "Role": "الدور",
+    "Status": "الحالة",
+    "Nationality": "الجنسية",
+    "Registration Date": "تاريخ التسجيل",
+    "Total Courses": "إجمالي الدورات",
+    "Average Rating": "متوسط التقييم",
+    "Total Earnings": "إجمالي الأرباح",
+    "About Instructor": "عن المدرب"
+  },
+  "admin": {
+    "home": {
+      "dashboard": "لوحة التحكم",
+      "MonthlyRevenueOverview": "نظرة عامة على الإيرادات الشهرية",
+      "recentPayoutRequests": "طلبات السحب الأخيرة",
+      "totalCourses": "إجمالي الدورات",
+      "totalStudents": "إجمالي الطلاب",
+      "totalInstructors": "إجمالي المدربين",
+      "totalRevenue": "إجمالي الإيرادات",
+      "topRatedCourses": "الدورات الأعلى تقييمًا",
+      "viewAll": "عرض الكل",
+      "recentActivities": "الأنشطة الأخيرة",
+      "welcomeBack": "مرحباً بعودتك، أيها المشرف",
+      "platformOverview": "إليك نظرة سريعة على أداء منصتك.",
+      "instructor": "المدرب:",
+      "students": "طلاب",
+      "activeLearners": "المتعلمون النشطون",
+      "activeInstructors": "المدربون النشطون",
+      "publishedCourses": "الدورات المنشورة",
+      "activityType": {
+        "courseAdded": "تم إضافة دورة",
+        "courseUpdated": "تم تحديث دورة",
+        "courseDeleted": "تم حذف دورة"
+      },
+      "activityDate": "{{date}} في {{time}}"
+    }
+
   }
 
 }

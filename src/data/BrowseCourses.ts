@@ -55,7 +55,7 @@ export const stats = [
 
 export const courses = [
   {
-    id: 1,
+    id: "course-1",
     title: "UI/UX Design",
     instructor: "Omnya Ali",
     ratings: 1200,
@@ -64,7 +64,7 @@ export const courses = [
     image:ProductImg1,
   },
   {
-    id: 2,
+    id: "course-2",
     title: "React.js Mastery",
     instructor: "Ahmed Magdy",
     ratings: 980,
@@ -73,7 +73,7 @@ export const courses = [
     image:ProductImg1,
   },
   {
-    id: 3,
+    id: "course-3",
     title: "Laravel 12 Backend",
     instructor: "Mohamed Samir",
     ratings: 1500,
@@ -82,7 +82,7 @@ export const courses = [
     image:ProductImg1,
   },
   {
-    id: 4,
+    id: "course-4",
     title: "Fullstack Development",
     instructor: "Heba Yasser",
     ratings: 2100,
@@ -91,7 +91,7 @@ export const courses = [
     image:ProductImg1,
   },
   {
-    id: 5,
+    id: "course-5",
     title: "Data Science with Python",
     instructor: "Sara Ali",
     ratings: 1750,
@@ -100,7 +100,7 @@ export const courses = [
     image:ProductImg1,
   },
   {
-    id: 6,
+    id: "course-6",
     title: "Machine Learning A-Z",
     instructor: "Omar Khaled",
     ratings: 2500,
@@ -109,7 +109,7 @@ export const courses = [
     image:ProductImg1,
   },
   {
-    id: 7,
+    id: "course-7",
     title: "Node.js & Express",
     instructor: "Ali Hassan",
     ratings: 1100,
@@ -118,7 +118,7 @@ export const courses = [
     image:ProductImg1,
   },
   {
-    id: 8,
+    id: "course-8",
     title: "Next.js Crash Course",
     instructor: "Youssef Adel",
     ratings: 890,
@@ -127,7 +127,7 @@ export const courses = [
     image:ProductImg1,
   },
   {
-    id: 9,
+    id: "course-9",
     title: "Database Design",
     instructor: "Fatma Hassan",
     ratings: 670,
@@ -136,7 +136,7 @@ export const courses = [
     image:ProductImg1,
   },
   {
-    id: 10,
+    id: "course-10",
     title: "Cybersecurity Basics",
     instructor: "Mohamed Salah",
     ratings: 1340,
@@ -145,7 +145,7 @@ export const courses = [
     image: ProductImg1,
   },
   {
-    id: 11,
+    id: "course-11",
     title: "Graphic Design Mastery",
     instructor: "Eman Samir",
     ratings: 1950,
@@ -154,7 +154,7 @@ export const courses = [
     image: ProductImg1,
   },
   {
-    id: 12,
+    id: "course-12",
     title: "Flutter Mobile Development",
     instructor: "Ahmed Adel",
     ratings: 2200,

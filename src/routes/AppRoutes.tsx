@@ -1,52 +1,85 @@
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+// Main Pages
 import CloseAccount from "../pages/close account/CloseAccount";
 import Success from "../pages/success/Success";
-import AppLayout from "@/components/Layouts/AppLayout";
-import Home from "@/pages/Home";
-import Revenue from "../pages/instructor/Revenue";
-import GetPaid from "@/pages/instructor/GetPaid";
-import Favourites from "../pages/Favourites/Favourites";
-import NotificationPage from "../pages/Notifications/NotificationPage";
-import SettingsPage from "../pages/Settings/SettingsPage";
-import PaymethodPage from "../pages/Payments/PaymethodPage";
-import PayHistoryPage from "../pages/Payments/PayHistoryPage";
-import Withdraw from "@/pages/instructor/Withdraw";
+
+// Profile Pages
 import USER_PROFILE from "@/data/userProfile";
 import UserProfilePage from "@/pages/profile/UserProfilePage";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
-import InstructorReviews from "@/pages/instructor/InstructorReviews";
+
+
+
+// Course Pages
+import CoursesPage from "@/pages/Courses/CoursesPage";
+
 import CourseDetails from "@/components/courses/CourseDetails";
+import MyCourses from "@/pages/Courses/MyCourses/MyCourses";
+import InstructorCourseDetails from "@/pages/Courses/CourseDetails/InstructorCourseDetails";
+import LearnerMyCourses from "@/pages/Courses/MyCourses/LearnerMyCourses";
+import LearnerCourseDetails from "@/pages/Courses/CourseDetails/LearnerCourseDetailes";
+
+// Instructor Pages
+import Instructor from "@/pages/instructor/Instructor";
+import InstructorProfile from "@/pages/instructor/profile/InstructorProfile";
 import InstructorDetails from "@/components/instructor/InstractorDetails/InstructorDetails";
+import InstructorReviews from "@/pages/instructor/InstructorReviews";
+import Revenue from "../pages/instructor/Revenue";
+import GetPaid from "@/pages/instructor/GetPaid";
+import Withdraw from "@/pages/instructor/Withdraw";
 import AddCourse from "@/pages/instructor/AddCourse";
 import CourseSelection from "@/pages/instructor/CourseSelection";
 import AddLessons from "@/pages/instructor/AddLessons";
 import ViewLessons from "@/pages/instructor/ViewLessons";
 import EditLesson from "@/pages/instructor/EditLesson";
-import MyCourses from '@/pages/courses/MyCourses/MyCourses';
-import InstructorCourseDetails from '@/pages/courses/CourseDetails/InstructorCourseDetails'
-import InstructorProfile from "@/pages/instructor/profile/InstructorProfile";
-import CoursesPage from "@/pages/courses/CoursesPage";
-import Instructor from "@/pages/instructor/Instructor";
-import LearnerMyCourses from "@/pages/courses/MyCourses/LearnerMyCourses";
-import LearnerCourseDetails from "@/pages/courses/CourseDetails/LearnerCourseDetailes";
+
+// Auth Components
+import SignIn from "@/pages/SignIn";
+import SignUp from "@/pages/SignUp";
 import ForgotForm from "@/components/AuthForms/ForgotForm";
 import { OTPForm } from "@/components/AuthForms/OTPForm";
 import ResetForm from "@/components/AuthForms/ResetForm";
-import SignIn from "@/pages/SignIn";
-import SignUp from "@/pages/SignUp";
+
+// Layouts
+import AppLayout from "@/components/Layouts/AppLayout";
 import AuthLayout from "@/components/Layouts/AuthLayout";
 import ProtectedRoute from "./ProtectedRoute";
-// import CheckoutPage from "@/pages/Payments/CheckoutPage";
-import ShoppingCartPage from "@/pages/cart/ShoppingCartPage";
+
 import PaymentRevenue from "@/pages/AdminDashboard/payment & revenue/PaymentRevenue";
-import WithdrowDetails from "@/pages/AdminDashboard/payment & revenue/WithdrowDetails";
-import PaymentDetails from "@/pages/AdminDashboard/payment & revenue/PaymentDetails";
+
+
+import DashboardLayout from "@/components/Layouts/DashboardLayout";
+
+// Admin
+import UserManagementPage from "@/pages/AdminDashboard/UserManagement/UserManagementPage";
+import UserManagementDetailes from "@/pages/AdminDashboard/UserManagement/UserManagementDetailes";
+import AdminDashboard from "@/pages/AdminDashboard/AdminDashboard";
+
+// General Feature Pages
+import Favourites from "../pages/Favourites/Favourites";
+import NotificationPage from "../pages/Notifications/NotificationPage";
+import SettingsPage from "../pages/Settings/SettingsPage";
+
+// Payment Pages
+import PaymethodPage from "../pages/Payments/PaymethodPage";
+import PayHistoryPage from "../pages/Payments/PayHistoryPage";
 import CheckoutPage from "@/pages/Payments/CheckoutPage";
+import ShoppingCartPage from "../pages/cart/ShoppingCartPage";
+
+
 export default function AppRoutes() {
+  const role = localStorage.getItem("role");
+  const HomeRoute =
+    role === "learner" ? (
+      <Route path="/" element={<CoursesPage />} />
+    ) : (
+      <Route path="/" element={<Instructor />} />
+    );
+
   return (
     <Router>
       <Routes>
-        //Protect those routes
+        {/* Protected Routes */}
         <Route
           element={
             <ProtectedRoute>
@@ -54,23 +87,69 @@ export default function AppRoutes() {
             </ProtectedRoute>
           }
         >
-          <Route path="/" element={<Home />} />
+          {/* Home */}
+          {/* <Route path="/" element={<Home />} /> */}
+          {HomeRoute}
 
-          <Route path="Instructor" element={<Instructor />} />
+          {/* User Profile Section */}
+          <Route
+            path="/profile"
+            element={<UserProfilePage user={USER_PROFILE[0]} />}
+          />
+          <Route
+            path="/edit-user-profile"
+            element={<EditUserProfile user={USER_PROFILE[0]} />}
+          />
+
+          {/* Course Discovery & Learning */}
+          <Route path="/courses">
+            <Route index element={<CoursesPage />} />
+            <Route path=":courseId" element={<CourseDetails />} />
+          </Route>
+
+          {/* Learner Course Management */}
+          <Route path="/learner-myCourses" element={<LearnerMyCourses />}>
+            <Route path=":learnerCourseId" element={<LearnerCourseDetails />} />
+          </Route>
+
+          {/* Instructor Section */}
+          <Route
+            path="/instructor-details/:instructorId"
+            element={<InstructorDetails />}
+          />
+
           <Route path="/instructor">
-            <Route path=":instructorId" element={<InstructorDetails />} />
-            <Route path="reviews" element={<InstructorReviews />} />
+            <Route index element={<Instructor />} />
+            <Route index path="home" element={<Instructor />} />
+            {/* Public Instructor Profile */}
 
+            {/* Instructor Dashboard & Reviews */}
+            <Route path="reviews" element={<InstructorReviews />} />
+            <Route path="home/reviews" element={<InstructorReviews />} />
+            <Route path="profile" element={<InstructorProfile />} />
+
+            {/* Financial Management */}
             <Route path="revenue" element={<Revenue />} />
             <Route path="get-paid" element={<GetPaid />} />
             <Route path="withdraw" element={<Withdraw />} />
+
+            {/* Course Management */}
             <Route path="add-course" element={<AddCourse />} />
             <Route path="add-lessons" element={<AddLessons />} />
-            <Route path="courses/select" element={<CourseSelection />} />
+            <Route path="my-courses" element={<MyCourses />} />
+            <Route
+              path="course-details/:courseId"
+              element={<InstructorCourseDetails />}
+            />
+
+            {/* Course Selection & Management */}
+            {/* <Route path="courses/select" element={<CourseSelection />} /> //placeholder */}
             <Route
               path="courses/:courseId/manage"
               element={<CourseSelection />}
             />
+
+            {/* Lesson Management */}
             <Route path="courses/:courseId/lessons" element={<ViewLessons />} />
             <Route
               path="courses/:courseId/lessons/add"
@@ -80,49 +159,26 @@ export default function AppRoutes() {
               path="courses/:courseId/lessons/edit/:lessonId"
               element={<EditLesson />}
             />
-            <Route path="my-courses" element={<MyCourses />} />
-            <Route
-              path="course-details"
-              element={<InstructorCourseDetails />}
-            />
-            <Route path="profile" element={<InstructorProfile />} />
           </Route>
+
+          {/* Shopping & Payments */}
+          <Route path="/shopping-cart" element={<ShoppingCartPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+
+          {/* User Preferences & Settings */}
+          <Route path="/favourites" element={<Favourites />} />
+          <Route path="/notifications" element={<NotificationPage />} />
+
+          <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/settings/paymethod" element={<PaymethodPage />} />
+          <Route path="/settings/payhistory" element={<PayHistoryPage />} />
+
+          {/* Account Management */}
           <Route path="/close-account" element={<CloseAccount />} />
-        <Route path="/success" element={<Success />} />
-        <Route
-          path="/profile"
-          element={<UserProfilePage user={USER_PROFILE[0]} />}
-        />
-        <Route
-          path="/edit-user-profile"
-          element={<EditUserProfile user={USER_PROFILE[0]} />}
-        />
-
-        <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/shopping-cart" element={<ShoppingCartPage />} />
-
-        {/* Learner courses */}
-        <Route path="/learner-myCourses" element={<LearnerMyCourses />}>
-          <Route path=":learnerCourseId" element={<LearnerCourseDetails />} />
-        </Route>
-        {/* End Leaner Courses */}
-
-
-        <Route path="/courses">
-          <Route index element={<CoursesPage />} />
-          <Route path=":courseId" element={<CourseDetails />} />
-        </Route>
-        
-        {/* it must add as a child for BrowserCourses */}
-        <Route path="/favourites" element={<Favourites />} />
-        <Route path="/notifications" element={<NotificationPage />} />
-        <Route path="/settings" element={<SettingsPage />} />
-        <Route path="/settings/paymethod" element={<PaymethodPage />} />
-        <Route path="/settings/payhistory" element={<PayHistoryPage />} />
-        {/*End of children for BrowserCourse */}
+          <Route path="/success" element={<Success />} />
         </Route>
 
-            {/* Auth pages */}
+        {/* Public Authentication Routes */}
         <Route element={<AuthLayout />}>
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
@@ -130,14 +186,18 @@ export default function AppRoutes() {
           <Route path="/reset/:id" element={<ResetForm />} />
           <Route path="/otp" element={<OTPForm />} />
         </Route>
-   
-          <Route path="admin" >
-            <Route path="payment-revenue" element={<PaymentRevenue />} />
-            <Route path="withdraw-details" element={<WithdrowDetails />} />
-            {/* <Route path="payment-details" element={<PaymentDetails />} /> */}
-          </Route>
 
-
+        {/* admin dashboard Routes */}
+        <Route element={<DashboardLayout />}>
+          <Route index path="/admin" element={<AdminDashboard />} />
+          <Route path="payment-revenue" element={<PaymentRevenue />} />
+          <Route path="/analytics" element={<div>Analytics</div>} />
+          <Route path="/user-manage" element={<UserManagementPage />} />
+          <Route
+            path="/user-manage/:userId"
+            element={<UserManagementDetailes />}
+          />
+        </Route>
       </Routes>
     </Router>
   );

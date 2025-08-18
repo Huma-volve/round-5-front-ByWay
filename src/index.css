@@ -6,6 +6,7 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+
 @layer base {
   :root {
     --background: oklch(1 0 0);
@@ -47,6 +48,15 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --sidebar-background: 222.2727 47.8261% 18.0392%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 223.8136 0.0000% 9.0527%;
+    --sidebar-primary-foreground: 223.8136 0.0004% 98.0256%;
+    --sidebar-accent: 213.7500 53.3333% 94.1176%;
+    --sidebar-accent-foreground: 223.8136 0.0000% 9.0527%;
+    --sidebar-border: 223.8136 0.0001% 89.8161%;
+    --sidebar-ring: 223.8136 0.0000% 63.0163%;
+
   }
 
   .dark {
@@ -74,6 +84,15 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --sidebar-background: 222 48% 18%;
+    --sidebar-foreground: 223.8136 0.0004% 98.0256%;
+    --sidebar-primary: 225.3451 84.0953% 48.9841%;
+    --sidebar-primary-foreground: 223.8136 0.0004% 98.0256%;
+    --sidebar-accent: 223.8136 0.0000% 14.9382%;
+    --sidebar-accent-foreground: 223.8136 0.0004% 98.0256%;
+    --sidebar-border: 223.8136 0.0000% 15.5096%;
+    --sidebar-ring: 223.8136 0.0000% 32.1993%;
+
   }
 
   * {
@@ -82,20 +101,9 @@ body {
 
   body {
     @apply bg-background text-foreground;
-    overflow-x: hidden;
-    min-width: 100%;
   }
 
-  html {
-    overflow-x: hidden;
 
-  }
-
-  /* Prevent layout shifts when dropdowns open */
-  [data-radix-popper-content-wrapper] {
-    z-index: 50 !important;
-    position: fixed !important;
-  }
 }
 
 @layer utilities {
@@ -163,7 +171,7 @@ body {
   }
 
   .auth-button {
-    @apply bg-success w-full sm:w-auto px-6 py-2;
+    @apply bg-success text-white w-full sm:w-auto px-6 py-2;
   }
 
   .form-label {
@@ -205,134 +213,6 @@ body {
   }
 }
 
-/* RTL Support */
-[dir="rtl"] {
-  direction: rtl;
-}
-
-[dir="ltr"] {
-  direction: ltr;
-}
-[dir="rtl"] body{
-  min-width: 100%;
-}
-
-/* RTL-specific adjustments for margins and padding */
-/* [dir="rtl"] .ml-auto {
-  margin-left: 0 !important;
-  margin-right: auto !important;
-}
-
-[dir="rtl"] .mr-auto {
-  margin-right: 0 !important;
-  margin-left: auto !important;
-}
-
-[dir="rtl"] .ml-4 {
-  margin-left: 0 !important;
-  margin-right: 1rem !important;
-}
-
-[dir="rtl"] .mr-4 {
-  margin-right: 0 !important;
-  margin-left: 1rem !important;
-}
-
-[dir="rtl"] .pl-4 {
-  padding-left: 0 !important;
-  padding-right: 1rem !important;
-}
-
-[dir="rtl"] .pr-4 {
-  padding-right: 0 !important;
-  padding-left: 1rem !important;
-}
-
-[dir="rtl"] .pl-2 {
-  padding-left: 0 !important;
-  padding-right: 0.5rem !important;
-}
-
-[dir="rtl"] .pr-2 {
-  padding-right: 0 !important;
-  padding-left: 0.5rem !important;
-} */
-
-/* Text alignment */
-/* [dir="rtl"] .text-left {
-  text-align: right !important;
-}
-
-[dir="rtl"] .text-right {
-  text-align: left !important;
-}
-
-/* Flex direction adjustments */
-/* [dir="rtl"] .flex-row {
-  flex-direction: row-reverse;
-}
-
-[dir="rtl"] .flex-row-reverse {
-  flex-direction: row;
-} */ 
-
-/* Gap adjustments for flex containers */
-/* [dir="rtl"] .gap-2>*+* {
-  margin-right: 0.5rem;
-  margin-left: 0;
-} */
-
-/* [dir="rtl"] .gap-4>*+* {
-  margin-right: 1rem;
-  margin-left: 0;
-} */
-
-/* Language toggle button adjustments for RTL */
-/* [dir="rtl"] .language-toggle {
-  flex-direction: row-reverse;
-} */
-
-/* Dropdown positioning for RTL */
-/* [dir="rtl"] .dropdown-content {
-  left: auto !important;
-  right: 0 !important;
-} */
-
-/* Border radius adjustments */
-/* [dir="rtl"] .rounded-l {
-  border-radius: 0 0.375rem 0.375rem 0 !important;
-} */
-
-/* [dir="rtl"] .rounded-r {
-  border-radius: 0.375rem 0 0 0.375rem !important;
-} */
-
-/* Transform adjustments for icons */
-/* [dir="rtl"] .transform {
-  transform: scaleX(-1);
-} */
-
-/* Navigation menu adjustments */
-/* [dir="rtl"] .nav-menu {
-  direction: rtl;
-} */
-
-/* [dir="rtl"] .nav-menu .container {
-  flex-direction: row-reverse;
-} */
-
-/* Specific adjustments for navbar actions */
-/* [dir="rtl"] .navbar-actions {
-  margin-right: auto;
-  margin-left: 0;
-} */
-
-/* Toast container adjustments */
-/* [dir="rtl"] .Toastify__toast-container {
-  left: auto !important;
-  right: 1rem !important;
-} */
-
 /* Navbar should always stay LTR regardless of document direction */
 .navbar-container {
   direction: ltr !important;
@@ -342,13 +222,24 @@ body {
   direction: ltr !important;
 }
 
-/* Override RTL styles for navbar specifically */
-/* [dir="rtl"] .navbar-container .ml-auto {
-  margin-left: auto !important;
-  margin-right: 0 !important;
+/* This fixes scrollbar on sidebar Remove this when you have a scrollbar in side bar */
+/* .group[data-side="left"] .group-data-\[side\=left\]\:-right-4{
+    right: 0rem !important;
+} */
+
+
+
+/* Fixes Scrollbar not styled */
+::-webkit-scrollbar {
+    @apply w-2.5 h-2.5;
+   
 }
 
-[dir="rtl"] .navbar-container .navbar-actions {
-  margin-left: auto !important;
-  margin-right: 0 !important;
-} */
+::-webkit-scrollbar-track {
+    @apply bg-transparent
+}
+ 
+::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-border border-[1px] border-transparent border-solid bg-clip-padding;
+}
+ 

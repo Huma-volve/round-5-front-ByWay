@@ -5,17 +5,20 @@ import { Link } from "react-router-dom";
 
 type cardProps = CourseCardType & {
   variant?: "myCourses" | "instructor";
+  id: string;
 };
 export default function CourseCard({
+  id,
   name,
   title,
   rate,
   variant = "instructor",
 }: cardProps) {
+
   return (
     <>
       <Link
-        to="/instructor/course-details"
+        to={`/instructor/course-details/${id}`}
         className="w-full rounded-2xl shadow-lg overflow-hidden bg-white border border-gray-100 flex flex-col h-full"
       >
         <div className="h-48 overflow-hidden">

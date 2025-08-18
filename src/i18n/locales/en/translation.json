@@ -36,7 +36,10 @@
     "profile": "Profile",
     "myCourses": "My Courses",
     "paymentHistory": "Payment History",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "students": "Students",
+    "aboutMe": "About Me",
+    "instructorDetails": "Instructor Details"
   },
   "auth": {
     "loginToAccount": "Log in into your account",
@@ -460,6 +463,7 @@
     "Cancel": "Cancel",
     "Confirm": "Confirm"
   },
+
   "paymentRevenue": {
     "Date": "Date",
     "user name": "User Name",
@@ -479,5 +483,66 @@
     "Instructor Earnings": "Instractor Earnings",
     "Total Withdrow": "Total Withdraw",
     "Student Payments": "Student Payments"
+  },
+  "adminUser": {
+    "User Management": "User Management",
+    "Manage all registered users including learners and instructors": "Manage all registered users including learners and instructors",
+    "Search by name or email...": "Search by name or email...",
+    "Name": "Name",
+    "Email": "Email",
+    "Role": "Role",
+    "Status": "Status",
+    "Date": "Date",
+    "Actions": "Actions",
+    "View Profile": "View Profile",
+    "Block": "Block",
+    "UnBlock": "UnBlock",
+    "Delete User": "Delete User",
+    "Confirm Delete": "Confirm Delete",
+    "Are you sure you want to delete": "Are you sure you want to delete",
+    "Cancel": "Cancel",
+    "Delete": "Delete"
+  },
+  "adminUserDetails": {
+    "User Profile": "User Profile",
+    "View detailed information about this user": "View detailed information about this user",
+    "Full Name": "Full Name",
+    "Email Address": "Email Address",
+    "Role": "Role",
+    "Status": "Status",
+    "Nationality": "Nationality",
+    "Registration Date": "Registration Date",
+    "Total Courses": "Total Courses",
+    "Average Rating": "Average Rating",
+    "Total Earnings": "Total Earnings",
+    "About Instructor": "About Instructor"
+},
+  "admin": {
+    "home": {
+      "dashboard": "Dashboard",
+      "MonthlyRevenueOverview": "Monthly Revenue Overview",
+      "recentPayoutRequests": "Recent Payout Requests",
+      "totalCourses": "Total Courses",
+      "totalStudents": "Total Students",
+      "totalInstructors": "Total Instructors",
+      "totalRevenue": "Total Revenue",
+      "topRatedCourses": "Top Rated Courses",
+      "viewAll": "View All",
+      "recentActivities": "Recent Activities",
+      "welcomeBack": "Welcome back, Admin",
+      "platformOverview": "Here's a quick overview of your platform performance.",
+      "instructor": "Instructor:",
+      "students": "students",
+      "activeLearners": "Active Learners",
+      "activeInstructors": "Active Instructors",
+      "publishedCourses": "Published Courses",
+      "activityType": {
+        "courseAdded": "Course Added",
+        "courseUpdated": "Course Updated",
+        "courseDeleted": "Course Deleted"
+      },
+      "activityDate": "{{date}} at {{time}}"
+    }
+
   }
 }

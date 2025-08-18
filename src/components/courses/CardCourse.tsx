@@ -23,9 +23,9 @@ function CardCourse() {
               <h5 className="font-[600] text-lg lg:text-lg xl:text-xl truncate">
                 {course.title}
               </h5>
-              <p className="text-sm my-2 text-[--secondary-dark]">
+              <Link to="/instructor-details/1" className="text-sm my-2 text-[--secondary-dark] hover:text-blue-500">
                 {t("common.by")} {course.instructor}
-              </p>
+              </Link>
               <div className="flex items-center">
                 <img src={StarIcon} alt="Ratings" />
                 <span className="lg:text-md text-sm font-[600] ml-2">

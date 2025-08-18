@@ -8,8 +8,8 @@ export default function AddCourse() {
     const { t } = useTranslation();
   return (
     <div className="w-full bg-[var(--secondary-background)]">
-      <div className="container py-3">
-        <div className="flex md:gap-52 items-center flex-col gap-4 md:flex-row mb-10">
+      <div className="container py-3 pb-8 mt-6">
+        <div className="">
           <Breadcrumb items={getAutoBreadcrumb()} />
         </div>
           <h1 className="text-3xl font-bold mb-20 text-center">{t("instructor.addCourse.title")}</h1>

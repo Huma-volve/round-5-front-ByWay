@@ -7,7 +7,7 @@ import { useGenerateOTP } from "@/hooks/useGenerateOTP";
 import { Spinner } from "../common/Spinner";
 
 function ForgotForm() {
-  const { mutate, data, isPending, error } = useGenerateOTP();
+  const { mutate, /*data ,*/ isPending /*,error */ } = useGenerateOTP();
 
   //Regex
   const regexes = {

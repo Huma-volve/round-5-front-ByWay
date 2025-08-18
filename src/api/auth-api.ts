@@ -25,11 +25,12 @@ export async function signOut(navigate:NavigateFunction) {
   localStorage.removeItem("auth_token");
   localStorage.removeItem("email");
   localStorage.removeItem("user_id");
+  localStorage.removeItem("role");
   navigate("/signin");
 }
 
 export async function generateOTP(formData: ForgotFormType) {
-  const { data, status } = await axiosInstance.post("forgot-password", formData);
+  const { data, /*status */ } = await axiosInstance.post("forgot-password", formData);
   return data;
 }
 
