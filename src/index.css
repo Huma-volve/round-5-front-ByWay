@@ -48,6 +48,15 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --sidebar-background: 222.2727 47.8261% 18.0392%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 223.8136 0.0000% 9.0527%;
+    --sidebar-primary-foreground: 223.8136 0.0004% 98.0256%;
+    --sidebar-accent: 213.7500 53.3333% 94.1176%;
+    --sidebar-accent-foreground: 223.8136 0.0000% 9.0527%;
+    --sidebar-border: 223.8136 0.0001% 89.8161%;
+    --sidebar-ring: 223.8136 0.0000% 63.0163%;
+
   }
 
   .dark {
@@ -75,6 +84,15 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --sidebar-background: 222 48% 18%;
+    --sidebar-foreground: 223.8136 0.0004% 98.0256%;
+    --sidebar-primary: 225.3451 84.0953% 48.9841%;
+    --sidebar-primary-foreground: 223.8136 0.0004% 98.0256%;
+    --sidebar-accent: 223.8136 0.0000% 14.9382%;
+    --sidebar-accent-foreground: 223.8136 0.0004% 98.0256%;
+    --sidebar-border: 223.8136 0.0000% 15.5096%;
+    --sidebar-ring: 223.8136 0.0000% 32.1993%;
+
   }
 
   * {
@@ -203,3 +221,25 @@ body {
 .navbar-container * {
   direction: ltr !important;
 }
+
+/* This fixes scrollbar on sidebar Remove this when you have a scrollbar in side bar */
+/* .group[data-side="left"] .group-data-\[side\=left\]\:-right-4{
+    right: 0rem !important;
+} */
+
+
+
+/* Fixes Scrollbar not styled */
+::-webkit-scrollbar {
+    @apply w-2.5 h-2.5;
+   
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-transparent
+}
+ 
+::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-border border-[1px] border-transparent border-solid bg-clip-padding;
+}
+ 
