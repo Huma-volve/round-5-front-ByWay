@@ -30,7 +30,7 @@ export async function signOut(navigate:NavigateFunction) {
 }
 
 export async function generateOTP(formData: ForgotFormType) {
-  const { data, status } = await axiosInstance.post("forgot-password", formData);
+  const { data, /*status */ } = await axiosInstance.post("forgot-password", formData);
   return data;
 }
 

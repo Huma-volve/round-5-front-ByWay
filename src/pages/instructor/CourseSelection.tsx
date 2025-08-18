@@ -49,7 +49,7 @@ export default function CourseSelection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {courseActions.map((action) => (
-            <CourseActionCard key={action.id} action={action} courseName={course?.title} />
+            <CourseActionCard key={action.id} action={action} />
           ))}
         </div>
 

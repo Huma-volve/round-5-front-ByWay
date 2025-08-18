@@ -22,12 +22,12 @@ import UserProfilePage from "@/pages/profile/UserProfilePage";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
 
 // Course Pages
-import CoursesPage from "@/pages/courses/CoursesPage";
+import CoursesPage from "@/pages/Courses/CoursesPage";
 import CourseDetails from "@/components/courses/CourseDetails";
-import MyCourses from "@/pages/courses/MyCourses/MyCourses";
-import InstructorCourseDetails from "@/pages/courses/CourseDetails/InstructorCourseDetails";
-import LearnerMyCourses from "@/pages/courses/MyCourses/LearnerMyCourses";
-import LearnerCourseDetails from "@/pages/courses/CourseDetails/LearnerCourseDetailes";
+import MyCourses from "@/pages/Courses/MyCourses/MyCourses";
+import InstructorCourseDetails from "@/pages/Courses/CourseDetails/InstructorCourseDetails";
+import LearnerMyCourses from "@/pages/Courses/MyCourses/LearnerMyCourses";
+import LearnerCourseDetails from "@/pages/Courses/CourseDetails/LearnerCourseDetailes";
 
 // Instructor Pages
 import Instructor from "@/pages/instructor/Instructor";
@@ -63,7 +63,7 @@ export default function AppRoutes() {
     ) : (
       <Route path="/" element={<Instructor />} />
     );
-    
+
   return (
     <Router>
       <Routes>
@@ -101,10 +101,12 @@ export default function AppRoutes() {
           </Route>
 
           {/* Instructor Section */}
-            <Route path="/instructor-details/:instructorId" element={<InstructorDetails />} />
+          <Route
+            path="/instructor-details/:instructorId"
+            element={<InstructorDetails />}
+          />
 
           <Route path="/instructor">
-            
             <Route index element={<Instructor />} />
             <Route index path="home" element={<Instructor />} />
             {/* Public Instructor Profile */}
@@ -176,7 +178,6 @@ export default function AppRoutes() {
         <Route element={<DashboardLayout />}>
           <Route index path="/admin" element={<AdminDashboard />} />
           <Route path="/analytics" element={<div>Analytics</div>} />
-
         </Route>
       </Routes>
     </Router>
