@@ -6,10 +6,12 @@ import FormError from "@/components/AuthForms/FormError";
 import { useSignUp } from "@/hooks/useSignUp";
 import { AuthRoleSelect } from "./AuthRoleSelect";
 import { Spinner } from "../common/Spinner";
+import { useTranslation } from "react-i18next";
 
 function SignUpForm() {
+  const { t } = useTranslation();
   //data from useSignUp returns the response from the server
-  const { mutate, isPending, error } = useSignUp();
+  const { mutate, isPending } = useSignUp();
 
   //Regex
   const regexes = {
@@ -23,28 +25,28 @@ function SignUpForm() {
   const scheme = yup.object({
     first_name: yup
       .string()
-      .required("This filed is required")
-      .matches(regexes.name, "Please enter a valid name"),
+      .required(t("auth.thisFieldRequired"))
+      .matches(regexes.name, t("auth.enterValidName")),
     last_name: yup
       .string()
-      .required("This filed is required")
-      .matches(regexes.name, "Please enter a valid name"),
+      .required(t("auth.thisFieldRequired"))
+      .matches(regexes.name, t("auth.enterValidName")),
     email: yup
       .string()
-      .required("This filed is required")
-      .matches(regexes.email, "Please enter a valid email"),
+      .required(t("auth.thisFieldRequired"))
+      .matches(regexes.email, t("auth.enterValidEmail")),
     password: yup
       .string()
-      .required("This filed is required")
-      .matches(regexes.password, "Please enter a valid password"),
+      .required(t("auth.thisFieldRequired"))
+      .matches(regexes.password, t("auth.enterValidPassword")),
     password_confirmation: yup
       .string()
-      .required("This filed is required")
-      .oneOf([yup.ref("password")], "password doesn't match"),
+      .required(t("auth.thisFieldRequired"))
+      .oneOf([yup.ref("password")], t("auth.passwordDoesntMatch")),
     role: yup
       .string()
-      .required("you should specify your role")
-      .oneOf(["learner", "instructor"], "Invalid role Type"),
+      .required(t("auth.specifyRole"))
+      .oneOf(["learner", "instructor"], t("auth.invalidRoleType")),
   });
 
   const formik = useFormik({
@@ -59,17 +61,17 @@ function SignUpForm() {
     validationSchema: scheme,
     onSubmit: (values) => {
       const formData = {
-        name : values.first_name.concat(" ", values.last_name),
+        name: values.first_name.concat(" ", values.last_name),
         email: values.email,
         password: values.password,
         password_confirmation: values.password_confirmation,
-        role: values.role
-      }
+        role: values.role,
+      };
       mutate(formData);
     },
   });
 
-  if (isPending) return <Spinner label="Signing you up"/>
+  if (isPending) return <Spinner label={t("auth.signingUp")} />;
 
   return (
     <form
@@ -83,7 +85,7 @@ function SignUpForm() {
           <Input
             value={formik.values.first_name}
             name="first_name"
-            placeholder="First Name"
+            placeholder={t("auth.firstName")}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
@@ -95,7 +97,7 @@ function SignUpForm() {
           <Input
             value={formik.values.last_name}
             name="last_name"
-            placeholder="Last Name"
+            placeholder={t("auth.lastName")}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
@@ -110,7 +112,7 @@ function SignUpForm() {
         <Input
           value={formik.values.email}
           name="email"
-          placeholder="Email"
+          placeholder={t("auth.email")}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
@@ -126,7 +128,7 @@ function SignUpForm() {
             type="password"
             value={formik.values.password}
             name="password"
-            placeholder="Password"
+            placeholder={t("auth.password")}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
@@ -136,14 +138,15 @@ function SignUpForm() {
         </div>
         <div>
           <Input
-          type="password"
+            type="password"
             value={formik.values.password_confirmation}
             name="password_confirmation"
-            placeholder="Confirm Password"
+            placeholder={t("auth.confirmPassword")}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
-          {formik.touched.password_confirmation && formik.errors.password_confirmation ? (
+          {formik.touched.password_confirmation &&
+          formik.errors.password_confirmation ? (
             <FormError error={formik.errors.password_confirmation} />
           ) : null}
         </div>
@@ -161,7 +164,7 @@ function SignUpForm() {
       </div>
 
       <Button className="auth-button" type="submit">
-        Sign Up
+        {t("common.signUp")}
       </Button>
     </form>
   );

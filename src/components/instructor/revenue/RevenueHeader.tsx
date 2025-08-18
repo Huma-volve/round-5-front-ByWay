@@ -8,9 +8,9 @@ export default function RevenueHeader() {
   return (
     <div className="flex flex-col justify-between mb-4 max-w-3xl w-full">
       <h1 className="text-2xl font-bold">{t("instructor.revenue.title")}</h1>
-      <h2 className="text-xl font-semibold mt-2">
+      {/* <h2 className="text-xl font-semibold mt-2">
         {t("instructor.revenue.name")}
-      </h2>
+      </h2> */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <p className="text-placeholder">
           {t("instructor.revenue.paidMessage")}

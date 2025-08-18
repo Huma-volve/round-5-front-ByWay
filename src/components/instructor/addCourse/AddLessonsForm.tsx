@@ -163,13 +163,13 @@ export default function AddLessonsForm({
                 }
                 className="mb-4"
               >
-                <ArrowLeft className="h-4 w-4 mr-2" />
+                <ArrowLeft className="h-4 w-4 mr-2 rtl:rotate-180" />
                 {t("instructor.lessons.backToLessons")}
               </Button>
-              <h1 className="text-2xl font-bold">
+              <h1 className="text-2xl font-bold ml-3 rtl:mr-3">
                 {t("instructor.lessons.editLesson")}
               </h1>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground ml-3 rtl:mr-3">
                 {t("instructor.lessons.updateLessonDescription")}
               </p>
             </div>

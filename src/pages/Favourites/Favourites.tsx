@@ -47,7 +47,7 @@ export default function Favourites() {
                   <hr className="w-[90%] mx-auto h-[3px] bg-secondary opacity-30" />
                 )}
 
-                <div className="w-full flex items-center gap-4 px-4 py-2">
+                <div className="w-full flex items-center justify-between gap-4 px-4 py-2">
                   <img
                     src={fav.image}
                     alt="courseIcon"
@@ -72,7 +72,7 @@ export default function Favourites() {
                     src={heart}
                     alt="favourite"
                     loading="lazy"
-                    className="w-4 h-4 ml-auto cursor-pointer mr-4 md:w-6 md:h-6"
+                    className="w-4 h-4  cursor-pointer mr-4 rtl:ml-4 md:w-6 md:h-6"
                   />
                 </div>
               </div>

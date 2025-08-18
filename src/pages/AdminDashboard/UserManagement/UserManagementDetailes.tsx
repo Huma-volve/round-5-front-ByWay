@@ -21,7 +21,7 @@ export default function UserManagementDetailes() {
   };
 
   return (
-    <div className="container mx-auto px-4">
+    <div>
       {/* Header */}
       <div className="flex flex-col gap-2 w-full mt-12 mb-8">
         <h1 className="md:text-3xl text-[#2C4E80] font-bold">

@@ -13,7 +13,7 @@ export const useBreadcrumb = () => {
     "/instructor/reviews": "instructor.reviews",
     "/instructor/add-course": "common.addCourse",
     "/instructor/add-lessons": "instructor.lessons.addLessons",
-    "/instructor/courses/select": "instructor.courseManagement.title",
+    "/instructor/courses": "common.courses",
     "/settings": "common.settings",
     "/settings/paymethod": "common.paymethod",
     "/settings/payhistory": "common.payhistory",
@@ -30,6 +30,7 @@ export const useBreadcrumb = () => {
     "/courses/course-details": "common.coursedetailes",
     "/learner-myCourses": "common.learnermycourse",
     "/learner-myCourses/course-details": "common.coursedetailes",
+    "/instructor-details": "common.instructorDetails",
   };
 
   const createBreadcrumb = (
@@ -48,7 +49,7 @@ export const useBreadcrumb = () => {
   };
 
   // Generate breadcrumbs automatically from current path
-  const getAutoBreadcrumb = (customPath?: string): BreadcrumbItem[] => {
+  const getAutoBreadcrumb = (customPath?: string , courseName:string =''): BreadcrumbItem[] => {
     const currentPath = customPath || location.pathname;
     const pathSegments = currentPath.split("/").filter(Boolean);
     const breadcrumbs: BreadcrumbItem[] = [];
@@ -69,7 +70,13 @@ export const useBreadcrumb = () => {
         previousSegments.includes("courses") &&
         segment.match(/^[a-zA-Z0-9-_]+$/)
       ) {
-        return "course-details";
+        return "course-id";
+      }
+      if (
+        previousSegments.includes("instructor-details") &&
+        segment.match(/^[a-zA-Z0-9-_]+$/)
+      ) {
+        return "";
       }
 
       // Detect learner course ID in `/learner-myCourses/{id}`
@@ -102,9 +109,9 @@ export const useBreadcrumb = () => {
       let translationKey = pathMapping[buildPath];
       let fallbackLabel = processedSegment;
 
-      if (processedSegment === "course-details") {
-        translationKey = "common.coursedetailes";
-        fallbackLabel = "Course Details";
+      if (processedSegment === "course-id") {
+        // translationKey = "common.coursedetailes";
+        fallbackLabel = courseName ?? "" ;
       }
 
       if (buildPath.includes("/instructor/courses/") && !translationKey) {
@@ -129,11 +136,13 @@ export const useBreadcrumb = () => {
             .replace("-", " ")
             .replace(/\b\w/g, (l) => l.toUpperCase());
 
-      breadcrumbs.push({
-        label,
-        path: buildPath,
-        isActive: isLast,
-      });
+      if (label) {
+        breadcrumbs.push({
+          label,
+          path: buildPath,
+          isActive: isLast,
+        });
+      }
     });
 
     return breadcrumbs;

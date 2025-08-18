@@ -4,6 +4,7 @@ import type { CourseAction } from "@/data/courseActionsData";
 
 interface CourseActionCardProps {
   action: CourseAction;
+  courseName: string;
 }
 
 export default function CourseActionCard({ action }: CourseActionCardProps) {

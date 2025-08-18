@@ -1,4 +1,4 @@
-import { useState , useMemo} from "react";
+import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import {
   flexRender,
@@ -25,7 +25,11 @@ import {
   PAYMENT_FILTER_OPTIONS,
   type IncomeTableData,
 } from "../../../data/incomeTableData";
-export default function IncomeTable() {
+export default function IncomeTable({
+  isAdmin = false,
+}: {
+  isAdmin?: boolean;
+}) {
   const { t, i18n } = useTranslation();
   const [sorting, setSorting] = useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
@@ -163,32 +167,41 @@ export default function IncomeTable() {
   return (
     <div className="w-full space-y-4 mt-16 mb-8 flex flex-col gap-2">
       {/* Filters & Search */}
-      <h1 className="text-2xl font-bold mb-2 ps-4">
-        {t("instructor.income.title")}
+      <h1
+        className={`text-xl md:text-2xl font-bold mb-2 ps-4 ${
+          isAdmin && "text-primary ps-0"
+        }`}
+      >
+        {isAdmin
+          ? t("admin.home.recentPayoutRequests")
+          : t("instructor.income.title")}
       </h1>
-      <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between px-4">
-        <div className="relative w-full sm:max-w-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-gray-300">
-          <Search
-            className={`absolute ${
-              isRTL ? "left-3" : "right-3"
-            } top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600`}
-          />
-          <Input
-            placeholder={t("instructor.income.search.placeholder")}
-            value={globalFilter ?? ""}
-            onChange={(e) => setGlobalFilter(e.target.value)}
-            className={`${isRTL ? "pl-10" : "pr-10"}`}
+      {!isAdmin && (
+        <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between px-4">
+          <div className="relative w-full sm:max-w-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-gray-300">
+            <Search
+              className={`absolute ${
+                isRTL ? "left-3" : "right-3"
+              } top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600`}
+            />
+            <Input
+              placeholder={t("instructor.income.search.placeholder")}
+              value={globalFilter ?? ""}
+              onChange={(e) => setGlobalFilter(e.target.value)}
+              className={`${isRTL ? "pl-10" : "pr-10"}`}
+            />
+          </div>
+
+          <CustomDropdown
+            value={paymentFilter}
+            onValueChange={setPaymentFilter}
+            placeholder={t("instructor.income.filters.paymentPlaceholder")}
+            options={PAYMENT_FILTER_OPTIONS}
+            t={t}
+            className="w-full sm:w-[180px]"
           />
         </div>
-        <CustomDropdown
-          value={paymentFilter}
-          onValueChange={setPaymentFilter}
-          placeholder={t("instructor.income.filters.paymentPlaceholder")}
-          options={PAYMENT_FILTER_OPTIONS}
-          t={t}
-          className="w-full sm:w-[180px]"
-        />
-      </div>
+      )}
 
       {/* Responsive Table Container */}
       <div className="rounded-lg mx-4">

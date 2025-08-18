@@ -3,14 +3,17 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { DropdownMenuArrow } from "@radix-ui/react-dropdown-menu";
 import type { ReactElement } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "@/api/auth-api";
+import { useTranslation } from "react-i18next";
 
 function NavDropdown({ icon }: { icon: ReactElement }) {
+  const role = localStorage.getItem("role");
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <DropdownMenu>
@@ -19,52 +22,92 @@ function NavDropdown({ icon }: { icon: ReactElement }) {
           {icon}
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent 
-        className="mt-1 p-1" 
-        align="end" 
+      <DropdownMenuContent
+        className="mt-1 p-1 min-w-[200px]"
+        align="end"
         side="bottom"
         sideOffset={8}
+        // Fix layout shift by using portal and proper positioning
+        avoidCollisions={true}
+        collisionPadding={8}
+        sticky="always"
       >
-        <DropdownMenuArrow className="fill-white drop-shadow-sm" />
+        {role === "instructor" && (
+          <DropdownMenuItem asChild>
+            <Link className="drop-item" to="/instructor/home">
+              {t("common.home")}
+            </Link>
+          </DropdownMenuItem>
+        )}
         <DropdownMenuItem asChild>
-          <Link 
-            className="drop-item" 
-            to="/profile"
-          >
-            Profile
+          <Link className="drop-item" to="/profile">
+            {t("common.profile")}
           </Link>
         </DropdownMenuItem>
+
         <DropdownMenuItem asChild>
-          <Link 
-            className="drop-item" 
-            to="/courses"
+          {/* <Link className="drop-item" to="/learner-myCourses">
+            {t("common.myCourses")}
+          </Link> */}
+          <Link
+            className="drop-item"
+            to={
+              role === "learner"
+                ? "/learner-myCourses"
+                : "/instructor/my-courses"
+            }
           >
-            My Courses
+            {t("common.myCourses")}
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Link 
-            className="drop-item" 
-            to="/payment-history"
-          >
-            Payment History
+            {
+          role === "instructor" && (
+            <DropdownMenuItem asChild>
+              <Link className="drop-item" to="/instructor/reviews">
+                {t("instructor.reviews")}
+              </Link>
+            </DropdownMenuItem>
+          )}
+        {/* <DropdownMenuItem asChild>
+          <Link className="drop-item" to="/favourites">
+            {t("common.favourites")}
           </Link>
         </DropdownMenuItem>
+        
         <DropdownMenuItem asChild>
-          <Link 
-            className="drop-item" 
-            to="/settings"
-          >
-            Settings
+          <Link className="drop-item" to="/settings/paymethod">
+            {t("common.paymethod")}
           </Link>
         </DropdownMenuItem>
-        <div className="h-px bg-gray-200 my-1" />
+         */}
+        {
+          role === "instructor" && (
+            <DropdownMenuItem asChild>
+              <Link className="drop-item" to="/instructor/revenue">
+                {t("instructor.revenue.name")}
+              </Link>
+            </DropdownMenuItem>
+          )}
         <DropdownMenuItem asChild>
-          <button 
-          onClick={()=>signOut(navigate)}
-            className="drop-item text-red-600" 
+          <Link className="drop-item" to="/settings/payhistory">
+            {t("common.paymentHistory")}
+          </Link>
+        </DropdownMenuItem>
+
+        <DropdownMenuItem asChild>
+          <Link className="drop-item" to="/settings">
+            {t("common.settings")}
+          </Link>
+        </DropdownMenuItem>
+
+        <DropdownMenuSeparator className="my-1" />
+
+        <DropdownMenuItem asChild>
+          <button
+            onClick={() => signOut(navigate)}
+            className="drop-item text-red-600 w-full text-left"
           >
-            Sign out
+            {t("common.signOut")}
           </button>
         </DropdownMenuItem>
       </DropdownMenuContent>
