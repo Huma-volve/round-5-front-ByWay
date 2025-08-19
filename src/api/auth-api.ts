@@ -44,31 +44,16 @@ export async function verifyOTP(formData: OTPFormType) {
 }
 // User Management 
 export async function fetchUsersDashboard(): Promise<UserDashboard[]> {
-  const { data } = await axiosInstance.get<UserDashboard[]>("users", {
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer 3|db1qQYFReI61WXDsStLp33heCephyyO9z4oPcR499f3133b5`,
-    },
-  });
+  const { data } = await axiosInstance.get<UserDashboard[]>("users");
   return data;
 }
 
 export async function fetchUsersDashboardProfile(id:number): Promise<UserProfileDashboard> {
-  const { data } = await axiosInstance.get<UserProfileDashboard>(`users/${id}`, {
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer 3|db1qQYFReI61WXDsStLp33heCephyyO9z4oPcR499f3133b5`,
-    },
-  });
+  const { data } = await axiosInstance.get<UserProfileDashboard>(`users/${id}`);
   return data;
 }
 
 export async function deleteUserById(id: number): Promise<void> {
-  await axiosInstance.delete(`users/${id}` , {
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer 3|db1qQYFReI61WXDsStLp33heCephyyO9z4oPcR499f3133b5`,
-    },
-  });
+  await axiosInstance.delete(`users/${id}`);
 }
 // End of User Management

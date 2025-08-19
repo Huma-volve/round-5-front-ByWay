@@ -10,6 +10,7 @@ import EditUserProfile from "@/pages/profile/EditUserProfile";
 
 // Course Pages
 import CoursesPage from "../pages/courses/CoursesPage";
+
 import CourseDetails from "@/components/courses/CourseDetails";
 import MyCourses from "@/pages/courses/MyCourses/MyCourses";
 import InstructorCourseDetails from "@/pages/courses/CourseDetails/InstructorCourseDetails";
@@ -41,6 +42,9 @@ import ResetForm from "@/components/AuthForms/ResetForm";
 import AppLayout from "@/components/Layouts/AppLayout";
 import AuthLayout from "@/components/Layouts/AuthLayout";
 import ProtectedRoute from "./ProtectedRoute";
+
+import PaymentRevenue from "@/pages/AdminDashboard/payment & revenue/PaymentRevenue";
+
 import DashboardLayout from "@/components/Layouts/DashboardLayout";
 
 // Admin
@@ -58,6 +62,12 @@ import PaymethodPage from "../pages/Payments/PaymethodPage";
 import PayHistoryPage from "../pages/Payments/PayHistoryPage";
 import CheckoutPage from "@/pages/Payments/CheckoutPage";
 import ShoppingCartPage from "../pages/cart/ShoppingCartPage";
+import AdminSettings from "@/pages/AdminDashboard/Settings/AdminSettings";
+
+import AdminCoursesPage from "@/components/AdminDashboard/AdminCoursesPage/AdminCoursesPage";
+import EditCourse from "@/components/AdminDashboard/EditCourse/EditCourse";
+import AdminProtectedRoute from "./AdminProtectedRoute";
+import AuthProtectedRoute from "./AuthProtectedRoute";
 
 export default function AppRoutes() {
   const role = localStorage.getItem("role");
@@ -106,7 +116,7 @@ export default function AppRoutes() {
 
           {/* Instructor Section */}
           <Route
-            path="/instructor-details/:instructorId"
+            path="/:instructorId/instructor-details"
             element={<InstructorDetails />}
           />
 
@@ -171,22 +181,49 @@ export default function AppRoutes() {
         </Route>
 
         {/* Public Authentication Routes */}
-        <Route element={<AuthLayout />}>
+        <Route
+          element={
+            <AuthProtectedRoute>
+              <AuthLayout />
+            </AuthProtectedRoute>
+          }
+        >
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgot" element={<ForgotForm />} />
           <Route path="/reset/:id" element={<ResetForm />} />
           <Route path="/otp" element={<OTPForm />} />
         </Route>
+
         {/* admin dashboard Routes */}
-        <Route path="/admin" element={<DashboardLayout />}>
-          <Route index  element={<AdminDashboard />} />
+
+        <Route
+          path="/admin"
+          element={
+            <AdminProtectedRoute>
+              <DashboardLayout />
+            </AdminProtectedRoute>
+          }
+        >
+          <Route index element={<AdminDashboard />} />
+          <Route path="payment-revenue" element={<PaymentRevenue />} />
           <Route path="analytics" element={<div>Analytics</div>} />
           <Route path="user-manage" element={<UserManagementPage />} />
           <Route
             path="user-manage/:userId"
             element={<UserManagementDetailes />}
           />
+
+          <Route path="AdminCoursesPage" element={<AdminCoursesPage />} />
+          <Route path="EditCourse" element={<EditCourse />} />
+          <Route
+            path="course-details/:courseId"
+            element={<InstructorCourseDetails />}
+          />
+          <Route path="payment-revenue" element={<PaymentRevenue />} />
+          <Route path="settings" element={<AdminSettings/>} />
+          <Route path="analytics" element={<div>Analytics</div>} />
+
         </Route>
       </Routes>
     </Router>

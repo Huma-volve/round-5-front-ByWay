@@ -1,5 +1,5 @@
-import DASHBOARD_HEADING_DATA from "@/data/dashboardHomeData";
-import type { DashboardHeadingData } from "@/data/dashboardHomeData";
+import DASHBOARD_HEADING_DATA from "@/data/AdminDashboard/dashboardHomeData";
+import type { DashboardHeadingData } from "@/data/AdminDashboard/dashboardHomeData";
 import { useTranslation } from "react-i18next";
 
 export default function AdminDashboardHeading() {

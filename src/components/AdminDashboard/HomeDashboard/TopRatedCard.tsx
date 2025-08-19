@@ -1,4 +1,4 @@
-import type { DashboardTopRatedCourses } from "@/data/dashboardHomeData";
+import type { DashboardTopRatedCourses } from "@/data/AdminDashboard/dashboardHomeData";
 import { Star } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
