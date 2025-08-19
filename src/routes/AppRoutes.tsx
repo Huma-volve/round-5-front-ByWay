@@ -58,6 +58,7 @@ import PaymethodPage from "../pages/Payments/PaymethodPage";
 import PayHistoryPage from "../pages/Payments/PayHistoryPage";
 import CheckoutPage from "@/pages/Payments/CheckoutPage";
 import ShoppingCartPage from "../pages/cart/ShoppingCartPage";
+import AdminSettings from "@/pages/AdminDashboard/Settings/AdminSettings";
 
 export default function AppRoutes() {
   const role = localStorage.getItem("role");
@@ -67,7 +68,7 @@ export default function AppRoutes() {
     ) : (
       <Route path="/" element={<Instructor />} />
     );
-    
+
   return (
     <Router>
       <Routes>
@@ -105,10 +106,12 @@ export default function AppRoutes() {
           </Route>
 
           {/* Instructor Section */}
-            <Route path="/instructor-details/:instructorId" element={<InstructorDetails />} />
+          <Route
+            path="/instructor-details/:instructorId"
+            element={<InstructorDetails />}
+          />
 
           <Route path="/instructor">
-            
             <Route index element={<Instructor />} />
             <Route index path="home" element={<Instructor />} />
             {/* Public Instructor Profile */}
@@ -177,12 +180,18 @@ export default function AppRoutes() {
           <Route path="/otp" element={<OTPForm />} />
         </Route>
         {/* admin dashboard Routes */}
-        <Route element={<DashboardLayout />}>
-          <Route index path="/admin" element={<AdminDashboard />} />
-          <Route path="/analytics" element={<div>Analytics</div>} />
-        {/* Trying dashboard */}
-        <Route path="/user-manage" element={<UserManagementPage />} />
-        <Route path="/user-manage/:userId" element={<UserManagementDetailes />} />
+        <Route path="/admin" element={<DashboardLayout />}>
+          <Route index element={<AdminDashboard />} />
+
+          {/* Trying dashboard */}
+          <Route path="user-manage" element={<UserManagementPage />} />
+          <Route
+            path="user-manage/:userId"
+            element={<UserManagementDetailes />}
+          />
+
+          <Route path="settings" element={<AdminSettings/>} />
+          <Route path="analytics" element={<div>Analytics</div>} />
 
         </Route>
       </Routes>
