@@ -67,7 +67,6 @@ import PayHistoryPage from "../pages/Payments/PayHistoryPage";
 import CheckoutPage from "@/pages/Payments/CheckoutPage";
 import ShoppingCartPage from "../pages/cart/ShoppingCartPage";
 
-
 export default function AppRoutes() {
   const role = localStorage.getItem("role");
   const HomeRoute =
@@ -190,20 +189,17 @@ export default function AppRoutes() {
 
         {/* admin dashboard Routes */}
 
-        <Route element={<DashboardLayout />}>
-
-          <Route path="payment-revenue" element={<PaymentRevenue />} />
-
           <Route path="/admin" element={<DashboardLayout />}>
             <Route index element={<AdminDashboard />} />
+          <Route path="payment-revenue" element={<PaymentRevenue />} />
             <Route path="analytics" element={<div>Analytics</div>} />
             <Route path="user-manage" element={<UserManagementPage />} />
             <Route
               path="user-manage/:userId"
               element={<UserManagementDetailes />}
             />
-          </Route>
         </Route>
+
       </Routes>
     </Router>
   );

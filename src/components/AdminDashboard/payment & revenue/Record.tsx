@@ -20,7 +20,7 @@ function Record() {
   const [openDropdowns, setOpenDropdowns] = useState<{ [key: string]: boolean }>({});
   const { t } = useTranslation();
 
-  // لما أقفل أي Dialog يتقفل الـ dropdown
+
   useEffect(() => {
     if (!openDialog && !openDialogW) {
       const timer = setTimeout(() => {
@@ -31,8 +31,8 @@ function Record() {
   }, [openDialog, openDialogW]);
 
   return (
-    <div className="w-[100%] text-[13px] text-center my-8 rounded-lg bg-[#F9FAFC] py-4 pl-2">
-      <table className="w-full border-collapse rounded-lg overflow-hidden ">
+    <div className="w-full mt-8 mb-12 overflow-x-auto text-[13px] text-center my-8 rounded-lg bg-[#F9FAFC] py-4 pl-2">
+      <table className=" w-full min-w-[700px] table-auto border-collapse rounded-lg">
         <thead>
           <tr className="text-primary text-[14px] font-semibold">
             <th>{t("paymentRevenue.Date")}</th>

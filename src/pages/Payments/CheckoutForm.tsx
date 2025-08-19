@@ -27,8 +27,9 @@ export default function CheckoutForm({}: CheckoutFormProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const token = localStorage.getItem("auth_token")
+  // const token = "60|vwpGRkzydBRZ40ifZfED597E61Ul6t1hckz13ntcc207d037"
 
-
+console.log("token",token)
   useEffect(() => {
     axios
       .post(
@@ -72,13 +73,13 @@ export default function CheckoutForm({}: CheckoutFormProps) {
       if (result.error) {
         setMessage(result.error.message ?? "An error occurred");
       } else if (result.setupIntent) {
-        const paymentMethodId = result.setupIntent.id;
-        console.log("Payment Method ID:", paymentMethodId);
+        const paymentMethod = result.setupIntent.payment_method;
+        console.log("Payment Method :", paymentMethod);
 
         await axios.post(
           "http://round5-byway.huma-volve.com/api/payment-methods",
           {
-            payment_method: paymentMethodId,
+            payment_method: paymentMethod,
           },
           {
             headers: {
