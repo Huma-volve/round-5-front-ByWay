@@ -8,8 +8,6 @@ import USER_PROFILE from "@/data/userProfile";
 import UserProfilePage from "@/pages/profile/UserProfilePage";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
 
-
-
 // Course Pages
 
 import CoursesPage from "@/pages/Courses/CoursesPage";
@@ -48,7 +46,6 @@ import ProtectedRoute from "./ProtectedRoute";
 
 import PaymentRevenue from "@/pages/AdminDashboard/payment & revenue/PaymentRevenue";
 
-
 import DashboardLayout from "@/components/Layouts/DashboardLayout";
 
 // Admin
@@ -66,6 +63,11 @@ import PaymethodPage from "../pages/Payments/PaymethodPage";
 import PayHistoryPage from "../pages/Payments/PayHistoryPage";
 import CheckoutPage from "@/pages/Payments/CheckoutPage";
 import ShoppingCartPage from "../pages/cart/ShoppingCartPage";
+
+
+import AdminCoursesPage from "@/components/AdminDashboard/AdminCoursesPage/AdminCoursesPage";
+import EditCourse from "@/components/AdminDashboard/EditCourse/EditCourse";
+
 
 export default function AppRoutes() {
   const role = localStorage.getItem("role");
@@ -114,7 +116,7 @@ export default function AppRoutes() {
 
           {/* Instructor Section */}
           <Route
-            path="/instructor-details/:instructorId"
+            path="/:instructorId/instructor-details"
             element={<InstructorDetails />}
           />
 
@@ -198,7 +200,15 @@ export default function AppRoutes() {
               path="user-manage/:userId"
               element={<UserManagementDetailes />}
             />
-        </Route>
+
+            <Route path="AdminCoursesPage" element={<AdminCoursesPage />} />
+            <Route path="EditCourse" element={<EditCourse />} />
+            <Route
+              path="course-details/:courseId"
+              element={<InstructorCourseDetails />}
+            />
+            <Route path="payment-revenue" element={<PaymentRevenue />} />
+          </Route>
 
       </Routes>
     </Router>
