@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { X, Plus, Loader2, AlertCircle } from "lucide-react";
 
 import {
@@ -21,17 +21,14 @@ function AdminCategories() {
   const { mutate: deleteCategory, isPending: isDeleting } = useDeleteCategory();
 
   // Local state management
-  const [categories, setCategories] = useState(storedCategories || []);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [tempName, setTempName] = useState("");
   const [newCategoryName, setNewCategoryName] = useState("");
 
-  // Sync local state with fetched data
-  // useEffect(() => {
-  //   if (storedCategories) {
-  //     setCategories(storedCategories);
-  //   }
-  // }, [storedCategories]);
+  // Initialize categories from server data - no useEffect needed
+  // React Query handles the data synchronization automatically
+  const displayCategories = storedCategories || categories;
 
   const startEditing = (cat: Category) => {
     setEditingId(cat.id);
@@ -45,27 +42,25 @@ function AdminCategories() {
     }
 
     try {
-      await updateCategory(
+      updateCategory(
         { id, name: tempName.trim() },
         {
           onSuccess: () => {
-            // Optimistically update local state
-            setCategories(prev => 
-              prev.map(cat => 
-                cat.id === id ? { ...cat, name: tempName.trim() } : cat
-              )
-            );
             setEditingId(null);
             setTempName("");
           },
           onError: (error) => {
             console.error("Failed to update category:", error);
-            // Could add toast notification here
+            // Reset temp name on error
+            setTempName("");
+            setEditingId(null);
           }
         }
       );
     } catch (error) {
       console.error("Update failed:", error);
+      setTempName("");
+      setEditingId(null);
     }
   };
 
@@ -79,10 +74,8 @@ function AdminCategories() {
     if (!name) return;
 
     try {
-      await addCategory(name, {
-        onSuccess: (newCategory) => {
-          // Optimistically add to local state
-          setCategories(prev => [...prev, newCategory]);
+      addCategory(name, {
+        onSuccess: () => {
           setNewCategoryName("");
         },
         onError: (error) => {
@@ -100,10 +93,9 @@ function AdminCategories() {
     }
 
     try {
-      await deleteCategory(id, {
+      deleteCategory(id, {
         onSuccess: () => {
-          // Optimistically remove from local state
-          setCategories(prev => prev.filter(cat => cat.id !== id));
+          // React Query will automatically update the UI
         },
         onError: (error) => {
           console.error("Failed to delete category:", error);
@@ -183,7 +175,7 @@ function AdminCategories() {
 
       {/* Category Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 mb-4">
-        {categories.map((cat: Category) => (
+        {displayCategories.map((cat: Category) => (
           <div key={cat.id} className="group relative">
             <div
               className={`
@@ -261,12 +253,12 @@ function AdminCategories() {
       <div className="w-1/4 bg-gray-50 rounded-md p-2">
         <div className="flex items-center justify-between text-xs text-gray-600">
           <span>Total</span>
-          <span className="font-medium text-gray-900">{categories.length}</span>
+          <span className="font-medium text-gray-900">{displayCategories.length}</span>
         </div>
       </div>
 
       {/* Empty state */}
-      {categories.length === 0 && (
+      {displayCategories.length === 0 && !isLoading && (
         <div className="text-center py-8 text-gray-500">
           <p className="text-sm">No categories yet. Add your first one above!</p>
         </div>
