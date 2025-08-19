@@ -8,8 +8,6 @@ import USER_PROFILE from "@/data/userProfile";
 import UserProfilePage from "@/pages/profile/UserProfilePage";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
 
-
-
 // Course Pages
 
 import CoursesPage from "@/pages/Courses/CoursesPage";
@@ -48,7 +46,6 @@ import ProtectedRoute from "./ProtectedRoute";
 
 import PaymentRevenue from "@/pages/AdminDashboard/payment & revenue/PaymentRevenue";
 
-
 import DashboardLayout from "@/components/Layouts/DashboardLayout";
 
 // Admin
@@ -81,10 +78,6 @@ export default function AppRoutes() {
   return (
     <Router>
       <Routes>
-        
- 
-
-     
         {/* Protected Routes */}
         <Route
           element={
@@ -93,7 +86,6 @@ export default function AppRoutes() {
             </ProtectedRoute>
           }
         >
-           
           {/* Home */}
           {/* <Route path="/" element={<Home />} /> */}
           {HomeRoute}
@@ -121,7 +113,7 @@ export default function AppRoutes() {
 
           {/* Instructor Section */}
           <Route
-            path="/instructor-details/:instructorId"
+            path="/:instructorId/instructor-details"
             element={<InstructorDetails />}
           />
 
@@ -196,10 +188,6 @@ export default function AppRoutes() {
 
         {/* admin dashboard Routes */}
 
-        <Route element={<DashboardLayout />}>
-
-          <Route path="payment-revenue" element={<PaymentRevenue />} />
-
           <Route path="/admin" element={<DashboardLayout />}>
             <Route index element={<AdminDashboard />} />
             <Route path="analytics" element={<div>Analytics</div>} />
@@ -208,17 +196,14 @@ export default function AppRoutes() {
               path="user-manage/:userId"
               element={<UserManagementDetailes />}
             />
+            <Route path="AdminCoursesPage" element={<AdminCoursesPage />} />
+            <Route path="EditCourse" element={<EditCourse />} />
             <Route
-            path="AdminCoursesPage"
-            element={<AdminCoursesPage/>} />
- <Route
-            path="EditCourse"
-            element={<EditCourse/>}/>
-       <Route
               path="course-details/:courseId"
-              element={<InstructorCourseDetails />} />
+              element={<InstructorCourseDetails />}
+            />
+            <Route path="payment-revenue" element={<PaymentRevenue />} />
           </Route>
-        </Route>
       </Routes>
     </Router>
   );
