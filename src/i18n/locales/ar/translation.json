@@ -220,6 +220,7 @@
       "fileSizeVideoError": "حجم الملف يجب أن يكون أقل من 500MB"
     },
     "courseManagement": {
+      "price": "السعر",
       "title": "إدارة الدورة",
       "courseDetails": "تفاصيل الدورة",
       "description": "إدارة محتوى دورتك والإعدادات",

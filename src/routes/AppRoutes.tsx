@@ -196,14 +196,14 @@ export default function AppRoutes() {
 
         {/* admin dashboard Routes */}
 
-        <Route element={<DashboardLayout />}>
+   
 
-          <Route path="payment-revenue" element={<PaymentRevenue />} />
-
+      
           <Route path="/admin" element={<DashboardLayout />}>
             <Route index element={<AdminDashboard />} />
             <Route path="analytics" element={<div>Analytics</div>} />
-            <Route path="user-manage" element={<UserManagementPage />} />
+                <Route path="payment-revenue" element={<PaymentRevenue />} />
+ <Route path="user-manage" element={<UserManagementPage />} />
             <Route
               path="user-manage/:userId"
               element={<UserManagementDetailes />}
@@ -218,7 +218,7 @@ export default function AppRoutes() {
               path="course-details/:courseId"
               element={<InstructorCourseDetails />} />
           </Route>
-        </Route>
+       
       </Routes>
     </Router>
   );

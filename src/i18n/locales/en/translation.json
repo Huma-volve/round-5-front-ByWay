@@ -222,7 +222,7 @@
       "courseDetails": "Course Details",
       "description": "Manage your course content and settings",
        "coursesManagementDescription": "View, track, and manage all published and pending courses on the platform",
-      
+      "price": "Price",
       "category": "Category",
       "status": "Status",
   "selectStatus": "Select status",

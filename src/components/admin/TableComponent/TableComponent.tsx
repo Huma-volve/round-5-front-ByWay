@@ -82,7 +82,7 @@ export default function TableComponent({ courses ,deleteCourse }: TableProps) {
                     {t('instructor.courseManagement.viewCourse')}
                 </Link ></DropdownMenuLabel>
     <DropdownMenuSeparator />
-    <DropdownMenuItem><Link to='/admin/EditCourse'  className="p-0 h-auto text-yellow-600">
+    <DropdownMenuItem><Link to={`/admin/EditCourse/${course.id}`}  className="p-0 h-auto text-yellow-600">
                     {t('instructor.courseManagement.EditCourse')}
                 </Link ></DropdownMenuItem>
     <DropdownMenuItem> <button onClick={() => deleteCourse(course.id)} className="p-0 h-auto text-danger">
