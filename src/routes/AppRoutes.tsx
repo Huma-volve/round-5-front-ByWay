@@ -8,17 +8,14 @@ import USER_PROFILE from "@/data/userProfile";
 import UserProfilePage from "@/pages/profile/UserProfilePage";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
 
-
-
 // Course Pages
-
 import CoursesPage from "@/pages/Courses/CoursesPage";
-
 import CourseDetails from "@/components/courses/CourseDetails";
-import MyCourses from "@/pages/Courses/MyCourses/MyCourses";
-import InstructorCourseDetails from "@/pages/Courses/CourseDetails/InstructorCourseDetails";
 import LearnerMyCourses from "@/pages/Courses/MyCourses/LearnerMyCourses";
 import LearnerCourseDetails from "@/pages/Courses/CourseDetails/LearnerCourseDetailes";
+import MyCourses from "@/pages/Courses/MyCourses/MyCourses";
+import InstructorCourseDetails from "@/pages/Courses/CourseDetails/InstructorCourseDetails";
+
 
 // Instructor Pages
 import Instructor from "@/pages/instructor/Instructor";
@@ -48,7 +45,6 @@ import ProtectedRoute from "./ProtectedRoute";
 
 import PaymentRevenue from "@/pages/AdminDashboard/payment & revenue/PaymentRevenue";
 
-
 import DashboardLayout from "@/components/Layouts/DashboardLayout";
 
 // Admin
@@ -66,14 +62,19 @@ import PaymethodPage from "../pages/Payments/PaymethodPage";
 import PayHistoryPage from "../pages/Payments/PayHistoryPage";
 import CheckoutPage from "@/pages/Payments/CheckoutPage";
 import ShoppingCartPage from "../pages/cart/ShoppingCartPage";
+import AdminSettings from "@/pages/AdminDashboard/Settings/AdminSettings";
+
 import AdminCoursesPage from "@/components/AdminDashboard/AdminCoursesPage/AdminCoursesPage";
 import EditCourse from "@/components/AdminDashboard/EditCourse/EditCourse";
+import AdminProtectedRoute from "./AdminProtectedRoute";
+import AuthProtectedRoute from "./AuthProtectedRoute";
+import ReviewsAndRatings from "@/pages/AdminDashboard/Reviews&Ratings/ReviewsAndRatings";
 
 export default function AppRoutes() {
   const role = localStorage.getItem("role");
   const HomeRoute =
     role === "learner" ? (
-      <Route path="/" element={<CoursesPage />} />
+      <Route path="/" element={<CoursesPage/>} />
     ) : (
       <Route path="/" element={<Instructor />} />
     );
@@ -81,10 +82,6 @@ export default function AppRoutes() {
   return (
     <Router>
       <Routes>
-        
- 
-
-     
         {/* Protected Routes */}
         <Route
           element={
@@ -93,7 +90,6 @@ export default function AppRoutes() {
             </ProtectedRoute>
           }
         >
-           
           {/* Home */}
           {/* <Route path="/" element={<Home />} /> */}
           {HomeRoute}
@@ -115,13 +111,13 @@ export default function AppRoutes() {
           </Route>
 
           {/* Learner Course Management */}
-          <Route path="/learner-myCourses" element={<LearnerMyCourses />}>
+          <Route path="/learner-myCourses" element={<LearnerMyCourses/>}>
             <Route path=":learnerCourseId" element={<LearnerCourseDetails />} />
           </Route>
 
           {/* Instructor Section */}
           <Route
-            path="/instructor-details/:instructorId"
+            path="/:instructorId/instructor-details"
             element={<InstructorDetails />}
           />
 
@@ -186,7 +182,13 @@ export default function AppRoutes() {
         </Route>
 
         {/* Public Authentication Routes */}
-        <Route element={<AuthLayout />}>
+        <Route
+          element={
+            <AuthProtectedRoute>
+              <AuthLayout />
+            </AuthProtectedRoute>
+          }
+        >
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgot" element={<ForgotForm />} />
@@ -196,29 +198,35 @@ export default function AppRoutes() {
 
         {/* admin dashboard Routes */}
 
-   
+        <Route
+          path="/admin"
+          element={
+            <AdminProtectedRoute>
+              <DashboardLayout />
+            </AdminProtectedRoute>
+          }
+        >
+          <Route index element={<AdminDashboard />} />
+          <Route path="payment-revenue" element={<PaymentRevenue />} />
+          <Route path="analytics" element={<div>Analytics</div>} />
+          <Route path="user-manage" element={<UserManagementPage />} />
+          <Route
+            path="user-manage/:userId"
+            element={<UserManagementDetailes />}
+          />
 
-      
-          <Route path="/admin" element={<DashboardLayout />}>
-            <Route index element={<AdminDashboard />} />
-            <Route path="analytics" element={<div>Analytics</div>} />
-                <Route path="payment-revenue" element={<PaymentRevenue />} />
- <Route path="user-manage" element={<UserManagementPage />} />
-            <Route
-              path="user-manage/:userId"
-              element={<UserManagementDetailes />}
-            />
-            <Route
-            path="AdminCoursesPage"
-            element={<AdminCoursesPage/>} />
- <Route
-            path="EditCourse"
-            element={<EditCourse/>}/>
-       <Route
-              path="course-details/:courseId"
-              element={<InstructorCourseDetails />} />
-          </Route>
-       
+          <Route path="AdminCoursesPage" element={<AdminCoursesPage />} />
+          <Route path="EditCourse" element={<EditCourse />} />
+          <Route
+            path="course-details/:courseId"
+            element={<InstructorCourseDetails />}
+          />
+          <Route path="payment-revenue" element={<PaymentRevenue />} />
+          <Route path="settings" element={<AdminSettings/>} />
+          <Route path="analytics" element={<div>Analytics</div>} />
+          <Route path="reviews-ratings" element={<ReviewsAndRatings />} />
+
+        </Route>
       </Routes>
     </Router>
   );
