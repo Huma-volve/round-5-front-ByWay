@@ -69,6 +69,7 @@ export default function AppRoutes() {
       <Route path="/" element={<Instructor />} />
     );
 
+
   return (
     <Router>
       <Routes>
