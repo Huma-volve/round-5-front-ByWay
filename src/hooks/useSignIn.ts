@@ -19,7 +19,11 @@ export function useSignIn() {
       localStorage.setItem("role", data.data.user.role);
 
       toast.success(data.message);
-      navigate("/");
+      if( data.data.user.role === "admin" ) {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
     },
     onError: (error: any) => {
       toast.error(error.response.data.message);
