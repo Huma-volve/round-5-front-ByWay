@@ -63,8 +63,11 @@ import PaymethodPage from "../pages/Payments/PaymethodPage";
 import PayHistoryPage from "../pages/Payments/PayHistoryPage";
 import CheckoutPage from "@/pages/Payments/CheckoutPage";
 import ShoppingCartPage from "../pages/cart/ShoppingCartPage";
+
+
 import AdminCoursesPage from "@/components/AdminDashboard/AdminCoursesPage/AdminCoursesPage";
 import EditCourse from "@/components/AdminDashboard/EditCourse/EditCourse";
+
 
 export default function AppRoutes() {
   const role = localStorage.getItem("role");
@@ -190,12 +193,14 @@ export default function AppRoutes() {
 
           <Route path="/admin" element={<DashboardLayout />}>
             <Route index element={<AdminDashboard />} />
+          <Route path="payment-revenue" element={<PaymentRevenue />} />
             <Route path="analytics" element={<div>Analytics</div>} />
             <Route path="user-manage" element={<UserManagementPage />} />
             <Route
               path="user-manage/:userId"
               element={<UserManagementDetailes />}
             />
+
             <Route path="AdminCoursesPage" element={<AdminCoursesPage />} />
             <Route path="EditCourse" element={<EditCourse />} />
             <Route
@@ -204,6 +209,7 @@ export default function AppRoutes() {
             />
             <Route path="payment-revenue" element={<PaymentRevenue />} />
           </Route>
+
       </Routes>
     </Router>
   );
