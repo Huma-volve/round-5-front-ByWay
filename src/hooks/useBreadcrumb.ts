@@ -74,9 +74,10 @@ export const useBreadcrumb = () => {
       }
       if (
         previousSegments.includes("instructor-details") &&
-        segment.match(/^[a-zA-Z0-9-_]+$/)
+        segment.match(/^\d+$/)
       ) {
-        return "";
+        console.log("instructor "+ previousSegments);
+        return "instructor-id";
       }
 
       // Detect learner course ID in `/learner-myCourses/{id}`
@@ -113,6 +114,10 @@ export const useBreadcrumb = () => {
         // translationKey = "common.coursedetailes";
         fallbackLabel = courseName ?? "" ;
       }
+      if (processedSegment === "instructor-id") {
+        // translationKey = "";
+        fallbackLabel = "" ;
+      }
 
       if (buildPath.includes("/instructor/courses/") && !translationKey) {
         if (buildPath.endsWith("/manage")) {
@@ -134,9 +139,10 @@ export const useBreadcrumb = () => {
         ? t(translationKey)
         : fallbackLabel
             .replace("-", " ")
-            .replace(/\b\w/g, (l) => l.toUpperCase());
+          .replace(/\b\w/g, (l) => l.toUpperCase());
+      console.log(label);
 
-      if (label) {
+      if (label!="") {
         breadcrumbs.push({
           label,
           path: buildPath,
