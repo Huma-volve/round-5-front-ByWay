@@ -9,14 +9,13 @@ import UserProfilePage from "@/pages/profile/UserProfilePage";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
 
 // Course Pages
-
-import CoursesPage from "@/pages/Courses/CoursesPage";
+import CoursesPage from "../pages/courses/CoursesPage";
 
 import CourseDetails from "@/components/courses/CourseDetails";
-import MyCourses from "@/pages/Courses/MyCourses/MyCourses";
-import InstructorCourseDetails from "@/pages/Courses/CourseDetails/InstructorCourseDetails";
-import LearnerMyCourses from "@/pages/Courses/MyCourses/LearnerMyCourses";
-import LearnerCourseDetails from "@/pages/Courses/CourseDetails/LearnerCourseDetailes";
+import MyCourses from "@/pages/courses/MyCourses/MyCourses";
+import InstructorCourseDetails from "@/pages/courses/CourseDetails/InstructorCourseDetails";
+import LearnerMyCourses from "@/pages/courses/MyCourses/LearnerMyCourses";
+import LearnerCourseDetails from "@/pages/courses/CourseDetails/LearnerCourseDetailes";
 
 // Instructor Pages
 import Instructor from "@/pages/instructor/Instructor";
@@ -63,6 +62,7 @@ import PaymethodPage from "../pages/Payments/PaymethodPage";
 import PayHistoryPage from "../pages/Payments/PayHistoryPage";
 import CheckoutPage from "@/pages/Payments/CheckoutPage";
 import ShoppingCartPage from "../pages/cart/ShoppingCartPage";
+import AdminSettings from "@/pages/AdminDashboard/Settings/AdminSettings";
 
 import AdminCoursesPage from "@/components/AdminDashboard/AdminCoursesPage/AdminCoursesPage";
 import EditCourse from "@/components/AdminDashboard/EditCourse/EditCourse";
@@ -221,6 +221,9 @@ export default function AppRoutes() {
             element={<InstructorCourseDetails />}
           />
           <Route path="payment-revenue" element={<PaymentRevenue />} />
+          <Route path="settings" element={<AdminSettings/>} />
+          <Route path="analytics" element={<div>Analytics</div>} />
+
         </Route>
       </Routes>
     </Router>

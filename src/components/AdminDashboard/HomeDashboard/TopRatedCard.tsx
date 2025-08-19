@@ -13,9 +13,7 @@ export default function TopRatedCard({ course }: { course: TopRatedCourse }) {
       </p>
       <p className="text-sm text-gray-700 flex items-center gap-1">
         <Star className="inline-block size-5 text-yellow-500" />
-        <span>{course.average_rating.toFixed(1)}</span>
-        <span className="">
-          ({course.reviews_count} {t("admin.home.reviews")})
+        <span>{course.average_rating.toFixed(1)} {t("instructor.reviews")}
         </span>
       </p>
     </div>
