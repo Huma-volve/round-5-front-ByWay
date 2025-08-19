@@ -64,10 +64,10 @@ import PayHistoryPage from "../pages/Payments/PayHistoryPage";
 import CheckoutPage from "@/pages/Payments/CheckoutPage";
 import ShoppingCartPage from "../pages/cart/ShoppingCartPage";
 
-
 import AdminCoursesPage from "@/components/AdminDashboard/AdminCoursesPage/AdminCoursesPage";
 import EditCourse from "@/components/AdminDashboard/EditCourse/EditCourse";
-
+import AdminProtectedRoute from "./AdminProtectedRoute";
+import AuthProtectedRoute from "./AuthProtectedRoute";
 
 export default function AppRoutes() {
   const role = localStorage.getItem("role");
@@ -181,7 +181,13 @@ export default function AppRoutes() {
         </Route>
 
         {/* Public Authentication Routes */}
-        <Route element={<AuthLayout />}>
+        <Route
+          element={
+            <AuthProtectedRoute>
+              <AuthLayout />
+            </AuthProtectedRoute>
+          }
+        >
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgot" element={<ForgotForm />} />
@@ -191,25 +197,31 @@ export default function AppRoutes() {
 
         {/* admin dashboard Routes */}
 
-          <Route path="/admin" element={<DashboardLayout />}>
-            <Route index element={<AdminDashboard />} />
+        <Route
+          path="/admin"
+          element={
+            <AdminProtectedRoute>
+              <DashboardLayout />
+            </AdminProtectedRoute>
+          }
+        >
+          <Route index element={<AdminDashboard />} />
           <Route path="payment-revenue" element={<PaymentRevenue />} />
-            <Route path="analytics" element={<div>Analytics</div>} />
-            <Route path="user-manage" element={<UserManagementPage />} />
-            <Route
-              path="user-manage/:userId"
-              element={<UserManagementDetailes />}
-            />
+          <Route path="analytics" element={<div>Analytics</div>} />
+          <Route path="user-manage" element={<UserManagementPage />} />
+          <Route
+            path="user-manage/:userId"
+            element={<UserManagementDetailes />}
+          />
 
-            <Route path="AdminCoursesPage" element={<AdminCoursesPage />} />
-            <Route path="EditCourse" element={<EditCourse />} />
-            <Route
-              path="course-details/:courseId"
-              element={<InstructorCourseDetails />}
-            />
-            <Route path="payment-revenue" element={<PaymentRevenue />} />
-          </Route>
-
+          <Route path="AdminCoursesPage" element={<AdminCoursesPage />} />
+          <Route path="EditCourse" element={<EditCourse />} />
+          <Route
+            path="course-details/:courseId"
+            element={<InstructorCourseDetails />}
+          />
+          <Route path="payment-revenue" element={<PaymentRevenue />} />
+        </Route>
       </Routes>
     </Router>
   );

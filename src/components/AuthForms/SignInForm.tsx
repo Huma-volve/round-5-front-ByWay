@@ -27,7 +27,7 @@ function SignInForm() {
     password: yup
       .string()
       .required(t("auth.thisFieldRequired"))
-      .matches(regexes.password, t("auth.enterValidPassword")),
+      // .matches(regexes.password, t("auth.enterValidPassword")),
   });
 
   const formik = useFormik({
