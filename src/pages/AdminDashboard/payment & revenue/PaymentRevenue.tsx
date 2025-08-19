@@ -10,22 +10,22 @@ function PaymentRevenue() {
             <p className="text-[14px] text-gray-500 ">
                 {t("paymentRevenue.Track")}
             </p>
-            <div className="flex flex-wrap gap-4 items-center my-8">
-                <div className="flex flex-col gap-2 font-medium text-[16px] border-2 border-border  text-center py-2 px-4 rounded-[10px] ">
+            <div className="flex  flex-wrap gap-2 items-center my-3 w-[100%]">
+                <div className="h-24 w-[48%] lg:h-16 lg:w-40 flex flex-col gap-1 font-medium text-[16px] border-2 border-border   text-center p-2  rounded-[10px] ">
                     ${EARN_RECORDS.platform}
-                    <span className="text-[14px] font-normal text-gray-700">{t("paymentRevenue.Platform Earnings")}</span>
+                    <span className="text-[13px] font-normal text-gray-700">{t("paymentRevenue.Platform Earnings")}</span>
                 </div>
-                <div className="flex flex-col gap-2 font-medium text-[16px] border-2 border-border text-center py-2 px-4 rounded-[10px] ">
+                <div className="h-24 w-[48%] lg:h-16 lg:w-40 flex flex-col gap-1 font-medium text-[16px] border-2 border-border text-center p-2  rounded-[10px] ">
                     ${EARN_RECORDS.instructor}
-                    <span className="text-[14px] font-normal text-gray-700">{t("paymentRevenue.Instructor Earnings")}</span>
+                    <span className="text-[13px] font-normal text-gray-700">{t("paymentRevenue.Instructor Earnings")}</span>
                 </div>
-                <div className="flex flex-col gap-2 font-medium text-[16px] border-2 border-border text-center py-2 px-4 rounded-[10px] ">
+                <div className="h-24 w-[48%] lg:h-16 lg:w-40 flex flex-col gap-1 font-medium text-[16px] border-2 border-border text-center p-2  rounded-[10px] ">
                     {EARN_RECORDS.total}
-                    <span className="text-[14px] font-normal text-gray-700"> {t("paymentRevenue.Total Withdrow")}</span>
+                    <span className="text-[13px] font-normal text-gray-700"> {t("paymentRevenue.Total Withdrow")}</span>
                 </div>
-                <div className="flex flex-col gap-2 font-medium text-[16px] border-2 border-border  text-center py-2 px-4 rounded-[10px] ">
+                <div className="h-24 w-[48%] lg:h-16 lg:w-40 flex flex-col gap-1 font-medium text-[16px] border-2 border-border  text-center p-2  rounded-[10px] ">
                     ${EARN_RECORDS.student}
-                    <span className="text-[14px] font-normal text-gray-700">{t("paymentRevenue.Student Payments")}</span>
+                    <span className="text-[13px] font-normal text-gray-700">{t("paymentRevenue.Student Payments")}</span>
                 </div>
             </div>
             <Record />
