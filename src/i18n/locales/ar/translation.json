@@ -457,7 +457,11 @@
     "Confirm Delete": "تأكيد الحذف",
     "Are you sure you want to delete": "هل أنت متأكد أنك تريد حذف",
     "Cancel": "إلغاء",
-    "Delete": "حذف"
+    "Delete": "حذف",
+    "Deleting..." : "يتم الحذف...",
+    "Error loading users" : "حدث خطأ اثناء التحميل",
+    "Unknown error occurred" : "يوجد خطأ غير محدد",
+    "No users found" : "لا يوجد مستخدم"
   },
   "adminUserDetails": {
     "User Profile": "ملف المستخدم",

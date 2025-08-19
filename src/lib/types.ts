@@ -23,3 +23,24 @@ export interface OTPFormType {
   code: string;
   user_id: string;
 }
+export interface UserDashboard {
+  id: number;
+  name: string ;
+  email: string;
+  role: string;
+  status: string;
+  created_at: string;
+ }
+export interface UserProfileDashboard{
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+  status: string;
+  nationality: string;
+  created_at: string;
+  course_count? : number;
+  bio? : string;
+  total_earnings? : string;
+  average_rating? : number;
+}              

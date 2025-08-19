@@ -476,7 +476,11 @@
     "Confirm Delete": "Confirm Delete",
     "Are you sure you want to delete": "Are you sure you want to delete",
     "Cancel": "Cancel",
-    "Delete": "Delete"
+    "Delete": "Delete",
+    "Deleting..." : "Deleting...",
+    "Error loading users" : "Error loading users",
+    "Unknown error occurred" : "Unknown error occurred",
+    "No users found" : "No users found"
   },
   "adminUserDetails": {
     "User Profile": "User Profile",

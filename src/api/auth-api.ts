@@ -4,6 +4,8 @@ import type {
   OTPFormType,
   SignInFormType,
   SignUpFormType,
+  UserDashboard,
+  UserProfileDashboard,
 } from "@/lib/types";
 import { type NavigateFunction } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -40,3 +42,33 @@ export async function verifyOTP(formData: OTPFormType) {
   return data;
 
 }
+// User Management 
+export async function fetchUsersDashboard(): Promise<UserDashboard[]> {
+  const { data } = await axiosInstance.get<UserDashboard[]>("users", {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer 3|db1qQYFReI61WXDsStLp33heCephyyO9z4oPcR499f3133b5`,
+    },
+  });
+  return data;
+}
+
+export async function fetchUsersDashboardProfile(id:number): Promise<UserProfileDashboard> {
+  const { data } = await axiosInstance.get<UserProfileDashboard>(`users/${id}`, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer 3|db1qQYFReI61WXDsStLp33heCephyyO9z4oPcR499f3133b5`,
+    },
+  });
+  return data;
+}
+
+export async function deleteUserById(id: number): Promise<void> {
+  await axiosInstance.delete(`users/${id}` , {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer 3|db1qQYFReI61WXDsStLp33heCephyyO9z4oPcR499f3133b5`,
+    },
+  });
+}
+// End of User Management
