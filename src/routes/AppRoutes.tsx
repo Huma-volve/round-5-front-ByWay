@@ -66,7 +66,8 @@ import PaymethodPage from "../pages/Payments/PaymethodPage";
 import PayHistoryPage from "../pages/Payments/PayHistoryPage";
 import CheckoutPage from "@/pages/Payments/CheckoutPage";
 import ShoppingCartPage from "../pages/cart/ShoppingCartPage";
-
+import AdminCoursesPage from "@/components/AdminDashboard/AdminCoursesPage/AdminCoursesPage";
+import EditCourse from "@/components/AdminDashboard/EditCourse/EditCourse";
 
 export default function AppRoutes() {
   const role = localStorage.getItem("role");
@@ -80,6 +81,10 @@ export default function AppRoutes() {
   return (
     <Router>
       <Routes>
+        
+ 
+
+     
         {/* Protected Routes */}
         <Route
           element={
@@ -88,6 +93,7 @@ export default function AppRoutes() {
             </ProtectedRoute>
           }
         >
+           
           {/* Home */}
           {/* <Route path="/" element={<Home />} /> */}
           {HomeRoute}
@@ -202,6 +208,15 @@ export default function AppRoutes() {
               path="user-manage/:userId"
               element={<UserManagementDetailes />}
             />
+            <Route
+            path="AdminCoursesPage"
+            element={<AdminCoursesPage/>} />
+ <Route
+            path="EditCourse"
+            element={<EditCourse/>}/>
+       <Route
+              path="course-details/:courseId"
+              element={<InstructorCourseDetails />} />
           </Route>
         </Route>
       </Routes>

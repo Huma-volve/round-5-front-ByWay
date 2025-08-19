@@ -221,6 +221,30 @@
       "title": "Course Management",
       "courseDetails": "Course Details",
       "description": "Manage your course content and settings",
+       "coursesManagementDescription": "View, track, and manage all published and pending courses on the platform",
+      
+      "category": "Category",
+      "status": "Status",
+  "selectStatus": "Select status",
+  "published": "Published",
+  "draft": "Draft",
+  "pending": "Pending",
+  "View": "View",
+  "createdDate": "Created Date",
+  "saveChanges": "Save Changes",
+    "updateManageCourse": "Update and manage course information",
+  "basicInformation": "Basic Information",
+      "courseTittle": "Course Tittle",
+      "EditCourse": "Edit Course",
+       "viewCourse": "View Course",
+    "deleteCourse": "Delete Course",
+      "recentCourses": "A list of your recent courses",
+      "placeholders": {
+        "courseTittle": "Enter course title",
+        "instructor": "Instructor name",
+        "category": "Enter Category",
+        "status": "Select status"
+      },
       "actions": {
         "addLessons": {
           "title": "Add Lessons",

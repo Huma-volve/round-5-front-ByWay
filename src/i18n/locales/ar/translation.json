@@ -223,6 +223,22 @@
       "title": "إدارة الدورة",
       "courseDetails": "تفاصيل الدورة",
       "description": "إدارة محتوى دورتك والإعدادات",
+          "coursesManagementDescription": "عرض وتتبع وإدارة جميع الكورسات المنشورة والقيد الانتظار على المنصة",
+     "courseTittle": "عنوان الدورة",
+     "category": "التصنيف",
+      "EditCourse": "تعديل الدورة",
+       "viewCourse": "عرض الدورة",
+    "deleteCourse": "حذف الدورة",
+     "status": "الحالة",
+  "selectStatus": "اختر الحالة",
+  "published": "منشور",
+  "draft": "مسودة",
+  "pending": "قيد الانتظار",
+  "createdDate": "تاريخ الإنشاء",
+  "saveChanges": "حفظ التغييرات",
+   "updateManageCourse": "تحديث وإدارة معلومات الكورس",
+  "basicInformation": "المعلومات الأساسية",
+
       "actions": {
         "addLessons": {
           "title": "إضافة دروس",
