@@ -1,6 +1,6 @@
 import TopRatedCard from "./TopRatedCard";
-import { TOP_RATED_COURSES } from "@/data/dashboardHomeData";
-import type { DashboardTopRatedCourses } from "@/data/dashboardHomeData";
+import { TOP_RATED_COURSES } from "@/data/AdminDashboard/dashboardHomeData";
+import type { DashboardTopRatedCourses } from "@/data/AdminDashboard/dashboardHomeData";
 import { useTranslation } from "react-i18next";
 
 export default function TopRatedCourses() {

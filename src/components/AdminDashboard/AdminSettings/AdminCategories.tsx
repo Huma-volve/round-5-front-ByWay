@@ -21,17 +21,17 @@ function AdminCategories() {
   const { mutate: deleteCategory, isPending: isDeleting } = useDeleteCategory();
 
   // Local state management
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState(storedCategories || []);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [tempName, setTempName] = useState("");
   const [newCategoryName, setNewCategoryName] = useState("");
 
   // Sync local state with fetched data
-  useEffect(() => {
-    if (storedCategories) {
-      setCategories(storedCategories);
-    }
-  }, [storedCategories]);
+  // useEffect(() => {
+  //   if (storedCategories) {
+  //     setCategories(storedCategories);
+  //   }
+  // }, [storedCategories]);
 
   const startEditing = (cat: Category) => {
     setEditingId(cat.id);

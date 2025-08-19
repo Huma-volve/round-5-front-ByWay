@@ -1,10 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import StarIcon from "../../assets/images/icons/StarIcon.svg";
 import { courses } from "../../data/BrowseCourses";
 import { useTranslation } from "react-i18next";
 
 function CardCourse() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const handleInstructorClick = (e: React.MouseEvent, instructorId: string) => {
+    e.preventDefault(); // Prevent the card link from triggering
+    e.stopPropagation(); // Stop event bubbling
+    navigate(`/${instructorId}/instructor-details`);
+  };
 
   return (
     <>
@@ -23,9 +30,12 @@ function CardCourse() {
               <h5 className="font-[600] text-lg lg:text-lg xl:text-xl truncate">
                 {course.title}
               </h5>
-              <Link to="/instructor-details/1" className="text-sm my-2 text-[--secondary-dark] hover:text-blue-500">
+              <span
+                onClick={(e) => handleInstructorClick(e, "1")}
+                className="text-sm my-2 text-[--secondary-dark] hover:text-blue-500 cursor-pointer"
+              >
                 {t("common.by")} {course.instructor}
-              </Link>
+              </span>
               <div className="flex items-center">
                 <img src={StarIcon} alt="Ratings" />
                 <span className="lg:text-md text-sm font-[600] ml-2">

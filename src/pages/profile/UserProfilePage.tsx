@@ -1,5 +1,4 @@
 import { type userProfile } from "@/data/userProfile";
-import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import edit from "../../assets/images/icons/edit.svg";
@@ -9,13 +8,6 @@ type userType = {
 };
 const UserProfilePage: React.FC<userType> = ({ user }) => {
   const { t, i18n } = useTranslation();
-  useEffect(() => {
-    i18n.changeLanguage("ar");
-  }, []);
-  useEffect(() => {
-    const currentLang = i18n.language;
-    document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
-  }, [i18n.language]);
 
   return (
     <div className="container m-8 p-12  rounded-[10px] border-2  border-border">
@@ -31,9 +23,8 @@ const UserProfilePage: React.FC<userType> = ({ user }) => {
           src={edit}
           alt="edit"
           loading="lazy"
-          className={`w-8 h-8  curser-pointer bg-border  mt-[-20px]   py-2 rounded-full absolute ${
-            i18n.language === "ar" ? "left-16 lg:left-60" : "right-16 lg:right-60"
-          }`}
+          className={`w-8 h-8  curser-pointer bg-border  mt-[-20px]   py-2 rounded-full absolute ${i18n.language === "ar" ? "left-28 lg:left-60" : "right-24 lg:right-60"
+            }`}
         />
       </Link>
       <div className="flex gap-8 flex-wrap justify-center mt-[50px] text-secondary">

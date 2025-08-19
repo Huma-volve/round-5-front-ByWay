@@ -1,9 +1,9 @@
 import * as React from "react"
-import {
-  Eye,
-  UserRoundCog,
-  UserStar,
-} from "lucide-react"
+// import {
+//   Eye,
+//   UserRoundCog,
+//   UserStar,
+// } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
 import { NavUser } from "@/components/nav-user"
@@ -11,31 +11,31 @@ import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
-  SidebarHeader,
-  SidebarRail,
+  SidebarHeader
+  /*,SidebarRail,*/
 } from "@/components/ui/sidebar"
 import SidebarAppHeader from "./common/SidebarAppHeader"
 
 // This is sample data Team switch
-const data = {
-  teams: [
-    {
-      name: "Administrator",
-      logo: UserStar ,
-      plan: "All access",
-    },
-    {
-      name: "Editor.",
-      logo: UserRoundCog ,
-      plan: "Partial Access",
-    },
-    {
-      name: "Viewer.",
-      logo: Eye ,
-      plan: "No Access",
-    },
-  ],
-}
+// const data = {
+//   teams: [
+//     {
+//       name: "Administrator",
+//       logo: UserStar ,
+//       plan: "All access",
+//     },
+//     {
+//       name: "Editor.",
+//       logo: UserRoundCog ,
+//       plan: "Partial Access",
+//     },
+//     {
+//       name: "Viewer.",
+//       logo: Eye ,
+//       plan: "No Access",
+//     },
+//   ],
+// }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (

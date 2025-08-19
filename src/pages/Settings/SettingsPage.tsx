@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import Breadcrumb from "../../components/common/Breadcrumb";
 import { useBreadcrumb } from "../../hooks/useBreadcrumb";
-import arrow from "../../assets/images/icons/setting-arrow.png";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 

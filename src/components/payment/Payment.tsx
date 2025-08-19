@@ -1,14 +1,10 @@
-import { useEffect, useState } from "react";
+import { TOTAL_COST } from "@/data/totalCost";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 const Payment = () => {
-  const { t, i18n } = useTranslation();
-  useEffect(() => {
-    i18n.changeLanguage("ar");
-  }, []);
-  useEffect(() => {
-    const currentLang = i18n.language;
-    document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
-  }, [i18n.language]);
+  const { t } = useTranslation();
+
+ 
   const [selected, setSelected] = useState<string>("");
   return (
     <div className="m-8">
@@ -19,7 +15,7 @@ const Payment = () => {
       </h1>
       <h2 className="font-bold my-4 mx-4 text-[15px]">
         {t("cart.Price")}: <span className="text-success">
-          400 EGP
+          {TOTAL_COST.total}
         </span>
 
       </h2>

@@ -1,5 +1,5 @@
 import { type userProfile } from "@/data/userProfile";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -10,13 +10,6 @@ type userType = {
 const EditUserProfile: React.FC<userType> = ({ user }) => {
   const { t, i18n } = useTranslation();
   const [previewImage, setPreviewImage] = useState(user.image);
-  useEffect(() => {
-    i18n.changeLanguage("ar");
-  }, []);
-  useEffect(() => {
-    const currentLang = i18n.language;
-    document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
-  }, [i18n.language]);
 
   const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
