@@ -69,6 +69,7 @@ import EditCourse from "@/components/AdminDashboard/EditCourse/EditCourse";
 import AdminProtectedRoute from "./AdminProtectedRoute";
 import AuthProtectedRoute from "./AuthProtectedRoute";
 import ReviewsAndRatings from "@/pages/AdminDashboard/Reviews&Ratings/ReviewsAndRatings";
+import ReportsAnalytics from "@/components/AdminDashboard/Reports&Analytics/ReportsAnalytics";
 
 export default function AppRoutes() {
   const role = localStorage.getItem("role");
@@ -208,7 +209,6 @@ export default function AppRoutes() {
         >
           <Route index element={<AdminDashboard />} />
           <Route path="payment-revenue" element={<PaymentRevenue />} />
-          <Route path="analytics" element={<div>Analytics</div>} />
           <Route path="user-manage" element={<UserManagementPage />} />
           <Route
             path="user-manage/:userId"
@@ -223,7 +223,7 @@ export default function AppRoutes() {
           />
           <Route path="payment-revenue" element={<PaymentRevenue />} />
           <Route path="settings" element={<AdminSettings/>} />
-          <Route path="analytics" element={<div>Analytics</div>} />
+          <Route path="analytics" element={<ReportsAnalytics/>} />
           <Route path="reviews-ratings" element={<ReviewsAndRatings />} />
 
         </Route>

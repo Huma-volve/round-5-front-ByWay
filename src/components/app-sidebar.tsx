@@ -1,9 +1,4 @@
 import * as React from "react"
-// import {
-//   Eye,
-//   UserRoundCog,
-//   UserStar,
-// } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
 import { NavUser } from "@/components/nav-user"
@@ -12,7 +7,6 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader
-  /*,SidebarRail,*/
 } from "@/components/ui/sidebar"
 import SidebarAppHeader from "./common/SidebarAppHeader"
 
@@ -41,7 +35,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        {/* <TeamSwitcher teams={data.teams} /> */}
         <SidebarAppHeader variant="dark"/>
       </SidebarHeader>
       <SidebarContent className="">

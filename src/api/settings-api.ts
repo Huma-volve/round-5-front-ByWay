@@ -1,12 +1,6 @@
 import axiosInstance from "@/lib/axios-instance";
 
-interface Category {
-  id: number;
-  name: string;
-}
-
 interface AddCategoryResponse extends Category {}
-
 interface UpdateCategoryResponse extends Category {}
 
 
@@ -23,6 +17,12 @@ interface Settings {
   withdrawal: number;
 }
 
+interface Category {
+  id: number;
+  name: string;
+}
+
+
 // GET - Fetch settings
 export async function getSettings(): Promise<Settings> {
   try {
@@ -36,8 +36,10 @@ export async function getSettings(): Promise<Settings> {
 
 // PUT/PATCH - Update settings
 export async function updateSettings(settings: Partial<Settings>): Promise<Settings> {
+  console.log(settings);
   try {
-    const { data } = await axiosInstance.patch<ApiResponse<Settings>>("/settings", settings);
+    const { data } = await axiosInstance.put<ApiResponse<Settings>>("/settings", settings);
+    console.log(data.data);
     return data.data;
   } catch (error: any) {
     console.error("Error updating settings:", error);
@@ -54,8 +56,9 @@ export async function updateSettings(settings: Partial<Settings>): Promise<Setti
 // GET - Fetch all categories
 export async function getCategories(): Promise<Category[]> {
   try {
-    const { data } = await axiosInstance.get<Category[]>("/categories");
-    return data;
+    const { data } = await axiosInstance.get("/categories");
+    console.log(data.data);
+    return data.data;
   } catch (error) {
     console.error("Error fetching categories:", error);
     throw new Error("Failed to fetch categories");
@@ -93,16 +96,12 @@ export async function updateCategory(id: number, name: string): Promise<UpdateCa
     throw new Error("Category name is required");
   }
 
-  if (!id || id <= 0) {
-    throw new Error("Valid category ID is required");
-  }
-
   try {
-    const { data } = await axiosInstance.patch<UpdateCategoryResponse>(
+    const { data } = await axiosInstance.put(
       `/categories/${id}`, 
       { name: name.trim() }
     );
-    return data;
+    return data.data;
   } catch (error: any) {
     console.error("Error updating category:", error);
     
