@@ -529,12 +529,8 @@
     "Deleting..." : "Deleting...",
     "Error loading users" : "Error loading users",
     "Unknown error occurred" : "Unknown error occurred",
-<<<<<<< .merge_file_o5wdNy
-    "No users found" : "No users found"
-=======
     "No users found" : "No users found",
     "Loading" : "Loading..."
->>>>>>> .merge_file_7nG4ry
   },
   "adminUserDetails": {
     "User Profile": "User Profile",
