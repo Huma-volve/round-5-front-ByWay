@@ -529,7 +529,8 @@
     "Deleting..." : "Deleting...",
     "Error loading users" : "Error loading users",
     "Unknown error occurred" : "Unknown error occurred",
-    "No users found" : "No users found"
+    "No users found" : "No users found",
+    "Loading" : "Loading..."
   },
   "adminUserDetails": {
     "User Profile": "User Profile",
