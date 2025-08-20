@@ -500,11 +500,11 @@
     "Are you sure you want to delete": "هل أنت متأكد أنك تريد حذف",
     "Cancel": "إلغاء",
     "Delete": "حذف",
-    "Deleting..." : "يتم الحذف...",
-    "Error loading users" : "حدث خطأ اثناء التحميل",
-    "Unknown error occurred" : "يوجد خطأ غير محدد",
-    "No users found" : "لا يوجد مستخدم",
-    "Loading" : "تحميل..."
+    "Deleting...": "يتم الحذف...",
+    "Error loading users": "حدث خطأ اثناء التحميل",
+    "Unknown error occurred": "يوجد خطأ غير محدد",
+    "No users found": "لا يوجد مستخدم",
+    "Loading": "تحميل..."
   },
   "adminUserDetails": {
     "User Profile": "ملف المستخدم",
@@ -566,5 +566,15 @@
     "Are you sure you want to delete": "هل أنت متأكد أنك تريد حذف",
     "Cancel": "إلغاء",
     "Delete": "حذف"
+  },
+  "adminDetails": {
+    "Payment Details": "تفاصيل الدفع",
+    "Amount": "المبلغ",
+    "Payment Date": "تاريخ الدفع",
+    "Status": "الحالة",
+    "Method": "الطريقة",
+    "Student": "الطالب",
+    "Instructor": "المدرب",
+    "Course": "الدورة"
   }
 }

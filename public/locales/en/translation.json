@@ -592,5 +592,14 @@
     "Are you sure you want to delete": "Are you sure you want to delete",
     "Cancel": "Cancel",
     "Delete": "Delete"
+  },"adminDetails": {
+    "Payment Details": "Payment Details",
+    "Amount": "Amount",
+    "Payment Date": "Payment Date",
+    "Status": "Status",
+    "Method": "Method",
+    "Student": "Student",
+    "Instructor": "Instructor",
+    "Course": "Course"
   }
 }
