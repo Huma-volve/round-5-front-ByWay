@@ -60,6 +60,7 @@ export interface UserProfileDashboard{
   total_earnings? : string;
   average_rating? : number;
 }              
+
 export interface UserProfile{
   id: number;
   fname: string;
@@ -72,3 +73,14 @@ export interface UserProfile{
   youtube : number;
   linkedin : number;
 }              
+
+export interface ReviewsAndRatings {
+  id:number;
+  course: string;
+  reviewer: string;
+  rating: number;
+  comment: string;
+  date: string;
+  status: string;
+}
+
