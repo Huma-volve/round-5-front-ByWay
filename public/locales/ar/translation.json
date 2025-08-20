@@ -220,24 +220,25 @@
       "fileSizeVideoError": "حجم الملف يجب أن يكون أقل من 500MB"
     },
     "courseManagement": {
+      "price": "السعر",
       "title": "إدارة الدورة",
       "courseDetails": "تفاصيل الدورة",
       "description": "إدارة محتوى دورتك والإعدادات",
-          "coursesManagementDescription": "عرض وتتبع وإدارة جميع الكورسات المنشورة والقيد الانتظار على المنصة",
-     "courseTittle": "عنوان الدورة",
-     "category": "التصنيف",
+      "coursesManagementDescription": "عرض وتتبع وإدارة جميع الكورسات المنشورة والقيد الانتظار على المنصة",
+      "courseTittle": "عنوان الدورة",
+      "category": "التصنيف",
       "EditCourse": "تعديل الدورة",
-       "viewCourse": "عرض الدورة",
-    "deleteCourse": "حذف الدورة",
-     "status": "الحالة",
-  "selectStatus": "اختر الحالة",
-  "published": "منشور",
-  "draft": "مسودة",
-  "pending": "قيد الانتظار",
-  "createdDate": "تاريخ الإنشاء",
-  "saveChanges": "حفظ التغييرات",
-   "updateManageCourse": "تحديث وإدارة معلومات الكورس",
-  "basicInformation": "المعلومات الأساسية",
+      "viewCourse": "عرض الدورة",
+      "deleteCourse": "حذف الدورة",
+      "status": "الحالة",
+      "selectStatus": "اختر الحالة",
+      "published": "منشور",
+      "draft": "مسودة",
+      "pending": "قيد الانتظار",
+      "createdDate": "تاريخ الإنشاء",
+      "saveChanges": "حفظ التغييرات",
+      "updateManageCourse": "تحديث وإدارة معلومات الكورس",
+      "basicInformation": "المعلومات الأساسية",
 
       "actions": {
         "addLessons": {
@@ -473,7 +474,7 @@
     "approve withdrawal": "الموافقة على السحب",
     "reject request": "رفض الطلب",
     "No Payments Found": "لم يتم العثور على مدفوعات",
-    "View":"عرض",
+    "View": "عرض",
     "Payment & Revenue": "الدفع والإيرادات",
     "Track": "تتبع جميع أرباح المنصة، ومدفوعات المدربين، ومدفوعات الطلاب.",
     "Platform Earnings": "أرباح المنصة",
@@ -545,7 +546,25 @@
       },
       "activityDate": "{{date}} في {{time}}"
     }
-
+  },
+  "adminReviews": {
+    "reviews_ratings": "المراجعات والتقييمات",
+    "manage_feedback": "إدارة ملاحظات الطلاب ومتابعة تقييمات الدورات.",
+    "course_name": "اسم الدورة",
+    "reviewer": "المراجع",
+    "rating": "التقييم",
+    "comment_preview": "معاينة التعليق",
+    "date": "التاريخ",
+    "status": "الحالة",
+    "actions": "الإجراءات",
+    "view_full_review": "عرض المراجعة كاملة",
+    "delete_review": "حذف المراجعة",
+    "report": "إبلاغ",
+    "comment": "التعليق",
+    "course": "الدورة",
+    "Confirm Delete": "تأكيد الحذف",
+    "Are you sure you want to delete": "هل أنت متأكد أنك تريد حذف",
+    "Cancel": "إلغاء",
+    "Delete": "حذف"
   }
-
 }

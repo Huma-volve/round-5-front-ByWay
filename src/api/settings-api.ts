@@ -9,6 +9,48 @@ interface AddCategoryResponse extends Category {}
 
 interface UpdateCategoryResponse extends Category {}
 
+
+// API Response interface
+interface ApiResponse<T> {
+  status: number;
+  message: string;
+  data: T;
+}
+
+// Settings interface
+interface Settings {
+  commission: number;
+  withdrawal: number;
+}
+
+// GET - Fetch settings
+export async function getSettings(): Promise<Settings> {
+  try {
+    const { data } = await axiosInstance.get<ApiResponse<Settings>>("/settings");
+    return data.data;
+  } catch (error) {
+    console.error("Error fetching settings:", error);
+    throw new Error("Failed to fetch settings");
+  }
+}
+
+// PUT/PATCH - Update settings
+export async function updateSettings(settings: Partial<Settings>): Promise<Settings> {
+  try {
+    const { data } = await axiosInstance.patch<ApiResponse<Settings>>("/settings", settings);
+    return data.data;
+  } catch (error: any) {
+    console.error("Error updating settings:", error);
+    
+    if (error.response?.status === 400) {
+      throw new Error("Invalid settings data");
+    }
+    
+    throw new Error("Failed to update settings");
+  }
+}
+
+
 // GET - Fetch all categories
 export async function getCategories(): Promise<Category[]> {
   try {
@@ -100,3 +142,4 @@ export async function deleteCategory(id: number): Promise<{ success: boolean; id
     throw new Error("Failed to delete category");
   }
 }
+

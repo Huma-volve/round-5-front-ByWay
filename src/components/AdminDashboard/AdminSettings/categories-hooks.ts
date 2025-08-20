@@ -10,9 +10,12 @@ export function useCategories() {
   return useQuery<Category[]>({
     queryKey: ["categories"],
     queryFn: getCategories,
-    staleTime: 5 * 60 * 1000, // 5 minutes
-    retry: 3,
-    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+    staleTime: 30 * 60 * 1000, // 30 minutes - data stays fresh for 30 min
+    refetchOnMount: false, // Don't refetch when component mounts if data exists
+    refetchOnWindowFocus: false, // Don't refetch when window gains focus
+    refetchOnReconnect: false, // Don't refetch when reconnecting to internet
+    retry: 1, // Only retry once if request fails
+    retryDelay: (attemptIndex) => Math.min(1000 * 10 ** attemptIndex, 30000),
   });
 }
 
@@ -21,11 +24,9 @@ export function useAddCategory() {
   
   return useMutation({
     mutationFn: addCategory,
-    onSuccess: (newCategory) => {
-      // Update the cache with the new category
-      queryClient.setQueryData<Category[]>(["categories"], (oldData) => {
-        return oldData ? [...oldData, newCategory] : [newCategory];
-      });
+    onSuccess: () => {
+      // Invalidate and refetch categories to get fresh data from server
+      queryClient.invalidateQueries({ queryKey: ["categories"] });
     },
     onError: (error) => {
       console.error("Failed to add category:", error);
@@ -39,18 +40,12 @@ export function useUpdateCategory() {
   return useMutation({
     mutationFn: ({ id, name }: { id: number; name: string }) =>
       updateCategory(id, name),
-    onSuccess: (updatedCategory, { id, name }) => {
-      // Optimistically update the cache
-      queryClient.setQueryData<Category[]>(["categories"], (oldData) => {
-        return oldData?.map((cat) =>
-          cat.id === id ? { ...cat, name } : cat
-        ) || [];
-      });
-    },
-    onError: (error, { id }) => {
-      console.error("Failed to update category:", error);
-      // Optionally revert optimistic update
+    onSuccess: () => {
+      // Invalidate and refetch to get fresh data from server
       queryClient.invalidateQueries({ queryKey: ["categories"] });
+    },
+    onError: (error) => {
+      console.error("Failed to update category:", error);
     },
   });
 }
@@ -60,16 +55,12 @@ export function useDeleteCategory() {
   
   return useMutation({
     mutationFn: deleteCategory,
-    onSuccess: (_, deletedId) => {
-      // Remove from cache
-      queryClient.setQueryData<Category[]>(["categories"], (oldData) => {
-        return oldData?.filter((cat) => cat.id !== deletedId) || [];
-      });
-    },
-    onError: (error, deletedId) => {
-      console.error("Failed to delete category:", error);
-      // Revert optimistic update
+    onSuccess: () => {
+      // Invalidate and refetch to get fresh data from server
       queryClient.invalidateQueries({ queryKey: ["categories"] });
+    },
+    onError: (error) => {
+      console.error("Failed to delete category:", error);
     },
   });
 }

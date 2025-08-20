@@ -7,6 +7,7 @@ function AdminSettings() {
     <div>
       <SettingsCard header="Commission Settings">
         <SettingsGroup
+          field="commission"
           placeholder="15"
           text="Note: This percentage will be deducted from instructor revenue for each course sold."
           mark="%"
@@ -15,6 +16,7 @@ function AdminSettings() {
 
       <SettingsCard header="Withdrawal Policy">
         <SettingsGroup
+          field="withdrawal"
           placeholder="25"
           text="Note: Instructors can only request payouts when their available balance exceeds this amount."
           mark="$"

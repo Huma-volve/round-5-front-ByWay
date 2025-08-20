@@ -18,19 +18,22 @@ export async function signIn(formData: SignInFormType) {
   return data;
 }
 
-export async function signOut(navigate:NavigateFunction) {
-  const { data } = await axiosInstance.post("logout");
-  toast.success(data.message);
-
+export async function signOut(navigate: NavigateFunction) {
   localStorage.removeItem("auth_token");
   localStorage.removeItem("email");
   localStorage.removeItem("user_id");
   localStorage.removeItem("role");
+  const { data } = await axiosInstance.post("logout");
+  toast.success(data.message);
+
   navigate("/signin");
 }
 
 export async function generateOTP(formData: ForgotFormType) {
-  const { data, /*status */ } = await axiosInstance.post("forgot-password", formData);
+  const { data /*status */ } = await axiosInstance.post(
+    "forgot-password",
+    formData
+  );
   return data;
 }
 
@@ -38,5 +41,4 @@ export async function verifyOTP(formData: OTPFormType) {
   console.log(formData);
   const { data } = await axiosInstance.post("verify-code", formData);
   return data;
-
 }

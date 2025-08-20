@@ -9,13 +9,13 @@ import UserProfilePage from "@/pages/profile/UserProfilePage";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
 
 // Course Pages
-import CoursesPage from "../pages/courses/CoursesPage";
-
+import CoursesPage from "@/pages/Courses/CoursesPage";
 import CourseDetails from "@/components/courses/CourseDetails";
-import MyCourses from "@/pages/courses/MyCourses/MyCourses";
-import InstructorCourseDetails from "@/pages/courses/CourseDetails/InstructorCourseDetails";
-import LearnerMyCourses from "@/pages/courses/MyCourses/LearnerMyCourses";
-import LearnerCourseDetails from "@/pages/courses/CourseDetails/LearnerCourseDetailes";
+import LearnerMyCourses from "@/pages/Courses/MyCourses/LearnerMyCourses";
+import LearnerCourseDetails from "@/pages/Courses/CourseDetails/LearnerCourseDetailes";
+import MyCourses from "@/pages/Courses/MyCourses/MyCourses";
+import InstructorCourseDetails from "@/pages/Courses/CourseDetails/InstructorCourseDetails";
+
 
 // Instructor Pages
 import Instructor from "@/pages/instructor/Instructor";
@@ -68,12 +68,13 @@ import AdminCoursesPage from "@/components/AdminDashboard/AdminCoursesPage/Admin
 import EditCourse from "@/components/AdminDashboard/EditCourse/EditCourse";
 import AdminProtectedRoute from "./AdminProtectedRoute";
 import AuthProtectedRoute from "./AuthProtectedRoute";
+import ReviewsAndRatings from "@/pages/AdminDashboard/Reviews&Ratings/ReviewsAndRatings";
 
 export default function AppRoutes() {
   const role = localStorage.getItem("role");
   const HomeRoute =
     role === "learner" ? (
-      <Route path="/" element={<CoursesPage />} />
+      <Route path="/" element={<CoursesPage/>} />
     ) : (
       <Route path="/" element={<Instructor />} />
     );
@@ -110,7 +111,7 @@ export default function AppRoutes() {
           </Route>
 
           {/* Learner Course Management */}
-          <Route path="/learner-myCourses" element={<LearnerMyCourses />}>
+          <Route path="/learner-myCourses" element={<LearnerMyCourses/>}>
             <Route path=":learnerCourseId" element={<LearnerCourseDetails />} />
           </Route>
 
@@ -223,6 +224,7 @@ export default function AppRoutes() {
           <Route path="payment-revenue" element={<PaymentRevenue />} />
           <Route path="settings" element={<AdminSettings/>} />
           <Route path="analytics" element={<div>Analytics</div>} />
+          <Route path="reviews-ratings" element={<ReviewsAndRatings />} />
 
         </Route>
       </Routes>

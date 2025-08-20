@@ -221,23 +221,23 @@
       "title": "Course Management",
       "courseDetails": "Course Details",
       "description": "Manage your course content and settings",
-       "coursesManagementDescription": "View, track, and manage all published and pending courses on the platform",
-      
-      "category": "Category",
+   "coursesManagementDescription": "View, track, and manage all published and pending courses on the platform",
+      "price": "Price",
+        "category": "Category",
       "status": "Status",
-  "selectStatus": "Select status",
-  "published": "Published",
-  "draft": "Draft",
-  "pending": "Pending",
-  "View": "View",
-  "createdDate": "Created Date",
-  "saveChanges": "Save Changes",
-    "updateManageCourse": "Update and manage course information",
-  "basicInformation": "Basic Information",
+      "selectStatus": "Select status",
+      "published": "Published",
+      "draft": "Draft",
+      "pending": "Pending",
+      "View": "View",
+      "createdDate": "Created Date",
+      "saveChanges": "Save Changes",
+      "updateManageCourse": "Update and manage course information",
+      "basicInformation": "Basic Information",
       "courseTittle": "Course Tittle",
       "EditCourse": "Edit Course",
-       "viewCourse": "View Course",
-    "deleteCourse": "Delete Course",
+      "viewCourse": "View Course",
+      "deleteCourse": "Delete Course",
       "recentCourses": "A list of your recent courses",
       "placeholders": {
         "courseTittle": "Enter course title",
@@ -545,7 +545,7 @@
     "Average Rating": "Average Rating",
     "Total Earnings": "Total Earnings",
     "About Instructor": "About Instructor"
-},
+  },
   "admin": {
     "home": {
       "dashboard": "Dashboard",
@@ -572,6 +572,25 @@
       },
       "activityDate": "{{date}} at {{time}}"
     }
-
+  },
+  "adminReviews": {
+    "reviews_ratings": "Reviews & Ratings",
+    "manage_feedback": "Manage student feedback and monitor course ratings.",
+    "course_name": "Course Name",
+    "reviewer": "Reviewer",
+    "rating": "Rating",
+    "comment_preview": "Comment Preview",
+    "date": "Date",
+    "status": "Status",
+    "actions": "Actions",
+    "view_full_review": "View Full Review",
+    "delete_review": "Delete Review",
+    "report": "Report",
+    "comment": "Comment",
+    "course": "Course",
+    "Confirm Delete": "Confirm Delete",
+    "Are you sure you want to delete": "Are you sure you want to delete",
+    "Cancel": "Cancel",
+    "Delete": "Delete"
   }
 }
