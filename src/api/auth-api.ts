@@ -23,10 +23,10 @@ export async function signOut(navigate: NavigateFunction) {
   localStorage.removeItem("email");
   localStorage.removeItem("user_id");
   localStorage.removeItem("role");
+  navigate("/signin");
   const { data } = await axiosInstance.post("logout");
   toast.success(data.message);
 
-  navigate("/signin");
 }
 
 export async function generateOTP(formData: ForgotFormType) {
