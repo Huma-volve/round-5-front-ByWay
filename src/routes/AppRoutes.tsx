@@ -5,8 +5,8 @@ import Success from "../pages/success/Success";
 
 // Profile Pages
 import USER_PROFILE from "@/data/userProfile";
-import UserProfilePage from "@/pages/profile/UserProfilePage";
-import EditUserProfile from "@/pages/profile/EditUserProfile";
+// import UserProfilePage from "@/pages/profile/UserProfilePage";
+// import EditUserProfile from "@/pages/profile/EditUserProfile";
 
 // Course Pages
 import CoursesPage from "@/pages/Courses/CoursesPage";
@@ -69,6 +69,8 @@ import EditCourse from "@/components/AdminDashboard/EditCourse/EditCourse";
 import AdminProtectedRoute from "./AdminProtectedRoute";
 import AuthProtectedRoute from "./AuthProtectedRoute";
 import ReviewsAndRatings from "@/pages/AdminDashboard/Reviews&Ratings/ReviewsAndRatings";
+import EditUserProfile from "@/pages/profile/EditUserProfile";
+import UserProfilePage from "@/pages/profile/UserProfilePage";
 
 export default function AppRoutes() {
   const role = localStorage.getItem("role");
@@ -95,14 +97,14 @@ export default function AppRoutes() {
           {HomeRoute}
 
           {/* User Profile Section */}
-          <Route
+          {/* <Route
             path="/profile"
             element={<UserProfilePage user={USER_PROFILE[0]} />}
-          />
-          <Route
+          /> */}
+          {/* <Route
             path="/edit-user-profile"
             element={<EditUserProfile user={USER_PROFILE[0]} />}
-          />
+          /> */}
 
           {/* Course Discovery & Learning */}
           <Route path="/courses">
@@ -227,6 +229,14 @@ export default function AppRoutes() {
           <Route path="reviews-ratings" element={<ReviewsAndRatings />} />
 
         </Route>
+            <Route
+            path="/profile"
+            element={<UserProfilePage  />}
+          />
+          <Route
+            path="/edit-user-profile"
+            element={<EditUserProfile  />}
+          />
       </Routes>
     </Router>
   );

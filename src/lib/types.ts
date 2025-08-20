@@ -60,3 +60,15 @@ export interface UserProfileDashboard{
   total_earnings? : string;
   average_rating? : number;
 }              
+export interface UserProfile{
+  id: number;
+  fname: string;
+  lname: string;
+  email: string;
+  headline: string;
+  about: string;
+  x : string;
+  facebook : string;
+  youtube : number;
+  linkedin : number;
+}              
