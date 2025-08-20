@@ -20,6 +20,7 @@ const UserProfilePage = () => {
       .catch(err => console.error(err));
     setIsLoading(false);
   }, [])
+  console.log("user",user);
 
   const twitter = user?.twitter_link || "";
   const linkedin = user?.linkedin_link || "";
