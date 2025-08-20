@@ -502,7 +502,8 @@
     "Deleting..." : "يتم الحذف...",
     "Error loading users" : "حدث خطأ اثناء التحميل",
     "Unknown error occurred" : "يوجد خطأ غير محدد",
-    "No users found" : "لا يوجد مستخدم"
+    "No users found" : "لا يوجد مستخدم",
+    "Loading" : "تحميل..."
   },
   "adminUserDetails": {
     "User Profile": "ملف المستخدم",
