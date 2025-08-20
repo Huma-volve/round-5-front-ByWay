@@ -1,12 +1,12 @@
 // LearnerMyCourses.jsx
 import Breadcrumb from "@/components/common/Breadcrumb";
-import LearnerMyCourseCard from "@/components/courses/LearnerMyCourseCard";
+import LearnerMyCourseCard from "@/components/learnerCourses/LearnerMyCourseCard";
 import { useBreadcrumb } from "@/hooks/useBreadcrumb";
 import { Outlet, useParams } from "react-router-dom";
 
 export default function LearnerMyCourses() {
   const { getAutoBreadcrumb } = useBreadcrumb();
-  const { learnerCourseId } = useParams(); 
+  const { learnerCourseId } = useParams();
 
   return (
     <div className="bg-background container py-6">

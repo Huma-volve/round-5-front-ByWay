@@ -10,12 +10,11 @@ import USER_PROFILE from "@/data/userProfile";
 
 // Course Pages
 import CoursesPage from "@/pages/Courses/CoursesPage";
-import CourseDetails from "@/components/courses/CourseDetails";
+import CourseDetails from "@/components/learnerCourses/CourseDetails";
 import LearnerMyCourses from "@/pages/Courses/MyCourses/LearnerMyCourses";
 import LearnerCourseDetails from "@/pages/Courses/CourseDetails/LearnerCourseDetailes";
 import MyCourses from "@/pages/Courses/MyCourses/MyCourses";
 import InstructorCourseDetails from "@/pages/Courses/CourseDetails/InstructorCourseDetails";
-
 
 // Instructor Pages
 import Instructor from "@/pages/instructor/Instructor";
@@ -76,7 +75,7 @@ export default function AppRoutes() {
   const role = localStorage.getItem("role");
   const HomeRoute =
     role === "learner" ? (
-      <Route path="/" element={<CoursesPage/>} />
+      <Route path="/" element={<CoursesPage />} />
     ) : (
       <Route path="/" element={<Instructor />} />
     );
@@ -113,7 +112,7 @@ export default function AppRoutes() {
           </Route>
 
           {/* Learner Course Management */}
-          <Route path="/learner-myCourses" element={<LearnerMyCourses/>}>
+          <Route path="/learner-myCourses" element={<LearnerMyCourses />}>
             <Route path=":learnerCourseId" element={<LearnerCourseDetails />} />
           </Route>
 
@@ -224,19 +223,12 @@ export default function AppRoutes() {
             element={<InstructorCourseDetails />}
           />
           <Route path="payment-revenue" element={<PaymentRevenue />} />
-          <Route path="settings" element={<AdminSettings/>} />
+          <Route path="settings" element={<AdminSettings />} />
           <Route path="analytics" element={<div>Analytics</div>} />
           <Route path="reviews-ratings" element={<ReviewsAndRatings />} />
-
         </Route>
-            <Route
-            path="/profile"
-            element={<UserProfilePage  />}
-          />
-          <Route
-            path="/edit-user-profile"
-            element={<EditUserProfile  />}
-          />
+        <Route path="/profile" element={<UserProfilePage />} />
+        <Route path="/edit-user-profile" element={<EditUserProfile />} />
       </Routes>
     </Router>
   );
