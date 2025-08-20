@@ -1,5 +1,5 @@
 import TopRatedCard from "./TopRatedCard";
-import { useTopRatedCourses } from "@/hooks/useTopRatedCourses";
+import { useTopRatedCourses } from "@/hooks/AdminDashboard/useTopRatedCourses";
 import { useTranslation } from "react-i18next";
 
 export default function TopRatedCourses() {
