@@ -70,6 +70,7 @@ import AuthProtectedRoute from "./AuthProtectedRoute";
 import ReviewsAndRatings from "@/pages/AdminDashboard/Reviews&Ratings/ReviewsAndRatings";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
 import UserProfilePage from "@/pages/profile/UserProfilePage";
+import WatchVideo from "@/pages/courses/WatchVideo";
 
 export default function AppRoutes() {
   const role = localStorage.getItem("role");
@@ -94,7 +95,6 @@ export default function AppRoutes() {
           {/* Home */}
           {/* <Route path="/" element={<Home />} /> */}
           {HomeRoute}
-
           {/* User Profile Section */}
           {/* <Route
             path="/profile"
@@ -104,24 +104,28 @@ export default function AppRoutes() {
             path="/edit-user-profile"
             element={<EditUserProfile user={USER_PROFILE[0]} />}
           /> */}
-
           {/* Course Discovery & Learning */}
           <Route path="/courses">
             <Route index element={<CoursesPage />} />
             <Route path=":courseId" element={<CourseDetails />} />
           </Route>
-
           {/* Learner Course Management */}
           <Route path="/learner-myCourses" element={<LearnerMyCourses />}>
-            <Route path=":learnerCourseId" element={<LearnerCourseDetails />} />
+            <Route
+              path=":learnerCourseId"
+              element={<LearnerCourseDetails />}
+            ></Route>
+            <Route
+              path=":learnerCourseId/video/:videoId"
+              element={<WatchVideo />}
+            />
           </Route>
-
           {/* Instructor Section */}
           <Route
             path="/:instructorId/instructor-details"
             element={<InstructorDetails />}
           />
-
+          1
           <Route path="/instructor">
             <Route index element={<Instructor />} />
             <Route index path="home" element={<Instructor />} />
@@ -164,19 +168,15 @@ export default function AppRoutes() {
               element={<EditLesson />}
             />
           </Route>
-
           {/* Shopping & Payments */}
           <Route path="/shopping-cart" element={<ShoppingCartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
-
           {/* User Preferences & Settings */}
           <Route path="/favourites" element={<Favourites />} />
           <Route path="/notifications" element={<NotificationPage />} />
-
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/settings/paymethod" element={<PaymethodPage />} />
           <Route path="/settings/payhistory" element={<PayHistoryPage />} />
-
           {/* Account Management */}
           <Route path="/close-account" element={<CloseAccount />} />
           <Route path="/success" element={<Success />} />

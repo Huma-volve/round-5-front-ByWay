@@ -6,7 +6,7 @@ import { Outlet, useParams } from "react-router-dom";
 
 export default function LearnerMyCourses() {
   const { getAutoBreadcrumb } = useBreadcrumb();
-  const { learnerCourseId } = useParams();
+  const { learnerCourseId } = useParams(); 
 
   return (
     <div className="bg-background container py-6">
