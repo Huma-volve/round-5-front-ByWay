@@ -60,3 +60,12 @@ export interface UserProfileDashboard{
   total_earnings? : string;
   average_rating? : number;
 }              
+export interface ReviewsAndRatings {
+  id:number;
+  course: string;
+  reviewer: string;
+  rating: number;
+  comment: string;
+  date: string;
+  status: string;
+}
