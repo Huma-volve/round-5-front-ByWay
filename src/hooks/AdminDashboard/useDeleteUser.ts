@@ -1,5 +1,5 @@
+import { deleteUserById } from "@/api/user-manage-api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteUserById } from "@/api/auth-api";
 
 export function useDeleteUser() {
   const queryClient = useQueryClient();
@@ -7,7 +7,8 @@ export function useDeleteUser() {
   return useMutation({
     mutationFn: (id: number) => deleteUserById(id),
     onSuccess: () => {
-    queryClient.invalidateQueries({ queryKey: ["users"] });
+      // لازم يطابق useFetchUserDashboard
+      queryClient.invalidateQueries({ queryKey: ["userDashboard"] });
     },
   });
 }

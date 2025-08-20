@@ -1,18 +1,26 @@
 // hooks/AdminDashboard/useFetchUserDashborad.ts
-import { fetchUsersDashboardProfile } from "@/api/auth-api";
+import { fetchUsersDashboardProfile } from "@/api/user-manage-api";
 import type { UserProfileDashboard } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
 import type { AxiosError } from "axios";
 
 export function useFetchUserProfileDashboard(id: number) {
+<<<<<<< .merge_file_8aKBSS
+=======
+<<<<<<< HEAD
+  return useQuery<UserProfileDashboard, AxiosError>({
+=======
+>>>>>>> .merge_file_NnjuFg
   const { data, error, isLoading, isError } = useQuery<
     UserProfileDashboard,
     AxiosError
   >({
+<<<<<<< .merge_file_8aKBSS
+=======
+>>>>>>> 25ed4a96662e52d7b59a8d0f25d388dbef40d9bb
+>>>>>>> .merge_file_NnjuFg
     queryKey: ["userProfileDashboard", id],
     queryFn: () => fetchUsersDashboardProfile(id),
     enabled: !!id,
   });
-
-  return { data, error, isLoading, isError };
 }

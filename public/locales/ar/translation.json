@@ -503,7 +503,12 @@
     "Deleting..." : "يتم الحذف...",
     "Error loading users" : "حدث خطأ اثناء التحميل",
     "Unknown error occurred" : "يوجد خطأ غير محدد",
+<<<<<<< .merge_file_7AOkm4
     "No users found" : "لا يوجد مستخدم"
+=======
+    "No users found" : "لا يوجد مستخدم",
+    "Loading" : "تحميل..."
+>>>>>>> .merge_file_Jbrhee
   },
   "adminUserDetails": {
     "User Profile": "ملف المستخدم",

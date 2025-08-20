@@ -4,8 +4,6 @@ import type {
   OTPFormType,
   SignInFormType,
   SignUpFormType,
-  UserDashboard,
-  UserProfileDashboard,
 } from "@/lib/types";
 import { type NavigateFunction } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -44,6 +42,11 @@ export async function verifyOTP(formData: OTPFormType) {
   const { data } = await axiosInstance.post("verify-code", formData);
   return data;
 }
+<<<<<<< .merge_file_DQiPmK
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> .merge_file_TPVxjd
 // User Management
 export async function fetchUsersDashboard(): Promise<UserDashboard[]> {
   const response = await axiosInstance.get<{ data: UserDashboard[] }>("users");
@@ -65,3 +68,4 @@ export async function deleteUserById(id: number): Promise<void> {
   await axiosInstance.delete(`users/${id}`);
 }
 // End of User Management
+>>>>>>> 25ed4a96662e52d7b59a8d0f25d388dbef40d9bb

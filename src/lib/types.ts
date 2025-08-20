@@ -38,14 +38,12 @@ export interface TopRatedCoursesResponse {
   data: TopRatedCourse[];
 }
 export interface UserDashboard {
-  data: {
     id: number;
     name: string;
     email: string;
     role: string;
     status: string;
   created_at: string;
-}
  }
 export interface UserProfileDashboard{
   id: number;
