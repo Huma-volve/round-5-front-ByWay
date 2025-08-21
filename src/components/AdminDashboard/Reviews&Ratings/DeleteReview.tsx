@@ -1,6 +1,5 @@
 import useDeleteReview from "@/hooks/AdminDashboard/Reviews&Ratings/useDeleteReview";
 import useViewReview from "@/hooks/AdminDashboard/Reviews&Ratings/useViewReview";
-import React from "react";
 import { useTranslation } from "react-i18next";
 interface DeleteReviewProps {
   open: boolean;
