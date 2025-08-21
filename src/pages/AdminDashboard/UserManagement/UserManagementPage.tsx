@@ -1,7 +1,5 @@
 import { useState } from "react";
 import searchIcon from "@/assets/images/icons/search-admin.png";
-import actionMenu from "@/assets/images/icons/menu-admin-action.png";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useFetchUserDashboard } from "@/hooks/AdminDashboard/useFetchUserDashborad";
 import ErrorDesign from "@/components/AdminDashboard/UserManagement/ErrorDesign";
@@ -9,6 +7,7 @@ import LoadingDesign from "@/components/AdminDashboard/UserManagement/LoadingDes
 import { useDeleteUser } from "@/hooks/AdminDashboard/useDeleteUser";
 import { useToggleUserStatus } from "@/hooks/AdminDashboard/usePatchStatus";
 import { useSearchUsers } from "@/hooks/AdminDashboard/useSearchUsers";
+import { UserActionsDropdown } from "@/components/AdminDashboard/UserManagement/DropDown";
 
 export default function UserManagementPage() {
   const { t } = useTranslation();
@@ -103,13 +102,7 @@ export default function UserManagementPage() {
             </thead>
 
             <tbody className="divide-y divide-gray-200">
-              {usersToDisplay.map((his, index) => {
-                const isLastThree =
-                  usersToDisplay.length > 5
-                    ? index >= usersToDisplay.length - 3
-                    : usersToDisplay.length > 1
-                    ? index >= usersToDisplay.length - 1
-                    : index >= usersToDisplay.length;
+              {usersToDisplay.map((his) => {
                 return (
                   <tr
                     key={his.id}
@@ -138,58 +131,12 @@ export default function UserManagementPage() {
                           setOpenRow(openRow === his.id ? "" : his.id)
                         }
                         className="p-1 hover:bg-gray-100 rounded-full transition relative z-10">
-                        <img
-                          src={actionMenu}
-                          alt="action menu"
-                          className="bg-blue-50 w-8 rounded-full p-2 text-xs"
+                        <UserActionsDropdown
+                          user={his}
+                          toggleUserStatus={toggleUserStatus}
+                          handleDeleteClick={handleDeleteClick}
                         />
                       </button>
-
-                      {/* Dropdown menu */}
-                      {openRow === his.id && (
-                        <div
-                          className={`absolute z-50 bg-white shadow-lg border rounded-md w-44 ${
-                            isLastThree ? "bottom-full" : "top-[50%] mt-0"
-                          } right-0`}>
-                          <ul className="flex flex-col text-sm">
-                            <Link to={`${his.id}`}>
-                              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-gray-700">
-                                {t("adminUser.View Profile")}
-                              </li>
-                            </Link>
-                            <li
-                              className={`px-4 py-2 hover:bg-gray-100 cursor-pointer ${
-                                his.status === "Active"
-                                  ? "text-red-900"
-                                  : "text-blue-700"
-                              }`}
-                              onClick={() =>
-                                toggleUserStatus.mutate({ id: his.id })
-                              }>
-                              {toggleUserStatus.isPending &&
-                              toggleUserStatus.variables?.id === his.id ? (
-                                <span className="text-gray-500">
-                                  {t("adminUser.Loading")}
-                                </span>
-                              ) : his.status === "Active" ? (
-                                t("adminUser.Block")
-                              ) : (
-                                t("adminUser.UnBlock")
-                              )}
-                            </li>
-                            <li
-                              onClick={() =>
-                                handleDeleteClick({
-                                  id: his.id,
-                                  name: his.name,
-                                })
-                              }
-                              className="px-4 py-2 text-red-600 hover:bg-red-50 cursor-pointer">
-                              {t("adminUser.Delete User")}
-                            </li>
-                          </ul>
-                        </div>
-                      )}
                     </td>
                   </tr>
                 );

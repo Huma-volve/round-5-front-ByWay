@@ -11,7 +11,7 @@ export default function ProtectedRoute({
     const userId = localStorage.getItem("user_id");
     const role = localStorage.getItem("role");
 
-    // User must be authenticated and not an admin
+    // User must be authenticated and not an admin (Admin not granted access to those routes)
     return !!userId && role !== "admin";
   }, []);
 

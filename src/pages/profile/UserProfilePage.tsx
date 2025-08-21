@@ -13,14 +13,17 @@ const UserProfilePage = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    axiosInstance.get("/profile")
-      .then(res => {
+    axiosInstance
+      .get("/profile")
+      .then((res) => {
         setData(res.data.data.user);
+        setIsLoading(false);
       })
-      .catch(err => console.error(err));
-    setIsLoading(false);
-  }, [])
-  console.log("user",user);
+      .catch((err) => {
+        console.error(err);
+        setIsLoading(false);
+      });
+  }, []);
 
   const twitter = user?.twitter_link || "";
   const linkedin = user?.linkedin_link || "";
@@ -43,8 +46,9 @@ const UserProfilePage = () => {
           src={edit}
           alt="edit"
           loading="lazy"
-          className={`w-8 h-8  curser-pointer bg-border  mt-[-20px]   py-2 rounded-full absolute ${i18n.language === "ar" ? "left-[15%] " : "right-[15%] "
-            }`}
+          className={`w-8 h-8  curser-pointer bg-border  mt-[-20px]   py-2 rounded-full absolute ${
+            i18n.language === "ar" ? "left-[15%] " : "right-[15%] "
+          }`}
         />
       </Link>
       <div className="flex gap-8 flex-wrap justify-center mt-[50px] text-secondary">

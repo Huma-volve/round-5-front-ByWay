@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { signUp } from "@/api/auth-api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import type { AxiosError } from "axios";
 
 /**
  * When user signup app should set the auth + user's info in session or local storage || (cash) user's mail, redirect to otp.
@@ -28,12 +29,12 @@ export function useSignUp() {
 
         navigate("/");
     },
-    onError: (error:any) => {
+    onError: (error: AxiosError<{ message?: string }>) => {
         /**
          * This error is a type of an axiosError since we use axios to fetch the data, it contains information like the request, response
          * and config options, you can access errors set from server via the response object
          */
-      toast.error(error.response.data.message);
+      toast.error(error.response?.data?.message);
     },
     
   });

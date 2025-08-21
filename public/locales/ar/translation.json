@@ -153,6 +153,7 @@
       "selectTimePeriod": "اختر الفترة",
       "currentPeriod": "الفترة الحالية",
       "lastPeriod": "الفترة السابقة",
+      "errorLoadingData": "فشل في تحميل بيانات الإيرادات",
       "stats": {
         "totalProfits": "إجمالي الأرباح",
         "availableBalance": "الرصيد المتاح",
@@ -404,7 +405,8 @@
   },
   "favourite": {
     "Courses": "الدورات",
-    "Instractor": "المدرب"
+    "Instractor": "المدرب",
+    "No Favourites have been selected" : "لا يوجد شي في قائمه المفضله"
   },
   "notifications": {
     "You are all up to date": "أنت محدث بالكامل",
@@ -421,7 +423,8 @@
     "Course": "الدورة",
     "Method": "الطريقة",
     "Amount": "المبلغ",
-    "Save Payment Method": "حفظ طريقه الدفع"
+    "Save Payment Method": "حفظ طريقه الدفع",
+    "No payment history found" : "لا يوجد اي تواريخ للدفع"
   },
   "save": {
     "Save": "حفظ"
@@ -521,6 +524,13 @@
     "About Instructor": "عن المدرب"
   },
   "admin": {
+    "dashboard": "لوحة التحكم",
+    "userManagement": "إدارة المستخدمين",
+    "courseManagement": "إدارة الدورات",
+    "paymentRevenue": "المدفوعات والإيرادات",
+    "reviewsRatings": "التقييمات والمراجعات",
+    "reportsAnalytics": "التقارير والتحليلات",
+    "addAdmin": "إضافة مشرف",
     "home": {
       "dashboard": "لوحة التحكم",
       "MonthlyRevenueOverview": "نظرة عامة على الإيرادات الشهرية",

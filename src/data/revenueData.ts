@@ -13,8 +13,15 @@ export interface RevenueInfo {
   formattedAmount?: string;
 }
 
-// Multi-year revenue data
-export const REVENUE_DATA_BY_YEAR: Record<number, RevenueDataPoint[]> = {
+// API Response types
+export interface ApiRevenueResponse {
+  status: number;
+  message: string;
+  data: Record<string, RevenueDataPoint[]>;
+}
+
+// Fallback/dummy data for instructor (temporary until endpoint is ready)
+export const INSTRUCTOR_REVENUE_DATA: Record<number, RevenueDataPoint[]> = {
   2022: [
     { month: "Jan", revenue: 1800, date: "2022-01" },
     { month: "Feb", revenue: 1200, date: "2022-02" },
@@ -73,10 +80,11 @@ export const REVENUE_DATA_BY_YEAR: Record<number, RevenueDataPoint[]> = {
   ],
 };
 
-// Convert to chart format
-export const getChartData = (selectedYear: number) => {
-  const currentYearData = REVENUE_DATA_BY_YEAR[selectedYear] || [];
-  const lastYearData = REVENUE_DATA_BY_YEAR[2025] || []; // Always 2025 as reference
+// Convert API response to chart format
+export const getChartDataFromApi = (apiData: Record<string, RevenueDataPoint[]>, selectedYear: number) => {
+  const currentYearData = apiData[selectedYear.toString()] || [];
+  const currentYear = new Date().getFullYear(); // Get current year dynamically
+  const lastYearData = apiData[currentYear.toString()] || []; // Always use current year as reference for last period
 
   return currentYearData.map((current, index) => ({
     month: current.month,
@@ -86,35 +94,35 @@ export const getChartData = (selectedYear: number) => {
   }));
 };
 
-// Available years for dropdown
-export const AVAILABLE_YEARS = Object.keys(REVENUE_DATA_BY_YEAR)
-  .map(Number)
-  .sort((a, b) => b - a);
+// Convert dummy data to chart format (for instructor fallback)
+export const getChartDataFromDummyData = (selectedYear: number) => {
+  const currentYearData = INSTRUCTOR_REVENUE_DATA[selectedYear] || [];
+  const currentYear = new Date().getFullYear();
+  const lastYearData = INSTRUCTOR_REVENUE_DATA[currentYear] || [];
 
-export const REVENUE_AMOUNT_INFO: RevenueInfo[] = [
-  {
-    amount: 24_340,
-    labelKey: "instructor.revenue.stats.totalProfits",
-    isIncreased: true,
-    formattedAmount: currencyFormatter.format(24_340),
-  },
-  {
-    amount: 44_340,
-    labelKey: "instructor.revenue.stats.availableBalance",
-    isIncreased: true,
-    formattedAmount: currencyFormatter.format(44_340),
-  },
-  {
-    amount: 98.76,
-    labelKey: "instructor.revenue.stats.lastTransaction",
-    isIncreased: true,
-    formattedAmount: currencyFormatter.format(98.76),
-  },
-];
+  return currentYearData.map((current, index) => ({
+    month: current.month,
+    currentPeriod: current.revenue,
+    lastPeriod: lastYearData[index]?.revenue || 0,
+    date: current.date,
+  }));
+};
+
+// Get available years from API data
+export const getAvailableYearsFromApi = (apiData: Record<string, RevenueDataPoint[]>): number[] => {
+  return Object.keys(apiData)
+    .map(Number)
+    .sort((a, b) => b - a);
+};
+
+// Get available years from dummy data (for instructor fallback)
+export const getAvailableYearsFromDummyData = (): number[] => {
+  return Object.keys(INSTRUCTOR_REVENUE_DATA)
+    .map(Number)
+    .sort((a, b) => b - a);
+};
 
 // Helper function to format currency
 export const formatCurrency = (amount: number): string => {
   return currencyFormatter.format(amount);
 };
-
-export default REVENUE_DATA_BY_YEAR;

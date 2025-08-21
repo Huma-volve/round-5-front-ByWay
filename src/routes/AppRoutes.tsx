@@ -1,4 +1,6 @@
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import { useState, useEffect } from "react";
+
 // Main Pages
 import CloseAccount from "../pages/close account/CloseAccount";
 import Success from "../pages/success/Success";
@@ -65,17 +67,37 @@ import AuthProtectedRoute from "./AuthProtectedRoute";
 import ReviewsAndRatings from "@/pages/AdminDashboard/Reviews&Ratings/ReviewsAndRatings";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
 import UserProfilePage from "@/pages/profile/UserProfilePage";
-import WatchVideo from "@/pages/courses/WatchVideo";
+import WatchVideo from "@/pages/Courses/WatchVideo";
+import NotFound from "@/pages/NotFound/NotFound";
 import ReportsAnalytics from "@/components/AdminDashboard/Reports&Analytics/ReportsAnalytics";
 
 export default function AppRoutes() {
-  const role = localStorage.getItem("role");
-  const HomeRoute =
-    role === "learner" ? (
-      <Route path="/" element={<CoursesPage />} />
-    ) : (
-      <Route path="/" element={<Instructor />} />
-    );
+  const [role, setRole] = useState<string | null>(null);
+
+  //sync local storage with component life cycle
+  useEffect(() => {
+    // Get initial role from localStorage
+    const storedRole = localStorage.getItem("role");
+    setRole(storedRole);
+
+    // Listen for localStorage changes
+    const handleStorageChange = () => {
+      const updatedRole = localStorage.getItem("role");
+      setRole(updatedRole);
+    };
+
+    // Listen for storage events (when localStorage changes in other tabs)
+    window.addEventListener("storage", handleStorageChange);
+
+    // Also listen for custom storage events (for same-tab changes)
+    window.addEventListener("localStorageUpdate", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("localStorageUpdate", handleStorageChange);
+    };
+  }, []);
+
 
   return (
     <Router>
@@ -89,17 +111,8 @@ export default function AppRoutes() {
           }
         >
           {/* Home */}
-          {/* <Route path="/" element={<Home />} /> */}
-          {HomeRoute}
-          {/* User Profile Section */}
-          {/* <Route
-            path="/profile"
-            element={<UserProfilePage user={USER_PROFILE[0]} />}
-          /> */}
-          {/* <Route
-            path="/edit-user-profile"
-            element={<EditUserProfile user={USER_PROFILE[0]} />}
-          /> */}
+          <Route path="/" element={<CoursesPage />} />
+  
           {/* Course Discovery & Learning */}
           <Route path="/courses">
             <Route index element={<CoursesPage />} />
@@ -107,6 +120,7 @@ export default function AppRoutes() {
           </Route>
           {/* Learner Course Management */}
           <Route path="/learner-myCourses" element={<LearnerMyCourses />}>
+            <Route path=":learnerCourseId" element={<LearnerCourseDetails />} />
             <Route
               path=":learnerCourseId"
               element={<LearnerCourseDetails />}
@@ -121,7 +135,7 @@ export default function AppRoutes() {
             path="/:instructorId/instructor-details"
             element={<InstructorDetails />}
           />
-          1
+
           <Route path="/instructor">
             <Route index element={<Instructor />} />
             <Route index path="home" element={<Instructor />} />
@@ -149,18 +163,18 @@ export default function AppRoutes() {
             {/* Course Selection & Management */}
             {/* <Route path="courses/select" element={<CourseSelection />} /> //placeholder */}
             <Route
-              path="courses/:courseId/manage"
+              path="my-courses/:courseId/manage"
               element={<CourseSelection />}
             />
 
             {/* Lesson Management */}
-            <Route path="courses/:courseId/lessons" element={<ViewLessons />} />
+            <Route path="my-courses/:courseId/lessons" element={<ViewLessons />} />
             <Route
-              path="courses/:courseId/lessons/add"
+              path="my-courses/:courseId/lessons/add"
               element={<AddLessons />}
             />
             <Route
-              path="courses/:courseId/lessons/edit/:lessonId"
+              path="my-courses/:courseId/lessons/edit/:lessonId"
               element={<EditLesson />}
             />
           </Route>
@@ -192,7 +206,8 @@ export default function AppRoutes() {
           <Route path="/reset/:id" element={<ResetForm />} />
           <Route path="/otp" element={<OTPForm />} />
         </Route>
-
+        {/* not found page */}
+          <Route path="*" element={<NotFound />} />
         {/* admin dashboard Routes */}
 
         <Route
@@ -212,7 +227,7 @@ export default function AppRoutes() {
           />
 
           <Route path="AdminCoursesPage" element={<AdminCoursesPage />} />
-          <Route path="EditCourse" element={<EditCourse />} />
+          <Route path="EditCourse/:id" element={<EditCourse />} />
           <Route
             path="course-details/:courseId"
             element={<InstructorCourseDetails />}

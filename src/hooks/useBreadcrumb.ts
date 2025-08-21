@@ -14,6 +14,7 @@ export const useBreadcrumb = () => {
     "/instructor/add-course": "common.addCourse",
     "/instructor/add-lessons": "instructor.lessons.addLessons",
     "/instructor/courses": "common.courses",
+    "/instructor/my-courses": "common.learnermycourse",
     "/settings": "common.settings",
     "/settings/paymethod": "common.paymethod",
     "/settings/payhistory": "common.payhistory",
@@ -30,7 +31,7 @@ export const useBreadcrumb = () => {
     "/courses/course-details": "common.coursedetailes",
     "/learner-myCourses": "common.learnermycourse",
     "/learner-myCourses/course-details": "common.coursedetailes",
-    "/instructor-details": "common.instructorDetails",
+    "/:id/instructor-details": "common.instructorDetails",
   };
 
   const createBreadcrumb = (
@@ -49,7 +50,10 @@ export const useBreadcrumb = () => {
   };
 
   // Generate breadcrumbs automatically from current path
-  const getAutoBreadcrumb = (customPath?: string , courseName:string =''): BreadcrumbItem[] => {
+  const getAutoBreadcrumb = (
+    customPath?: string,
+    courseName: string = ""
+  ): BreadcrumbItem[] => {
     const currentPath = customPath || location.pathname;
     const pathSegments = currentPath.split("/").filter(Boolean);
     const breadcrumbs: BreadcrumbItem[] = [];
@@ -65,18 +69,16 @@ export const useBreadcrumb = () => {
     const processedSegments = pathSegments.map((segment, index) => {
       const previousSegments = pathSegments.slice(0, index);
 
-      // Detect course ID in `/courses/{id}`
+      // Detect course ID in `/my-courses/{id}`
       if (
-        previousSegments.includes("courses") &&
+        previousSegments.includes("my-courses") &&
         segment.match(/^[a-zA-Z0-9-_]+$/)
       ) {
         return "course-id";
       }
-      if (
-        previousSegments.includes("instructor-details") &&
-        segment.match(/^\d+$/)
-      ) {
-        console.log("instructor "+ previousSegments);
+      // Detect instructor ID in `/{id}/instructor-details/`
+      const nextSegment = pathSegments[index + 1];
+      if (nextSegment === "instructor-details" && segment.match(/^\d+$/)) {
         return "instructor-id";
       }
 
@@ -112,14 +114,17 @@ export const useBreadcrumb = () => {
 
       if (processedSegment === "course-id") {
         // translationKey = "common.coursedetailes";
-        fallbackLabel = courseName ?? "" ;
+        fallbackLabel = courseName ?? "";
       }
       if (processedSegment === "instructor-id") {
-        // translationKey = "";
-        fallbackLabel = "" ;
+        translationKey = "";
+        fallbackLabel = "";
       }
-
-      if (buildPath.includes("/instructor/courses/") && !translationKey) {
+      if (processedSegment === "instructor-details") {
+        translationKey = "common.instructorDetails";
+        fallbackLabel = "Instructor Details";
+      }
+      if (buildPath.includes("/instructor/my-courses") && !translationKey) {
         if (buildPath.endsWith("/manage")) {
           translationKey = "instructor.courseManagement.title";
           fallbackLabel = "Course Details";
@@ -139,10 +144,9 @@ export const useBreadcrumb = () => {
         ? t(translationKey)
         : fallbackLabel
             .replace("-", " ")
-          .replace(/\b\w/g, (l) => l.toUpperCase());
-      console.log(label);
+            .replace(/\b\w/g, (l) => l.toUpperCase());
 
-      if (label!="") {
+      if (label != "") {
         breadcrumbs.push({
           label,
           path: buildPath,

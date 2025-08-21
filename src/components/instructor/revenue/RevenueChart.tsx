@@ -8,26 +8,74 @@ import {
   Tooltip,
 } from "recharts";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
-  getChartData,
+  getChartDataFromApi,
+  getAvailableYearsFromApi,
   formatCurrency,
-  AVAILABLE_YEARS,
+  type ApiRevenueResponse,
 } from "../../../data/revenueData";
 import CustomLegend from "./CustomLegend";
 import YearSelector from "./YearSelector";
 
-export default function RevenueChart() {
-  const { t } = useTranslation();
-  const [selectedYear, setSelectedYear] = useState<number>(2025); // Default to current year
+interface RevenueChartProps {
+  useRevenueHook: () => {
+    data: ApiRevenueResponse | undefined;
+    isPending: boolean;
+    isError: boolean;
+    error: Error | null;
+  };
+  defaultYear?: number;
+}
 
-  const chartData = getChartData(selectedYear);
+export default function RevenueChart({ useRevenueHook, defaultYear = new Date().getFullYear() }: RevenueChartProps) {
+  const { t } = useTranslation();
+  const { data, isPending, isError, error } = useRevenueHook();
+  const [selectedYear, setSelectedYear] = useState<number>(defaultYear);
+
+  const { chartData, availableYears } = useMemo(() => {
+    if (!data?.data) {
+      return { chartData: [], availableYears: [] };
+    }
+
+    const apiData = data.data;
+    const years = getAvailableYearsFromApi(apiData);
+    const chart = getChartDataFromApi(apiData, selectedYear);
+
+    return { chartData: chart, availableYears: years };
+  }, [data, selectedYear]);
+
+  // Loading state
+  if (isPending) {
+    return (
+      <div>
+        <div className="flex flex-col md:flex-row justify-between items-center mb-4">
+          <div className="flex items-center mb-4">
+            <div className="h-8 w-32 bg-gray-200 animate-pulse rounded-md"></div>
+          </div>
+          <div className="h-6 w-48 bg-gray-200 animate-pulse rounded-md"></div>
+        </div>
+        <div className="h-[300px] bg-gray-200 animate-pulse rounded-lg"></div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (isError) {
+    return (
+      <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+        <p className="text-red-600">
+          {error?.message || t("instructor.revenue.errorLoadingData")}
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div>
       <div className="flex flex-col md:flex-row justify-between items-center mb-4">
         <YearSelector
-          availableYears={AVAILABLE_YEARS}
+          availableYears={availableYears}
           selectedYear={selectedYear}
           onYearSelect={setSelectedYear}
         />

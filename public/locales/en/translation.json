@@ -130,6 +130,7 @@
       "selectTimePeriod": "Select Period",
       "currentPeriod": "Current Period",
       "lastPeriod": "Last Period",
+      "errorLoadingData": "Failed to load revenue data",
       "stats": {
         "totalProfits": "Total Profits",
         "availableBalance": "Available Balance",
@@ -221,9 +222,9 @@
       "title": "Course Management",
       "courseDetails": "Course Details",
       "description": "Manage your course content and settings",
-   "coursesManagementDescription": "View, track, and manage all published and pending courses on the platform",
+      "coursesManagementDescription": "View, track, and manage all published and pending courses on the platform",
       "price": "Price",
-        "category": "Category",
+      "category": "Category",
       "status": "Status",
       "selectStatus": "Select status",
       "published": "Published",
@@ -393,7 +394,8 @@
   },
   "favourite": {
     "Courses": "Courses",
-    "Instractor": "Instractor"
+    "Instractor": "Instractor",
+    "No Favourites have been selected" : "No Favourites have been selected"
   },
   "notifications": {
     "You are all up to date": "You are all up to date",
@@ -410,7 +412,8 @@
     "Course": "Course",
     "Method": "Method",
     "Amount": "Amount",
-    "Save Payment Method": "Save Payment Method"
+    "Save Payment Method": "Save Payment Method",
+    "No payment history found" : "No payment history found"
   },
   "profile": {
     "First Name": "First Name",
@@ -526,11 +529,11 @@
     "Are you sure you want to delete": "Are you sure you want to delete",
     "Cancel": "Cancel",
     "Delete": "Delete",
-    "Deleting..." : "Deleting...",
-    "Error loading users" : "Error loading users",
-    "Unknown error occurred" : "Unknown error occurred",
-    "No users found" : "No users found",
-    "Loading" : "Loading..."
+    "Deleting...": "Deleting...",
+    "Error loading users": "Error loading users",
+    "Unknown error occurred": "Unknown error occurred",
+    "No users found": "No users found",
+    "Loading": "Loading..."
   },
   "adminUserDetails": {
     "User Profile": "User Profile",
@@ -547,6 +550,13 @@
     "About Instructor": "About Instructor"
   },
   "admin": {
+    "dashboard": "Dashboard",
+    "userManagement": "User Management",
+    "courseManagement": "Course Management",
+    "paymentRevenue": "Payment & Revenue",
+    "reviewsRatings": "Reviews & Ratings",
+    "reportsAnalytics": "Reports & Analytics",
+    "addAdmin": "Add Admin",
     "home": {
       "dashboard": "Dashboard",
       "MonthlyRevenueOverview": "Monthly Revenue Overview",
@@ -592,7 +602,8 @@
     "Are you sure you want to delete": "Are you sure you want to delete",
     "Cancel": "Cancel",
     "Delete": "Delete"
-  },"adminDetails": {
+  },
+  "adminDetails": {
     "Payment Details": "Payment Details",
     "Amount": "Amount",
     "Payment Date": "Payment Date",

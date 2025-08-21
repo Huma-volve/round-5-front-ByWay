@@ -231,15 +231,80 @@ body {
 
 /* Fixes Scrollbar not styled */
 ::-webkit-scrollbar {
-    @apply w-2.5 h-2.5;
-   
+  @apply w-2.5 h-2.5;
+
 }
 
 ::-webkit-scrollbar-track {
-    @apply bg-transparent
+  @apply bg-transparent
 }
- 
+
 ::-webkit-scrollbar-thumb {
-    @apply rounded-full bg-border border-[1px] border-transparent border-solid bg-clip-padding;
+  @apply rounded-full bg-border border-[1px] border-transparent border-solid bg-clip-padding;
 }
- 
+
+/* RTL Toast Styles */
+.toast-container-rtl {
+  direction: rtl;
+}
+
+.toast-container-ltr {
+  direction: ltr;
+}
+
+.toast-rtl {
+  direction: rtl;
+}
+
+.toast-rtl .Toastify__close-button {
+  left: 0.5rem;
+  right: auto;
+}
+
+.toast-rtl .Toastify__toast-body {
+  padding-left: 0.5rem;
+  padding-right: 2rem;
+  text-align: right;
+}
+
+.toast-ltr {
+  direction: ltr;
+}
+
+.toast-ltr .Toastify__close-button {
+  right: 0.5rem;
+  left: auto;
+}
+
+.toast-ltr .Toastify__toast-body {
+  padding-right: 0.5rem;
+  padding-left: 2rem;
+  text-align: left;
+}
+
+/* Ensure proper spacing for RTL toasts */
+[dir="rtl"] .Toastify__toast-container {
+  direction: rtl;
+}
+
+[dir="rtl"] .Toastify__toast {
+  direction: rtl;
+}
+
+[dir="rtl"] .Toastify__close-button {
+  left: 0.5rem;
+  right: auto;
+}
+
+[dir="ltr"] .Toastify__toast-container {
+  direction: ltr;
+}
+
+[dir="ltr"] .Toastify__toast {
+  direction: ltr;
+}
+
+[dir="ltr"] .Toastify__close-button {
+  right: 0.5rem;
+  left: auto;
+}
