@@ -554,7 +554,7 @@
       "totalCourses": "Total Courses",
       "totalStudents": "Total Students",
       "totalInstructors": "Total Instructors",
-      "totalRevenue": "Total Revenue",
+      "Total Revenue": "Total Revenue",
       "topRatedCourses": "Top Rated Courses",
       "viewAll": "View All",
       "recentActivities": "Recent Activities",
@@ -562,9 +562,9 @@
       "platformOverview": "Here's a quick overview of your platform performance.",
       "instructor": "Instructor:",
       "students": "students",
-      "activeLearners": "Active Learners",
-      "activeInstructors": "Active Instructors",
-      "publishedCourses": "Published Courses",
+      "active_learners": "Active Learners",
+      "active_instructors": "Active Instructors",
+      "published_courses": "Published Courses",
       "activityType": {
         "courseAdded": "Course Added",
         "courseUpdated": "Course Updated",
@@ -592,5 +592,14 @@
     "Are you sure you want to delete": "Are you sure you want to delete",
     "Cancel": "Cancel",
     "Delete": "Delete"
+  },"adminDetails": {
+    "Payment Details": "Payment Details",
+    "Amount": "Amount",
+    "Payment Date": "Payment Date",
+    "Status": "Status",
+    "Method": "Method",
+    "Student": "Student",
+    "Instructor": "Instructor",
+    "Course": "Course"
   }
 }

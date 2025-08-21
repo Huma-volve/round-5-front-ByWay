@@ -1,7 +1,7 @@
 import StarIcon from "../../assets/images/icons/StarIcon.svg";
 import VideoIcon from "../../assets/images/icons/VideoIcon.svg";
 import Review from "../instructor/reviews/Review";
-import Breadcrumb from "../../components/common/Breadcrumb";
+import Breadcrumb from "../common/Breadcrumb";
 import { useBreadcrumb } from "../../hooks/useBreadcrumb";
 import { useTranslation } from "react-i18next";
 

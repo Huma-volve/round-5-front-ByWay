@@ -10,10 +10,13 @@ import {
 interface ReviewsManagement {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  reviewId: number | null;
 }
 import { fakeReviews } from "@/data/AdminDashboard/ReviewsManagement";
-function ViewReview({ open, onOpenChange }: ReviewsManagement) {
+import useViewReview from "@/hooks/AdminDashboard/Reviews&Ratings/useViewReview";
+function ViewReview({ open, onOpenChange, reviewId }: ReviewsManagement) {
   const { t } = useTranslation();
+  const { data: review, error, isLoading } = useViewReview(reviewId);
   return (
     <Dialog open={open} onOpenChange={onOpenChange} modal={true}>
       <DialogContent className="w-[400px] bg-white p-6 rounded-lg shadow-md">
@@ -26,25 +29,25 @@ function ViewReview({ open, onOpenChange }: ReviewsManagement) {
               <span className="text-primary font-bold ">
                 {t("adminReviews.course")} :
               </span>{" "}
-              {fakeReviews[0].courseName}
+              {review?.course}
             </p>
             <p className=" p-2 my-4 rounded-[10px]">
               <span className="text-primary font-bold">
                 {t("adminReviews.reviewer")} :
               </span>
-              {fakeReviews[0].reviewer}
+              {review?.reviewer}
             </p>
             <p className="p-2 my-4 rounded-[10px]">
               <span className="text-primary font-bold">
                 {t("adminReviews.date")} :
               </span>
-              {fakeReviews[0].date}
+              {review?.date}
             </p>
             <p className=" p-2 my-4 rounded-[10px]">
               <span className="text-primary font-bold">
                 {t("adminReviews.comment")} :
               </span>
-              {fakeReviews[0].commentPreview}
+              {review?.comment}
             </p>
           </div>
         </DialogHeader>

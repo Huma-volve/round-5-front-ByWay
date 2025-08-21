@@ -1,12 +1,18 @@
+import useDeleteReview from "@/hooks/AdminDashboard/Reviews&Ratings/useDeleteReview";
+import useViewReview from "@/hooks/AdminDashboard/Reviews&Ratings/useViewReview";
 import React from "react";
 import { useTranslation } from "react-i18next";
 interface DeleteReviewProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  reviewId: number | null;
 }
 
-function DeleteReview({ open, onOpenChange }: DeleteReviewProps) {
+function DeleteReview({ open, onOpenChange, reviewId }: DeleteReviewProps) {
   const { t } = useTranslation();
+  const deleteReviewMutation = useDeleteReview(reviewId);
+  const { data: review, error, isLoading } = useViewReview(reviewId);
+
   if (!open) return null;
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
@@ -16,7 +22,7 @@ function DeleteReview({ open, onOpenChange }: DeleteReviewProps) {
         </h2>
         <p className="mt-2 text-sm text-gray-600">
           {t("adminReviews.Are you sure you want to delete")}{" "}
-          <span className="font-medium">ReviewName</span>?
+          <span className="font-medium">{review?.course}</span>?
         </p>
 
         <div className="mt-4 flex justify-end gap-3">
@@ -26,7 +32,13 @@ function DeleteReview({ open, onOpenChange }: DeleteReviewProps) {
           >
             {t("adminReviews.Cancel")}
           </button>
-          <button className="px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-700">
+          <button
+            onClick={() => {
+              deleteReviewMutation.mutate(reviewId);
+              onOpenChange(false);
+            }}
+            className="px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-700"
+          >
             {t("adminReviews.Delete")}
           </button>
         </div>

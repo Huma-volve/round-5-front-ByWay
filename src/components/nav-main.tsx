@@ -21,13 +21,11 @@ import {
 } from "@/components/ui/sidebar";
 import { NavLink, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { DropdownMenu, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import AddAdmin from "@/pages/AdminDashboard/login/AddAdmin";
 
 export function NavMain() {
   const location = useLocation();
   const [openDialog, setOpenDialog] = useState(false);
-  const [openDropdowns, setOpenDropdowns] = useState<{ [key: string]: boolean }>({});
   // Menu items.
   const items = [
     {
@@ -107,7 +105,7 @@ export function NavMain() {
           <SidebarMenuButton asChild>
             <button
               onClick={() => setOpenDialog(true)} 
-              className="flex items-center justify-center gap-3 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:gap-0 bg-primary mt-4 !w-40 hover:bg-secondaryDark hover:text-white"
+              className="flex items-center justify-center gap-3 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:gap-0 bg-primary mt-4 !w-40 hover:bg-secondaryDark hover:text-primary"
             >
               <UserPlus className="!w-4 !h-4 shrink-0" />
               <span className="text-sm font-medium truncate">Add Admin</span>
