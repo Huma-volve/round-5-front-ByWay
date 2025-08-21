@@ -11,13 +11,18 @@ import NavDropdown from "./NavDropdown";
 import BellWithBadge from "./BellWithBadge";
 import MobileSearch from "./MobileSearch";
 import LanguageToggle from "./LanguageToggle";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 function AppNavbar() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation();
+
   const user_id = localStorage.getItem("user_id") || null;
-  const user_role = localStorage.getItem("role");
+
+  const [role] = useLocalStorage("role", "")
+
+
   const searchHandler = (value: string) => {
     console.log("Searching for:", value);
     // add your search logic here
@@ -61,7 +66,7 @@ function AppNavbar() {
                 <Link to="/shopping-cart">
                   <ShoppingCart size={20} className="hover:fill-blue-500" />
                 </Link>
-                <Link to="/favourites" className={`${user_role === "instructor" ? "hidden" : "block"}`}>
+                <Link to="/favourites" className={`${role === "instructor" ? "hidden" : "block"}`}>
                   <Heart size={20} className="hover:stroke-red-600" />
                 </Link>
                 <div className="relative">

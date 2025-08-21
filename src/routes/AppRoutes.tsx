@@ -1,5 +1,4 @@
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
-import { useState, useEffect } from "react";
 
 // Main Pages
 import CloseAccount from "../pages/close account/CloseAccount";
@@ -72,33 +71,6 @@ import NotFound from "@/pages/NotFound/NotFound";
 import ReportsAnalytics from "@/components/AdminDashboard/Reports&Analytics/ReportsAnalytics";
 
 export default function AppRoutes() {
-  const [role, setRole] = useState<string | null>(null);
-
-  //sync local storage with component life cycle
-  useEffect(() => {
-    // Get initial role from localStorage
-    const storedRole = localStorage.getItem("role");
-    setRole(storedRole);
-
-    // Listen for localStorage changes
-    const handleStorageChange = () => {
-      const updatedRole = localStorage.getItem("role");
-      setRole(updatedRole);
-    };
-
-    // Listen for storage events (when localStorage changes in other tabs)
-    window.addEventListener("storage", handleStorageChange);
-
-    // Also listen for custom storage events (for same-tab changes)
-    window.addEventListener("localStorageUpdate", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-      window.removeEventListener("localStorageUpdate", handleStorageChange);
-    };
-  }, []);
-
-
   return (
     <Router>
       <Routes>

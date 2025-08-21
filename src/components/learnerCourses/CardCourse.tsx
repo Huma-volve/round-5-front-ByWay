@@ -2,11 +2,12 @@ import { Link, useNavigate } from "react-router-dom";
 import StarIcon from "../../assets/images/icons/StarIcon.svg";
 import { courses } from "../../data/BrowseCourses";
 import { useTranslation } from "react-i18next";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 function CardCourse() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const role = localStorage.getItem("role");
+  const [role] = useLocalStorage("role", "")
 
   const handleInstructorClick = (e: React.MouseEvent, instructorId: string) => {
     e.preventDefault(); // Prevent the card link from triggering

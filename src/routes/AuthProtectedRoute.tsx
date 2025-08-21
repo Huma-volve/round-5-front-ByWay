@@ -1,6 +1,7 @@
 import type { ReactElement } from "react";
 import { Navigate } from "react-router-dom";
 import { useMemo } from "react";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 export default function AuthProtectedRoute({
   children,
@@ -8,8 +9,8 @@ export default function AuthProtectedRoute({
   children: ReactElement;
 }) {
   const authStatus = useMemo(() => {
-    const userId = localStorage.getItem("user_id");
-    const role = localStorage.getItem("role");
+    const [role] = useLocalStorage("role", "");
+    const [userId] = useLocalStorage("user_id", "");
 
     if (!userId) {
       return { isAuthenticated: false, isAdmin: false };

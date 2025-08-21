@@ -27,9 +27,9 @@ export default function CheckoutForm({}: CheckoutFormProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const token = localStorage.getItem("auth_token")
+  console.log(token);
   // const token = "60|vwpGRkzydBRZ40ifZfED597E61Ul6t1hckz13ntcc207d037"
 
-console.log("token",token)
   useEffect(() => {
     axios
       .post(
