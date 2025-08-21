@@ -84,3 +84,66 @@ export interface ReviewsAndRatings {
   status: string;
 }
 
+// الشكل الموحد اللي هتستخدمه جوة الواجهة
+export interface NotificationItem {
+  id: string;
+  title: string;
+  message: string;
+  is_read: boolean;
+  created_at: string;
+}
+
+export interface LearnerNotificationResponse {
+  id: string;
+  title: string;
+  message: string;
+  is_read: boolean;
+  created_at: string;
+}
+
+export interface InstructorNotificationResponse {
+  id: string;
+  data: {
+    title: string;
+    message: string;
+    meta?: Record<string, unknown>;
+  };
+  read_at: string | null;
+  created_at: string;
+}
+
+export interface FavouriteResponse {
+  id: number;
+  user_id: number;
+  course_id: number;
+  created_at: string;
+  updated_at: string;
+  course: {
+    id: number;
+    user_id: number;
+    title: string;
+    description: string;
+    video_url: string;
+    status: string;
+    price: string;
+    category_id: number;
+    created_at: string;
+    updated_at: string;
+  };
+}
+
+export interface PaymentItem {
+  total_amount: string;
+  status: string;
+  created_at: string;
+  items: {
+    course_id: number;
+    course_name: string;
+    price: string;
+  }[];
+  payment_method: {
+    id: number;
+    masked: string;
+    brand: string;
+  }[];
+}

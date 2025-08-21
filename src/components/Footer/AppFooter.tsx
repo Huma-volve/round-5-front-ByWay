@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import logo from "@/assets/images/icons/logo-text.svg";
 import { useTranslation } from "react-i18next";
+import facebook from "@/assets/images/icons/facebook.svg";
+import google from "@/assets/images/icons/google.svg";
+import microsoft from "@/assets/images/icons/microsoft.svg";
+import github from "@/assets/images/icons/github-computer.jpg";
 
 function AppFooter() {
   const { t } = useTranslation();
@@ -93,10 +97,18 @@ function AppFooter() {
 
             {/* Social Icons */}
             <div className="flex gap-3 mt-4">
-              <span className="h-8 w-8 rounded-full bg-gray-700 hover:bg-gray-600 cursor-pointer"></span>
-              <span className="h-8 w-8 rounded-full bg-gray-700 hover:bg-gray-600 cursor-pointer"></span>
-              <span className="h-8 w-8 rounded-full bg-gray-700 hover:bg-gray-600 cursor-pointer"></span>
-              <span className="h-8 w-8 rounded-full bg-gray-700 hover:bg-gray-600 cursor-pointer"></span>
+              <span className="h-8 w-8 rounded-full bg-white cursor-pointer flex justify-center">
+                <img src={facebook} alt="facebook icon" className="rounded-full w-5" />
+              </span>
+              <span className="h-8 w-8 rounded-full bg-white cursor-pointer flex justify-center">
+                <img src={google} alt="google icon" className="rounded-full w-5" />
+              </span>
+              <span className="h-8 w-8 rounded-full bg-white cursor-pointer flex justify-center">
+                <img src={microsoft} alt="google icon" className="rounded-full w-5" />
+              </span>
+              <span className="h-8 w-8 rounded-full bg-white cursor-pointer flex justify-center">
+                <img src={github} alt="google icon" className="rounded-full w-9" />
+              </span>
             </div>
           </div>
         </div>

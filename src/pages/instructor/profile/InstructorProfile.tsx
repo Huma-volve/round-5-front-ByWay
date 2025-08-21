@@ -31,7 +31,7 @@ export default function InstructorProfile() {
           {workForms.map((id) => (
             <WorkExperienceForm
               key={id}
-              title={`${t("workExperience.Work Experience")} ${id}`}
+              title={`${t("instructor.workExperience.Work Experience")} ${id}`}
               onAdd={addExperience}
             />
           ))}

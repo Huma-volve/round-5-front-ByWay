@@ -17,7 +17,7 @@ function AppNavbar() {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const user_id = localStorage.getItem("user_id") || null;
-
+  const user_role = localStorage.getItem("role");
   const searchHandler = (value: string) => {
     console.log("Searching for:", value);
     // add your search logic here
@@ -61,7 +61,7 @@ function AppNavbar() {
                 <Link to="/shopping-cart">
                   <ShoppingCart size={20} className="hover:fill-blue-500" />
                 </Link>
-                <Link to="/favourites">
+                <Link to="/favourites" className={`${user_role === "instructor" ? "hidden" : "block"}`}>
                   <Heart size={20} className="hover:stroke-red-600" />
                 </Link>
                 <div className="relative">

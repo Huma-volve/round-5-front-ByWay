@@ -67,7 +67,7 @@ export default function Instructor() {
             </div>
 
             <div className="flex justify-center">
-              <Link to="reviews">
+              <Link to="/instructor/reviews">
                 <Button className="bg-white text-black hover:bg-revenue2Bg transition duration-300">
                   {t("profile.View more Reviews")}
                 </Button>
