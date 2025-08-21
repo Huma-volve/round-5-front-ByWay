@@ -1,3 +1,4 @@
+// src/pages/PayHistoryPage.tsx
 import { useTranslation } from "react-i18next";
 import Breadcrumb from "../../components/common/Breadcrumb";
 import { useBreadcrumb } from "../../hooks/useBreadcrumb";
@@ -6,7 +7,7 @@ import { usePaymentHistory } from "../../hooks/usePaymentHistory";
 export default function PayHistoryPage() {
   const { t } = useTranslation();
   const { getAutoBreadcrumb } = useBreadcrumb();
-  const { history, loading } = usePaymentHistory();
+  const { history, isLoading } = usePaymentHistory();
 
   return (
     <div className="bg-background w-full">
@@ -15,9 +16,9 @@ export default function PayHistoryPage() {
       </div>
 
       <div className="w-[95%] md:w-[80%] mb-12 ml-2 md:ml-20 mr:8 md:mr-4 mt-8 overflow-x-auto">
-        {loading && <p className="text-gray-500">{t("loading")}</p>}
+        {isLoading && <p className="text-gray-500">{t("loading")}</p>}
 
-        {!loading && history.length > 0 ? (
+        {!isLoading && history.length > 0 ? (
           <>
             {/* Desktop / Tablet */}
             <table className="hidden md:table w-full table-auto border-collapse border border-border rounded-lg">
@@ -37,7 +38,9 @@ export default function PayHistoryPage() {
                       key={`${his.created_at}-${item.course_id}-${index}`}
                       className="bg-white hover:bg-gray-50 transition-colors text-left rtl:text-right"
                     >
-                      <td className="px-4 py-2 text-black text-sm">{his.created_at.slice(0,10)}</td>
+                      <td className="px-4 py-2 text-black text-sm">
+                        {his.created_at.slice(0, 10)}
+                      </td>
                       <td className="px-4 py-2 text-success text-sm">{item.course_name}</td>
                       <td className="px-4 py-2 text-sm">{item.price} EGP</td>
                       <td className="px-4 py-2 text-secondaryDark">
@@ -87,7 +90,11 @@ export default function PayHistoryPage() {
             </div>
           </>
         ) : (
-          !loading && <h1 className="text-center text-red-600">{t("payments.No payment history found")}</h1>
+          !isLoading && (
+            <h1 className="text-center text-red-600">
+              {t("payments.No payment history found")}
+            </h1>
+          )
         )}
       </div>
     </div>
