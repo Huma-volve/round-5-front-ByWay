@@ -12,7 +12,7 @@ const useFetchInstructorRevenueGraphData = () => {
       return {
         status: 200,
         message: "Instructor revenue data loaded successfully (dummy data)",
-        data: INSTRUCTOR_REVENUE_DATA
+        data: INSTRUCTOR_REVENUE_DATA,
       };
     },
     enabled: true, // Enable to use dummy data
