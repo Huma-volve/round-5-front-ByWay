@@ -1,5 +1,7 @@
 export interface SignUpFormType {
   name: string;
+  first_name: string;
+  last_name: string;
   email: string;
   password: string;
   password_confirmation: string;
@@ -38,14 +40,12 @@ export interface TopRatedCoursesResponse {
   data: TopRatedCourse[];
 }
 export interface UserDashboard {
-  data: {
     id: number;
     name: string;
     email: string;
     role: string;
     status: string;
   created_at: string;
-}
  }
 export interface UserProfileDashboard{
   id: number;
@@ -60,3 +60,27 @@ export interface UserProfileDashboard{
   total_earnings? : string;
   average_rating? : number;
 }              
+
+export interface UserProfile{
+  id: number;
+  fname: string;
+  lname: string;
+  email: string;
+  headline: string;
+  about: string;
+  x : string;
+  facebook : string;
+  youtube : number;
+  linkedin : number;
+}              
+
+export interface ReviewsAndRatings {
+  id:number;
+  course: string;
+  reviewer: string;
+  rating: number;
+  comment: string;
+  date: string;
+  status: string;
+}
+

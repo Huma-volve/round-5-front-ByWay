@@ -4,8 +4,6 @@ import type {
   OTPFormType,
   SignInFormType,
   SignUpFormType,
-  UserDashboard,
-  UserProfileDashboard,
 } from "@/lib/types";
 import { type NavigateFunction } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -25,10 +23,10 @@ export async function signOut(navigate: NavigateFunction) {
   localStorage.removeItem("email");
   localStorage.removeItem("user_id");
   localStorage.removeItem("role");
+  navigate("/signin");
   const { data } = await axiosInstance.post("logout");
   toast.success(data.message);
 
-  navigate("/signin");
 }
 
 export async function generateOTP(formData: ForgotFormType) {
@@ -44,24 +42,3 @@ export async function verifyOTP(formData: OTPFormType) {
   const { data } = await axiosInstance.post("verify-code", formData);
   return data;
 }
-// User Management
-export async function fetchUsersDashboard(): Promise<UserDashboard[]> {
-  const response = await axiosInstance.get<{ data: UserDashboard[] }>("users");
-  console.log(response.data);
-  return response.data.data;
-}
-
-export async function fetchUsersDashboardProfile(
-  id: number
-): Promise<UserProfileDashboard> {
-  const { data } = await axiosInstance.get<{ data: UserProfileDashboard }>(
-    `users/${id}`
-  );
-  console.log("User Profile Data:", data);
-  return data.data;
-}
-
-export async function deleteUserById(id: number): Promise<void> {
-  await axiosInstance.delete(`users/${id}`);
-}
-// End of User Management

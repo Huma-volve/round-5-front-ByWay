@@ -7,13 +7,9 @@ import FeedbackModal from "@/components/instructor/Modal/FeedBackModal";
 export default function LearnerCourseDetails() {
   const { t } = useTranslation();
   const [watched, setWatched] = useState<{ [key: number]: boolean }>({});
-  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false); 
+  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
 
   const lessons = [1, 2, 3, 4, 5, 6];
-
-  const toggleWatched = (id: number) => {
-    setWatched((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
 
   const handleConfirmFeedback = (rating: number, comment: string) => {
     console.log("Rating:", rating);
@@ -65,12 +61,6 @@ export default function LearnerCourseDetails() {
             className="flex items-center justify-between gap-3 border p-3 rounded-lg flex-wrap"
           >
             <div className="flex items-center gap-3">
-              <input
-                type="checkbox"
-                className="w-5 h-5 accent-green-500"
-                checked={watched[lessonId] || false}
-                onChange={() => toggleWatched(lessonId)}
-              />
               <LessonCard />
             </div>
           </div>
@@ -83,5 +73,6 @@ export default function LearnerCourseDetails() {
         onConfirm={handleConfirmFeedback}
       />
     </section>
+    
   );
 }

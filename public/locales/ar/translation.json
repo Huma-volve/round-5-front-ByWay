@@ -500,10 +500,11 @@
     "Are you sure you want to delete": "هل أنت متأكد أنك تريد حذف",
     "Cancel": "إلغاء",
     "Delete": "حذف",
-    "Deleting..." : "يتم الحذف...",
-    "Error loading users" : "حدث خطأ اثناء التحميل",
-    "Unknown error occurred" : "يوجد خطأ غير محدد",
-    "No users found" : "لا يوجد مستخدم"
+    "Deleting...": "يتم الحذف...",
+    "Error loading users": "حدث خطأ اثناء التحميل",
+    "Unknown error occurred": "يوجد خطأ غير محدد",
+    "No users found": "لا يوجد مستخدم",
+    "Loading": "تحميل..."
   },
   "adminUserDetails": {
     "User Profile": "ملف المستخدم",
@@ -527,7 +528,7 @@
       "totalCourses": "إجمالي الدورات",
       "totalStudents": "إجمالي الطلاب",
       "totalInstructors": "إجمالي المدربين",
-      "totalRevenue": "إجمالي الإيرادات",
+      "Total Revenue": "إجمالي الإيرادات",
       "topRatedCourses": "الدورات الأعلى تقييمًا",
       "viewAll": "عرض الكل",
       "recentActivities": "الأنشطة الأخيرة",
@@ -535,9 +536,9 @@
       "platformOverview": "إليك نظرة سريعة على أداء منصتك.",
       "instructor": "المدرب:",
       "students": "طلاب",
-      "activeLearners": "المتعلمون النشطون",
-      "activeInstructors": "المدربون النشطون",
-      "publishedCourses": "الدورات المنشورة",
+      "active_learners": "المتعلمون النشطون",
+      "active_instructors": "المدربون النشطون",
+      "published_courses": "الدورات المنشورة",
       "activityType": {
         "courseAdded": "تم إضافة دورة",
         "courseUpdated": "تم تحديث دورة",
@@ -565,5 +566,15 @@
     "Are you sure you want to delete": "هل أنت متأكد أنك تريد حذف",
     "Cancel": "إلغاء",
     "Delete": "حذف"
+  },
+  "adminDetails": {
+    "Payment Details": "تفاصيل الدفع",
+    "Amount": "المبلغ",
+    "Payment Date": "تاريخ الدفع",
+    "Status": "الحالة",
+    "Method": "الطريقة",
+    "Student": "الطالب",
+    "Instructor": "المدرب",
+    "Course": "الدورة"
   }
 }

@@ -1,4 +1,5 @@
 import axiosInstance from "@/lib/axios-instance";
+import type { UserProfile } from "@/lib/types";
 
 interface Category {
   id: number;
@@ -143,3 +144,14 @@ export async function deleteCategory(id: number): Promise<{ success: boolean; id
   }
 }
 
+export async function userProfileData(): Promise<UserProfile> {
+  try {
+    const { data } = await axiosInstance.get<ApiResponse<UserProfile>>(
+      `/profile`
+    );
+    return data.data;
+  } catch (error) {
+    console.error("Error fetching user profile:", error);
+    throw new Error("Failed to fetch user profile");
+  }
+}

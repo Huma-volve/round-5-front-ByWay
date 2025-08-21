@@ -1,5 +1,5 @@
 import TopRatedCard from "./TopRatedCard";
-import { useTopRatedCourses } from "@/hooks/useTopRatedCourses";
+import { useTopRatedCourses } from "@/hooks/AdminDashboard/useTopRatedCourses";
 import { useTranslation } from "react-i18next";
 
 export default function TopRatedCourses() {
@@ -17,7 +17,7 @@ export default function TopRatedCourses() {
           {Array.from({ length: 4 }).map((_, index) => (
             <div
               key={index}
-              className="h-48 bg-gray-200 animate-pulse rounded-lg"
+              className="h-28 bg-gray-200 animate-pulse rounded-lg"
             ></div>
           ))}
         </div>
