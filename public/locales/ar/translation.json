@@ -406,7 +406,7 @@
   "favourite": {
     "Courses": "الدورات",
     "Instractor": "المدرب",
-    "No Favourites have been selected" : "لا يوجد شي في قائمه المفضله"
+    "No Favourites have been selected": "لا يوجد شي في قائمه المفضله"
   },
   "notifications": {
     "You are all up to date": "أنت محدث بالكامل",
@@ -424,7 +424,7 @@
     "Method": "الطريقة",
     "Amount": "المبلغ",
     "Save Payment Method": "حفظ طريقه الدفع",
-    "No payment history found" : "لا يوجد اي تواريخ للدفع"
+    "No payment history found": "لا يوجد اي تواريخ للدفع"
   },
   "save": {
     "Save": "حفظ"

@@ -13,7 +13,7 @@ export default function AdminDashboard() {
       <h1 className="text-xl md:text-2xl font-bold my-10 text-primary">
         {t("admin.home.MonthlyRevenueOverview")}
       </h1>
-      <RevenueChart 
+      <RevenueChart
         useRevenueHook={useFetchRevenueGraphData}
         defaultYear={new Date().getFullYear()}
       />

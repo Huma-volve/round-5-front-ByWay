@@ -43,7 +43,7 @@ export function NavUser() {
   return (
     <SidebarMenu>
       <SidebarMenuItem>
-        <DropdownMenu>
+        <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"

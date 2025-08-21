@@ -28,7 +28,10 @@ interface RevenueChartProps {
   defaultYear?: number;
 }
 
-export default function RevenueChart({ useRevenueHook, defaultYear = new Date().getFullYear() }: RevenueChartProps) {
+export default function RevenueChart({
+  useRevenueHook,
+  defaultYear = new Date().getFullYear(),
+}: RevenueChartProps) {
   const { t } = useTranslation();
   const { data, isPending, isError, error } = useRevenueHook();
   const [selectedYear, setSelectedYear] = useState<number>(defaultYear);
