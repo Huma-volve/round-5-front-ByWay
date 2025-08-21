@@ -1,3 +1,4 @@
+// src/pages/NotificationPage.tsx
 import bellBack from "../../assets/images/notify-bell.jpg";
 import { useTranslation } from "react-i18next";
 import Breadcrumb from "../../components/common/Breadcrumb";
@@ -9,10 +10,9 @@ import type { NotificationItem } from "@/lib/types";
 export default function NotificationPage() {
   const { t } = useTranslation();
   const { getAutoBreadcrumb } = useBreadcrumb();
-  const { notifications, loading , markAsRead , deleteNotification} = useNotifications();
+  const { notifications, isLoading, markAsRead, deleteNotification } = useNotifications();
 
-  // لو لسه بيجيب الـ data
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="flex items-center justify-center h-[300px]">
         <p className="text-lg">{t("adminUser.Loading")}</p>
@@ -52,10 +52,10 @@ export default function NotificationPage() {
               <NotifyCard
                 key={notify.id}
                 title={notify.title}
-                time={notify.created_at.slice(0,10)}
+                time={notify.created_at.slice(0, 10)}
                 latest={notify.is_read}
                 id={notify.id}
-                onMarkRead={markAsRead}
+                onMarkRead={() => markAsRead(notify.id)}
                 onDelete={() => deleteNotification(notify.id)}
               />
             ))}
