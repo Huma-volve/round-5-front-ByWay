@@ -1,6 +1,6 @@
-import CategoriesCourses from "../../components/courses/CategoriesCourses";
-import StatsCourses from "@/components/courses/StatsCourses";
-import CardCourse from "@/components/courses/CardCourse";
+import CategoriesCourses from "../../components/learnerCourses/CategoriesCourses";
+import StatsCourses from "@/components/learnerCourses/StatsCourses";
+import CardCourse from "@/components/learnerCourses/CardCourse";
 
 function CoursesPage() {
   return (

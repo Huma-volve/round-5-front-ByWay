@@ -5,12 +5,13 @@ import CloseAccount from "../pages/close account/CloseAccount";
 import Success from "../pages/success/Success";
 
 // Profile Pages
+// import USER_PROFILE from "@/data/userProfile";
 // import UserProfilePage from "@/pages/profile/UserProfilePage";
 // import EditUserProfile from "@/pages/profile/EditUserProfile";
 
 // Course Pages
 import CoursesPage from "@/pages/Courses/CoursesPage";
-import CourseDetails from "@/components/courses/CourseDetails";
+import CourseDetails from "@/components/learnerCourses/CourseDetails";
 import LearnerMyCourses from "@/pages/Courses/MyCourses/LearnerMyCourses";
 import LearnerCourseDetails from "@/pages/Courses/CourseDetails/LearnerCourseDetailes";
 import MyCourses from "@/pages/Courses/MyCourses/MyCourses";
@@ -70,6 +71,7 @@ import AuthProtectedRoute from "./AuthProtectedRoute";
 import ReviewsAndRatings from "@/pages/AdminDashboard/Reviews&Ratings/ReviewsAndRatings";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
 import UserProfilePage from "@/pages/profile/UserProfilePage";
+import WatchVideo from "@/pages/Courses/WatchVideo";
 
 export default function AppRoutes() {
   const [role, setRole] = useState<string | null>(null);
@@ -118,7 +120,6 @@ export default function AppRoutes() {
           {/* Home */}
           {/* <Route path="/" element={<Home />} /> */}
           {HomeRoute}
-
           {/* User Profile Section */}
           {/* <Route
             path="/profile"
@@ -128,24 +129,29 @@ export default function AppRoutes() {
             path="/edit-user-profile"
             element={<EditUserProfile user={USER_PROFILE[0]} />}
           /> */}
-
           {/* Course Discovery & Learning */}
           <Route path="/courses">
             <Route index element={<CoursesPage />} />
             <Route path=":courseId" element={<CourseDetails />} />
           </Route>
-
           {/* Learner Course Management */}
           <Route path="/learner-myCourses" element={<LearnerMyCourses />}>
             <Route path=":learnerCourseId" element={<LearnerCourseDetails />} />
+            <Route
+              path=":learnerCourseId"
+              element={<LearnerCourseDetails />}
+            ></Route>
+            <Route
+              path=":learnerCourseId/video/:videoId"
+              element={<WatchVideo />}
+            />
           </Route>
-
           {/* Instructor Section */}
           <Route
             path="/:instructorId/instructor-details"
             element={<InstructorDetails />}
           />
-
+          1
           <Route path="/instructor">
             <Route index element={<Instructor />} />
             <Route index path="home" element={<Instructor />} />
@@ -188,19 +194,15 @@ export default function AppRoutes() {
               element={<EditLesson />}
             />
           </Route>
-
           {/* Shopping & Payments */}
           <Route path="/shopping-cart" element={<ShoppingCartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
-
           {/* User Preferences & Settings */}
           <Route path="/favourites" element={<Favourites />} />
           <Route path="/notifications" element={<NotificationPage />} />
-
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/settings/paymethod" element={<PaymethodPage />} />
           <Route path="/settings/payhistory" element={<PayHistoryPage />} />
-
           {/* Account Management */}
           <Route path="/close-account" element={<CloseAccount />} />
           <Route path="/success" element={<Success />} />
@@ -241,7 +243,7 @@ export default function AppRoutes() {
           />
 
           <Route path="AdminCoursesPage" element={<AdminCoursesPage />} />
-          <Route path="EditCourse" element={<EditCourse />} />
+          <Route path="EditCourse/:id" element={<EditCourse />} />
           <Route
             path="course-details/:courseId"
             element={<InstructorCourseDetails />}

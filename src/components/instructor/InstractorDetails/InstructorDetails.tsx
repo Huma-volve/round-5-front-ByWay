@@ -1,5 +1,5 @@
 import Breadcrumb from "@/components/common/Breadcrumb";
-import CardCourse from "@/components/courses/CardCourse";
+import CardCourse from "@/components/learnerCourses/CardCourse";
 import { useBreadcrumb } from "@/hooks/useBreadcrumb";
 import { CircleUser } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -23,11 +23,15 @@ function InstructorDetails() {
           <div className="my-10 flex items-center flex-wrap md:justify-start justify-center gap-10 md:gap-40">
             <div className="text-center">
               <p className="font-[600] text-xl mb-1">1000+</p>
-              <p>{t("common.numberOf")} {t("common.students")}</p>
+              <p>
+                {t("common.numberOf")} {t("common.students")}
+              </p>
             </div>
             <div className="text-center">
               <p className="font-[600] text-xl mb-1">15+</p>
-              <p>{t("common.numberOf")} {t("instructor.reviews")}</p>
+              <p>
+                {t("common.numberOf")} {t("instructor.reviews")}
+              </p>
             </div>
           </div>
           <div>
