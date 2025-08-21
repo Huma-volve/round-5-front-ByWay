@@ -95,7 +95,7 @@ const EditUserProfile = () => {
             src={edit}
             alt="edit"
             loading="lazy"
-            className={`w-8 h-8  mb-[-20px] curser-pointer bg-placeholder  mb-[-10px]  py-2 rounded-full ${i18n.language === "ar" ? "mr-[-25px]" : "ml-[-25px]"} `}
+            className={`w-8 h-8 curser-pointer bg-placeholder  mb-[-10px]  py-2 rounded-full ${i18n.language === "ar" ? "mr-[-25px]" : "ml-[-25px]"} `}
           />
           <input
             type="file"

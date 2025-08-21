@@ -1,10 +1,10 @@
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import { useState, useEffect } from "react";
 // Main Pages
 import CloseAccount from "../pages/close account/CloseAccount";
 import Success from "../pages/success/Success";
 
 // Profile Pages
-import USER_PROFILE from "@/data/userProfile";
 // import UserProfilePage from "@/pages/profile/UserProfilePage";
 // import EditUserProfile from "@/pages/profile/EditUserProfile";
 
@@ -15,7 +15,6 @@ import LearnerMyCourses from "@/pages/Courses/MyCourses/LearnerMyCourses";
 import LearnerCourseDetails from "@/pages/Courses/CourseDetails/LearnerCourseDetailes";
 import MyCourses from "@/pages/Courses/MyCourses/MyCourses";
 import InstructorCourseDetails from "@/pages/Courses/CourseDetails/InstructorCourseDetails";
-
 
 // Instructor Pages
 import Instructor from "@/pages/instructor/Instructor";
@@ -73,10 +72,34 @@ import EditUserProfile from "@/pages/profile/EditUserProfile";
 import UserProfilePage from "@/pages/profile/UserProfilePage";
 
 export default function AppRoutes() {
-  const role = localStorage.getItem("role");
+  const [role, setRole] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Get initial role from localStorage
+    const storedRole = localStorage.getItem("role");
+    setRole(storedRole);
+
+    // Listen for localStorage changes
+    const handleStorageChange = () => {
+      const updatedRole = localStorage.getItem("role");
+      setRole(updatedRole);
+    };
+
+    // Listen for storage events (when localStorage changes in other tabs)
+    window.addEventListener("storage", handleStorageChange);
+
+    // Also listen for custom storage events (for same-tab changes)
+    window.addEventListener("localStorageUpdate", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("localStorageUpdate", handleStorageChange);
+    };
+  }, []);
+
   const HomeRoute =
     role === "learner" ? (
-      <Route path="/" element={<CoursesPage/>} />
+      <Route path="/" element={<CoursesPage />} />
     ) : (
       <Route path="/" element={<Instructor />} />
     );
@@ -113,7 +136,7 @@ export default function AppRoutes() {
           </Route>
 
           {/* Learner Course Management */}
-          <Route path="/learner-myCourses" element={<LearnerMyCourses/>}>
+          <Route path="/learner-myCourses" element={<LearnerMyCourses />}>
             <Route path=":learnerCourseId" element={<LearnerCourseDetails />} />
           </Route>
 
@@ -150,18 +173,18 @@ export default function AppRoutes() {
             {/* Course Selection & Management */}
             {/* <Route path="courses/select" element={<CourseSelection />} /> //placeholder */}
             <Route
-              path="courses/:courseId/manage"
+              path="my-courses/:courseId/manage"
               element={<CourseSelection />}
             />
 
             {/* Lesson Management */}
-            <Route path="courses/:courseId/lessons" element={<ViewLessons />} />
+            <Route path="my-courses/:courseId/lessons" element={<ViewLessons />} />
             <Route
-              path="courses/:courseId/lessons/add"
+              path="my-courses/:courseId/lessons/add"
               element={<AddLessons />}
             />
             <Route
-              path="courses/:courseId/lessons/edit/:lessonId"
+              path="my-courses/:courseId/lessons/edit/:lessonId"
               element={<EditLesson />}
             />
           </Route>
@@ -224,19 +247,12 @@ export default function AppRoutes() {
             element={<InstructorCourseDetails />}
           />
           <Route path="payment-revenue" element={<PaymentRevenue />} />
-          <Route path="settings" element={<AdminSettings/>} />
+          <Route path="settings" element={<AdminSettings />} />
           <Route path="analytics" element={<div>Analytics</div>} />
           <Route path="reviews-ratings" element={<ReviewsAndRatings />} />
-
         </Route>
-            <Route
-            path="/profile"
-            element={<UserProfilePage  />}
-          />
-          <Route
-            path="/edit-user-profile"
-            element={<EditUserProfile  />}
-          />
+        <Route path="/profile" element={<UserProfilePage />} />
+        <Route path="/edit-user-profile" element={<EditUserProfile />} />
       </Routes>
     </Router>
   );

@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { signIn } from "@/api/auth-api";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
@@ -18,15 +19,18 @@ export function useSignIn() {
       localStorage.setItem("email", data.data.user.email);
       localStorage.setItem("role", data.data.user.role);
 
+      // Dispatch custom event to notify other components of localStorage change
+      window.dispatchEvent(new Event("localStorageUpdate"));
+
       toast.success(data.message);
-      if( data.data.user.role === "admin" ) {
+      if (data.data.user.role === "admin") {
         navigate("/admin");
       } else {
         navigate("/");
       }
     },
-    onError: (error: any) => {
-      toast.error(error.response.data.message);
+    onError: (error: AxiosError<{ message?: string }>) => {
+      toast.error(error?.response?.data?.message);
     },
   });
 

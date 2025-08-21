@@ -24,7 +24,7 @@ export default function InstructorCourseDetails() {
       <div className="space-y-4">
         <div className="flex gap-3">
           <h3 className="border w-fit px-3 py-1 border-rate rounded-md font-bold ">{t("instructor.lessons.title")}</h3>
-            <Link to={`/instructor/courses/${courseId}/manage`}>
+            <Link to={`/instructor/my-courses${courseId}/manage`}>
               <Button className="border text-white w-fit px-3 py-1 border-rate rounded-md font-bold">Manage Course</Button>
             </Link>
         </div>

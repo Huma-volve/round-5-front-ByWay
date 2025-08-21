@@ -42,7 +42,7 @@ export default function AddCourseForm() {
       // Simulate course creation and get courseId
       const courseId = "course-" + Date.now(); // In real app, this would come from API response
       // Navigate to course management page with the new courseId
-      navigate(`/instructor/courses/${courseId}/manage`);
+      navigate(`/instructor/my-courses/${courseId}/manage`);
     },
   });
 

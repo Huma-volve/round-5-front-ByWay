@@ -76,12 +76,12 @@ export default function AddLessonsForm({
         // Handle lesson update
         console.log("Updating lesson:", values);
         // Navigate back to lessons view
-        navigate(`/instructor/courses/${courseId}/lessons`);
+        navigate(`/instructor/my-courses/${courseId}/lessons`);
       } else {
         // Handle lesson creation
         console.log("Creating lessons:", values);
         // Navigate back to course selection or dashboard
-        navigate("/instructor/courses/select");
+        navigate(`/instructor/my-courses/${courseId}/manage`);
       }
     },
   });
@@ -159,7 +159,7 @@ export default function AddLessonsForm({
                 type="button"
                 variant="ghost"
                 onClick={() =>
-                  navigate(`/instructor/courses/${courseId}/lessons`)
+                  navigate(`/instructor/my-courses${courseId}/lessons`)
                 }
                 className="mb-4"
               >

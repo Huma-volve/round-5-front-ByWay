@@ -521,6 +521,13 @@
     "About Instructor": "عن المدرب"
   },
   "admin": {
+    "dashboard": "لوحة التحكم",
+    "userManagement": "إدارة المستخدمين",
+    "courseManagement": "إدارة الدورات",
+    "paymentRevenue": "المدفوعات والإيرادات",
+    "reviewsRatings": "التقييمات والمراجعات",
+    "reportsAnalytics": "التقارير والتحليلات",
+    "addAdmin": "إضافة مشرف",
     "home": {
       "dashboard": "لوحة التحكم",
       "MonthlyRevenueOverview": "نظرة عامة على الإيرادات الشهرية",
