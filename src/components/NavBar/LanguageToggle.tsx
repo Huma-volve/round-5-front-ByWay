@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "../ui/button";
 import { useLanguage } from "../../hooks/useLanguage";
+import { Languages } from "lucide-react";
 
 interface Language {
   code: string;
@@ -25,7 +26,7 @@ const languages: Language[] = [
   },
 ];
 
-function LanguageToggle() {
+function LanguageToggle({ className = "" }: { className?: string }) {
   const { t } = useTranslation();
   const { language, changeLanguage } = useLanguage();
   const [currentLanguage, setCurrentLanguage] = useState<Language>(
@@ -57,12 +58,20 @@ function LanguageToggle() {
       variant="ghost"
       size="sm"
       onClick={handleToggle}
-      className=" px-3 py-2 hover:bg-gray-100 transition-all duration-200 border border-gray-200 rounded-md"
+      className={
+        " px-3 py-1 hover:bg-gray-100 transition-all duration-200 border border-gray-200 rounded-md " +
+        className
+      }
       title={t("common.selectLanguage")}
     >
+      <Languages />
       <span className="w-full flex items-center gap-2">
         <span className="font-medium text-lg">{currentLanguage.flag}</span>
-        <span className=" font-medium text-lg text-secondaryDark">
+        <span
+          className={
+            ` font-medium text-lg  ${className ? " " : " text-secondaryDark"}`
+          }
+        >
           {currentLanguage.code}
         </span>
       </span>

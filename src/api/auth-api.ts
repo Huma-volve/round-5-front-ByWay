@@ -19,14 +19,14 @@ export async function signIn(formData: SignInFormType) {
 }
 
 export async function signOut(navigate: NavigateFunction) {
+  const { data } = await axiosInstance.post("logout");
+  toast.success(data.message);
   localStorage.removeItem("auth_token");
   localStorage.removeItem("email");
   localStorage.removeItem("user_id");
   localStorage.removeItem("role");
-  const { data } = await axiosInstance.post("logout");
-  toast.success(data.message);
-
   navigate("/signin");
+
 }
 
 export async function generateOTP(formData: ForgotFormType) {

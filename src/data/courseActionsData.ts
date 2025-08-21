@@ -26,7 +26,7 @@ export const createCourseActions = (
     icon: Video,
     action: () => {
       if (courseId) {
-        navigate(`/instructor/courses/${courseId}/lessons`);
+        navigate(`/instructor/my-courses/${courseId}/lessons`);
       } else {
         navigate("/instructor/add-lessons");
       }
@@ -42,7 +42,7 @@ export const createCourseActions = (
     icon: Eye,
     action: () => {
       if (courseId) {
-        navigate(`/instructor/courses/${courseId}/lessons`);
+        navigate(`/instructor/my-courses/${courseId}/lessons`);
       }
     },
     primary: false,

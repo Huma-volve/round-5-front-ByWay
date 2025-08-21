@@ -21,53 +21,54 @@ import {
 } from "@/components/ui/sidebar";
 import { NavLink, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { DropdownMenu, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import AddAdmin from "@/pages/AdminDashboard/login/AddAdmin";
+import { useTranslation } from "react-i18next";
 
 export function NavMain() {
   const location = useLocation();
   const [openDialog, setOpenDialog] = useState(false);
-  const [openDropdowns, setOpenDropdowns] = useState<{ [key: string]: boolean }>({});
+  const { t } = useTranslation();
+
   // Menu items.
   const items = [
     {
-      title: "Dashboard",
+      title: t("admin.dashboard"),
       url: "/admin",
       exact: true, // Only match exact path
       icon: Gauge,
     },
     {
-      title: "User Management",
+      title: t("admin.userManagement"),
       url: "/admin/user-manage",
       exact: false, // Match sub-routes like /admin/user-manage/123
       icon: User,
     },
     {
-      title: "Course Management",
+      title: t("admin.courseManagement"),
       url: "/admin/course-manage",
       exact: false,
       icon: Book,
     },
     {
-      title: "Payment & revenue",
+      title: t("admin.paymentRevenue"),
       url: "/admin/payment-revenue",
       exact: false,
       icon: BadgeDollarSign,
     },
     {
-      title: "Reviews & Ratings",
+      title: t("admin.reviewsRatings"),
       url: "/admin/reviews-ratings",
       exact: false,
       icon: Star,
     },
     {
-      title: "Settings",
+      title: t("common.settings"),
       url: "/admin/settings",
       exact: false,
       icon: Settings,
     },
     {
-      title: "Reports & Analytics",
+      title: t("admin.reportsAnalytics"),
       url: "/admin/analytics",
       exact: false,
       icon: ChartNoAxesCombined,
@@ -77,7 +78,7 @@ export function NavMain() {
   return (
     <>
       <SidebarGroup>
-        <SidebarGroupLabel>Dashboard</SidebarGroupLabel>
+        <SidebarGroupLabel>{t("admin.dashboard")}</SidebarGroupLabel>
         <SidebarGroupContent className="">
           <SidebarMenu className="*:py-2">
             {items.map((item) => {
@@ -85,7 +86,7 @@ export function NavMain() {
               const isActive = item.exact
                 ? location.pathname === item.url // Exact match for dashboard
                 : location.pathname === item.url ||
-                location.pathname.startsWith(item.url + "/"); // Match sub-routes for others
+                  location.pathname.startsWith(item.url + "/"); // Match sub-routes for others
 
               return (
                 <SidebarMenuItem key={item.title}>
@@ -106,19 +107,18 @@ export function NavMain() {
           </SidebarMenu>
           <SidebarMenuButton asChild>
             <button
-              onClick={() => setOpenDialog(true)} 
-              className="flex items-center justify-center gap-3 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:gap-0 bg-primary mt-4 !w-40 hover:bg-secondaryDark hover:text-white"
+              onClick={() => setOpenDialog(true)}
+              className="flex items-center justify-center gap-3 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:gap-0 bg-primary mt-4 !w-40 hover:bg-secondaryDark hover:text-primary"
             >
               <UserPlus className="!w-4 !h-4 shrink-0" />
-              <span className="text-sm font-medium truncate">Add Admin</span>
+              <span className="text-sm font-medium truncate">
+                {t("admin.addAdmin")}
+              </span>
             </button>
           </SidebarMenuButton>
-
         </SidebarGroupContent>
-
       </SidebarGroup>
       <AddAdmin open={openDialog} onOpenChange={setOpenDialog} />
     </>
-
   );
 }

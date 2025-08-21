@@ -24,7 +24,7 @@ export default function ViewLessonsContent() {
   const [isDeleting, setIsDeleting] = useState(false);
 
   const handleEditLesson = (lesson: Lesson) => {
-    navigate(`/instructor/courses/${courseId}/lessons/edit/${lesson.id}`);
+    navigate(`/instructor/my-courses/${courseId}/lessons/edit/${lesson.id}`);
   };
 
   const handleDeleteLesson = (lesson: Lesson) => {
@@ -46,7 +46,7 @@ export default function ViewLessonsContent() {
   };
 
   const handleAddNewLesson = () => {
-    navigate(`/instructor/courses/${courseId}/lessons/add`);
+    navigate(`/instructor/my-courses/${courseId}/lessons/add`);
   };
 
   if (courseLoading || lessonsLoading) {

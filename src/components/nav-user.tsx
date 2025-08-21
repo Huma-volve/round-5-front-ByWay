@@ -1,12 +1,11 @@
 "use client";
 
 import {
-  BadgeCheck,
-  Bell,
+  // BadgeCheck,
   ChevronsUpDown,
-  CreditCard,
+  // CreditCard,
   LogOut,
-  Sparkles,
+  // Sparkles,
 } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -15,7 +14,7 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
+  // DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
@@ -27,7 +26,11 @@ import {
 } from "@/components/ui/sidebar";
 import { signOut } from "@/api/auth-api";
 import { useNavigate } from "react-router-dom";
+import LanguageToggle from "./NavBar/LanguageToggle";
+import { useTranslation } from "react-i18next";
+
 export function NavUser() {
+  const { t } = useTranslation();
   const { isMobile } = useSidebar();
   const navigate = useNavigate();
 
@@ -65,49 +68,20 @@ export function NavUser() {
             align="end"
             sideOffset={4}
           >
-            <DropdownMenuLabel className="p-0 font-normal">
-              <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
-                </Avatar>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">{user.name}</span>
-                  <span className="truncate text-xs">{user.email}</span>
-                </div>
-              </div>
-            </DropdownMenuLabel>
-            <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <Sparkles />
-                Upgrade to Pro
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <BadgeCheck />
-                Account
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <CreditCard />
-                Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Bell />
-                Notifications
+              <DropdownMenuItem className="cursor-pointer px-0">
+                <LanguageToggle className=" border-none px-2 py-2 mx-0 w-full text-primary hover:bg-primary hover:text-white" />
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem
-              className="cursor-pointer"
+              className="cursor-pointer text-red-500 hover:bg-red-500 hover:text-white"
               onClick={() => {
                 signOut(navigate);
               }}
             >
               <LogOut />
-              Log out
+              {t("common.signOut")}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

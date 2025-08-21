@@ -1,28 +1,19 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
+import { Label } from "@/components/ui/label"  
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Save } from "lucide-react"
 import { useTranslation } from "react-i18next"
 import axios from "axios"
 import { useQuery } from "@tanstack/react-query"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { Formik, Form, Field, ErrorMessage } from "formik"
-import * as Yup from "yup"
 import { toast } from "react-toastify"
-
-const CourseSchema = Yup.object().shape({
-  title: Yup.string().required("Title is required"),
-  category: Yup.string().required("Title is required"),
-  description: Yup.string().required("Description is required"),
-  price: Yup.number().positive().required("Price is required"),
-  category_id: Yup.number().positive().required("Category is required"),
-  status: Yup.string().oneOf(["published", "draft", "pending"]).required("Status is required"),
-  created_at: Yup.date().required("Created date is required"),
-})
-
+import { Skeleton } from "@/components/ui/skeleton"
+import CourseSchema from "@/schemas/courseSchema"
 export default function EditCourse() {
+const navigate = useNavigate()
   const { id } = useParams()
   const token = localStorage.getItem("auth_token")
   const { t } = useTranslation()
@@ -30,18 +21,19 @@ export default function EditCourse() {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["course", id],
     queryFn: async () => {
-      const res = await axios.get(`http://round5-byway.huma-volve.com/api/courses/${id}`, {
+      const {data} = await axios.get(`http://round5-byway.huma-volve.com/api/courses/${id}`, {
         headers: {
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
       })
-      return res.data.data
+      console.log(data.data)
+      return data.data
     },
     enabled: !!id && !!token,
   })
 
-  if (isLoading) return <p>Loading...</p>
+  if (isLoading) return <Skeleton className=" container space-y-4 min-h-screen w-full rounded-full" />
   if (isError) return <p>Error: {error.message}</p>
 
   return (
@@ -52,6 +44,7 @@ export default function EditCourse() {
       </div>
 
       <Formik
+        enableReinitialize
         initialValues={{
           title: data?.title || "",
           description: data?.description || "",
@@ -72,6 +65,7 @@ export default function EditCourse() {
               },
             })
             toast.success("Course updated successfully!")
+             navigate("/admin/courses"); 
           } catch (err) {
              if (err instanceof Error) {
     toast.error("Error: " + err.message);
@@ -89,11 +83,11 @@ export default function EditCourse() {
               <CardHeader>
                 <CardTitle>{t("instructor.courseManagement.courseTittle")}</CardTitle>
               </CardHeader>
+
               <CardContent className="space-y-4">
-               
                <div>
                   <Label>{t("instructor.courseManagement.courseTittle")}</Label>
-                  <Field as={Input} name="title" placeholder={t("instructor.courseManagement.placeholders.courseTittle")} />
+                  <Field as={Input}  name="title" placeholder={t("instructor.courseManagement.placeholders.courseTittle")} />
                   <ErrorMessage name="title" component="p" className="text-red-500 my-2 text-sm" />
                 </div>
                    <div>
@@ -103,24 +97,19 @@ export default function EditCourse() {
                 </div>
                 <div>
                   <Label>{t("instructor.courseManagement.price")}</Label>
-                  <Field as={Input} type="number" name="price" />
+                  <Field as={Input}  type="number" name="price" />
                   <ErrorMessage name="price" component="p" className="text-red-500 my-2 text-sm" />
                 </div>
-
-              
-                <div>
+                  <div>
                   <Label>{t("instructor.courseManagement.category")}</Label>
                   <Field as={Input} type="text" name="category" />
                   <ErrorMessage name="category" component="p" className="text-red-500 my-2 text-sm" />
                 </div>
-
-                
                 <div>
                   <Label>{t("instructor.courseManagement.selectStatus")}</Label>
                   <Select
                     value={values.status}
-                    onValueChange={(val) => setFieldValue("status", val)}
-                  >
+                    onValueChange={(val) => setFieldValue("status", val)}>
                     <SelectTrigger>
                       <SelectValue placeholder={t("instructor.courseManagement.placeholders.status")} />
                     </SelectTrigger>
@@ -132,16 +121,14 @@ export default function EditCourse() {
                   </Select>
                   <ErrorMessage name="status" component="p" className="text-red-500 my-2 text-sm" />
                 </div>
-
-               <div>
+                <div>
                   <Label>{t("instructor.courseManagement.createdDate")}</Label>
                   <Field as={Input} type="date" name="created_at" />
                   <ErrorMessage name="created_at" component="p" className="text-red-500 my-2 text-sm" />
                 </div>
               </CardContent>
             </Card>
-
-            <div className="flex gap-2 justify-end py-3">
+   <div className="flex gap-2 justify-end py-3">
               <Button type="submit" disabled={isSubmitting} className="bg-rate text-white">
                 <Save className="h-4 w-4 mr-2" /> {t("instructor.courseManagement.saveChanges")}
               </Button>
@@ -149,6 +136,5 @@ export default function EditCourse() {
           </Form>
         )}
       </Formik>
-    </div>
-  )
+    </div> )
 }

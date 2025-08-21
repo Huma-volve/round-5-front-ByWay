@@ -1,20 +1,20 @@
-import * as React from "react"
+import * as React from "react";
 // import {
 //   Eye,
 //   UserRoundCog,
 //   UserStar,
 // } from "lucide-react"
 
-import { NavMain } from "@/components/nav-main"
-import { NavUser } from "@/components/nav-user"
+import { NavMain } from "@/components/nav-main";
+import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
-  SidebarHeader
+  SidebarHeader,
   /*,SidebarRail,*/
-} from "@/components/ui/sidebar"
-import SidebarAppHeader from "./common/SidebarAppHeader"
+} from "@/components/ui/sidebar";
+import SidebarAppHeader from "./common/SidebarAppHeader";
 
 // This is sample data Team switch
 // const data = {
@@ -37,19 +37,22 @@ import SidebarAppHeader from "./common/SidebarAppHeader"
 //   ],
 // }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({
+  side = "left",
+  ...props
+}: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="icon" side={side} {...props}>
       <SidebarHeader>
         {/* <TeamSwitcher teams={data.teams} /> */}
-        <SidebarAppHeader variant="dark"/>
+        <SidebarAppHeader variant="dark" />
       </SidebarHeader>
       <SidebarContent className="">
-        <NavMain/>
+        <NavMain />
       </SidebarContent>
       <SidebarFooter>
         <NavUser />
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }

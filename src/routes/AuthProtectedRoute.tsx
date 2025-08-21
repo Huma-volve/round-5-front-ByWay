@@ -1,19 +1,36 @@
 import type { ReactElement } from "react";
 import { Navigate } from "react-router-dom";
+import { useMemo } from "react";
+
 export default function AuthProtectedRoute({
   children,
 }: {
   children: ReactElement;
 }) {
-  const isAuthenticatedAsAdmin =
-    localStorage.getItem("user_id") && localStorage.getItem("role") === "admin"; //check if there is a user id (should be is validated for otp)
-  const isAuthenticatedAsUser =
-    localStorage.getItem("user_id") && localStorage.getItem("role") !== "admin"; //check if there is a user id (should be is validated for otp)
-  return isAuthenticatedAsAdmin ? (
-    <Navigate to="/admin" replace />
-  ) : isAuthenticatedAsUser ? (
-    <Navigate to="/" replace />
-  ) : (
-    children
-  );
+  const authStatus = useMemo(() => {
+    const userId = localStorage.getItem("user_id");
+    const role = localStorage.getItem("role");
+
+    if (!userId) {
+      return { isAuthenticated: false, isAdmin: false };
+    }
+
+    return {
+      isAuthenticated: true,
+      isAdmin: role === "admin",
+    };
+  }, []);
+
+  // If user is authenticated and is admin, redirect to admin dashboard
+  if (authStatus.isAuthenticated && authStatus.isAdmin) {
+    return <Navigate to="/admin" replace />;
+  }
+
+  // If user is authenticated but not admin, redirect to home
+  if (authStatus.isAuthenticated && !authStatus.isAdmin) {
+    return <Navigate to="/" replace />;
+  }
+
+  // If not authenticated, show auth pages
+  return children;
 }
