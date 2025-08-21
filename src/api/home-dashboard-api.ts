@@ -28,21 +28,41 @@ export const fetchTopRatedCourses =
   };
 
 export const fetchDshboardStatistics = async () => {
-    try {
-      const response = await axiosInstance.get("dashboard/statistics");
-      // عرض رسالة نجاح
-      if (response.data?.status === 200) {
-        toast.success(
-          response.data.message || "Dashboard statistics loaded successfully"
-        );
-      }
-      return response.data;
-    } catch (error) {
-      const axiosError = error as AxiosError<{ message?: string }>;
-      const errorMessage =
-        axiosError.response?.data?.message ||
-        "Failed to fetch dashboard statistics";
-      toast.error(errorMessage);
-      throw error;
+  try {
+    const response = await axiosInstance.get("dashboard/statistics");
+    // عرض رسالة نجاح
+    if (response.data?.status === 200) {
+      toast.success(
+        response.data.message || "Dashboard statistics loaded successfully"
+      );
     }
-  };
+    return response.data;
+  } catch (error) {
+    const axiosError = error as AxiosError<{ message?: string }>;
+    const errorMessage =
+      axiosError.response?.data?.message ||
+      "Failed to fetch dashboard statistics";
+    toast.error(errorMessage);
+    throw error;
+  }
+};
+
+export const fetchAdminRevenueGraphData = async () => {
+  try {
+    const response = await axiosInstance.get("dashboard/revenue-report");
+    // عرض رسالة نجاح
+    if (response.data?.status === 200) {
+      toast.success(
+        response.data.message || "Admin revenue graph data loaded successfully"
+      );
+    }
+    return response.data;
+  } catch (error) {
+    const axiosError = error as AxiosError<{ message?: string }>;
+    const errorMessage =
+      axiosError.response?.data?.message ||
+      "Failed to fetch admin revenue graph data";
+    toast.error(errorMessage);
+    throw error;
+  }
+};

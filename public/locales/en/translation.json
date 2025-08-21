@@ -130,6 +130,7 @@
       "selectTimePeriod": "Select Period",
       "currentPeriod": "Current Period",
       "lastPeriod": "Last Period",
+      "errorLoadingData": "Failed to load revenue data",
       "stats": {
         "totalProfits": "Total Profits",
         "availableBalance": "Available Balance",

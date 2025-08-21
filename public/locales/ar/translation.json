@@ -153,6 +153,7 @@
       "selectTimePeriod": "اختر الفترة",
       "currentPeriod": "الفترة الحالية",
       "lastPeriod": "الفترة السابقة",
+      "errorLoadingData": "فشل في تحميل بيانات الإيرادات",
       "stats": {
         "totalProfits": "إجمالي الأرباح",
         "availableBalance": "الرصيد المتاح",
