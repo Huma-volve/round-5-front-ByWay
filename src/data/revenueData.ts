@@ -91,27 +91,6 @@ export const AVAILABLE_YEARS = Object.keys(REVENUE_DATA_BY_YEAR)
   .map(Number)
   .sort((a, b) => b - a);
 
-export const REVENUE_AMOUNT_INFO: RevenueInfo[] = [
-  {
-    amount: 24_340,
-    labelKey: "instructor.revenue.stats.totalProfits",
-    isIncreased: true,
-    formattedAmount: currencyFormatter.format(24_340),
-  },
-  {
-    amount: 44_340,
-    labelKey: "instructor.revenue.stats.availableBalance",
-    isIncreased: true,
-    formattedAmount: currencyFormatter.format(44_340),
-  },
-  {
-    amount: 98.76,
-    labelKey: "instructor.revenue.stats.lastTransaction",
-    isIncreased: true,
-    formattedAmount: currencyFormatter.format(98.76),
-  },
-];
-
 // Helper function to format currency
 export const formatCurrency = (amount: number): string => {
   return currencyFormatter.format(amount);
