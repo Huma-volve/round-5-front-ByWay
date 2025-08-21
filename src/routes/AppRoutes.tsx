@@ -216,7 +216,7 @@ export default function AppRoutes() {
           />
 
           <Route path="AdminCoursesPage" element={<AdminCoursesPage />} />
-          <Route path="EditCourse" element={<EditCourse />} />
+          <Route path="EditCourse/:id" element={<EditCourse />} />
           <Route
             path="course-details/:courseId"
             element={<InstructorCourseDetails />}
