@@ -5,7 +5,7 @@ export default function InstructorCard() {
   const { t } = useTranslation();
   return (
     <Link
-      to="/instructor/course-details"
+      to="/instructor/instructor-details"
       className="flex  justify-between py-6  w-full "
     >
       <div>

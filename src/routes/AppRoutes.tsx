@@ -10,12 +10,12 @@ import Success from "../pages/success/Success";
 // import EditUserProfile from "@/pages/profile/EditUserProfile";
 
 // Course Pages
-import CoursesPage from "@/pages/Courses/CoursesPage";
+import CoursesPage from "@/pages/courses/CoursesPage";
 import CourseDetails from "@/components/learnerCourses/CourseDetails";
-import LearnerMyCourses from "@/pages/Courses/MyCourses/LearnerMyCourses";
-import LearnerCourseDetails from "@/pages/Courses/CourseDetails/LearnerCourseDetailes";
-import MyCourses from "@/pages/Courses/MyCourses/MyCourses";
-import InstructorCourseDetails from "@/pages/Courses/CourseDetails/InstructorCourseDetails";
+import LearnerMyCourses from "@/pages/courses/MyCourses/LearnerMyCourses";
+import LearnerCourseDetails from "@/pages/courses/CourseDetails/LearnerCourseDetailes";
+import MyCourses from "@/pages/courses/MyCourses/MyCourses";
+import InstructorCourseDetails from "@/pages/courses/CourseDetails/InstructorCourseDetails";
 
 // Instructor Pages
 import Instructor from "@/pages/instructor/Instructor";
@@ -71,7 +71,8 @@ import AuthProtectedRoute from "./AuthProtectedRoute";
 import ReviewsAndRatings from "@/pages/AdminDashboard/Reviews&Ratings/ReviewsAndRatings";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
 import UserProfilePage from "@/pages/profile/UserProfilePage";
-import WatchVideo from "@/pages/Courses/WatchVideo";
+import WatchVideo from "@/pages/courses/WatchVideo";
+import NotFound from "@/pages/NotFound/NotFound";
 
 export default function AppRoutes() {
   const [role, setRole] = useState<string | null>(null);
@@ -151,7 +152,7 @@ export default function AppRoutes() {
             path="/:instructorId/instructor-details"
             element={<InstructorDetails />}
           />
-          1
+
           <Route path="/instructor">
             <Route index element={<Instructor />} />
             <Route index path="home" element={<Instructor />} />
@@ -222,7 +223,8 @@ export default function AppRoutes() {
           <Route path="/reset/:id" element={<ResetForm />} />
           <Route path="/otp" element={<OTPForm />} />
         </Route>
-
+        {/* not found page */}
+          <Route path="*" element={<NotFound />} />
         {/* admin dashboard Routes */}
 
         <Route

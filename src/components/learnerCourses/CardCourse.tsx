@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 function CardCourse() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const role = localStorage.getItem("role");
 
   const handleInstructorClick = (e: React.MouseEvent, instructorId: string) => {
     e.preventDefault(); // Prevent the card link from triggering
@@ -16,7 +17,7 @@ function CardCourse() {
   return (
     <>
       {courses.map((course) => (
-        <Link to={`${course.id}`} key={course.id}>
+        <Link to={`${role === "instructor" ? `/instructor/course-details/${course.id}`: `courses/${course.id}` }`} key={course.id}>
           <div className="mb-20">
             <div>
               <img

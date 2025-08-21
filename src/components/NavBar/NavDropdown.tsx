@@ -39,8 +39,9 @@ function NavDropdown({ icon }: { icon: ReactElement }) {
             </Link>
           </DropdownMenuItem>
         )}
+        
         <DropdownMenuItem asChild>
-          <Link className="drop-item" to="/profile">
+          <Link className="drop-item" to={`${role === "instructor" ? '/instructor/profile' : '/profile' }`}>
             {t("common.profile")}
           </Link>
         </DropdownMenuItem>
@@ -88,18 +89,22 @@ function NavDropdown({ icon }: { icon: ReactElement }) {
               </Link>
             </DropdownMenuItem>
           )}
+          {
+            role === "learner" && (
         <DropdownMenuItem asChild>
           <Link className="drop-item" to="/settings/payhistory">
             {t("common.paymentHistory")}
           </Link>
         </DropdownMenuItem>
-
+         )}
+         {
+            role === "learner" && (
         <DropdownMenuItem asChild>
           <Link className="drop-item" to="/settings">
             {t("common.settings")}
           </Link>
         </DropdownMenuItem>
-
+            )}
         <DropdownMenuSeparator className="my-1" />
 
         <DropdownMenuItem asChild>
