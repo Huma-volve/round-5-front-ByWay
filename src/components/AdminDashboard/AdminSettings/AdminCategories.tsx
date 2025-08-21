@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { X, Plus, Loader2, AlertCircle } from "lucide-react";
 
 import {
@@ -20,15 +20,17 @@ function AdminCategories() {
   const { mutate: updateCategory, isPending: isUpdating } = useUpdateCategory();
   const { mutate: deleteCategory, isPending: isDeleting } = useDeleteCategory();
 
-  // Local state management
   const [categories, setCategories] = useState<Category[]>([]);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [tempName, setTempName] = useState("");
   const [newCategoryName, setNewCategoryName] = useState("");
 
-  // Initialize categories from server data - no useEffect needed
-  // React Query handles the data synchronization automatically
-  const displayCategories = storedCategories || categories;
+  // keep local state in sync with query data
+  useEffect(() => {
+    if (storedCategories) {
+      setCategories(storedCategories);
+    }
+  }, [storedCategories]);
 
   const startEditing = (cat: Category) => {
     setEditingId(cat.id);
@@ -54,7 +56,7 @@ function AdminCategories() {
             // Reset temp name on error
             setTempName("");
             setEditingId(null);
-          }
+          },
         }
       );
     } catch (error) {
@@ -80,7 +82,7 @@ function AdminCategories() {
         },
         onError: (error) => {
           console.error("Failed to add category:", error);
-        }
+        },
       });
     } catch (error) {
       console.error("Add failed:", error);
@@ -99,7 +101,7 @@ function AdminCategories() {
         },
         onError: (error) => {
           console.error("Failed to delete category:", error);
-        }
+        },
       });
     } catch (error) {
       console.error("Delete failed:", error);
@@ -175,7 +177,7 @@ function AdminCategories() {
 
       {/* Category Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 mb-4">
-        {displayCategories.map((cat: Category) => (
+        {categories.map((cat: Category) => (
           <div key={cat.id} className="group relative">
             <div
               className={`
@@ -210,7 +212,9 @@ function AdminCategories() {
                   />
                 ) : (
                   <span
-                    onClick={() => !isUpdating && !isDeleting && startEditing(cat)}
+                    onClick={() =>
+                      !isUpdating && !isDeleting && startEditing(cat)
+                    }
                     className="block w-full cursor-text text-xs font-medium text-gray-900 hover:text-blue-600 transition-colors"
                   >
                     {cat.name}
@@ -253,14 +257,16 @@ function AdminCategories() {
       <div className="w-1/4 bg-gray-50 rounded-md p-2">
         <div className="flex items-center justify-between text-xs text-gray-600">
           <span>Total</span>
-          <span className="font-medium text-gray-900">{displayCategories.length}</span>
+          <span className="font-medium text-gray-900">{categories.length}</span>
         </div>
       </div>
 
       {/* Empty state */}
-      {displayCategories.length === 0 && !isLoading && (
+      {categories.length === 0 && !isLoading && (
         <div className="text-center py-8 text-gray-500">
-          <p className="text-sm">No categories yet. Add your first one above!</p>
+          <p className="text-sm">
+            No categories yet. Add your first one above!
+          </p>
         </div>
       )}
     </div>

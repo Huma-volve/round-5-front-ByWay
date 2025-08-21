@@ -18,7 +18,10 @@ export async function signIn(formData: SignInFormType) {
   return data;
 }
 
+//you should be authenticated to be able to signout
 export async function signOut(navigate: NavigateFunction) {
+
+   //blocks code blow it if returns an error
   const { data } = await axiosInstance.post("logout");
   toast.success(data.message);
   localStorage.removeItem("auth_token");
