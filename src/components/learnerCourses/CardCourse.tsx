@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import StarIcon from "../../assets/images/icons/StarIcon.svg";
 import { useTranslation } from "react-i18next";
 import { Loader2 } from "lucide-react";
@@ -7,10 +7,7 @@ import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 function CardCourse({ courses, error, isLoading }) {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const [role] = useLocalStorage("role", "");
-  console.log("Courses in CardCourse:", courses);
-
 
   if (error) {
     return (
@@ -56,7 +53,7 @@ function CardCourse({ courses, error, isLoading }) {
               </h5>
               <Link
                 to={`/${course.user?.id}/instructor-details`}
-                className="text-sm my-2 text-[--secondary-dark] hover:text-blue-500 cursor-pointer"
+                className="block text-sm my-2 text-[--secondary-dark] hover:text-blue-500 cursor-pointer"
               >
                 {t("common.by")} {course.user?.name}
               </Link>

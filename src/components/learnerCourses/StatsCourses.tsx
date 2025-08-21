@@ -1,18 +1,25 @@
 import { stats } from "../../data/BrowseCourses";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 function StatsCourses() {
   const { t } = useTranslation();
 
   return (
     <>
-      <div className="grid grid-cols-1 mx-10 mt-14 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center">
+      <div className="grid grid-cols-1 mx-10 mt-14 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center">
         {stats.map((item, index) => (
           <div
             key={item.id}
-            className={`text-center md:border-r-4 border-[--category] ${
-              index === stats.length - 1 ? "border-none" : ""
+            className={`text-center lg:border-r-4 border-[--category] ${
+              i18next.language == "en"
+                ? index === stats.length - 1
+                  ? "border-none"
+                  : ""
+                : index === stats.length - 4
+                ? "border-none"
+                : ""
             }`}
           >
             <h2 className="font-[600] text-3xl mb-2">{item.value}+</h2>
