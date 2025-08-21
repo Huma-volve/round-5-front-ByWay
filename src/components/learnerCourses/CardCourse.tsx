@@ -1,20 +1,17 @@
 import { Link, useNavigate } from "react-router-dom";
 import StarIcon from "../../assets/images/icons/StarIcon.svg";
 import { useTranslation } from "react-i18next";
-import useFetchCourses from "@/hooks/LearnerCourses/useFetchCourses";
 import { Loader2 } from "lucide-react";
 import ImgProduct from "../../assets/images/ui-product.png";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 
-function CardCourse() {
+function CardCourse({ courses, error, isLoading }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [role] = useLocalStorage("role", "");
-  const { data: courses, error, isLoading } = useFetchCourses();
+  console.log("Courses in CardCourse:", courses);
 
-  const handleInstructorClick = (instructorId: string) => {
-    navigate(`/${instructorId}/instructor-details`);
-  };
+
   if (error) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -58,10 +55,10 @@ function CardCourse() {
                 {course.title}
               </h5>
               <Link
-                to={`/${course.user.id}/instructor-details`}
+                to={`/${course.user?.id}/instructor-details`}
                 className="text-sm my-2 text-[--secondary-dark] hover:text-blue-500 cursor-pointer"
               >
-                {t("common.by")} {course.user.name}
+                {t("common.by")} {course.user?.name}
               </Link>
               <div className="flex items-center">
                 {Array.from({ length: Number(course.rating) || 1 }).map(

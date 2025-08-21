@@ -71,7 +71,12 @@ function InstructorDetails() {
       </div>
       <p className="text-lg font-[600]">{t("common.myCourses")}</p>
       <div className="grid my-10 grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6 justify-center">
-        <CardCourse />
+        <CardCourse
+          courses={instructor.courses.data}
+          error={error}
+          isLoading={isLoading}
+        />
+        {console.log(instructor.courses.data)}
       </div>
     </div>
   );
