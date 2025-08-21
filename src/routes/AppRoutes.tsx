@@ -198,10 +198,10 @@ export default function AppRoutes() {
             element={<UserManagementDetailes />}
           />
 
-          <Route path="AdminCoursesPage" element={<AdminCoursesPage />} />
-          <Route path="EditCourse/:id" element={<EditCourse />} />
+          <Route path="course-manage" element={<AdminCoursesPage />} />
+          <Route path="course-manage/edit/:id" element={<EditCourse />} />
           <Route
-            path="course-details/:courseId"
+            path="course-manage/course-details/:courseId"
             element={<InstructorCourseDetails />}
           />
           <Route path="payment-revenue" element={<PaymentRevenue />} />

@@ -395,7 +395,7 @@
   "favourite": {
     "Courses": "Courses",
     "Instractor": "Instractor",
-    "No Favourites have been selected" : "No Favourites have been selected"
+    "No Favourites have been selected": "No Favourites have been selected"
   },
   "notifications": {
     "You are all up to date": "You are all up to date",
@@ -413,7 +413,7 @@
     "Method": "Method",
     "Amount": "Amount",
     "Save Payment Method": "Save Payment Method",
-    "No payment history found" : "No payment history found"
+    "No payment history found": "No payment history found"
   },
   "profile": {
     "First Name": "First Name",

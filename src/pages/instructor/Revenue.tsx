@@ -7,7 +7,7 @@ export default function Revenue() {
   return (
     <div className=" mt-12">
       <RevenueHeader />
-      <RevenueChart 
+      <RevenueChart
         useRevenueHook={useFetchInstructorRevenueGraphData}
         defaultYear={new Date().getFullYear()}
       />

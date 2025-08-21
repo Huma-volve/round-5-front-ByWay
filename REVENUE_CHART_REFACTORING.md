@@ -1,17 +1,20 @@
 # Revenue Chart Refactoring Summary
 
 ## Overview
+
 Successfully refactored the RevenueChart component to be reusable across different dashboards (Admin and Instructor) with real API data integration.
 
 ## Changes Made
 
 ### 1. Data Layer (`src/data/revenueData.ts`)
+
 - Added `ApiRevenueResponse` interface to type the backend response
 - Created `getChartDataFromApi()` function to transform API data to chart format
 - Added `getAvailableYearsFromApi()` to extract years from API response
 - Maintained backward compatibility with existing dummy data functions
 
 ### 2. RevenueChart Component (`src/components/instructor/revenue/RevenueChart.tsx`)
+
 - **Made component reusable** by accepting props:
   - `useRevenueHook`: Custom hook function for data fetching
   - `defaultYear`: Optional default year selection
@@ -20,25 +23,31 @@ Successfully refactored the RevenueChart component to be reusable across differe
 - **Improved TypeScript**: Proper typing for all props and responses
 
 ### 3. Admin Dashboard Integration (`src/pages/AdminDashboard/AdminDashboard.tsx`)
+
 - Updated to pass `useFetchRevenueGraphData` hook to RevenueChart
 - Set default year to 2025
 
 ### 4. Instructor Dashboard Preparation (`src/pages/instructor/Revenue.tsx`)
+
 - Updated to use new reusable component structure
 - Created placeholder hook (`useFetchInstructorRevenueGraphData`) for future implementation
 
 ### 5. Custom Hook for Instructor (`src/hooks/instructor/useFetchInstructorRevenueGraphData.ts`)
+
 - Created placeholder hook structure
 - Disabled until instructor endpoint is ready
 - Ready for easy implementation when API is available
 
 ### 6. Translations (`public/locales/en/translation.json` & `public/locales/ar/translation.json`)
+
 - Added `errorLoadingData` translation key for error handling
 
 ## API Integration
 
 ### Backend Response Structure
+
 The component now handles the real API response format:
+
 ```json
 {
   "status": 200,
@@ -47,7 +56,7 @@ The component now handles the real API response format:
     "2025": [
       {
         "month": "Jan",
-        "revenue": 16206.80,
+        "revenue": 16206.8,
         "date": "2025-01"
       }
       // ... more months
@@ -60,6 +69,7 @@ The component now handles the real API response format:
 ```
 
 ### Data Transformation
+
 - Current year data shows as "currentPeriod" in chart
 - Previous year data shows as "lastPeriod" for comparison
 - Dynamic year selection based on available data from API
@@ -67,22 +77,22 @@ The component now handles the real API response format:
 ## Usage Examples
 
 ### For Admin Dashboard:
+
 ```tsx
-<RevenueChart 
-  useRevenueHook={useFetchRevenueGraphData}
-  defaultYear={2025}
-/>
+<RevenueChart useRevenueHook={useFetchRevenueGraphData} defaultYear={2025} />
 ```
 
 ### For Instructor Dashboard (when ready):
+
 ```tsx
-<RevenueChart 
+<RevenueChart
   useRevenueHook={useFetchInstructorRevenueGraphData}
   defaultYear={2025}
 />
 ```
 
 ## Features
+
 - ✅ Real API data integration
 - ✅ Loading states with skeleton UI
 - ✅ Error handling with user-friendly messages
@@ -93,7 +103,9 @@ The component now handles the real API response format:
 - ✅ Responsive design maintained
 
 ## Next Steps
+
 1. When instructor revenue endpoint is ready:
+
    - Implement the actual API function
    - Update `useFetchInstructorRevenueGraphData` hook
    - Enable the query by removing `enabled: false`
@@ -104,6 +116,7 @@ The component now handles the real API response format:
    - Add more granular time period selection
 
 ## Files Modified
+
 - `src/data/revenueData.ts`
 - `src/components/instructor/revenue/RevenueChart.tsx`
 - `src/pages/AdminDashboard/AdminDashboard.tsx`
