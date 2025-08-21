@@ -92,6 +92,17 @@ export interface CoursesHome {
   description: string;
   price: number;
 }
+export interface instructorDetails {
+  id: number;
+  instructor: {
+    name: string;
+  };
+  statistics: {
+    total_students: number;
+    average_rating: number;
+  };
+  courses: CoursesHome[];
+}
 
 // الشكل الموحد اللي هتستخدمه جوة الواجهة
 export interface NotificationItem {

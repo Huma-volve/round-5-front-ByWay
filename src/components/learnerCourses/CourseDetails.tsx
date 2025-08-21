@@ -5,11 +5,32 @@ import Breadcrumb from "../common/Breadcrumb";
 import { useBreadcrumb } from "../../hooks/useBreadcrumb";
 import { useTranslation } from "react-i18next";
 import useFetchCourseDetails from "@/hooks/LearnerCourses/useFetchCourseDetails";
+import { useParams } from "react-router-dom";
+import { Loader2 } from "lucide-react";
 
 function CourseDetails() {
   const { t } = useTranslation();
   const { getAutoBreadcrumb } = useBreadcrumb();
-  const { data: course, error, isLoading } = useFetchCourseDetails("19");
+  const { courseId } = useParams<{ courseId: string }>();
+  const { data: course, error, isLoading } = useFetchCourseDetails(courseId);
+  if (error) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        Error loading reviews
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center mx-auto h-screen">
+        <div className="flex items-center gap-2">
+          <Loader2 className="w-6 h-6 animate-spin text-gray-600" />
+          <span className="text-sm text-gray-600">Loading...</span>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="md:mx-24 mx-5 mt-12">
       {/* The Stack pages */}
@@ -17,7 +38,9 @@ function CourseDetails() {
         <Breadcrumb items={getAutoBreadcrumb()} className="mb-6 mt-5" />
       </div>
       <div>
-        <h3 className="text-[--rate] font-[600] text-2xl">{course?.title || "UI/UX Design"}</h3>
+        <h3 className="text-[--rate] font-[600] text-2xl">
+          {course?.title || "UI/UX Design"}
+        </h3>
         <p className="secondary-dark mt-1 mb-5">
           {t("common.createdBy")} {course?.instructor?.name || "John Doe"}
         </p>
@@ -25,7 +48,7 @@ function CourseDetails() {
           {t("common.introductionTo")} user interface and user experience design
         </p> */}
         <p className="text-[--secondary] my-2">
-         {course?.description || "description"}
+          {course?.description || "description"}
         </p>
         <p className="text-lg font-[500]">
           {t("common.duration")}: 7 {t("common.weeks")}
@@ -34,7 +57,9 @@ function CourseDetails() {
           <p className="text-white px-2 rounded-lg bg-[--secondary]">
             {t("common.bestseller")}
           </p>
-          <p>({course?.price} {t("common.ratings")})</p>
+          <p>
+            ({course?.price} {t("common.ratings")})
+          </p>
           <img src={StarIcon} alt="StarIcon" />
         </div>
         <div>

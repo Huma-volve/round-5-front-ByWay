@@ -12,9 +12,7 @@ function CardCourse() {
   const [role] = useLocalStorage("role", "");
   const { data: courses, error, isLoading } = useFetchCourses();
 
-  const handleInstructorClick = (e: React.MouseEvent, instructorId: string) => {
-    e.preventDefault(); // Prevent the card link from triggering
-    e.stopPropagation(); // Stop event bubbling
+  const handleInstructorClick = (instructorId: string) => {
     navigate(`/${instructorId}/instructor-details`);
   };
   if (error) {
@@ -59,12 +57,12 @@ function CardCourse() {
               <h5 className="font-[600] text-lg lg:text-lg xl:text-xl truncate">
                 {course.title}
               </h5>
-              <span
-                onClick={(e) => handleInstructorClick(e, "1")}
+              <Link
+                to={`/${course.user.id}/instructor-details`}
                 className="text-sm my-2 text-[--secondary-dark] hover:text-blue-500 cursor-pointer"
               >
                 {t("common.by")} {course.user.name}
-              </span>
+              </Link>
               <div className="flex items-center">
                 {Array.from({ length: Number(course.rating) || 1 }).map(
                   (_, index) => (
