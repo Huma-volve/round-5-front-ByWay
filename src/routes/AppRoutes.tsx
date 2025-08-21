@@ -1,17 +1,16 @@
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
-import { useState, useEffect } from "react";
 
 // Main Pages
 import CloseAccount from "../pages/close account/CloseAccount";
 import Success from "../pages/success/Success";
 
 // Course Pages
-import CoursesPage from "@/pages/Courses/CoursesPage";
+import CoursesPage from "@/pages/courses/CoursesPage";
 import CourseDetails from "@/components/learnerCourses/CourseDetails";
-import LearnerMyCourses from "@/pages/Courses/MyCourses/LearnerMyCourses";
-import LearnerCourseDetails from "@/pages/Courses/CourseDetails/LearnerCourseDetailes";
-import MyCourses from "@/pages/Courses/MyCourses/MyCourses";
-import InstructorCourseDetails from "@/pages/Courses/CourseDetails/InstructorCourseDetails";
+import LearnerMyCourses from "@/pages/courses/MyCourses/LearnerMyCourses";
+import LearnerCourseDetails from "@/pages/courses/CourseDetails/LearnerCourseDetailes";
+import MyCourses from "@/pages/courses/MyCourses/MyCourses";
+import InstructorCourseDetails from "@/pages/courses/CourseDetails/InstructorCourseDetails";
 
 // Instructor Pages
 import Instructor from "@/pages/instructor/Instructor";
@@ -67,37 +66,11 @@ import AuthProtectedRoute from "./AuthProtectedRoute";
 import ReviewsAndRatings from "@/pages/AdminDashboard/Reviews&Ratings/ReviewsAndRatings";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
 import UserProfilePage from "@/pages/profile/UserProfilePage";
-import WatchVideo from "@/pages/Courses/WatchVideo";
+import WatchVideo from "@/pages/courses/WatchVideo";
 import NotFound from "@/pages/NotFound/NotFound";
 import ReportsAnalytics from "@/components/AdminDashboard/Reports&Analytics/ReportsAnalytics";
 
 export default function AppRoutes() {
-  const [role, setRole] = useState<string | null>(null);
-
-  //sync local storage with component life cycle
-  useEffect(() => {
-    // Get initial role from localStorage
-    const storedRole = localStorage.getItem("role");
-    setRole(storedRole);
-
-    // Listen for localStorage changes
-    const handleStorageChange = () => {
-      const updatedRole = localStorage.getItem("role");
-      setRole(updatedRole);
-    };
-
-    // Listen for storage events (when localStorage changes in other tabs)
-    window.addEventListener("storage", handleStorageChange);
-
-    // Also listen for custom storage events (for same-tab changes)
-    window.addEventListener("localStorageUpdate", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-      window.removeEventListener("localStorageUpdate", handleStorageChange);
-    };
-  }, []);
-
 
   return (
     <Router>
