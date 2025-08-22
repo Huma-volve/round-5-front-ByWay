@@ -569,7 +569,9 @@
     "Confirm Delete": "تأكيد الحذف",
     "Are you sure you want to delete": "هل أنت متأكد أنك تريد حذف",
     "Cancel": "إلغاء",
-    "Delete": "حذف"
+    "Delete": "حذف",
+    "Deleted successfully!": "تم الحذف بنجاح!",
+    "Failed to delete": "فشل الحذف"
   },
   "adminDetails": {
     "Payment Details": "تفاصيل الدفع",

@@ -595,7 +595,9 @@
     "Confirm Delete": "Confirm Delete",
     "Are you sure you want to delete": "Are you sure you want to delete",
     "Cancel": "Cancel",
-    "Delete": "Delete"
+    "Delete": "Delete",
+    "Deleted successfully!": "Deleted successfully!",
+    "Failed to delete": "Failed to delete"
   },
   "adminDetails": {
     "Payment Details": "Payment Details",
