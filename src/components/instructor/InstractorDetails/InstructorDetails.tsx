@@ -10,7 +10,15 @@ function InstructorDetails() {
   const { t } = useTranslation();
   const { instructorId } = useParams();
   const { getAutoBreadcrumb } = useBreadcrumb();
-  const { instructor, error, isLoading } = useInstructorDetails(instructorId);
+  const { instructor, error, isLoading } = useInstructorDetails(instructorId!);
+  const courses = instructor?.courses?.data;
+  if (!instructorId) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        Instructor ID not provided
+      </div>
+    );
+  }
   if (error) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -37,13 +45,13 @@ function InstructorDetails() {
       <div>
         <div className="flex items-center flex-wrap md:justify-start justify-center gap-2">
           <CircleUser size={100} />
-          <h3 className="font-[500]">{instructor.instructor.name}</h3>
+          <h3 className="font-[500]">{instructor?.instructor?.name}</h3>
         </div>
         <div>
           <div className="my-10 flex items-center flex-wrap md:justify-start justify-center gap-10 md:gap-40">
             <div className="text-center">
               <p className="font-[600] text-xl mb-1">
-                {instructor.statistics.total_students}+
+                {instructor?.statistics?.total_students}+
               </p>
               <p>
                 {t("common.numberOf")} {t("common.students")}
@@ -51,7 +59,7 @@ function InstructorDetails() {
             </div>
             <div className="text-center">
               <p className="font-[600] text-xl mb-1">
-                {instructor.statistics.average_rating}+
+                {instructor?.statistics?.average_rating}+
               </p>
               <p>
                 {t("common.numberOf")} {t("instructor.reviews")}
@@ -71,12 +79,7 @@ function InstructorDetails() {
       </div>
       <p className="text-lg font-[600]">{t("common.myCourses")}</p>
       <div className="grid my-10 grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6 justify-center">
-        <CardCourse
-          courses={instructor.courses.data}
-          error={error}
-          isLoading={isLoading}
-        />
-        {console.log(instructor.courses.data)}
+        <CardCourse courses={courses || []} error={!!error} isLoading={isLoading} />
       </div>
     </div>
   );

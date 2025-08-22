@@ -76,6 +76,7 @@ export interface UserProfile {
 
 export interface ReviewsAndRatings {
   id: number;
+  course_name: string;
   course: string;
   reviewer: string;
   rating: number;
@@ -88,7 +89,14 @@ export interface CoursesHome {
   image: string;
   title: string;
   rating: number;
-  instructor: string;
+  user: {
+    id: number;
+    name: string;
+  };
+  instructor: {
+    id: number;
+    name: string;
+  };
   description: string;
   price: number;
 }
@@ -101,7 +109,9 @@ export interface instructorDetails {
     total_students: number;
     average_rating: number;
   };
-  courses: CoursesHome[];
+  courses: {
+    data: CoursesHome[];
+  };
 }
 
 // الشكل الموحد اللي هتستخدمه جوة الواجهة

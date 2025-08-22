@@ -1,7 +1,4 @@
 import { WITHDROWAL_DETAILS } from "@/data/paymentRecord"
-import { useTranslation } from "react-i18next";
-
-
 import {
   Dialog,
   DialogContent,
@@ -13,7 +10,6 @@ interface PaymentDetailsProps {
   onOpenChange: (open: boolean) => void;
 }
 function WithdrowDetails({ open, onOpenChange }: PaymentDetailsProps) {
-    const { t } = useTranslation();
     return (
  <Dialog open={open} onOpenChange={onOpenChange} modal={true}>
       <DialogContent className="w-[400px] bg-white p-6 rounded-lg shadow-md">

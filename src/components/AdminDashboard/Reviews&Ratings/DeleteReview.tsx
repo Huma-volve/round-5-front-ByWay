@@ -9,8 +9,8 @@ interface DeleteReviewProps {
 
 function DeleteReview({ open, onOpenChange, reviewId }: DeleteReviewProps) {
   const { t } = useTranslation();
-  const deleteReviewMutation = useDeleteReview(reviewId);
-  const { data: review, error, isLoading } = useViewReview(reviewId);
+  const { data: review} = useViewReview(reviewId !== null ? reviewId.toString() : null);
+  const deleteReviewMutation = useDeleteReview();
 
   if (!open) return null;
   return (
@@ -21,7 +21,7 @@ function DeleteReview({ open, onOpenChange, reviewId }: DeleteReviewProps) {
         </h2>
         <p className="mt-2 text-sm text-gray-600">
           {t("adminReviews.Are you sure you want to delete")}{" "}
-          <span className="font-medium">{review?.course}</span>?
+          <span className="font-medium">{review?.course_name}</span>?
         </p>
 
         <div className="mt-4 flex justify-end gap-3">
@@ -33,7 +33,9 @@ function DeleteReview({ open, onOpenChange, reviewId }: DeleteReviewProps) {
           </button>
           <button
             onClick={() => {
-              deleteReviewMutation.mutate(reviewId);
+              if (reviewId !== null) {
+                deleteReviewMutation.mutate(reviewId);
+              }
               onOpenChange(false);
             }}
             className="px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-700"

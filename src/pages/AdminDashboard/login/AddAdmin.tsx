@@ -72,6 +72,8 @@ function AddAd({ open, onOpenChange }: PaymentDetailsProps) {
       onSubmit: (values) => {
         const formData = {
           name: values.first_name.concat(" ", values.last_name),
+          first_name: values.first_name,
+          last_name: values.last_name,
           email: values.email,
           password: values.password,
           password_confirmation: values.password_confirmation,
