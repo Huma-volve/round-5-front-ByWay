@@ -69,17 +69,18 @@ function InstructorDetails() {
           <div>
             <p className="font-[600] text-xl">{t("common.aboutMe")}</p>
             <p className="my-5">
-              I'm a certified UI/UX designer with 5+ years of experience in
-              teaching and designing user-centric products. I’ve helped over
-              1,000 students kickstart their design careers through hands-on,
-              practical courses.
+              {instructor?.profile?.bio || "instructor bio"}
             </p>
           </div>
         </div>
       </div>
       <p className="text-lg font-[600]">{t("common.myCourses")}</p>
       <div className="grid my-10 grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6 justify-center">
-        <CardCourse courses={courses || []} error={!!error} isLoading={isLoading} />
+        <CardCourse
+          courses={courses || []}
+          error={!!error}
+          isLoading={isLoading}
+        />
       </div>
     </div>
   );

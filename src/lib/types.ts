@@ -105,6 +105,9 @@ export interface instructorDetails {
   instructor: {
     name: string;
   };
+  profile: {
+    bio:string;
+  }
   statistics: {
     total_students: number;
     average_rating: number;
