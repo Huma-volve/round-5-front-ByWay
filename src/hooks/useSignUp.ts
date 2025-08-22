@@ -9,10 +9,10 @@ import { useLocalStorage } from "./useLocalStorage";
  * When user signup app should set the auth + user's info in session or local storage || (cash) user's mail, redirect to otp.
  */
 export function useSignUp() {
-  const [role, setRole] = useLocalStorage("role", "");
-  const [user_id, setUserId] = useLocalStorage("user_id", "");
-  const [auth_token, setAuthToken] = useLocalStorage("auth_token", "");
-  const [email, setEmail] = useLocalStorage("email", "");
+  const [, setRole] = useLocalStorage("role", "");
+  const [, setUserId] = useLocalStorage("user_id", "");
+  const [, setAuthToken] = useLocalStorage("auth_token", "");
+  const [, setEmail] = useLocalStorage("email", "");
 
   const navigate = useNavigate();
 
