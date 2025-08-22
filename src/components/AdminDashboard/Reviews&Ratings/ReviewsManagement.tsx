@@ -28,8 +28,8 @@ export default function ReviewsManagement() {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
   const startIndex = (currentPage - 1) * pageSize;
-  const currentReviews = reviews?.slice(startIndex, startIndex + pageSize);
-  const totalPages = Math.ceil((reviews?.length || 0) / pageSize);
+  const currentReviews = Array.isArray(reviews) ? reviews.slice(startIndex, startIndex + pageSize) : [];
+  const totalPages = Array.isArray(reviews) ? Math.ceil(reviews.length / pageSize) : 0;
 
   if (error) {
     return (
@@ -79,7 +79,7 @@ export default function ReviewsManagement() {
 
           <tbody className="divide-y divide-gray-200">
             {currentReviews?.map((review, index) => {
-              const isLastThree = index >= reviews.length - 3;
+              const isLastThree = index >= currentReviews.length - 3;
               return (
                 <tr
                   key={review.id}

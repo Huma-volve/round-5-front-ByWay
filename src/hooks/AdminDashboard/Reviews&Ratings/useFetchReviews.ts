@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 export default function useFetchReviews() {
   const { data, error, isLoading } = useQuery<ReviewsAndRatings[]>({
     queryKey: ["reviews"],
-    queryFn: fetchReviewsAndRatings,
+    queryFn: async () => await fetchReviewsAndRatings() || [],
   });
 
   return { data, error, isLoading };
