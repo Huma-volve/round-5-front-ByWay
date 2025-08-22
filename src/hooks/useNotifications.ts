@@ -14,9 +14,10 @@ import type {
   LearnerNotificationResponse,
 } from "@/lib/types";
 import type { AxiosError } from "axios";
+import { useLocalStorage } from "./useLocalStorage";
 
 export function useNotifications() {
-  const role = localStorage.getItem("role");
+  const [role] = useLocalStorage("role", "")
   const queryClient = useQueryClient();
 
   // Fetch Notifications

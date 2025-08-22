@@ -1,6 +1,7 @@
 import type { ReactElement } from "react";
 import { Navigate } from "react-router-dom";
 import { useMemo } from "react";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 export default function AdminProtectedRoute({
   children,
@@ -8,8 +9,9 @@ export default function AdminProtectedRoute({
   children: ReactElement;
 }) {
   const isAdmin = useMemo(() => {
-    const userId = localStorage.getItem("user_id");
-    const role = localStorage.getItem("role");
+
+    const [role] = useLocalStorage("role", "");
+    const [userId] = useLocalStorage("user_id", "");
 
     return !!userId && role === "admin";
   }, []);

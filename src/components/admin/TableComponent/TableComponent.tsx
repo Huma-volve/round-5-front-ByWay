@@ -92,7 +92,7 @@ export default function TableComponent({ courses ,deleteCourse }: TableProps) {
               <DropdownMenuContent>
                 <DropdownMenuLabel>
                   <Link
-                    to={`/admin/course-details/${course.id}`}
+                    to={`course-details/${course.id}`}
                     className="p-0 h-auto text-revenue2-graph"
                   >
                     {t('instructor.courseManagement.viewCourse')}
@@ -101,7 +101,7 @@ export default function TableComponent({ courses ,deleteCourse }: TableProps) {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <Link
-                    to={`/admin/EditCourse/${course.id}`}
+                    to={`edit/${course.id}`}
                     className="p-0 h-auto text-yellow-600"
                   >
                     {t('instructor.courseManagement.EditCourse')}

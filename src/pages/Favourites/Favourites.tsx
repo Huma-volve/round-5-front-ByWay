@@ -5,6 +5,8 @@ import { useBreadcrumb } from "../../hooks/useBreadcrumb";
 import { useState } from "react";
 import { useFavourites } from "@/hooks/useFavourites";
 import heart from "../../assets/images/icons/fav-heart.png";
+import courseFav from "@/assets/images/course-fav.png";
+import avtar from "@/assets/images/avatar-fav.png";
 
 export default function Favourites() {
   const { t } = useTranslation();
@@ -62,7 +64,7 @@ export default function Favourites() {
 
                 <div className="w-full flex items-center justify-between gap-4 px-4 py-2">
                   <img
-                    src={heart}
+                    src={`${activeButton} === "btn1" ? ${courseFav} : ${avtar}}`}
                     alt="courseIcon"
                     loading="lazy"
                     className="w-6 h-6 object-contain md:w-10 md:h-10"
