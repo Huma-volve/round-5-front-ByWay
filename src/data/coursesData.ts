@@ -2,8 +2,7 @@ export interface Course {
   id: string;
   title: string;
   description: string;
-  category: string;
-  level: string[];
+  category: number;
   price: number;
   thumbnail: string;
   introVideo: string;
@@ -44,8 +43,7 @@ export const dummyCourses: Course[] = [
     title: "Complete React Development Course",
     description:
       "Learn React from basics to advanced concepts with hands-on projects",
-    category: "Programming",
-    level: ["beginner", "intermediate"],
+    category: 1,
     price: 99.99,
     thumbnail: "/images/react-course.jpg",
     introVideo: "/videos/react-intro.mp4",
@@ -60,8 +58,7 @@ export const dummyCourses: Course[] = [
     id: "course-2",
     title: "Advanced TypeScript Patterns",
     description: "Master advanced TypeScript concepts and design patterns",
-    category: "Programming",
-    level: ["advanced"],
+    category: 2,
     price: 149.99,
     thumbnail: "/images/typescript-course.jpg",
     introVideo: "/videos/typescript-intro.mp4",
@@ -77,8 +74,7 @@ export const dummyCourses: Course[] = [
     title: "UI/UX Design Fundamentals",
     description:
       "Learn the principles of user interface and user experience design",
-    category: "Design",
-    level: ["beginner"],
+    category: 3,
     price: 79.99,
     thumbnail: "/images/design-course.jpg",
     introVideo: "/videos/design-intro.mp4",

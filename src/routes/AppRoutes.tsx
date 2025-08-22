@@ -190,6 +190,8 @@ export default function AppRoutes() {
           {/* Account Management */}
           <Route path="/close-account" element={<CloseAccount />} />
           <Route path="/success" element={<Success />} />
+          <Route path="/profile" element={<UserProfilePage />} />
+          <Route path="/edit-user-profile" element={<EditUserProfile />} />
         </Route>
 
         {/* Public Authentication Routes */}
@@ -237,8 +239,6 @@ export default function AppRoutes() {
           <Route path="analytics" element={<ReportsAnalytics/>} />
           <Route path="reviews-ratings" element={<ReviewsAndRatings />} />
         </Route>
-        <Route path="/profile" element={<UserProfilePage />} />
-        <Route path="/edit-user-profile" element={<EditUserProfile />} />
       </Routes>
     </Router>
   );

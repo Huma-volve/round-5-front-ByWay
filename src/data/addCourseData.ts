@@ -1,9 +1,7 @@
 export interface CourseData {
   courseTitle: string;
-  courseCategory: string;
-  courseLevel: string[];
+  courseCategory: number;
   courseDescription: string;
-  videoTitle: string;
   coursePrice: number;
   courseThumbnail: File | null;
   introVideo: File | null;

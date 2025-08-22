@@ -6,15 +6,14 @@ export default function Withdraw() {
   const { t } = useTranslation();
   const [withdraw, setWithdraw] = useState<number>(0);
   const [isValid, setIsValid] = useState<boolean>(true);
-const navigate=useNavigate();
+  const navigate = useNavigate();
   function handleClick() {
-    if (withdraw < 40.340 || withdraw > 44.340) {
+    if (withdraw < 40.34 || withdraw > 44.34) {
       setIsValid(false);
     } else {
       setIsValid(true);
-      navigate("/instructor/revenue")
+      navigate("/instructor/revenue");
     }
-
   }
 
   return (
@@ -62,14 +61,13 @@ const navigate=useNavigate();
         </div>
 
         {/* button */}
-     
+
         <button
           className="mt-8 bg-success w-full text-center lg:w-[400px] px-2 py-2 text-white rounded-lg"
           onClick={handleClick}
         >
           {t("withdraw.Next")}
         </button>
-       
       </div>
     </div>
   );
