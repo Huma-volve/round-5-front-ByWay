@@ -109,7 +109,9 @@ export interface instructorDetails {
     total_students: number;
     average_rating: number;
   };
-  courses: CoursesHome[];
+  courses: {
+    data: CoursesHome[];
+  };
 }
 
 // الشكل الموحد اللي هتستخدمه جوة الواجهة
