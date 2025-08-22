@@ -13,7 +13,9 @@ interface ReviewsManagement {
 import useViewReview from "@/hooks/AdminDashboard/Reviews&Ratings/useViewReview";
 function ViewReview({ open, onOpenChange, reviewId }: ReviewsManagement) {
   const { t } = useTranslation();
-  const { data: review } = useViewReview(reviewId !== null ? reviewId.toString() : null);
+  const { data: review } = useViewReview(
+    reviewId !== null ? reviewId.toString() : null
+  );
   if (!review) return null;
   return (
     <Dialog open={open} onOpenChange={onOpenChange} modal={true}>
@@ -27,7 +29,7 @@ function ViewReview({ open, onOpenChange, reviewId }: ReviewsManagement) {
               <span className="text-primary font-bold ">
                 {t("adminReviews.course")} :
               </span>{" "}
-              {review?.course_name}
+              {review?.course}
             </p>
             <p className=" p-2 my-4 rounded-[10px]">
               <span className="text-primary font-bold">

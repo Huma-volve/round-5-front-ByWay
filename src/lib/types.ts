@@ -77,6 +77,7 @@ export interface UserProfile {
 export interface ReviewsAndRatings {
   id: number;
   course_name: string;
+  course: string;
   reviewer: string;
   rating: number;
   comment: string;
