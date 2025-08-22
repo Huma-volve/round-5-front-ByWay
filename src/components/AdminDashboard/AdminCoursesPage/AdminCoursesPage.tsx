@@ -7,13 +7,13 @@ import { useQuery } from "@tanstack/react-query";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 export default function AdminCoursesPage() {
-  const [token] = useLocalStorage("auth_token", '');
+  const [token] = useLocalStorage("auth_token", "");
   const queryClient = useQueryClient();
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["courses"],
     queryFn: async () => {
       const options = {
-        url: "http://round5-byway.huma-volve.com/api/courses",
+        url: "https://round5-byway.huma-volve.com/api/courses",
         method: "get",
         headers: {
           Accept: "application/json",
@@ -30,7 +30,7 @@ export default function AdminCoursesPage() {
     mutationKey: ["course"],
     mutationFn: async (id: number) => {
       const options = {
-        url: `http://round5-byway.huma-volve.com/api/courses/${id}`,
+        url: `https://round5-byway.huma-volve.com/api/courses/${id}`,
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
