@@ -21,7 +21,7 @@ function DeleteReview({ open, onOpenChange, reviewId }: DeleteReviewProps) {
         </h2>
         <p className="mt-2 text-sm text-gray-600">
           {t("adminReviews.Are you sure you want to delete")}{" "}
-          <span className="font-medium">{review?.course}</span>?
+          <span className="font-medium">{review?.course_name}</span>?
         </p>
 
         <div className="mt-4 flex justify-end gap-3">
