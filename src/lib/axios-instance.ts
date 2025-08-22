@@ -10,9 +10,19 @@ const axiosInstance = axios.create({
 
 // Add token automatically if available
 axiosInstance.interceptors.request.use((config) => {
-  const token = localStorage.getItem("auth_token");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+  const tokenString = localStorage.getItem("auth_token");
+  // console.log("Token string from localStorage:", tokenString);
+  if (tokenString) {
+    try {
+      // Parse the JSON string to get the actual token
+      const token = JSON.parse(tokenString);
+      // console.log("Parsed token:", token);
+      config.headers.Authorization = `Bearer ${token}`;
+    } catch (error) {
+      console.warn("Error parsing token from localStorage:", error);
+      // Fallback: try using the string directly in case it's not JSON
+      config.headers.Authorization = `Bearer ${tokenString}`;
+    }
   }
   return config;
 });

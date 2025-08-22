@@ -10,10 +10,10 @@ import { useLocalStorage } from "./useLocalStorage";
  */
 export function useSignIn() {
   const navigate = useNavigate();
-  const [role, setRole] = useLocalStorage("role", "");
-  const [user_id, setUserId] = useLocalStorage("user_id", "");
-  const [auth_token, setAuthToken] = useLocalStorage("auth_token", "");
-  const [email, setEmail] = useLocalStorage("email", "");
+  const [, setRole] = useLocalStorage("role", "");
+  const [, setUserId] = useLocalStorage("user_id", "");
+  const [, setAuthToken] = useLocalStorage("auth_token", "");
+  const [, setEmail] = useLocalStorage("email", "");
 
   const { mutate, error, isPending, data } = useMutation({
     mutationFn: signIn,
