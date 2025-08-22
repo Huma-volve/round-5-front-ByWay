@@ -11,8 +11,15 @@ import { Loader2 } from "lucide-react";
 function CourseDetails() {
   const { t } = useTranslation();
   const { getAutoBreadcrumb } = useBreadcrumb();
-  const { courseId } = useParams<{ courseId: string }>();
-  const { data: course, error, isLoading } = useFetchCourseDetails(courseId);
+  const { courseId } = useParams<{ courseId: string | undefined }>();
+  const { data: course, error, isLoading } = useFetchCourseDetails(courseId!);
+  if (!courseId) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        course ID not provided
+      </div>
+    );
+  }
   if (error) {
     return (
       <div className="flex items-center justify-center h-screen">

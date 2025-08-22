@@ -15,7 +15,7 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
   const { t } = useTranslation();
   const [role] = useLocalStorage("role", "");
 
- if (error) {
+  if (error) {
     return (
       <div className="flex items-center justify-center h-screen">
         Error loading reviews
@@ -40,7 +40,7 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
           to={`${
             role === "instructor"
               ? `/instructor/course-details/${course.id}`
-              : `courses/${course.id}`
+              : `/courses/${course.id}`
           }`}
           key={course.id}
         >
@@ -67,7 +67,7 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
               ) : (
                 <div className="my-2"></div>
               )}
-              
+
               <div className="flex items-center">
                 {Array.from({ length: Number(course.rating) || 1 }).map(
                   (_, index) => (

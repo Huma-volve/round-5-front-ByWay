@@ -88,7 +88,14 @@ export interface CoursesHome {
   image: string;
   title: string;
   rating: number;
-  instructor: string;
+  user: {
+    id: number;
+    name: string;
+  };
+  instructor: {
+    id: number;
+    name: string;
+  };
   description: string;
   price: number;
 }

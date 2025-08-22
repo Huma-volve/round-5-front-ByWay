@@ -6,7 +6,7 @@ import FeedbackModal from "@/components/instructor/Modal/FeedBackModal";
 
 export default function LearnerCourseDetails() {
   const { t } = useTranslation();
-  const [watched, setWatched] = useState<{ [key: number]: boolean }>({});
+  // const [watched, setWatched] = useState<{ [key: number]: boolean }>({});
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
 
   const lessons = [1, 2, 3, 4, 5, 6];
