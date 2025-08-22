@@ -4,12 +4,18 @@ import { useTranslation } from "react-i18next";
 import { Loader2 } from "lucide-react";
 import ImgProduct from "../../assets/images/ui-product.png";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
+import type { CoursesHome } from "@/lib/types";
 
-function CardCourse({ courses, error, isLoading }) {
+interface CardCourseProps {
+  courses: CoursesHome[];
+  error: boolean;
+  isLoading: boolean;
+}
+function CardCourse({ courses, error, isLoading }: CardCourseProps) {
   const { t } = useTranslation();
   const [role] = useLocalStorage("role", "");
 
-  if (error) {
+ if (error) {
     return (
       <div className="flex items-center justify-center h-screen">
         Error loading reviews
@@ -51,12 +57,17 @@ function CardCourse({ courses, error, isLoading }) {
               <h5 className="font-[600] text-lg lg:text-lg xl:text-xl truncate">
                 {course.title}
               </h5>
-              <Link
-                to={`/${course.user?.id}/instructor-details`}
-                className="block text-sm my-2 text-[--secondary-dark] hover:text-blue-500 cursor-pointer"
-              >
-                {t("common.by")} {course.user?.name}
-              </Link>
+              {course.user ? (
+                <Link
+                  to={`/${course.user?.id}/instructor-details`}
+                  className="block text-sm my-2 text-[--secondary-dark] hover:text-blue-500 cursor-pointer"
+                >
+                  {t("common.by")} {course.user?.name}
+                </Link>
+              ) : (
+                <div className="my-2"></div>
+              )}
+              
               <div className="flex items-center">
                 {Array.from({ length: Number(course.rating) || 1 }).map(
                   (_, index) => (
