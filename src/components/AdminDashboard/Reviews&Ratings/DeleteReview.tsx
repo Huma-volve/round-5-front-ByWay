@@ -1,6 +1,7 @@
 import useDeleteReview from "@/hooks/AdminDashboard/Reviews&Ratings/useDeleteReview";
 import useViewReview from "@/hooks/AdminDashboard/Reviews&Ratings/useViewReview";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 interface DeleteReviewProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -9,8 +10,23 @@ interface DeleteReviewProps {
 
 function DeleteReview({ open, onOpenChange, reviewId }: DeleteReviewProps) {
   const { t } = useTranslation();
-  const { data: review} = useViewReview(reviewId !== null ? reviewId.toString() : null);
-  const deleteReviewMutation = useDeleteReview();
+  const { data: review } = useViewReview(
+    reviewId !== null ? reviewId.toString() : null
+  );
+  const { mutate: deleteReview, status } = useDeleteReview();
+  const isDeleting = status === "pending";
+  const handleDelete = () => {
+    if (reviewId === null) return;
+    deleteReview(reviewId, {
+      onSuccess: () => {
+        onOpenChange(false);
+        toast.success(t("adminReviews.Deleted successfully!"));
+      },
+      onError: () => {
+        toast.error(t("adminReviews.Failed to delete"));
+      },
+    });
+  };
 
   if (!open) return null;
   return (
@@ -32,15 +48,10 @@ function DeleteReview({ open, onOpenChange, reviewId }: DeleteReviewProps) {
             {t("adminReviews.Cancel")}
           </button>
           <button
-            onClick={() => {
-              if (reviewId !== null) {
-                deleteReviewMutation.mutate(reviewId);
-              }
-              onOpenChange(false);
-            }}
+            onClick={handleDelete}
             className="px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-700"
           >
-            {t("adminReviews.Delete")}
+            {isDeleting ? t("deleteModal.deleting") : t("adminReviews.Delete")}
           </button>
         </div>
       </div>
