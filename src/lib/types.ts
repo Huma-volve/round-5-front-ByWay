@@ -99,6 +99,17 @@ export interface CoursesHome {
   };
   description: string;
   price: number;
+  reviews: {
+    learner_name: string;
+    review: string;
+    rating: number;
+    created_at: string;
+    learner_image: string;
+  }[];
+  content: {
+    id: number;
+    title: string;
+  }[];
 }
 export interface instructorDetails {
   id: number;
