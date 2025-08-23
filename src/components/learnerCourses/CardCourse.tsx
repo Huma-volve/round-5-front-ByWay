@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
 import StarIcon from "../../assets/images/icons/StarIcon.svg";
 import { useTranslation } from "react-i18next";
-import { Loader2 } from "lucide-react";
+import { Heart, Loader2 } from "lucide-react";
 import ImgProduct from "../../assets/images/ui-product.png";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import type { CoursesHome } from "@/lib/types";
+import { useFavourites } from "@/hooks/useFavourites";
+import useAddFavorites from "@/hooks/useAddFavorites";
+import useRemoveFavorites from "@/hooks/useRemoveFavorites";
+import { useState } from "react";
 
 interface CardCourseProps {
   courses: CoursesHome[];
@@ -14,6 +18,21 @@ interface CardCourseProps {
 function CardCourse({ courses, error, isLoading }: CardCourseProps) {
   const { t } = useTranslation();
   const [role] = useLocalStorage("role", "");
+  const { favourites } = useFavourites();
+  const { mutate: removeFavorite } = useRemoveFavorites();
+  const { mutate: addFavorite } = useAddFavorites();
+
+  const isFavoriteCourse = (courseId: number) =>
+    favourites.some((fav) => fav.course_id === courseId);
+
+  // handleFavorite
+  const handleFavorite = (courseId: number) => {
+    if (isFavoriteCourse(courseId)) {
+      removeFavorite(courseId);
+    } else {
+      addFavorite(courseId);
+    }
+  };
 
   if (error) {
     return (
@@ -44,15 +63,30 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
           }`}
           key={course.id}
         >
-          <div className="mb-20">
-            <div>
+          <div className="mb-20 relative">
+            <div className="relative">
               <img
-                className="w-full border border-[--category] rounded-lg"
+                className="w-full border border-[--category] rounded-2xl"
                 src={course.image || ImgProduct}
                 alt={course.title}
                 loading="lazy"
               />
             </div>
+            <Heart
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                handleFavorite(course.id);
+              }}
+              className={`absolute -top-1 -left-1 w-8 h-8 p-1 
+              rounded-full cursor-pointer shadow transition
+              ${
+                isFavoriteCourse(course.id)
+                  ? "bg-red-800 text-white"
+                  : "bg-white text-red-500 hover:bg-red-800 hover:text-white"
+              }`}
+              fill={isFavoriteCourse(course.id) ? "currentColor" : "none"}
+            />
             <div className="border-2 w-full border-[--category] rounded-2xl mt-3 px-4 py-3 shadow">
               <h5 className="font-[600] text-lg lg:text-lg xl:text-xl truncate">
                 {course.title}
