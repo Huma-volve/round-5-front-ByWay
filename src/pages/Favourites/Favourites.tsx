@@ -7,14 +7,22 @@ import { useFavourites } from "@/hooks/useFavourites";
 import heart from "../../assets/images/icons/fav-heart.png";
 import courseFav from "@/assets/images/course-fav.png";
 import avtar from "@/assets/images/avatar-fav.png";
+import useRemoveFavorites from "@/hooks/useRemoveFavorites";
+import { Link } from "react-router-dom";
 
 export default function Favourites() {
   const { t } = useTranslation();
   const { getAutoBreadcrumb } = useBreadcrumb();
   const [activeButton, setActiveButton] = useState<"btn1" | "btn2">("btn1");
-
+  const { mutate: removeFavorite } = useRemoveFavorites();
   const { favourites, isLoading } = useFavourites();
-
+  const isFavoriteCourse = (courseId: number) =>
+    favourites.some((fav) => fav.course_id === courseId);
+  const handleFavorite = (courseId: number) => {
+    if (isFavoriteCourse(courseId)) {
+      removeFavorite(courseId);
+    }
+  };
   return (
     <div className="bg-background container">
       <div className="ml-4">
@@ -53,7 +61,9 @@ export default function Favourites() {
 
         {/* Fav Cards */}
         {isLoading ? (
-          <h1 className="text-lg w-full text-gray-500">{t("adminUser.Loading")}</h1>
+          <h1 className="text-lg w-full text-gray-500">
+            {t("adminUser.Loading")}
+          </h1>
         ) : favourites.length > 0 ? (
           <div className="mt-5 bg-border rounded-xl w-[95%] md:w-[50%] lg:w-[35%] flex flex-col gap-1 mr-4">
             {favourites.map((fav, index) => (
@@ -61,35 +71,47 @@ export default function Favourites() {
                 {index > 0 && (
                   <hr className="w-[90%] mx-auto h-[3px] bg-secondary opacity-30" />
                 )}
+                <Link
+                  to={`${
+                    activeButton === "btn1"
+                      ? `/courses/${fav.course.id}`
+                      : `/${fav.user_id}/instructor-details`
+                  }`}
+                >
+                  <div className="w-full flex items-center justify-between gap-4 px-4 py-2">
+                    <img
+                      src={`${activeButton} === "btn1" ? ${courseFav} : ${avtar}}`}
+                      alt="courseIcon"
+                      loading="lazy"
+                      className="w-6 h-6 object-contain md:w-10 md:h-10"
+                    />
 
-                <div className="w-full flex items-center justify-between gap-4 px-4 py-2">
-                  <img
-                    src={`${activeButton} === "btn1" ? ${courseFav} : ${avtar}}`}
-                    alt="courseIcon"
-                    loading="lazy"
-                    className="w-6 h-6 object-contain md:w-10 md:h-10"
-                  />
+                    <div className="flex flex-col">
+                      <h3 className="font-semibold text-md md:text-lg">
+                        {activeButton === "btn1"
+                          ? fav.course.title
+                          : fav.course.user_id}
+                      </h3>
+                      <h3 className="text-secondaryDark text-xs md:text-sm">
+                        {activeButton === "btn1"
+                          ? fav.course.user_id
+                          : fav.course.title}
+                      </h3>
+                    </div>
 
-                  <div className="flex flex-col">
-                    <h3 className="font-semibold text-md md:text-lg">
-                      {activeButton === "btn1"
-                        ? fav.course.title
-                        : fav.course.user_id}
-                    </h3>
-                    <h3 className="text-secondaryDark text-xs md:text-sm">
-                      {activeButton === "btn1"
-                        ? fav.course.user_id
-                        : fav.course.title}
-                    </h3>
+                    <img
+                      src={heart}
+                      onClick={(e) => {
+                        handleFavorite(fav.course.id);
+                        e.stopPropagation();
+                        e.preventDefault();
+                      }}
+                      alt="favourite"
+                      loading="lazy"
+                      className="w-4 h-4 cursor-pointer mr-4 rtl:ml-4 md:w-6 md:h-6"
+                    />
                   </div>
-
-                  <img
-                    src={heart}
-                    alt="favourite"
-                    loading="lazy"
-                    className="w-4 h-4 cursor-pointer mr-4 rtl:ml-4 md:w-6 md:h-6"
-                  />
-                </div>
+                </Link>
               </div>
             ))}
           </div>
