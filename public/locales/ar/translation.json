@@ -154,14 +154,20 @@
       "currentPeriod": "الفترة الحالية",
       "lastPeriod": "الفترة السابقة",
       "errorLoadingData": "فشل في تحميل بيانات الإيرادات",
+      "yearSelector": "السنة",
       "stats": {
         "totalProfits": "إجمالي الأرباح",
         "availableBalance": "الرصيد المتاح",
         "lastTransaction": "آخر معاملة"
+      },
+      "empty": {
+        "title": "لا توجد بيانات إيرادات بعد",
+        "description": "بمجرد أن تبدأ في الربح من دوراتك، ستظهر تحليلات إيراداتك هنا."
       }
     },
     "income": {
       "title": "المعاملات",
+      "errorLoadingData": "فشل في تحميل بيانات الدخل",
       "table": {
         "customer": "العميل",
         "date": "التاريخ",
@@ -180,6 +186,14 @@
         "cash": "نقداً",
         "creditCard": "بطاقة ائتمان",
         "bankTransfer": "تحويل بنكي"
+      },
+      "empty": {
+        "title": "لا توجد معاملات بعد",
+        "description": "عندما تحصل على مدفوعات من الطلاب، سيظهر تاريخ معاملاتك هنا.",
+        "adminTitle": "لا توجد طلبات دفع",
+        "adminDescription": "عندما يطلب المدربون المدفوعات، ستظهر هنا.",
+        "noResults": "لا توجد معاملات تطابق معايير البحث",
+        "noResultsDescription": "حاول تعديل البحث أو التصفية للعثور على ما تبحث عنه."
       }
     },
     "addCourse": {
@@ -543,6 +557,10 @@
       "active_learners": "المتعلمون النشطون",
       "active_instructors": "المدربون النشطون",
       "published_courses": "الدورات المنشورة",
+      "empty": {
+        "topRatedTitle": "لا توجد دورات عالية التقييم بعد",
+        "topRatedDescription": "عندما تحصل الدورات على تقييمات عالية من الطلاب، ستظهر هنا كدورات عالية التقييم."
+      },
       "activityType": {
         "courseAdded": "تم إضافة دورة",
         "courseUpdated": "تم تحديث دورة",

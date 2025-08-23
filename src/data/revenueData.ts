@@ -98,10 +98,13 @@ export const getChartDataFromApi = (
 };
 
 // Convert dummy data to chart format (for instructor fallback)
-export const getChartDataFromDummyData = (selectedYear: number) => {
-  const currentYearData = INSTRUCTOR_REVENUE_DATA[selectedYear] || [];
-  const currentYear = new Date().getFullYear();
-  const lastYearData = INSTRUCTOR_REVENUE_DATA[currentYear] || [];
+export const getChartDataFromDummyData = (
+  apiData: Record<string, RevenueDataPoint[]>,
+  selectedYear: number
+) => {
+  const currentYearData = apiData[selectedYear.toString()] || [];
+  const currentYear = new Date().getFullYear(); // Get current year dynamically
+  const lastYearData = apiData[currentYear.toString()] || []; // Always use current year as reference for last period
 
   return currentYearData.map((current, index) => ({
     month: current.month,

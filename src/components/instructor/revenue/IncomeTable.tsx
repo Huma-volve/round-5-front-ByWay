@@ -25,10 +25,21 @@ import {
   PAYMENT_FILTER_OPTIONS,
   type IncomeTableData,
 } from "../../../data/incomeTableData";
+import IncomeTableLoadingDesign from "./IncomeTableLoadingDesign";
+import IncomeTableErrorDesign from "./IncomeTableErrorDesign";
+import IncomeTableEmptyState from "./IncomeTableEmptyState";
 export default function IncomeTable({
   isAdmin = false,
+  apiData,
+  isPending,
+  isError,
+  error,
 }: {
   isAdmin?: boolean;
+  apiData: IncomeTableData[];
+  isPending: boolean;
+  isError: boolean;
+  error: Error | null;
 }) {
   const { t, i18n } = useTranslation();
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -52,7 +63,22 @@ export default function IncomeTable({
     }
   };
 
-  const data = useMemo<IncomeTableData[]>(() => INCOME_TABLE_DATA, []);
+  // Check if we have real API data vs empty data vs no data
+  const hasApiData = apiData !== undefined && apiData !== null;
+  const isDataEmpty = hasApiData && apiData.length === 0;
+
+  const data = useMemo<IncomeTableData[]>(() => {
+    if (hasApiData && apiData.length > 0) {
+      return apiData;
+    }
+    // For development/demo purposes, fall back to static data if no API data is provided
+    // In production, this should probably be removed
+    if (!hasApiData) {
+      return INCOME_TABLE_DATA;
+    }
+    // If API returned empty array, return empty array (will show empty state)
+    return [];
+  }, [apiData, hasApiData]);
 
   const columns = useMemo<ColumnDef<IncomeTableData>[]>(
     () => [
@@ -164,6 +190,21 @@ export default function IncomeTable({
     },
   });
 
+  // Loading state
+  if (isPending) {
+    return <IncomeTableLoadingDesign isAdmin={isAdmin} />;
+  }
+
+  // Error state
+  if (isError) {
+    return <IncomeTableErrorDesign isAdmin={isAdmin} error={error} />;
+  }
+
+  // Empty state - when API returned successfully but with no data
+  if (isDataEmpty) {
+    return <IncomeTableEmptyState isAdmin={isAdmin} />;
+  }
+
   return (
     <div className="w-full space-y-4 mt-16 mb-8 flex flex-col gap-2">
       {/* Filters & Search */}
@@ -227,14 +268,34 @@ export default function IncomeTable({
               ))}
             </TableHeader>
             <TableBody>
-              {table
-                .getRowModel()
-                .rows.filter((row) =>
-                  paymentFilter && paymentFilter !== "all"
-                    ? row.original.type === paymentFilter
-                    : true
-                )
-                .map((row) => (
+              {(() => {
+                const filteredRows = table
+                  .getRowModel()
+                  .rows.filter((row) =>
+                    paymentFilter && paymentFilter !== "all"
+                      ? row.original.type === paymentFilter
+                      : true
+                  );
+
+                if (filteredRows.length === 0) {
+                  return (
+                    <TableRow>
+                      <TableCell colSpan={4} className="text-center py-12">
+                        <div className="flex flex-col items-center">
+                          <Search className="h-12 w-12 text-gray-300 mb-4" />
+                          <p className="text-lg font-medium text-gray-900 mb-2">
+                            {t("instructor.income.empty.noResults")}
+                          </p>
+                          <p className="text-gray-500">
+                            {t("instructor.income.empty.noResultsDescription")}
+                          </p>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  );
+                }
+
+                return filteredRows.map((row) => (
                   <TableRow key={row.id} className="hover:bg-gray-50">
                     {row.getVisibleCells().map((cell) => (
                       <TableCell
@@ -248,7 +309,8 @@ export default function IncomeTable({
                       </TableCell>
                     ))}
                   </TableRow>
-                ))}
+                ));
+              })()}
             </TableBody>
           </Table>
         </div>

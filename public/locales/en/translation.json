@@ -131,10 +131,15 @@
       "currentPeriod": "Current Period",
       "lastPeriod": "Last Period",
       "errorLoadingData": "Failed to load revenue data",
+      "yearSelector": "Year",
       "stats": {
         "totalProfits": "Total Profits",
         "availableBalance": "Available Balance",
         "lastTransaction": "Last Transaction"
+      },
+      "empty": {
+        "title": "No revenue data yet",
+        "description": "Once you start earning from your courses, your revenue analytics will appear here."
       }
     },
     "workExperience": {
@@ -160,6 +165,7 @@
     },
     "income": {
       "title": "Transactions",
+      "errorLoadingData": "Failed to load income data",
       "table": {
         "customer": "Customer",
         "date": "Date",
@@ -178,6 +184,14 @@
         "cash": "Cash",
         "creditCard": "Credit Card",
         "bankTransfer": "Bank Transfer"
+      },
+      "empty": {
+        "title": "No transactions yet",
+        "description": "When you receive payments from students, your transaction history will appear here.",
+        "adminTitle": "No payout requests",
+        "adminDescription": "When instructors request payouts, they will appear here.",
+        "noResults": "No transactions match your search criteria",
+        "noResultsDescription": "Try adjusting your search or filter to find what you're looking for."
       }
     },
     "addCourse": {
@@ -569,6 +583,10 @@
       "active_learners": "Active Learners",
       "active_instructors": "Active Instructors",
       "published_courses": "Published Courses",
+      "empty": {
+        "topRatedTitle": "No top-rated courses yet",
+        "topRatedDescription": "When courses receive high ratings from students, they will appear here as top-rated courses."
+      },
       "activityType": {
         "courseAdded": "Course Added",
         "courseUpdated": "Course Updated",
