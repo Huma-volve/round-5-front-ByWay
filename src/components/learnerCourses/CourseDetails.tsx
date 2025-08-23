@@ -97,10 +97,10 @@ function CourseDetails() {
       <div>
         {course?.content.map((content) => (
           <div className="flex items-center gap-6 border w-fit py-3 px-7 rounded-xl mb-8">
-            <img className="w-7 md:w:10" src={VideoIcon} alt="VideoIcon" />
+            <img className="w-5 md:w:10" src={VideoIcon} alt="VideoIcon" />
             <Link
               to={`/learner-myCourses/${courseId}`}
-              className="md:text-xl text-md font-[500] truncate w-96 hover:text-[--rate]"
+              className="md:text-xl text-md font-[500] truncate w-48 md:w-96 hover:text-[--rate]"
             >
               {t("common.lesson")} {content.id}: {t("common.introductionTo")}{" "}
               {content.title}
