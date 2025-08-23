@@ -29,7 +29,7 @@ function ViewReview({ open, onOpenChange, reviewId }: ReviewsManagement) {
               <span className="text-primary font-bold ">
                 {t("adminReviews.course")} :
               </span>{" "}
-              {review?.course}
+              {review?.course_name}
             </p>
             <p className=" p-2 my-4 rounded-[10px]">
               <span className="text-primary font-bold">
