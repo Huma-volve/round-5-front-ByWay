@@ -8,7 +8,6 @@ import type { CoursesHome } from "@/lib/types";
 import { useFavourites } from "@/hooks/useFavourites";
 import useAddFavorites from "@/hooks/useAddFavorites";
 import useRemoveFavorites from "@/hooks/useRemoveFavorites";
-import { useState } from "react";
 
 interface CardCourseProps {
   courses: CoursesHome[];
