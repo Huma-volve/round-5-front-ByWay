@@ -127,6 +127,6 @@ export type InstructorReview = {
   review: string;
   date?:string,
   rating: number;
-  imageLearner: string;
+
   name?: string
 };

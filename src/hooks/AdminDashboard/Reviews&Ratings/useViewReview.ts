@@ -1,11 +1,11 @@
-import { useQueryClient } from "@tanstack/react-query";
+import { fetchReviewById } from "@/api/ReviewsAndRatings";
 import type { ReviewsAndRatings } from "@/lib/types";
+import { useQuery } from "@tanstack/react-query";
 
 export default function useViewReview(id: string | null) {
-  const queryClient = useQueryClient();
-  const allReviews = queryClient.getQueryData<ReviewsAndRatings[]>(["reviews"]);
-
-  const data = id ? allReviews?.find((r) => r.id.toString() === id) : undefined;
-
-  return { data };
+  return useQuery<ReviewsAndRatings>({
+    queryKey: ["review", id],
+    queryFn: () => fetchReviewById(id !== null ? Number(id) : null),
+    enabled: !!id,
+  });
 }

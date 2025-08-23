@@ -84,7 +84,7 @@ export default function AppRoutes() {
         >
           {/* Home */}
           <Route path="/" element={<CoursesPage />} />
-
+  
           {/* Course Discovery & Learning */}
           <Route path="/courses">
             <Route index element={<CoursesPage />} />
@@ -140,10 +140,7 @@ export default function AppRoutes() {
             />
 
             {/* Lesson Management */}
-            <Route
-              path="my-courses/:courseId/lessons"
-              element={<ViewLessons />}
-            />
+            <Route path="my-courses/:courseId/lessons" element={<ViewLessons />} />
             <Route
               path="my-courses/:courseId/lessons/add"
               element={<AddLessons />}
@@ -184,7 +181,7 @@ export default function AppRoutes() {
           <Route path="/otp" element={<OTPForm />} />
         </Route>
         {/* not found page */}
-        <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
         {/* admin dashboard Routes */}
 
         <Route
@@ -211,7 +208,7 @@ export default function AppRoutes() {
           />
           <Route path="payment-revenue" element={<PaymentRevenue />} />
           <Route path="settings" element={<AdminSettings />} />
-          <Route path="analytics" element={<ReportsAnalytics />} />
+          <Route path="analytics" element={<ReportsAnalytics/>} />
           <Route path="reviews-ratings" element={<ReviewsAndRatings />} />
         </Route>
       </Routes>
