@@ -71,12 +71,15 @@ function CourseDetails() {
             {t("common.bestseller")}
           </p>
           <p>
-            ({course?.rating || 1000} {t("common.ratings")})
+            ({course?.reviews?.length || 0} {t("common.ratings")})
           </p>
           <div className="flex gap-1">
-            {Array.from({ length: 3 }, (_, index) => (
-              <img key={index} src={StarIcon} alt="StarIcon" />
-            ))}
+            {Array.from(
+              { length: Math.floor(course?.average_rating || 0) },
+              (_, index) => (
+                <img key={index} src={StarIcon} alt="StarIcon" />
+              )
+            )}
           </div>
         </div>
         <div>

@@ -20,8 +20,7 @@ export async function fetchCourseDetails(
   const response = await axiosInstance.get<{ data: CoursesHome }>(
     `course/${courseId}`
   );
-  console.log(response.data);
-  return response.data.data;
+    return response.data.data;
 }
 export async function fetchInstructorDetails(
   instructorId: string
@@ -29,6 +28,5 @@ export async function fetchInstructorDetails(
   const response = await axiosInstance.get<{ data: CoursesHome }>(
     `all-instructors/${instructorId}`
   );
-  console.log(response.data);
   return response.data.data;
 }

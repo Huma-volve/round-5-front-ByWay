@@ -89,6 +89,9 @@ export interface CoursesHome {
   image: string;
   title: string;
   rating: number;
+  description: string;
+  price: number;
+  average_rating: number;
   user: {
     id: number;
     name: string;
@@ -97,8 +100,6 @@ export interface CoursesHome {
     id: number;
     name: string;
   };
-  description: string;
-  price: number;
   reviews: {
     learner_name: string;
     review: string;
@@ -117,8 +118,8 @@ export interface instructorDetails {
     name: string;
   };
   profile: {
-    bio:string;
-  }
+    bio: string;
+  };
   statistics: {
     total_students: number;
     average_rating: number;
