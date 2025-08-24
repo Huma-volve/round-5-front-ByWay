@@ -5,9 +5,10 @@ import { Heart, Loader2 } from "lucide-react";
 import ImgProduct from "../../assets/images/ui-product.png";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import type { CoursesHome } from "@/lib/types";
-import { useFavourites } from "@/hooks/useFavourites";
-import useAddFavorites from "@/hooks/useAddFavorites";
-import useRemoveFavorites from "@/hooks/useRemoveFavorites";
+import { useFavourites } from "@/hooks/Favorites/useFavourites";
+import useAddFavorites from "@/hooks/Favorites/useAddFavorites";
+import useRemoveFavorites from "@/hooks/Favorites/useRemoveFavorites";
+import useAddToCart from "@/hooks/Cart/useAddToCart";
 
 interface CardCourseProps {
   courses: CoursesHome[];
@@ -20,17 +21,28 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
   const { favourites } = useFavourites();
   const { mutate: removeFavorite } = useRemoveFavorites();
   const { mutate: addFavorite } = useAddFavorites();
+  const { mutate: addToCart } = useAddToCart();
 
+  // Check courseId
   const isFavoriteCourse = (courseId: number) =>
     favourites.some((fav) => fav.course_id === courseId);
 
   // handleFavorite
-  const handleFavorite = (courseId: number) => {
+  const handleFavorite = (courseId: number, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (isFavoriteCourse(courseId)) {
       removeFavorite(courseId);
     } else {
       addFavorite(courseId);
     }
+  };
+
+  // handleAddToCart
+  const handleAddToCart = (courseId: number, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart(courseId);
   };
 
   if (error) {
@@ -73,9 +85,7 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
             </div>
             <Heart
               onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                handleFavorite(course.id);
+                handleFavorite(course.id, e);
               }}
               className={`absolute -top-1 -left-1 w-8 h-8 p-1 
               rounded-full cursor-pointer shadow transition
@@ -114,7 +124,10 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
               <p className="text-md my-4 truncate">{course.description}</p>
               <div className="flex justify-between text-md flex-col md:flex-row items-center font-[600]">
                 <h4 className="mb-5 lg:mb-0">{course.price} EGP</h4>
-                <button className="bg-[--success] py-1 px-2 rounded-lg text-white">
+                <button
+                  onClick={(e) => handleAddToCart(course.id, e)}
+                  className="bg-[--success] py-1 px-2 rounded-lg text-white hover:bg-green-700 transition"
+                >
                   {t("common.addToCart")}
                 </button>
               </div>

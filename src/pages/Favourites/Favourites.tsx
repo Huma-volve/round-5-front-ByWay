@@ -3,12 +3,11 @@ import { useTranslation } from "react-i18next";
 import Breadcrumb from "../../components/common/Breadcrumb";
 import { useBreadcrumb } from "../../hooks/useBreadcrumb";
 import { useState } from "react";
-import { useFavourites } from "@/hooks/useFavourites";
+import { useFavourites } from "@/hooks/Favorites/useFavourites";
 import heart from "../../assets/images/icons/fav-heart.png";
 import courseFav from "@/assets/images/course-fav.png";
 import avtar from "@/assets/images/avatar-fav.png";
-import useRemoveFavorites from "@/hooks/useRemoveFavorites";
-import { Link } from "react-router-dom";
+import useRemoveFavorites from "@/hooks/Favorites/useRemoveFavorites";
 
 export default function Favourites() {
   const { t } = useTranslation();
@@ -69,18 +68,12 @@ export default function Favourites() {
             {favourites.map((fav, index) => (
               <div key={fav.id}>
                 {index > 0 && (
-                  <hr className="w-[90%] mx-auto h-[3px] bg-secondary opacity-30" />
+                  <hr className="w-[95%] mx-auto h-[3px] bg-secondary opacity-30" />
                 )}
-                <Link
-                  to={`${
-                    activeButton === "btn1"
-                      ? `/courses/${fav.course.id}`
-                      : `/${fav.user_id}/instructor-details`
-                  }`}
-                >
                   <div className="w-full flex items-center justify-between gap-4 px-4 py-2">
                     <img
-                      src={`${activeButton} === "btn1" ? ${courseFav} : ${avtar}}`}
+                      src={activeButton === "btn1" ? courseFav : avtar}
+                      // src={courseFav}
                       alt="courseIcon"
                       loading="lazy"
                       className="w-6 h-6 object-contain md:w-10 md:h-10"
@@ -90,11 +83,11 @@ export default function Favourites() {
                       <h3 className="font-semibold text-md md:text-lg">
                         {activeButton === "btn1"
                           ? fav.course.title
-                          : fav.course.user_id}
+                          : fav.course.status}
                       </h3>
                       <h3 className="text-secondaryDark text-xs md:text-sm">
                         {activeButton === "btn1"
-                          ? fav.course.user_id
+                          ? fav.course.description
                           : fav.course.title}
                       </h3>
                     </div>
@@ -111,7 +104,6 @@ export default function Favourites() {
                       className="w-4 h-4 cursor-pointer mr-4 rtl:ml-4 md:w-6 md:h-6"
                     />
                   </div>
-                </Link>
               </div>
             ))}
           </div>
