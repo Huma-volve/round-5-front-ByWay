@@ -53,7 +53,7 @@ export default function TableComponent({ courses ,deleteCourse }: TableProps) {
         <TableHead className="font-semibold">{t('instructor.courseManagement.category')}</TableHead>
         <TableHead className="font-semibold">{t('instructor.courseManagement.selectStatus')}</TableHead>
         <TableHead className="font-semibold">{t('instructor.courseManagement.createdDate')}</TableHead>
-        <TableHead className="text-right font-semibold">Actions</TableHead>
+        <TableHead className="text-right font-semibold">{t("adminUser.Actions")}</TableHead>
       </TableRow>
     </TableHeader>
 
@@ -83,7 +83,7 @@ export default function TableComponent({ courses ,deleteCourse }: TableProps) {
           </TableCell>
           <TableCell className="py-2">{course.created_at}</TableCell>
           <TableCell className="flex gap-2 justify-end">
-            <DropdownMenu>
+            <DropdownMenu modal={false}>
               <DropdownMenuTrigger>
                 <button className="hover:bg-border p-1 rounded-full">
                   <MoreVertical className="w-5 h-5 text-secondary-dark" />
@@ -92,7 +92,7 @@ export default function TableComponent({ courses ,deleteCourse }: TableProps) {
               <DropdownMenuContent>
                 <DropdownMenuLabel>
                   <Link
-                    to={`/admin/course-details/${course.id}`}
+                    to={`course-details/${course.id}`}
                     className="p-0 h-auto text-revenue2-graph"
                   >
                     {t('instructor.courseManagement.viewCourse')}
@@ -101,7 +101,7 @@ export default function TableComponent({ courses ,deleteCourse }: TableProps) {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <Link
-                    to={`/admin/EditCourse/${course.id}`}
+                    to={`edit/${course.id}`}
                     className="p-0 h-auto text-yellow-600"
                   >
                     {t('instructor.courseManagement.EditCourse')}

@@ -32,7 +32,7 @@ export default function DeleteConfirmationModal({
   const { t } = useTranslation();
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425px] bg-white">
+      <DialogContent className="w-[90dvw] max-w-[450px] bg-white">
         <DialogHeader>
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center">

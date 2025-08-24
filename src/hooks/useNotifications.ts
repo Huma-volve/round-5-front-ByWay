@@ -1,88 +1,94 @@
-import { useEffect, useState } from "react";
-import { 
-  fetchNotificationInstructor, 
-  fetchNotificationLearner, 
-  markNotificationAsReadInstructor, 
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  fetchNotificationInstructor,
+  fetchNotificationLearner,
+  markNotificationAsReadInstructor,
   markNotificationAsReadLearner,
   deleteNotificationInstructor,
-  deleteNotificationLearner
+  deleteNotificationLearner,
 } from "@/api/notification-api";
 
-import type { NotificationItem, InstructorNotificationResponse, LearnerNotificationResponse } from "@/lib/types";
+import type {
+  NotificationItem,
+  InstructorNotificationResponse,
+  LearnerNotificationResponse,
+} from "@/lib/types";
+import type { AxiosError } from "axios";
+import { useLocalStorage } from "./useLocalStorage";
 
 export function useNotifications() {
-  const [notifications, setNotifications] = useState<NotificationItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const role = localStorage.getItem("role");
+  const [role] = useLocalStorage("role", "")
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    async function load() {
-      setLoading(true);
-
-      try {
-        if (role === "instructor") {
-          const data = await fetchNotificationInstructor();
-          const formatted: NotificationItem[] = data.map((item: InstructorNotificationResponse) => ({
-            id: item.id,
-            title: item.data?.title ?? "Notification",
-            message: item.data?.message ?? "",
-            is_read: !!item.read_at,
-            created_at: item.created_at,
-          }));
-          setNotifications(formatted);
-        } else {
-          const data = await fetchNotificationLearner();
-          const formatted: NotificationItem[] = data.map((item: LearnerNotificationResponse) => ({
-            id: item.id,
-            title: item.title,
-            message: item.message,
-            is_read: item.is_read,
-            created_at: item.created_at,
-          }));
-          setNotifications(formatted);
-        }
-      } catch (err) {
-        console.error("Error fetching notifications:", err);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    load();
-  }, []);
-
-  // -------- Mark as Read --------
-  const markAsRead = async (id: string) => {
-    try {
+  // Fetch Notifications
+  const {
+    data: notifications = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery<NotificationItem[], AxiosError>({
+    queryKey: ["notifications", role],
+    queryFn: async () => {
       if (role === "instructor") {
-        await markNotificationAsReadInstructor(id);
+        const data = await fetchNotificationInstructor();
+        return data.map((item: InstructorNotificationResponse) => ({
+          id: item.id,
+          title: item.data?.title ?? "Notification",
+          message: item.data?.message ?? "",
+          is_read: !!item.read_at,
+          created_at: item.created_at,
+        }));
       } else {
-        await markNotificationAsReadLearner(id);
+        const data = await fetchNotificationLearner();
+        return data.map((item: LearnerNotificationResponse) => ({
+          id: item.id,
+          title: item.title,
+          message: item.message,
+          is_read: item.is_read,
+          created_at: item.created_at,
+        }));
       }
+    },
+  });
 
-      setNotifications((prev) =>
-        prev.map((n) => (n.id === id ? { ...n, is_read: true } : n))
+  // Mark as Read
+  const markAsReadMutation = useMutation({
+    mutationFn: async (id: string) => {
+      if (role === "instructor") {
+        return markNotificationAsReadInstructor(id);
+      } else {
+        return markNotificationAsReadLearner(id);
+      }
+    },
+    onSuccess: (_, id) => {
+      queryClient.setQueryData<NotificationItem[]>(["notifications", role], (old) =>
+        old ? old.map((n) => (n.id === id ? { ...n, is_read: true } : n)) : []
       );
-    } catch (err) {
-      console.error("Error marking as read:", err);
-    }
-  };
+    },
+  });
 
-  // -------- Delete --------
-  const deleteNotification = async (id: string) => {
-    try {
+  // Delete
+  const deleteNotificationMutation = useMutation({
+    mutationFn: async (id: string) => {
       if (role === "instructor") {
-        await deleteNotificationInstructor(id);
+        return deleteNotificationInstructor(id);
       } else {
-        await deleteNotificationLearner(id);
+        return deleteNotificationLearner(id);
       }
+    },
+    onSuccess: (_, id) => {
+      queryClient.setQueryData<NotificationItem[]>(["notifications", role], (old) =>
+        old ? old.filter((n) => n.id !== id) : []
+      );
+    },
+  });
 
-      // تحديث الـ state محلياً
-      setNotifications((prev) => prev.filter((n) => n.id !== id));
-    } catch (err) {
-      console.error("Error deleting notification:", err);
-    }
+  return {
+    notifications,
+    isLoading,
+    isError,
+    error,
+    markAsRead: markAsReadMutation.mutate,
+    deleteNotification: deleteNotificationMutation.mutate,
   };
-
-  return { notifications, loading, markAsRead, deleteNotification };
 }

@@ -1,19 +1,17 @@
 import type { ReactElement } from "react";
 import { Navigate } from "react-router-dom";
-import { useMemo } from "react";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 export default function ProtectedRoute({
   children,
 }: {
   children: ReactElement;
 }) {
-  const authStatus = useMemo(() => {
-    const userId = localStorage.getItem("user_id");
-    const role = localStorage.getItem("role");
+  const [role] = useLocalStorage("role", "");
+  const [userId] = useLocalStorage("user_id", "");
 
-    // User must be authenticated and not an admin
-    return !!userId && role !== "admin";
-  }, []);
-
-  return authStatus ? children : <Navigate to="/signin" replace />;
+  if (!!userId && role !== "admin") {
+    return children;
+  }
+  return <Navigate to="/signin" replace />; 
 }

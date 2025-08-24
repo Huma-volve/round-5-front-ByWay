@@ -17,8 +17,7 @@ function SettingsGroup({ placeholder, mark, text, field }: SettingsGroupType) {
   const { mutate: updateSettings, isPending } = useUpdateSettings();
 
   const scheme = yup.object({
-    setting_field: yup
-      .number()
+    setting_field: yup.number(),
   });
 
   const formik = useFormik({
@@ -28,8 +27,13 @@ function SettingsGroup({ placeholder, mark, text, field }: SettingsGroupType) {
     enableReinitialize: true, // Reinitialize when settings data loads
     validationSchema: scheme,
     onSubmit: (values) => {
+      if (!settings) return;
+
       updateSettings(
-        { [field]: Number(values.setting_field) },
+        {
+          ...settings, // keep the other value
+          [field]: Number(values.setting_field), // override current field
+        },
         {
           onSuccess: () => {
             console.log(`${field} updated successfully`);

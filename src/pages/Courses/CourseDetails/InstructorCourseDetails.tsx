@@ -37,7 +37,7 @@ export default function InstructorCourseDetails() {
           </h3>
           <Link to={`/instructor/my-courses/${courseId}/manage`}>
             <Button className="border text-white w-fit px-3 py-1 border-rate rounded-md font-bold">
-              Manage Course
+              {t("instructor.courseManagement.title")}
             </Button>
           </Link>
         </div>

@@ -153,14 +153,21 @@
       "selectTimePeriod": "اختر الفترة",
       "currentPeriod": "الفترة الحالية",
       "lastPeriod": "الفترة السابقة",
+      "errorLoadingData": "فشل في تحميل بيانات الإيرادات",
+      "yearSelector": "السنة",
       "stats": {
         "totalProfits": "إجمالي الأرباح",
         "availableBalance": "الرصيد المتاح",
         "lastTransaction": "آخر معاملة"
+      },
+      "empty": {
+        "title": "لا توجد بيانات إيرادات بعد",
+        "description": "بمجرد أن تبدأ في الربح من دوراتك، ستظهر تحليلات إيراداتك هنا."
       }
     },
     "income": {
       "title": "المعاملات",
+      "errorLoadingData": "فشل في تحميل بيانات الدخل",
       "table": {
         "customer": "العميل",
         "date": "التاريخ",
@@ -179,6 +186,14 @@
         "cash": "نقداً",
         "creditCard": "بطاقة ائتمان",
         "bankTransfer": "تحويل بنكي"
+      },
+      "empty": {
+        "title": "لا توجد معاملات بعد",
+        "description": "عندما تحصل على مدفوعات من الطلاب، سيظهر تاريخ معاملاتك هنا.",
+        "adminTitle": "لا توجد طلبات دفع",
+        "adminDescription": "عندما يطلب المدربون المدفوعات، ستظهر هنا.",
+        "noResults": "لا توجد معاملات تطابق معايير البحث",
+        "noResultsDescription": "حاول تعديل البحث أو التصفية للعثور على ما تبحث عنه."
       }
     },
     "addCourse": {
@@ -191,6 +206,7 @@
       "courseTitlePlaceholder": "أدخل عنوان الدورة",
       "courseCategory": "فئة الدورة",
       "courseCategoryPlaceholder": "اختر فئة الدورة",
+      "courseCategoryDefault": "اختر فئة الدورة",
       "courseLevel": {
         "title": "مستوى الدورة",
         "beginner": "مبتدئ",
@@ -198,8 +214,6 @@
         "advanced": "متقدم"
       },
       "courseDescriptionPlaceholder": "أدخل وصف الدورة",
-      "videoTitle": "عنوان الفيديو",
-      "videoTitlePlaceholder": "أدخل عنوان الفيديو",
       "coursePrice": "سعر الدورة",
       "coursePricePlaceholder": "أدخل سعر الدورة",
       "courseThumbnail": "صورة الدورة",
@@ -317,14 +331,9 @@
       "courseTitleMin": "عنوان الدورة يجب أن يكون على الأقل 3 أحرف",
       "courseTitleMax": "عنوان الدورة يجب أن يكون أقل من 100 حرف",
       "courseCategoryRequired": "فئة الدورة مطلوبة",
-      "courseLevelRequired": "مستوى الدورة مطلوب",
-      "courseLevelMin": "يجب اختيار مستوى واحد على الأقل للدورة",
       "courseDescriptionRequired": "وصف الدورة مطلوب",
       "courseDescriptionMin": "وصف الدورة يجب أن يكون على الأقل 10 أحرف",
       "courseDescriptionMax": "وصف الدورة يجب أن يكون أقل من 1000 حرف",
-      "videoTitleRequired": "عنوان الفيديو مطلوب",
-      "videoTitleMin": "عنوان الفيديو يجب أن يكون على الأقل 3 أحرف",
-      "videoTitleMax": "عنوان الفيديو يجب أن يكون أقل من 100 حرف",
       "coursePriceRequired": "سعر الدورة مطلوب",
       "coursePricePositive": "سعر الدورة يجب أن يكون رقم موجب",
       "coursePriceMax": "سعر الدورة يجب أن يكون أقل من $9999",
@@ -405,7 +414,7 @@
   "favourite": {
     "Courses": "الدورات",
     "Instractor": "المدرب",
-    "No Favourites have been selected" : "لا يوجد شي في قائمه المفضله"
+    "No Favourites have been selected": "لا يوجد شي في قائمه المفضله"
   },
   "notifications": {
     "You are all up to date": "أنت محدث بالكامل",
@@ -423,7 +432,7 @@
     "Method": "الطريقة",
     "Amount": "المبلغ",
     "Save Payment Method": "حفظ طريقه الدفع",
-    "No payment history found" : "لا يوجد اي تواريخ للدفع"
+    "No payment history found": "لا يوجد اي تواريخ للدفع"
   },
   "save": {
     "Save": "حفظ"
@@ -548,6 +557,10 @@
       "active_learners": "المتعلمون النشطون",
       "active_instructors": "المدربون النشطون",
       "published_courses": "الدورات المنشورة",
+      "empty": {
+        "topRatedTitle": "لا توجد دورات عالية التقييم بعد",
+        "topRatedDescription": "عندما تحصل الدورات على تقييمات عالية من الطلاب، ستظهر هنا كدورات عالية التقييم."
+      },
       "activityType": {
         "courseAdded": "تم إضافة دورة",
         "courseUpdated": "تم تحديث دورة",
@@ -574,7 +587,9 @@
     "Confirm Delete": "تأكيد الحذف",
     "Are you sure you want to delete": "هل أنت متأكد أنك تريد حذف",
     "Cancel": "إلغاء",
-    "Delete": "حذف"
+    "Delete": "حذف",
+    "Deleted successfully!": "تم الحذف بنجاح!",
+    "Failed to delete": "فشل الحذف"
   },
   "adminDetails": {
     "Payment Details": "تفاصيل الدفع",

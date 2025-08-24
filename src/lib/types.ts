@@ -40,14 +40,14 @@ export interface TopRatedCoursesResponse {
   data: TopRatedCourse[];
 }
 export interface UserDashboard {
-    id: number;
-    name: string;
-    email: string;
-    role: string;
-    status: string;
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+  status: string;
   created_at: string;
- }
-export interface UserProfileDashboard{
+}
+export interface UserProfileDashboard {
   id: number;
   name: string;
   email: string;
@@ -55,33 +55,78 @@ export interface UserProfileDashboard{
   status: string;
   nationality: string;
   created_at: string;
-  course_count? : number;
-  bio? : string;
-  total_earnings? : string;
-  average_rating? : number;
-}              
+  course_count?: number;
+  bio?: string;
+  total_earnings?: string;
+  average_rating?: number;
+}
 
-export interface UserProfile{
+export interface UserProfile {
   id: number;
   fname: string;
   lname: string;
   email: string;
   headline: string;
   about: string;
-  x : string;
-  facebook : string;
-  youtube : number;
-  linkedin : number;
-}              
+  x: string;
+  facebook: string;
+  youtube: number;
+  linkedin: number;
+}
 
 export interface ReviewsAndRatings {
-  id:number;
+  id: number;
+  course_name: string;
   course: string;
   reviewer: string;
   rating: number;
   comment: string;
   date: string;
   status: string;
+}
+export interface CoursesHome {
+  id: number;
+  image: string;
+  title: string;
+  rating: number;
+  description: string;
+  price: number;
+  average_rating: number;
+  user: {
+    id: number;
+    name: string;
+  };
+  instructor: {
+    id: number;
+    name: string;
+  };
+  reviews: {
+    learner_name: string;
+    review: string;
+    rating: number;
+    created_at: string;
+    learner_image: string;
+  }[];
+  content: {
+    id: number;
+    title: string;
+  }[];
+}
+export interface instructorDetails {
+  id: number;
+  instructor: {
+    name: string;
+  };
+  profile: {
+    bio: string;
+  };
+  statistics: {
+    total_students: number;
+    average_rating: number;
+  };
+  courses: {
+    data: CoursesHome[];
+  };
 }
 
 // الشكل الموحد اللي هتستخدمه جوة الواجهة

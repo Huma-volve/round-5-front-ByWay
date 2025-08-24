@@ -2,19 +2,27 @@ import AdminDashboardHeading from "@/components/AdminDashboard/HomeDashboard/Adm
 import TopRatedCourses from "@/components/AdminDashboard/HomeDashboard/TopRatedCourses";
 import IncomeTable from "@/components/instructor/revenue/IncomeTable";
 import RevenueChart from "@/components/instructor/revenue/RevenueChart";
+import useFetchRecentPayouts from "@/hooks/AdminDashboard/useFetchRecentPayOuts";
+import useFetchRevenueGraphData from "@/hooks/AdminDashboard/useFetchRevenueGraphData";
 import { useTranslation } from "react-i18next";
 
 export default function AdminDashboard() {
   const { t } = useTranslation();
+  const { data: recentPayouts , isPending , isError, error} = useFetchRecentPayouts();
+  console.log(recentPayouts);
+
   return (
     <div className="mt-10">
       <AdminDashboardHeading />
       <h1 className="text-xl md:text-2xl font-bold my-10 text-primary">
         {t("admin.home.MonthlyRevenueOverview")}
       </h1>
-      <RevenueChart />
+      <RevenueChart
+        useRevenueHook={useFetchRevenueGraphData}
+        defaultYear={new Date().getFullYear()}
+      />
       <TopRatedCourses />
-      <IncomeTable isAdmin={true} />
+      <IncomeTable isAdmin={true} apiData={recentPayouts?.data} isPending={isPending} isError={isError} error={error} />
     </div>
   );
 }
