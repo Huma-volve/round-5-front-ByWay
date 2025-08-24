@@ -5,9 +5,9 @@ import { Heart, Loader2 } from "lucide-react";
 import ImgProduct from "../../assets/images/ui-product.png";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import type { CoursesHome } from "@/lib/types";
-import { useFavourites } from "@/hooks/useFavourites";
-import useAddFavorites from "@/hooks/useAddFavorites";
-import useRemoveFavorites from "@/hooks/useRemoveFavorites";
+import { useFavourites } from "@/hooks/Favorites/useFavourites";
+import useAddFavorites from "@/hooks/Favorites/useAddFavorites";
+import useRemoveFavorites from "@/hooks/Favorites/useRemoveFavorites";
 
 interface CardCourseProps {
   courses: CoursesHome[];

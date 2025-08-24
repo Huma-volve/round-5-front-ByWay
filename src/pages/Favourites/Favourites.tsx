@@ -3,11 +3,11 @@ import { useTranslation } from "react-i18next";
 import Breadcrumb from "../../components/common/Breadcrumb";
 import { useBreadcrumb } from "../../hooks/useBreadcrumb";
 import { useState } from "react";
-import { useFavourites } from "@/hooks/useFavourites";
+import { useFavourites } from "@/hooks/Favorites/useFavourites";
 import heart from "../../assets/images/icons/fav-heart.png";
 import courseFav from "@/assets/images/course-fav.png";
 import avtar from "@/assets/images/avatar-fav.png";
-import useRemoveFavorites from "@/hooks/useRemoveFavorites";
+import useRemoveFavorites from "@/hooks/Favorites/useRemoveFavorites";
 import { Link } from "react-router-dom";
 
 export default function Favourites() {
