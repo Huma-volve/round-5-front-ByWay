@@ -610,6 +610,11 @@
     "Method": "Method",
     "Student": "Student",
     "Instructor": "Instructor",
-    "Course": "Course"
+    "Course": "Course",
+    "WithDrowal  Details": "Withdrawal Details",
+    "Request Date": "Request Date",
+    "Bank Name": "Bank Name",
+    "Account Number":"Account Number",
+    "Add New Admin": "Add New Admin"
   }
 }

@@ -18,26 +18,26 @@ function PaymentDetails({ open, onOpenChange }: PaymentDetailsProps) {
       <DialogContent className="w-[350px] bg-white p-6 rounded-lg shadow-md">
         <DialogHeader>
           <DialogTitle className="text-xl font-medium text-primary mt-4 mb-2 text-center">
-            {t("Payment Details")}
+            {t("adminDetails.Payment Details")}
           </DialogTitle>
           <div className="">
             <p className="py-2 px-4 my-4 mt-8 rounded-[10px]">
-              <span className="text-primary font-bold ">  {t("Student")} :</span> {PAYMENT_DETAILS.student}
+              <span className="text-primary font-bold ">  {t("adminDetails.Student")} :</span> {PAYMENT_DETAILS.student}
             </p>
             <p className=" py-2 px-4 my-4 rounded-[10px]">
-              <span className="text-primary font-bold ">  {t("Payment Date")} :</span> {PAYMENT_DETAILS.date}
+              <span className="text-primary font-bold ">  {t("adminDetails.Payment Date")} :</span> {PAYMENT_DETAILS.date}
             </p>
             <p className=" py-2 px-4 my-4 rounded-[10px]">
-              <span className="text-primary font-bold ">   {t("Course")} :</span> {PAYMENT_DETAILS.course}
+              <span className="text-primary font-bold ">   {t("adminDetails.Course")} :</span> {PAYMENT_DETAILS.course}
             </p>
             <p className=" py-2 px-4 my-4 rounded-[10px]">
-              <span className="text-primary font-bold ">   {t("Method")} : </span>{PAYMENT_DETAILS.method}
+              <span className="text-primary font-bold ">   {t("adminDetails.Method")} : </span>{PAYMENT_DETAILS.method}
             </p>
             <p className=" py-2 px-4 my-4 rounded-[10px]">
-              <span className="text-primary font-bold ">    {t("Amount")} :</span> ${PAYMENT_DETAILS.amount}
+              <span className="text-primary font-bold ">    {t("adminDetails.Amount")} :</span> ${PAYMENT_DETAILS.amount}
             </p>
             <p className=" py-2 px-4 my-4 rounded-[10px]">
-              <span className="text-primary font-bold ">   {t("Statue")} :</span>
+              <span className="text-primary font-bold ">   {t("adminDetails.Statue")} :</span>
               <span className={`
                   ${PAYMENT_DETAILS.status === "Pending"
                   ? "text-amber-500"

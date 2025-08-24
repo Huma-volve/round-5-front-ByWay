@@ -584,6 +584,11 @@
     "Method": "الطريقة",
     "Student": "الطالب",
     "Instructor": "المدرب",
-    "Course": "الدورة"
+    "Course": "الدورة",
+    "WithDrowal  Details": "تفاصيل السحب",
+    "Request Date": "تاريخ الطلب",
+    "Bank Name": "اسم البنك",
+    "Account Number":" رقم الحساب",
+    "Add New Admin": "إضافة مشرف جديد"
   }
 }
