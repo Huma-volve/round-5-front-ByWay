@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
 import StarIcon from "../../assets/images/icons/StarIcon.svg";
 import { useTranslation } from "react-i18next";
-import { Loader2 } from "lucide-react";
+import { Heart, Loader2 } from "lucide-react";
 import ImgProduct from "../../assets/images/ui-product.png";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import type { CoursesHome } from "@/lib/types";
+import { useFavourites } from "@/hooks/Favorites/useFavourites";
+import useAddFavorites from "@/hooks/Favorites/useAddFavorites";
+import useRemoveFavorites from "@/hooks/Favorites/useRemoveFavorites";
+import useAddToCart from "@/hooks/Cart/useAddToCart";
 
 interface CardCourseProps {
   courses: CoursesHome[];
@@ -14,6 +18,32 @@ interface CardCourseProps {
 function CardCourse({ courses, error, isLoading }: CardCourseProps) {
   const { t } = useTranslation();
   const [role] = useLocalStorage("role", "");
+  const { favourites } = useFavourites();
+  const { mutate: removeFavorite } = useRemoveFavorites();
+  const { mutate: addFavorite } = useAddFavorites();
+  const { mutate: addToCart } = useAddToCart();
+
+  // Check courseId
+  const isFavoriteCourse = (courseId: number) =>
+    favourites.some((fav) => fav.course_id === courseId);
+
+  // handleFavorite
+  const handleFavorite = (courseId: number, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (isFavoriteCourse(courseId)) {
+      removeFavorite(courseId);
+    } else {
+      addFavorite(courseId);
+    }
+  };
+
+  // handleAddToCart
+  const handleAddToCart = (courseId: number, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart(courseId);
+  };
 
   if (error) {
     return (
@@ -44,15 +74,28 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
           }`}
           key={course.id}
         >
-          <div className="mb-20">
-            <div>
+          <div className="mb-20 relative">
+            <div className="relative">
               <img
-                className="w-full border border-[--category] rounded-lg"
+                className="w-full border border-[--category] rounded-2xl"
                 src={course.image || ImgProduct}
                 alt={course.title}
                 loading="lazy"
               />
             </div>
+            <Heart
+              onClick={(e) => {
+                handleFavorite(course.id, e);
+              }}
+              className={`absolute -top-1 -left-1 w-8 h-8 p-1 
+              rounded-full cursor-pointer shadow transition
+              ${
+                isFavoriteCourse(course.id)
+                  ? "bg-red-800 text-white"
+                  : "bg-white text-red-500 hover:bg-red-800 hover:text-white"
+              }`}
+              fill={isFavoriteCourse(course.id) ? "currentColor" : "none"}
+            />
             <div className="border-2 w-full border-[--category] rounded-2xl mt-3 px-4 py-3 shadow">
               <h5 className="font-[600] text-lg lg:text-lg xl:text-xl truncate">
                 {course.title}
@@ -81,7 +124,10 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
               <p className="text-md my-4 truncate">{course.description}</p>
               <div className="flex justify-between text-md flex-col md:flex-row items-center font-[600]">
                 <h4 className="mb-5 lg:mb-0">{course.price} EGP</h4>
-                <button className="bg-[--success] py-1 px-2 rounded-lg text-white">
+                <button
+                  onClick={(e) => handleAddToCart(course.id, e)}
+                  className="bg-[--success] py-1 px-2 rounded-lg text-white hover:bg-green-700 transition"
+                >
                   {t("common.addToCart")}
                 </button>
               </div>

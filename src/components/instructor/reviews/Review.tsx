@@ -2,7 +2,7 @@ import type { InstructorReview } from "@/data/instructorReviewsData";
 import { useTranslation } from "react-i18next";
 import activeStarIcon from "../../../assets/images/icons/star-active-icon.svg";
 import inactiveStarIcon from "../../../assets/images/icons/star-inactive-icon.svg";
-import person from "../../../assets/images/person.png";
+import { CircleUserRound } from "lucide-react";
 type ReviewProps = InstructorReview & {
   variant?: "course" | "user";
 };
@@ -14,6 +14,7 @@ export default function Review({
   rating,
   date,
   variant = "course",
+  imageLearner,
 }: ReviewProps) {
   const { t } = useTranslation();
 
@@ -65,12 +66,17 @@ export default function Review({
           <>
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <div className="flex gap-3 items-center">
-                <img
-                  src={person}
-                  loading="lazy"
-                  alt={name}
-                  className="size-12 rounded-full object-cover"
-                />
+                {imageLearner ? (
+                  <img
+                    src={imageLearner}
+                    loading="lazy"
+                    alt={name}
+                    className="size-7 rounded-full object-cover"
+                  />
+                ) : (
+                  <CircleUserRound />
+                )}
+
                 <p className="font-bold text-sm sm:text-base">{name}</p>
               </div>
 

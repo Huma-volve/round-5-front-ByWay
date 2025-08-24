@@ -422,7 +422,8 @@
   },
   "settings": {
     "Payment Methods": "طرق الدفع",
-    "Payment History": "تاريخ الدفع"
+    "Payment History": "تاريخ الدفع",
+    "Account" : "غلق ملفك الشخصي"
   },
   "payments": {
     "Choose your payment method": "اختر طريقة الدفع",
