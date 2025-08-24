@@ -36,10 +36,10 @@ export default function IncomeTable({
   error,
 }: {
   isAdmin?: boolean;
-  apiData?: IncomeTableData[];
-  isPending?: boolean;
-  isError?: boolean;
-  error?: Error | null;
+  apiData: IncomeTableData[];
+  isPending: boolean;
+  isError: boolean;
+  error: Error | null;
 }) {
   const { t, i18n } = useTranslation();
   const [sorting, setSorting] = useState<SortingState>([]);
