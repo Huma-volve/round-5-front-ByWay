@@ -86,6 +86,7 @@ export interface ReviewsAndRatings {
 }
 export interface CoursesHome {
   id: number;
+  image_url: string;
   image: string;
   title: string;
   rating: number;
@@ -95,6 +96,7 @@ export interface CoursesHome {
   user: {
     id: number;
     name: string;
+    image: string;
   };
   instructor: {
     id: number;
@@ -127,6 +129,12 @@ export interface instructorDetails {
   courses: {
     data: CoursesHome[];
   };
+}
+export interface StatsHome {
+  courses: number;
+  instructors: number;
+  learners: number;
+  reviews: number;
 }
 
 // الشكل الموحد اللي هتستخدمه جوة الواجهة

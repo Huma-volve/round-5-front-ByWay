@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import StarIcon from "../../assets/images/icons/StarIcon.svg";
 import { useTranslation } from "react-i18next";
 import { Heart, Loader2 } from "lucide-react";
@@ -22,8 +22,8 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
   const { mutate: removeFavorite } = useRemoveFavorites();
   const { mutate: addFavorite } = useAddFavorites();
   const { mutate: addToCart } = useAddToCart();
-
-  // Check courseId
+  const navigate = useNavigate();
+  // Check courseId Favorite
   const isFavoriteCourse = (courseId: number) =>
     favourites.some((fav) => fav.course_id === courseId);
 
@@ -66,19 +66,24 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
   return (
     <>
       {courses.map((course) => (
-        <Link
-          to={`${
-            role === "instructor"
-              ? `/instructor/course-details/${course.id}`
-              : `/courses/${course.id}`
-          }`}
+        <div
+          onClick={() => {
+            navigate(
+              `${
+                role === "instructor"
+                  ? `/instructor/course-details/${course.id}`
+                  : `/courses/${course.id}`
+              }`
+            );
+          }}
           key={course.id}
+          className="cursor-pointer"
         >
           <div className="mb-20 relative">
             <div className="relative">
               <img
                 className="w-full border border-[--category] rounded-2xl"
-                src={course.image || ImgProduct}
+                src={course?.image_url || ImgProduct}
                 alt={course.title}
                 loading="lazy"
               />
@@ -133,7 +138,7 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
               </div>
             </div>
           </div>
-        </Link>
+        </div>
       ))}
     </>
   );
