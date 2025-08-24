@@ -4,13 +4,55 @@ import { useTranslation } from "react-i18next";
 import courseDetails from "../../../assets/images/courseDetails.png";
 import { Button } from "@/components/ui/button";
 import { Link, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import axiosInstance from "@/api/instructor-courses-api";
 
 export default function InstructorCourseDetails() {
+  type Lesson = {
+     id: number,
+     title: string,
+     video_url: string,
+   }
+   type review ={
+    id: number
+     
+     review : string
+     rating : number
+     created_at: string
+      user: { //id: number,
+                    name: string,}  
+
+   }
   const { t } = useTranslation();
   const { courseId } = useParams<{ courseId: string }>();
+  console.log("courseId from params:", courseId);
+
+const {data ,error , isLoading,isFetching } = useQuery({
+     queryKey: ["course", courseId],
+queryFn: async()=>{
+       const { data } = await axiosInstance.get(
+      `/instructor/courses/${courseId}`,
+      {
+        headers: { Accept: 'application/json' ,
+        },
+          
+      })
+       console.log("Course data:", data);
+
+return data.data
+}
+
+  });
+  if (error) {
+   console.error("Query error:", error);
+ }
+console.log("isLoading:", isLoading, "isFetching:", isFetching);
+
 
   return (
     <section className="container py-12 space-y-6 ">
+      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+
       <div className="space-y-3 ">
         <img
           src={courseDetails}
@@ -19,14 +61,12 @@ export default function InstructorCourseDetails() {
         />
         <div className="space-y-2">
           <h2 className="text-2xl font-bold">
-            Introduction to user interface and user experience design
+            {data?.title}
           </h2>
           <p className=" text-gray-600 leading-relaxed ">
-            Begin your journey in user interface and user experience design.{" "}
-            <br /> You'll learn to design wireframes, user flows, and
-            interactive prototypes using Figma.
+           {data?.description}
           </p>
-          <h4 className="">{t("common.instructor")}: Omnya Ali</h4>
+ 
         </div>
       </div>
 
@@ -41,29 +81,27 @@ export default function InstructorCourseDetails() {
             </Button>
           </Link>
         </div>
-        <LessonCard />
-        <LessonCard />
-        <LessonCard />
-        <LessonCard />
-        <LessonCard />
-        <LessonCard />
+      
+
+                {data?.lessons?.map((lesson: Lesson , index: number) => (
+          <LessonCard key={lesson.id || index} lesson={lesson} index={index}/>
+        ))}
+
+       
       </div>
 
       <div className="">
-        <Review
+       
+        {data?.reviews?.map(( review: review ) => (
+      <Review
+           key={review.id}    
           variant="user"
-          name="tom albert"
-          review="I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down"
-          rating={2}
-          date="Mar 2025"
+          review={review}
+         
         />
-        <Review
-          variant="user"
-          name="john albert"
-          review="I was initially apprehensive, having no prior design experience. But the instructor, John Doe, did an amazing job of breaking down"
-          rating={3}
-          date="Aug 2025"
-        />
+        ))}
+        
+      
       </div>
     </section>
   );

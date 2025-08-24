@@ -1,19 +1,21 @@
-import type { InstructorReview } from "@/data/instructorReviewsData";
+
 import { useTranslation } from "react-i18next";
 import activeStarIcon from "../../../assets/images/icons/star-active-icon.svg";
 import inactiveStarIcon from "../../../assets/images/icons/star-inactive-icon.svg";
 import person from "../../../assets/images/person.png";
-type ReviewProps = InstructorReview & {
+type ReviewProps = {
   variant?: "course" | "user";
-};
+  review :{
+    
+     review : string
+     rating : number
+     created_at: string
+      user: { //id: number,
+                    name: string,}  };  }
 
 export default function Review({
-  name,
-  courseName,
-  review,
-  rating,
-  date,
-  variant = "course",
+  variant = "user",
+  review
 }: ReviewProps) {
   const { t } = useTranslation();
 
@@ -26,13 +28,13 @@ export default function Review({
               <span className="whitespace-nowrap font-medium">
                 {t("instructor.courseName")}:
               </span>
-              <span className="font-bold">{courseName}</span>
+              <span className="font-bold">courseName</span>
             </h3>
 
             <p className="flex items-center gap-2 text-sm sm:text-base">
               <span className="font-medium">{t("instructor.rating")}:</span>
               <span className="flex gap-1">
-                {Array(rating)
+                {Array(review.rating)
                   .fill(0)
                   .map((_, i) => (
                     <img
@@ -43,22 +45,14 @@ export default function Review({
                       className="w-4 h-4"
                     />
                   ))}
-                {Array(5 - rating)
-                  .fill(0)
-                  .map((_, i) => (
-                    <img
-                      key={i}
-                      src={inactiveStarIcon}
-                      alt="Star"
-                      loading="lazy"
-                      className="w-4 h-4 opacity-50"
-                    />
-                  ))}
+                {Array(5 - review.rating).fill(0).map((_, i) => (
+                    <img key={i} src={inactiveStarIcon} alt="Star" loading="lazy" className="w-4 h-4 opacity-50"
+                    />))}
               </span>
             </p>
             <p className="flex flex-col md:flex-row  md:gap-2 text-sm sm:text-base">
               <span className="font-medium">{t("instructor.review")}:</span>
-              <span>{review}</span>
+              <span>{review.review}</span>
             </p>
           </>
         ) : (
@@ -68,16 +62,16 @@ export default function Review({
                 <img
                   src={person}
                   loading="lazy"
-                  alt={name}
-                  className="size-12 rounded-full object-cover"
+                  alt={review?.user?.name}
+                  className="w-12 h-12 rounded-full object-cover"
                 />
-                <p className="font-bold text-sm sm:text-base">{name}</p>
+                <p className="font-bold text-sm sm:text-base">{review?.user?.name}</p>
               </div>
 
               <div className="flex items-center gap-1">
                 {/* <span className="text-sm font-medium">{`${rating} Ratings`}</span> */}
                 <span className="flex gap-1">
-                  {Array(rating)
+                  {Array(review.rating)
                     .fill(0)
                     .map((_, i) => (
                       <img
@@ -87,7 +81,7 @@ export default function Review({
                         className="w-4 h-4"
                       />
                     ))}
-                  {Array(5 - rating)
+                  {Array(5 - review.rating)
                     .fill(0)
                     .map((_, i) => (
                       <img
@@ -100,10 +94,10 @@ export default function Review({
                 </span>
               </div>
 
-              <span className="text-xs text-gray-500">{date}</span>
+              <span className="text-xs text-gray-500">{review.created_at}</span>
             </div>
             <p className="max-w-lg text-sm sm:text-base leading-relaxed">
-              {review}
+              {review.review}
             </p>
           </>
         )}

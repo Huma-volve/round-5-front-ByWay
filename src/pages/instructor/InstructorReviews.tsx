@@ -48,6 +48,7 @@ export default function InstructorReviews() {
           review={review}
           rating={rating}
         />
+        
       ))}
 
       {/* Pagination controls */}
