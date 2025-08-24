@@ -5,11 +5,14 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import { useTranslation } from "react-i18next";
 interface PaymentDetailsProps {
   open: boolean;
+  id:string;
   onOpenChange: (open: boolean) => void;
 }
-function WithdrowDetails({ open, onOpenChange }: PaymentDetailsProps) {
+function WithdrowDetails({id, open, onOpenChange }: PaymentDetailsProps) {
+  const { t } = useTranslation();
     return (
  <Dialog open={open} onOpenChange={onOpenChange} modal={true}>
       <DialogContent className="w-[400px] bg-white p-6 rounded-lg shadow-md">

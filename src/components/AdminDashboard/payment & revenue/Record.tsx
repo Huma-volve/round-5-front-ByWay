@@ -1,4 +1,4 @@
-import { PAYMENT_RECORDS } from "@/data/paymentRecord";
+import { type paymentRecord } from "@/data/paymentRecord";
 import { Link } from "react-router-dom";
 import {
   DropdownMenu,
@@ -13,14 +13,21 @@ import { MoreVertical } from "lucide-react";
 import { useState, useEffect } from "react";
 import PaymentDetails from "@/pages/AdminDashboard/payment & revenue/PaymentDetails";
 import WithdrowDetails from "@/pages/AdminDashboard/payment & revenue/WithdrowDetails";
+import { useFetchApproveWithdrawal , useFetchPaymentRecords } from "@/hooks/AdminDashboard/useFetchPaymentRevenue";
+import LoadingDesign from "../UserManagement/LoadingDesign";
+import ErrorDesign from "../UserManagement/ErrorDesign";
+import { toast } from "react-toastify";
 
 function Record() {
   const [openDialog, setOpenDialog] = useState(false); // PaymentDetails
   const [openDialogW, setOpenDialogW] = useState(false); // WithdrowDetails
   const [openDropdowns, setOpenDropdowns] = useState<{ [key: string]: boolean }>({});
   const { t } = useTranslation();
-
-
+  const { data, isLoading, isError, error } = useFetchPaymentRecords();
+  const records = data?.data?.data || [];
+  const [id, setId] = useState<string>(records[0]?.id);
+  const [idW, setIdW] = useState<string>(records[0]?.id);
+  const approvemutation = useFetchApproveWithdrawal();
   useEffect(() => {
     if (!openDialog && !openDialogW) {
       const timer = setTimeout(() => {
@@ -29,6 +36,10 @@ function Record() {
       return () => clearTimeout(timer);
     }
   }, [openDialog, openDialogW]);
+
+  if (isLoading) return <LoadingDesign />;
+  if (isError) return <ErrorDesign message={error?.message} />;
+ 
 
   return (
     <div className="w-full mt-8 mb-12 overflow-x-auto text-[13px] text-center my-8 rounded-lg bg-[#F9FAFC] py-4 pl-2">
@@ -45,18 +56,17 @@ function Record() {
           </tr>
         </thead>
         <tbody>
-          {PAYMENT_RECORDS.map((record) => (
+          {records.map((record: paymentRecord) => (
             <tr key={record.id} className="text-gray-500 relative">
               <td>{record.date}</td>
-              <td>{record.name}</td>
+              <td>{record.user_name}</td>
               <td>{record.type}</td>
               <td>${record.amount}</td>
               <td
                 className={`
-                  ${
-                    record.status === "Pending"
-                      ? "text-amber-500"
-                      : record.status === "Completed"
+                  ${record.status === "pending"
+                    ? "text-amber-500"
+                    : record.status === "succeeded"
                       ? "text-green-600"
                       : "text-red-600"
                   } 
@@ -65,7 +75,7 @@ function Record() {
               >
                 {record.status}
               </td>
-              <td>{record.method}</td>
+              <td>{record.payment_method}</td>
               <td className="relative">
                 <DropdownMenu
                   open={openDropdowns[record.id?.toString() || "0"]}
@@ -96,10 +106,12 @@ function Record() {
                       <DropdownMenuItem
                         onClick={(e) => {
                           e.preventDefault();
+                          setId(record.id?.toString() || "");
                           setOpenDropdowns((prev) => ({
                             ...prev,
                             [record.id?.toString() || "0"]: false,
                           }));
+
                           setTimeout(() => setOpenDialog(true), 50);
                         }}
                       >
@@ -112,6 +124,15 @@ function Record() {
                       <DropdownMenuItem
                         onClick={(e) => {
                           e.preventDefault();
+                          if (record.status !== "pending") {
+                            console.log("pending",record.status);
+                            toast.error(t("Withdrawal request must be pending to approve"));
+                            return;
+                          }
+                          setIdW(record.id?.toString() || "");
+                            approvemutation.mutate({ id: Number(record.id) });
+                          console.log(approvemutation);
+
                           setOpenDropdowns((prev) => ({
                             ...prev,
                             [record.id?.toString() || "0"]: false,
@@ -119,7 +140,7 @@ function Record() {
                           setTimeout(() => setOpenDialogW(true), 50);
                         }}
                       >
-                        <button className="drop-item outline-none w-full text-left">
+                        <button className="drop-item text-success outline-none w-full text-left">
                           {t("paymentRevenue.approve withdrawal")}
                         </button>
                       </DropdownMenuItem>
@@ -142,9 +163,10 @@ function Record() {
         </tbody>
       </table>
 
-      {/* Dialogs */}
-      <PaymentDetails open={openDialog} onOpenChange={setOpenDialog} />
-      <WithdrowDetails open={openDialogW} onOpenChange={setOpenDialogW} />
+
+
+      <PaymentDetails id={id} open={openDialog} onOpenChange={setOpenDialog} />
+      <WithdrowDetails id={idW} open={openDialogW} onOpenChange={setOpenDialogW} />
     </div>
   );
 }
