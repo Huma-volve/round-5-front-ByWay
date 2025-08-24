@@ -24,7 +24,7 @@ export default function LearnerMyCourseCard() {
                 {course.title}
               </h5>
               <p className="text-sm my-2 text-[--secondary-dark]">
-                By {course.instructor}
+                By {course.instructor?.name}
               </p>
               <div className="flex items-center">
                 {Array.from({ length: Number(course.rating) || 1 }).map(

@@ -5,7 +5,7 @@ import useStatsHome from "@/hooks/LearnerCourses/useStatsHome";
 
 function StatsCourses() {
   const { t } = useTranslation();
-  const { data, error, isError, isLoading } = useStatsHome();
+  const { data } = useStatsHome();
   const stats = [
     {
       id: 1,
