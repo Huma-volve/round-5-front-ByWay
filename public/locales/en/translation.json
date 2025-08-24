@@ -86,6 +86,8 @@
   },
   "instructor": {
     "reviews": "Reviews",
+    
+   "noCoursesYet" : "No Courses Yet",
     "courseName": "Course Name",
     "rating": "Rating",
     "review": "Review",

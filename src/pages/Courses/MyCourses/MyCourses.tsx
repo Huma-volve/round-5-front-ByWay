@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useQuery} from "@tanstack/react-query";
 import axios from "axios";
+import NoCourses from "@/components/instructor/empty/NoCourses";
 
 export default function MyCourses() {
 type Course = {
@@ -52,6 +53,9 @@ console.log("isLoading:", isLoading, "isFetching:", isFetching);
   const { t } = useTranslation();
   return (
     <>
+     {data && data.length > 0 ? (
+          <>
+
       <section className="container py-12">
         <div className="flex justify-between items-center">
           <h1 className="text-bold text-xl lg:text-2xl mb-4">
@@ -118,5 +122,14 @@ console.log("isLoading:", isLoading, "isFetching:", isFetching);
         </Pagination>
       </section>
     </>
-  );
+  
+
+      ) : (
+        <div className="container  pt-12  flex justify-center items-center">
+           <NoCourses />
+           
+        </div>
+          )}
+ </>
+);
 }

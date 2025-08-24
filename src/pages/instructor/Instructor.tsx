@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "@/api/instructor-courses-api";
 import Review from "@/components/instructor/reviews/Review";
+import NoCourses from "@/components/instructor/empty/NoCourses";
+import NoReviews from "@/components/instructor/empty/NoReviews";
 export default function Instructor() {
   type Course = {
   id: number;
@@ -45,7 +47,7 @@ const { t } = useTranslation();
 
   return (
     <main className="container py-12 space-y-12">
-      <section className="space-y-3">
+      {/* <section className="space-y-3">
         <InstructorCard />
 
         <h2 className=" flex justify-between items-center">
@@ -60,7 +62,37 @@ const { t } = useTranslation();
    ))}
         </div>
       </section>
-  <section className="space-y-3 px-4 sm:px-6">
+ */}
+
+      <section className="space-y-3">
+  <InstructorCard />
+
+  <h2 className="flex justify-between items-center">
+    <p className="text-xl lg:text-2xl font-semibold">{t("instructor.yourCourses")}</p>
+    <Link to="/instructor/my-courses" className="px-4 py-1 my-2 bg-blue-500 text-white rounded">
+      {t("common.seeAll")}
+    </Link>
+  </h2>
+
+  {data && data.length > 0 ? (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {data.map((course: Course) => (
+        <CourseCard
+          key={course.id}
+          course={course}
+          id={String(course.id)}
+          variant="instructor"
+        />
+      ))}
+    </div>
+  ) : (
+    <NoCourses/>  )}
+</section>
+
+
+  {data?.reviews && data.reviews.length > 0 ? (
+    data.reviews.map((review: review) => (
+        <section className="space-y-3 px-4 sm:px-6">
         <h2 className="text-xl lg:text-2xl font-semibold">
           {t("profile.Learner Reviews")}
         </h2>
@@ -73,8 +105,9 @@ const { t } = useTranslation();
           <div className="md:col-span-2 ">
             <div className="mb-9 space-y-4">
            
-         {data?.reviews?.map(( review: review ) => (
-           <Review key={review.id} variant="user" review={review} />))}
+     <Review key={review.id} variant="user" review={review} />
+             {/* {data?.reviews?.map(( review: review ) => (
+          ))} */}
             </div>
  <div className="flex justify-center">
               <Link to="/instructor/reviews">
@@ -85,4 +118,12 @@ const { t } = useTranslation();
             </div>
           </div>
         </div>
-      </section> </main> );}
+      </section>
+      
+   
+      // 
+    )) ) : (
+    <NoReviews />)}
+
+ 
+       </main> );}
