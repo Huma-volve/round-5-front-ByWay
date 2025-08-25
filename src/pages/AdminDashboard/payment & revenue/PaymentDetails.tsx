@@ -9,7 +9,6 @@ import { useTranslation } from "react-i18next";
 import { useFetchPaymentRecordDetails } from "@/hooks/AdminDashboard/useFetchPaymentRevenue";
 import type { paymentDetails } from "@/data/paymentRecord";
 import LoadingDesign from "@/components/AdminDashboard/UserManagement/LoadingDesign";
-import ErrorDesign from "@/components/AdminDashboard/UserManagement/ErrorDesign";
 
 interface PaymentDetailsProps {
   open: boolean;
@@ -19,10 +18,10 @@ interface PaymentDetailsProps {
 
 function PaymentDetails({ id ,open, onOpenChange }: PaymentDetailsProps) {
   const {t}=useTranslation();
-  const {data,isLoading,isError,error} = useFetchPaymentRecordDetails(parseInt(id));
+  const {data,isLoading} = useFetchPaymentRecordDetails(parseInt(id));
  const details:paymentDetails | undefined = data?.data;
 
- if (isError) return <ErrorDesign message={error?.message} />;
+
  
  return (
    <Dialog open={open} onOpenChange={onOpenChange} modal={true}>

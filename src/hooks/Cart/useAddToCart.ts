@@ -1,5 +1,5 @@
-import { apiAddToCart } from "@/api/cart-api";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { apiAddToCart, apiGetCart } from "@/api/cart-api";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export default function useAddToCart() {
   const queryClient = useQueryClient();
@@ -8,5 +8,12 @@ export default function useAddToCart() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["cart"] });
     },
+  });
+}
+
+export const useFetchAllCart=()=>{
+  return useQuery({
+    queryKey: ["cart"],
+    queryFn: apiGetCart,
   });
 }

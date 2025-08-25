@@ -1,4 +1,4 @@
-import { approveWithdrawal, fetchPaymentRecordDetails, fetchPaymentRecords, fetchPaymentStistics } from "@/api/payment-revenue-api";
+import { approveWithdrawal, fetchPaymentRecordDetails, fetchPaymentRecords, fetchPaymentStistics, rejectWithdrawal } from "@/api/payment-revenue-api";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const useFetchPaymentStatistics = () => {
@@ -8,10 +8,11 @@ export const useFetchPaymentStatistics = () => {
   });
 }
 
-export const useFetchPaymentRecords = () => {
+export const useFetchPaymentRecords = (page:number) => {
     return useQuery({
-        queryKey: ["PaymentRecords"],
-        queryFn: fetchPaymentRecords,
+        queryKey: ["PaymentRecords",page],
+        queryFn: ()=>fetchPaymentRecords(page),
+        placeholderData: undefined,
     });
 }
 
@@ -32,3 +33,13 @@ export const useFetchApproveWithdrawal = () => {
     }
     });
 } 
+
+export const useFetchRejectWithdrawal=() => {
+    const queryClient = useQueryClient();
+    return useMutation({
+      mutationFn: ({id}: {id:number}) => rejectWithdrawal(id),
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["PaymentRecords"] });
+      }
+      });
+}

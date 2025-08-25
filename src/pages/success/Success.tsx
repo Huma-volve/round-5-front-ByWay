@@ -19,7 +19,7 @@ const Success = () => {
         />
         <h1 className="font-medium text-[20px] lg:text-[24px]">
 
-          {t("success.You have successfully subscribed to the course UI/UX Design")}
+          {t("success.You have successfully subscribed to the course")}
         </h1>
         <p className="font-medium text-[15px] lg:text-[20px] text-secondary">
           {t("success.You Will Receive a confirmation email soon!")}

@@ -1,5 +1,4 @@
 import { type paymentRecord } from "@/data/paymentRecord";
-import { Link } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuArrow,
@@ -13,9 +12,8 @@ import { MoreVertical } from "lucide-react";
 import { useState, useEffect } from "react";
 import PaymentDetails from "@/pages/AdminDashboard/payment & revenue/PaymentDetails";
 import WithdrowDetails from "@/pages/AdminDashboard/payment & revenue/WithdrowDetails";
-import { useFetchApproveWithdrawal , useFetchPaymentRecords } from "@/hooks/AdminDashboard/useFetchPaymentRevenue";
-import LoadingDesign from "../UserManagement/LoadingDesign";
-import ErrorDesign from "../UserManagement/ErrorDesign";
+import { useFetchApproveWithdrawal, useFetchPaymentRecords, useFetchRejectWithdrawal } from "@/hooks/AdminDashboard/useFetchPaymentRevenue";
+
 import { toast } from "react-toastify";
 
 function Record() {
@@ -23,11 +21,15 @@ function Record() {
   const [openDialogW, setOpenDialogW] = useState(false); // WithdrowDetails
   const [openDropdowns, setOpenDropdowns] = useState<{ [key: string]: boolean }>({});
   const { t } = useTranslation();
-  const { data, isLoading, isError, error } = useFetchPaymentRecords();
+  const [currentPage, setCurrentPage] = useState(2);
+  const { data, isLoading } = useFetchPaymentRecords(currentPage);
   const records = data?.data?.data || [];
   const [id, setId] = useState<string>(records[0]?.id);
   const [idW, setIdW] = useState<string>(records[0]?.id);
   const approvemutation = useFetchApproveWithdrawal();
+  const totalPages = data?.data?.last_page ;
+  console.log(data?.data.last_page);
+  
   useEffect(() => {
     if (!openDialog && !openDialogW) {
       const timer = setTimeout(() => {
@@ -37,9 +39,24 @@ function Record() {
     }
   }, [openDialog, openDialogW]);
 
-  if (isLoading) return <LoadingDesign />;
-  if (isError) return <ErrorDesign message={error?.message} />;
- 
+  const rejectMutation = useFetchRejectWithdrawal();
+  if (isLoading) return   <div className="w-full mt-8 mb-12 overflow-x-auto rounded-lg shadow-sm border border-gray-200">
+          <div className="min-w-[700px]">
+            <div className="flex bg-gray-100 p-4 gap-4">
+              {[...Array(6)].map((_, i) => (
+                <div key={i} className="flex-1 h-6 bg-gray-200 rounded animate-pulse"></div>
+              ))}
+            </div>        
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className="flex p-4 border-b border-gray-200 gap-4">
+                {[...Array(6)].map((_, j) => (
+                  <div key={j} className="flex-1 h-5 bg-gray-200 rounded animate-pulse"></div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
 
   return (
     <div className="w-full mt-8 mb-12 overflow-x-auto text-[13px] text-center my-8 rounded-lg bg-[#F9FAFC] py-4 pl-2">
@@ -123,21 +140,21 @@ function Record() {
                       {/* Approve Withdrawal */}
                       <DropdownMenuItem
                         onClick={(e) => {
-                          e.preventDefault();
+                          // e.preventDefault();
                           if (record.status !== "pending") {
-                            console.log("pending",record.status);
+                            console.log("pending", record.status);
                             toast.error(t("Withdrawal request must be pending to approve"));
                             return;
                           }
-                          setIdW(record.id?.toString() || "");
-                            approvemutation.mutate({ id: Number(record.id) });
+                          // setIdW(record.id?.toString() || "");
+                          approvemutation.mutate({ id: Number(record.id) });
                           console.log(approvemutation);
-
-                          setOpenDropdowns((prev) => ({
-                            ...prev,
-                            [record.id?.toString() || "0"]: false,
-                          }));
-                          setTimeout(() => setOpenDialogW(true), 50);
+                          toast.success(t("Withdrawal request approved successfully"));
+                          // setOpenDropdowns((prev) => ({
+                          //   ...prev,
+                          //   [record.id?.toString() || "0"]: false,
+                          // }));
+                          // setTimeout(() => setOpenDialogW(true), 50);
                         }}
                       >
                         <button className="drop-item text-success outline-none w-full text-left">
@@ -147,12 +164,18 @@ function Record() {
 
                       {/* Reject Request */}
                       <DropdownMenuItem asChild>
-                        <Link
-                          to="/"
+                        <button
+                          onClick={() => {
+                            if (record.status !== "pending") {
+                              toast.error(t("Withdrawal request must be pending to reject"));
+                              return;
+                            }
+                            rejectMutation.mutate({ id: Number(record.id) });
+                          }}
                           className="drop-item text-red-600 outline-none"
                         >
                           {t("paymentRevenue.reject request")}
-                        </Link>
+                        </button>
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenuPortal>
@@ -164,6 +187,28 @@ function Record() {
       </table>
 
 
+      {/* Pagination */}
+      <div className="flex justify-center items-center gap-2 mt-6">
+        <button
+          disabled={currentPage === 1}
+          onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+          className="px-3 py-1 border rounded disabled:opacity-50"
+        >
+          Prev
+        </button>
+
+        <span className="px-4">
+          {currentPage} {data?.current_page} of {totalPages}
+        </span>
+
+        <button
+          disabled={currentPage === totalPages}
+          onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+          className="px-3 py-1 border rounded disabled:opacity-50"
+        >
+          Next
+        </button>
+      </div>
 
       <PaymentDetails id={id} open={openDialog} onOpenChange={setOpenDialog} />
       <WithdrowDetails id={idW} open={openDialogW} onOpenChange={setOpenDialogW} />

@@ -11,9 +11,9 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 
-interface CheckoutFormProps {}
+interface paymentFormProps {}
 
-export default function CheckoutForm({}: CheckoutFormProps) {
+export default function PaymentMethod({}: paymentFormProps) {
   const { t } = useTranslation();
 
   const stripe = useStripe();
@@ -24,8 +24,6 @@ export default function CheckoutForm({}: CheckoutFormProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const [token] = useLocalStorage("auth_token", "");
-  console.log(token);
-  // const token = "60|vwpGRkzydBRZ40ifZfED597E61Ul6t1hckz13ntcc207d037"
 
   useEffect(() => {
     axios

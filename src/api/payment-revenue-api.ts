@@ -20,9 +20,9 @@ export const fetchPaymentStistics = async () => {
 }
 }
 
-export const fetchPaymentRecords = async () => {
+export const fetchPaymentRecords = async (page:number) => {
     try{
-        const response=await axiosInstance.get("payments/all")
+        const response=await axiosInstance.get(`payments/all?page=${page}`)
         if(response.data?.status===200){
             response.data.message|| "payment records loaded successfully"
         }
@@ -66,6 +66,24 @@ export const approveWithdrawal=async(id:number)=>{
       const errorMessage =
         axiosError.response?.data?.message ||
         "Failed to approve withdrawal request";
+      toast.error(errorMessage);
+      throw error;
+  }
+}
+
+
+export const rejectWithdrawal=async(id:number)=>{
+  try{
+      const response=await axiosInstance.patch(`payments/withdrawals/reject/${id}`)
+      if(response.data?.status===200){
+          toast.success(response.data.message || "Withdrawal request rejected successfully");
+      }
+      return response.data;
+  }catch(error){
+      const axiosError = error as AxiosError<{ message?: string }>;
+      const errorMessage =
+        axiosError.response?.data?.message ||
+        "Failed to reject withdrawal request";
       toast.error(errorMessage);
       throw error;
   }
