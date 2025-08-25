@@ -86,9 +86,11 @@ function CourseDetails() {
           <p className="text-xl font-[600] text-[--success]">
             {course?.price} EGP
           </p>
+          <Link to="/checkout">
           <button className="mt-3 mb-7 px-20 py-2 text-white bg-[--success] text-lg md:text-xl rounded-lg w-full sm:w-auto">
             {t("common.buyNow")}
           </button>{" "}
+          </Link>
           <p className="mt-3 mb-7 border-[--rate] px-7 py-1 border text-lg md:text-xl rounded-lg w-fit">
             {t("common.content")}
           </p>

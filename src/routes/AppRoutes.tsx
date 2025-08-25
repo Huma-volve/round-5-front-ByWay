@@ -5,12 +5,12 @@ import CloseAccount from "../pages/close account/CloseAccount";
 import Success from "../pages/success/Success";
 
 // Course Pages
-import CoursesPage from "@/pages/Courses/CoursesPage";
+import CoursesPage from "@/pages/courses/CoursesPage";
 import CourseDetails from "@/components/learnerCourses/CourseDetails";
-import LearnerMyCourses from "@/pages/Courses/MyCourses/LearnerMyCourses";
-import LearnerCourseDetails from "@/pages/Courses/CourseDetails/LearnerCourseDetailes";
-import MyCourses from "@/pages/Courses/MyCourses/MyCourses";
-import InstructorCourseDetails from "@/pages/Courses/CourseDetails/InstructorCourseDetails";
+import LearnerMyCourses from "@/pages/courses/MyCourses/LearnerMyCourses";
+import LearnerCourseDetails from "@/pages/courses/CourseDetails/LearnerCourseDetailes";
+import MyCourses from "@/pages/courses/MyCourses/MyCourses";
+import InstructorCourseDetails from "@/pages/courses/CourseDetails/InstructorCourseDetails";
 
 // Instructor Pages
 import Instructor from "@/pages/instructor/Instructor";
@@ -66,7 +66,7 @@ import AuthProtectedRoute from "./AuthProtectedRoute";
 import ReviewsAndRatings from "@/pages/AdminDashboard/Reviews&Ratings/ReviewsAndRatings";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
 import UserProfilePage from "@/pages/profile/UserProfilePage";
-import WatchVideo from "@/pages/Courses/WatchVideo";
+import WatchVideo from "@/pages/courses/WatchVideo";
 import NotFound from "@/pages/NotFound/NotFound";
 import ReportsAnalytics from "@/components/AdminDashboard/Reports&Analytics/ReportsAnalytics";
 import ScrollToTop from "@/utils/ScrollToTop";
@@ -88,7 +88,7 @@ export default function AppRoutes() {
           <Route path="/" element={<CoursesPage />} />
 
           {/* Course Discovery & Learning */}
-          <Route path="/courses">
+           <Route path="/courses">
             <Route index element={<CoursesPage />} />
             <Route path=":courseId" element={<CourseDetails />} />
           </Route>
