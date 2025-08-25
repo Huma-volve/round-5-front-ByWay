@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import StarIcon from "../../assets/images/icons/StarIcon.svg";
 import { useTranslation } from "react-i18next";
 import { Heart, Loader2 } from "lucide-react";
-import ImgProduct from "../../assets/images/ui-product.png";
+import ImgNotFound from "@/assets/images/image-not-found.png";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import type { CoursesHome } from "@/lib/types";
 import { useFavourites } from "@/hooks/Favorites/useFavourites";
@@ -82,8 +82,8 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
           <div className="mb-20 relative">
             <div className="relative">
               <img
-                className="w-full border border-[--category] rounded-2xl"
-                src={course?.image_url || ImgProduct}
+                className="w-full h-44 border border-[--category] rounded-2xl"
+                src={course?.image_url || ImgNotFound}
                 alt={course.title}
                 loading="lazy"
               />
@@ -105,25 +105,25 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
               <h5 className="font-[600] text-lg lg:text-lg xl:text-xl truncate">
                 {course.title}
               </h5>
-              {course.user ? (
+              {course.instructor ? (
                 <Link
-                  to={`/${course.user?.id}/instructor-details`}
+                  to={`/${course.instructor?.id}/instructor-details`}
                   className="block text-sm my-2 text-[--secondary-dark] hover:text-blue-500 cursor-pointer"
                 >
-                  {t("common.by")} {course.user?.name}
+                  {t("common.by")} {course.instructor?.name}
                 </Link>
               ) : (
                 <div className="my-2"></div>
               )}
 
               <div className="flex items-center">
-                {Array.from({ length: Number(course.rating) || 1 }).map(
+                {Array.from({ length: Number(course.average_rating) || 0 }).map(
                   (_, index) => (
                     <img key={index} src={StarIcon} alt="Ratings" />
                   )
                 )}
                 <span className="lg:text-md text-sm font-[600] ml-2">
-                  ({500} {t("common.ratings")})
+                  ({course.reviews_count} {t("common.ratings")})
                 </span>
               </div>
               <p className="text-md my-4 truncate">{course.description}</p>

@@ -75,7 +75,7 @@ function CourseDetails() {
           </p>
           <div className="flex gap-1">
             {Array.from(
-              { length: Math.floor(course?.average_rating || 0) },
+              { length: Math.floor(course?.reviews_count || 0) },
               (_, index) => (
                 <img key={index} src={StarIcon} alt="StarIcon" />
               )
@@ -87,9 +87,9 @@ function CourseDetails() {
             {course?.price} EGP
           </p>
           <Link to="/checkout">
-          <button className="mt-3 mb-7 px-20 py-2 text-white bg-[--success] text-lg md:text-xl rounded-lg w-full sm:w-auto">
-            {t("common.buyNow")}
-          </button>{" "}
+            <button className="mt-3 mb-7 px-20 py-2 text-white bg-[--success] text-lg md:text-xl rounded-lg w-full sm:w-auto">
+              {t("common.buyNow")}
+            </button>{" "}
           </Link>
           <p className="mt-3 mb-7 border-[--rate] px-7 py-1 border text-lg md:text-xl rounded-lg w-fit">
             {t("common.content")}
@@ -98,7 +98,7 @@ function CourseDetails() {
       </div>
       <div>
         {course?.content.map((content) => (
-          <div className="flex items-center gap-6 border w-fit py-3 px-7 rounded-xl mb-8">
+          <div key={content.id} className="flex items-center gap-6 border w-fit py-3 px-7 rounded-xl mb-8">
             <img className="w-5 md:w:10" src={VideoIcon} alt="VideoIcon" />
             <Link
               to={`/learner-myCourses/${courseId}`}

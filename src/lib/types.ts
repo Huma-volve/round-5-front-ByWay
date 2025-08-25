@@ -87,17 +87,13 @@ export interface ReviewsAndRatings {
 export interface CoursesHome {
   id: number;
   image_url: string;
-  image: string;
   title: string;
   rating: number;
   description: string;
   price: number;
-  average_rating: number;
-  user: {
-    id: number;
-    name: string;
-    image: string;
-  };
+  reviews_count: number;
+  average_rating: string;
+  is_favorite: boolean;
   instructor: {
     id: number;
     name: string;
