@@ -9,9 +9,10 @@ import type { ReactElement } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "@/api/auth-api";
 import { useTranslation } from "react-i18next";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 function NavDropdown({ icon }: { icon: ReactElement }) {
-  const role = localStorage.getItem("role");
+  const [role] = useLocalStorage("role", "")
   const navigate = useNavigate();
   const { t } = useTranslation();
 

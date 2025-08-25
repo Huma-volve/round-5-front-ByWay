@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import useFetchInstructorRevenueAnalytics from "@/hooks/useFetchInstructorRevenueAnalytics";
+import useFetchInstructorRevenueAnalytics from "@/hooks/instructor/useFetchInstructorRevenueAnalytics";
 import { currencyFormatter } from "@/utils/CurrencyFormatter";
 
 function checkIncrease(amount: number) {

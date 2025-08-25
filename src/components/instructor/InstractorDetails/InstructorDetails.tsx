@@ -1,12 +1,42 @@
 import Breadcrumb from "@/components/common/Breadcrumb";
 import CardCourse from "@/components/learnerCourses/CardCourse";
+import useInstructorDetails from "@/hooks/LearnerCourses/useInstructorDetails";
 import { useBreadcrumb } from "@/hooks/useBreadcrumb";
-import { CircleUser } from "lucide-react";
+import { CircleUser, Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 
 function InstructorDetails() {
   const { t } = useTranslation();
+  const { instructorId } = useParams();
   const { getAutoBreadcrumb } = useBreadcrumb();
+  const { instructor, error, isLoading } = useInstructorDetails(instructorId!);
+  const courses = instructor?.courses?.data;
+  if (!instructorId) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        Instructor ID not provided
+      </div>
+    );
+  }
+  if (error) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        Error loading reviews
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center mx-auto h-screen">
+        <div className="flex items-center gap-2">
+          <Loader2 className="w-6 h-6 animate-spin text-gray-600" />
+          <span className="text-sm text-gray-600">Loading...</span>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="mt-12">
       <div className="mb-10">
@@ -15,20 +45,22 @@ function InstructorDetails() {
       <div>
         <div className="flex items-center flex-wrap md:justify-start justify-center gap-2">
           <CircleUser size={100} />
-          <h3 className="font-[500]">
-            Omnya Ali - 2.5Million <br /> +Enrollments Worldwide
-          </h3>
+          <h3 className="font-[500]">{instructor?.instructor?.name}</h3>
         </div>
         <div>
           <div className="my-10 flex items-center flex-wrap md:justify-start justify-center gap-10 md:gap-40">
             <div className="text-center">
-              <p className="font-[600] text-xl mb-1">1000+</p>
+              <p className="font-[600] text-xl mb-1">
+                {instructor?.statistics?.total_students}+
+              </p>
               <p>
                 {t("common.numberOf")} {t("common.students")}
               </p>
             </div>
             <div className="text-center">
-              <p className="font-[600] text-xl mb-1">15+</p>
+              <p className="font-[600] text-xl mb-1">
+                {instructor?.statistics?.average_rating}+
+              </p>
               <p>
                 {t("common.numberOf")} {t("instructor.reviews")}
               </p>
@@ -37,17 +69,18 @@ function InstructorDetails() {
           <div>
             <p className="font-[600] text-xl">{t("common.aboutMe")}</p>
             <p className="my-5">
-              I'm a certified UI/UX designer with 5+ years of experience in
-              teaching and designing user-centric products. I’ve helped over
-              1,000 students kickstart their design careers through hands-on,
-              practical courses.
+              {instructor?.profile?.bio || "instructor bio"}
             </p>
           </div>
         </div>
       </div>
       <p className="text-lg font-[600]">{t("common.myCourses")}</p>
       <div className="grid my-10 grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6 justify-center">
-        <CardCourse />
+        <CardCourse
+          courses={courses || []}
+          error={!!error}
+          isLoading={isLoading}
+        />
       </div>
     </div>
   );

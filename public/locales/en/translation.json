@@ -133,10 +133,15 @@
       "currentPeriod": "Current Period",
       "lastPeriod": "Last Period",
       "errorLoadingData": "Failed to load revenue data",
+      "yearSelector": "Year",
       "stats": {
         "totalProfits": "Total Profits",
         "availableBalance": "Available Balance",
         "lastTransaction": "Last Transaction"
+      },
+      "empty": {
+        "title": "No revenue data yet",
+        "description": "Once you start earning from your courses, your revenue analytics will appear here."
       }
     },
     "workExperience": {
@@ -162,6 +167,7 @@
     },
     "income": {
       "title": "Transactions",
+      "errorLoadingData": "Failed to load income data",
       "table": {
         "customer": "Customer",
         "date": "Date",
@@ -180,6 +186,14 @@
         "cash": "Cash",
         "creditCard": "Credit Card",
         "bankTransfer": "Bank Transfer"
+      },
+      "empty": {
+        "title": "No transactions yet",
+        "description": "When you receive payments from students, your transaction history will appear here.",
+        "adminTitle": "No payout requests",
+        "adminDescription": "When instructors request payouts, they will appear here.",
+        "noResults": "No transactions match your search criteria",
+        "noResultsDescription": "Try adjusting your search or filter to find what you're looking for."
       }
     },
     "addCourse": {
@@ -192,6 +206,7 @@
       "courseTitlePlaceholder": "Enter course title",
       "courseCategory": "Course Category",
       "courseCategoryPlaceholder": "Select course category",
+      "courseCategoryDefault": "Select course category",
       "courseLevel": {
         "title": "Course Level",
         "beginner": "Beginner",
@@ -199,8 +214,6 @@
         "advanced": "Advanced"
       },
       "courseDescriptionPlaceholder": "Enter course description",
-      "videoTitle": "Video Title",
-      "videoTitlePlaceholder": "Enter video title",
       "coursePrice": "Course Price",
       "coursePricePlaceholder": "Enter course price",
       "courseThumbnail": "Course Thumbnail",
@@ -325,14 +338,9 @@
       "courseTitleMin": "Course title must be at least 3 characters",
       "courseTitleMax": "Course title must be less than 100 characters",
       "courseCategoryRequired": "Course category is required",
-      "courseLevelRequired": "Course level is required",
-      "courseLevelMin": "At least one course level must be selected",
       "courseDescriptionRequired": "Course description is required",
       "courseDescriptionMin": "Course description must be at least 10 characters",
       "courseDescriptionMax": "Course description must be less than 1000 characters",
-      "videoTitleRequired": "Video title is required",
-      "videoTitleMin": "Video title must be at least 3 characters",
-      "videoTitleMax": "Video title must be less than 100 characters",
       "coursePriceRequired": "Course price is required",
       "coursePricePositive": "Course price must be a positive number",
       "coursePriceMax": "Course price must be less than $9999",
@@ -397,7 +405,7 @@
   "favourite": {
     "Courses": "Courses",
     "Instractor": "Instractor",
-    "No Favourites have been selected" : "No Favourites have been selected"
+    "No Favourites have been selected": "No Favourites have been selected"
   },
   "notifications": {
     "You are all up to date": "You are all up to date",
@@ -405,7 +413,8 @@
   },
   "settings": {
     "Payment Methods": "Payment Methods",
-    "Payment History": "Payment History"
+    "Payment History": "Payment History",
+    "Account" : "Close Your Account"
   },
   "payments": {
     "Choose your payment method": "Choose your payment method",
@@ -415,7 +424,7 @@
     "Method": "Method",
     "Amount": "Amount",
     "Save Payment Method": "Save Payment Method",
-    "No payment history found" : "No payment history found"
+    "No payment history found": "No payment history found"
   },
   "profile": {
     "First Name": "First Name",
@@ -577,6 +586,10 @@
       "active_learners": "Active Learners",
       "active_instructors": "Active Instructors",
       "published_courses": "Published Courses",
+      "empty": {
+        "topRatedTitle": "No top-rated courses yet",
+        "topRatedDescription": "When courses receive high ratings from students, they will appear here as top-rated courses."
+      },
       "activityType": {
         "courseAdded": "Course Added",
         "courseUpdated": "Course Updated",
@@ -603,7 +616,9 @@
     "Confirm Delete": "Confirm Delete",
     "Are you sure you want to delete": "Are you sure you want to delete",
     "Cancel": "Cancel",
-    "Delete": "Delete"
+    "Delete": "Delete",
+    "Deleted successfully!": "Deleted successfully!",
+    "Failed to delete": "Failed to delete"
   },
   "adminDetails": {
     "Payment Details": "Payment Details",

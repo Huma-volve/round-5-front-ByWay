@@ -1,33 +1,25 @@
 import type { ReactElement } from "react";
 import { Navigate } from "react-router-dom";
-import { useMemo } from "react";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 export default function AuthProtectedRoute({
   children,
 }: {
   children: ReactElement;
 }) {
-  const authStatus = useMemo(() => {
-    const userId = localStorage.getItem("user_id");
-    const role = localStorage.getItem("role");
+  const [role] = useLocalStorage("role", "");
+  const [userId] = useLocalStorage("user_id", "");
 
-    if (!userId) {
-      return { isAuthenticated: false, isAdmin: false };
-    }
-
-    return {
-      isAuthenticated: true,
-      isAdmin: role === "admin",
-    };
-  }, []);
+  const isAuthenticated = !!userId;
+  const isAdmin = role === "admin";
 
   // If user is authenticated and is admin, redirect to admin dashboard
-  if (authStatus.isAuthenticated && authStatus.isAdmin) {
+  if (isAuthenticated && isAdmin) {
     return <Navigate to="/admin" replace />;
   }
 
   // If user is authenticated but not admin, redirect to home
-  if (authStatus.isAuthenticated && !authStatus.isAdmin) {
+  if (isAuthenticated && !isAdmin) {
     return <Navigate to="/" replace />;
   }
 

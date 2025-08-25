@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react";
 import type { FormEvent } from "react";
-import {
-  CardElement,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import type {
   StripeCardElement,
   StripeCardElementOptions,
@@ -13,6 +9,7 @@ import type {
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 interface CheckoutFormProps {}
 
@@ -26,14 +23,14 @@ export default function CheckoutForm({}: CheckoutFormProps) {
   const [clientSecret, setClientSecret] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
-  const token = localStorage.getItem("auth_token")
+  const [token] = useLocalStorage("auth_token", "");
+  console.log(token);
   // const token = "60|vwpGRkzydBRZ40ifZfED597E61Ul6t1hckz13ntcc207d037"
 
-console.log("token",token)
   useEffect(() => {
     axios
       .post(
-        "http://round5-byway.huma-volve.com/api/payment-methods/setup-intent",
+        "https://round5-byway.huma-volve.com/api/payment-methods/setup-intent",
         {},
         {
           headers: {
@@ -77,7 +74,7 @@ console.log("token",token)
         console.log("Payment Method :", paymentMethod);
 
         await axios.post(
-          "http://round5-byway.huma-volve.com/api/payment-methods",
+          "https://round5-byway.huma-volve.com/api/payment-methods",
           {
             payment_method: paymentMethod,
           },
@@ -138,9 +135,7 @@ console.log("token",token)
         {message && (
           <p
             className={`text-sm mt-3 ${
-              message.includes("Error")
-                ? "text-red-600"
-                : "text-green-600"
+              message.includes("Error") ? "text-red-600" : "text-green-600"
             }`}
           >
             {message}

@@ -66,3 +66,23 @@ export const fetchAdminRevenueGraphData = async () => {
     throw error;
   }
 };
+
+export const fetchAdminRecentPayouts = async () => {
+  try {
+    const response = await axiosInstance.get("dashboard/recent-payments");
+    // عرض رسالة نجاح
+    if (response.data?.status === 200) {
+      toast.success(
+        response.data.message || "Admin recent payouts loaded successfully"
+      );
+    }
+    return response.data;
+  } catch (error) {
+    const axiosError = error as AxiosError<{ message?: string }>;
+    const errorMessage =
+      axiosError.response?.data?.message ||
+      "Failed to fetch admin recent payouts";
+    toast.error(errorMessage);
+    throw error;
+  }
+};

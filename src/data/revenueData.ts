@@ -81,7 +81,10 @@ export const INSTRUCTOR_REVENUE_DATA: Record<number, RevenueDataPoint[]> = {
 };
 
 // Convert API response to chart format
-export const getChartDataFromApi = (apiData: Record<string, RevenueDataPoint[]>, selectedYear: number) => {
+export const getChartDataFromApi = (
+  apiData: Record<string, RevenueDataPoint[]>,
+  selectedYear: number
+) => {
   const currentYearData = apiData[selectedYear.toString()] || [];
   const currentYear = new Date().getFullYear(); // Get current year dynamically
   const lastYearData = apiData[currentYear.toString()] || []; // Always use current year as reference for last period
@@ -95,10 +98,13 @@ export const getChartDataFromApi = (apiData: Record<string, RevenueDataPoint[]>,
 };
 
 // Convert dummy data to chart format (for instructor fallback)
-export const getChartDataFromDummyData = (selectedYear: number) => {
-  const currentYearData = INSTRUCTOR_REVENUE_DATA[selectedYear] || [];
-  const currentYear = new Date().getFullYear();
-  const lastYearData = INSTRUCTOR_REVENUE_DATA[currentYear] || [];
+export const getChartDataFromDummyData = (
+  apiData: Record<string, RevenueDataPoint[]>,
+  selectedYear: number
+) => {
+  const currentYearData = apiData[selectedYear.toString()] || [];
+  const currentYear = new Date().getFullYear(); // Get current year dynamically
+  const lastYearData = apiData[currentYear.toString()] || []; // Always use current year as reference for last period
 
   return currentYearData.map((current, index) => ({
     month: current.month,
@@ -109,7 +115,9 @@ export const getChartDataFromDummyData = (selectedYear: number) => {
 };
 
 // Get available years from API data
-export const getAvailableYearsFromApi = (apiData: Record<string, RevenueDataPoint[]>): number[] => {
+export const getAvailableYearsFromApi = (
+  apiData: Record<string, RevenueDataPoint[]>
+): number[] => {
   return Object.keys(apiData)
     .map(Number)
     .sort((a, b) => b - a);

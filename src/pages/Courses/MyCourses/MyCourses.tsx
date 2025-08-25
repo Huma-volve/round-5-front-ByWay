@@ -1,8 +1,8 @@
 import CourseCard from "@/components/course/CourseCard/CourseCard";
 // import { Pagination } from "@/components/ui/pagination";
-import {
-  Pagination,PaginationContent,PaginationItem,PaginationLink,
-  PaginationNext,PaginationPrevious,} from "@/components/ui/pagination";
+// import {
+//   Pagination,PaginationContent,PaginationItem,PaginationLink,
+//   PaginationNext,PaginationPrevious,} from "@/components/ui/pagination";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -96,7 +96,7 @@ console.log("isLoading:", isLoading, "isFetching:", isFetching);
         </div>
       </section>
 
-      <section className="pb-12">
+      {/* <section className="pb-12">
         <Pagination>
           <PaginationContent>
             <PaginationItem>
@@ -120,7 +120,7 @@ console.log("isLoading:", isLoading, "isFetching:", isFetching);
             </PaginationItem>
           </PaginationContent>
         </Pagination>
-      </section>
+      </section> */}
     </>
   
 

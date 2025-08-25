@@ -2,8 +2,10 @@
 import { useTranslation } from "react-i18next";
 import activeStarIcon from "../../../assets/images/icons/star-active-icon.svg";
 import inactiveStarIcon from "../../../assets/images/icons/star-inactive-icon.svg";
-import person from "../../../assets/images/person.png";
-type ReviewProps = {
+
+import { CircleUserRound } from "lucide-react";
+import type { InstructorReview } from "@/data/instructorReviewsData";
+type ReviewProps = InstructorReview & {
   variant?: "course" | "user";
   review :{
     
@@ -11,11 +13,15 @@ type ReviewProps = {
      rating : number
      created_at: string
       user: { //id: number,
-                    name: string,}  };  }
+                    name: string,}  };}
 
 export default function Review({
-  variant = "user",
-  review
+ name,
+ review,
+variant = "course",
+  imageLearner,
+ 
+
 }: ReviewProps) {
   const { t } = useTranslation();
 
@@ -59,13 +65,23 @@ export default function Review({
           <>
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <div className="flex gap-3 items-center">
-                <img
-                  src={person}
-                  loading="lazy"
-                  alt={review?.user?.name}
-                  className="w-12 h-12 rounded-full object-cover"
-                />
-                <p className="font-bold text-sm sm:text-base">{review?.user?.name}</p>
+
+        
+                {imageLearner ? (
+                  <img
+                    src={imageLearner}
+                    loading="lazy"
+                    alt={name}
+                    className="size-7 rounded-full object-cover"
+                  />
+                ) : (
+                  <CircleUserRound />
+                )}
+
+                <p className="font-bold text-sm sm:text-base">{name}</p>
+         <p className="font-bold text-sm sm:text-base">{review?.user?.name}</p>
+
+
               </div>
 
               <div className="flex items-center gap-1">

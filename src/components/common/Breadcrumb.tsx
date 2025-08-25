@@ -16,7 +16,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className = '' }) => {
 
   return (
     <nav 
-      className={`flex items-center space-x-2 text-sm text-gray-600 ${className}`}
+      className={`max-w-[90dvw] whitespace-pre-wrap flex items-center space-x-2 text-sm text-gray-600 ${className}`}
       aria-label="Breadcrumb"
     >
       {items.map((item, index) => (
@@ -40,7 +40,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className = '' }) => {
           {item.path && !item.isActive ? (
             <Link
               to={item.path}
-              className="cursor-pointer text-black hover:text-categoryIcon transition-colors duration-200"
+              className="cursor-pointer text-black hover:text-categoryIcon transition-colors duration-200 truncate"
             >
               {item.label}
             </Link>

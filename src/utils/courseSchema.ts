@@ -9,26 +9,14 @@ export const createCourseValidationSchema = (t: (key: string) => string) =>
       .max(100, t("validation.course.courseTitleMax")),
 
     courseCategory: yup
-      .string()
+      .number()
       .required(t("validation.course.courseCategoryRequired")),
-
-    courseLevel: yup
-      .array()
-      .of(yup.string())
-      .min(1, t("validation.course.courseLevelMin"))
-      .required(t("validation.course.courseLevelRequired")),
 
     courseDescription: yup
       .string()
       .required(t("validation.course.courseDescriptionRequired"))
       .min(10, t("validation.course.courseDescriptionMin"))
       .max(1000, t("validation.course.courseDescriptionMax")),
-
-    videoTitle: yup
-      .string()
-      .required(t("validation.course.videoTitleRequired"))
-      .min(3, t("validation.course.videoTitleMin"))
-      .max(100, t("validation.course.videoTitleMax")),
 
     coursePrice: yup
       .number()

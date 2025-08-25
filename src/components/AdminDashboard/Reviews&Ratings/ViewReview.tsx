@@ -1,6 +1,4 @@
-import { WITHDROWAL_DETAILS } from "@/data/paymentRecord";
 import { useTranslation } from "react-i18next";
-
 import {
   Dialog,
   DialogContent,
@@ -12,11 +10,13 @@ interface ReviewsManagement {
   onOpenChange: (open: boolean) => void;
   reviewId: number | null;
 }
-import { fakeReviews } from "@/data/AdminDashboard/ReviewsManagement";
 import useViewReview from "@/hooks/AdminDashboard/Reviews&Ratings/useViewReview";
 function ViewReview({ open, onOpenChange, reviewId }: ReviewsManagement) {
   const { t } = useTranslation();
-  const { data: review, error, isLoading } = useViewReview(reviewId);
+  const { data: review } = useViewReview(
+    reviewId !== null ? reviewId.toString() : null
+  );
+  if (!review) return null;
   return (
     <Dialog open={open} onOpenChange={onOpenChange} modal={true}>
       <DialogContent className="w-[400px] bg-white p-6 rounded-lg shadow-md">
