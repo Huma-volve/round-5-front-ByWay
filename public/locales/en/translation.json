@@ -86,6 +86,8 @@
   },
   "instructor": {
     "reviews": "Reviews",
+    
+   "noCoursesYet" : "No Courses Yet",
     "courseName": "Course Name",
     "rating": "Rating",
     "review": "Review",
@@ -411,7 +413,8 @@
   },
   "settings": {
     "Payment Methods": "Payment Methods",
-    "Payment History": "Payment History"
+    "Payment History": "Payment History",
+    "Account" : "Close Your Account"
   },
   "payments": {
     "Choose your payment method": "Choose your payment method",

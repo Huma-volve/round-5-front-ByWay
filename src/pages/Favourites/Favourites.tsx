@@ -8,6 +8,7 @@ import heart from "../../assets/images/icons/fav-heart.png";
 import courseFav from "@/assets/images/course-fav.png";
 import avtar from "@/assets/images/avatar-fav.png";
 import useRemoveFavorites from "@/hooks/Favorites/useRemoveFavorites";
+import { Link } from "react-router-dom";
 
 export default function Favourites() {
   const { t } = useTranslation();
@@ -73,12 +74,12 @@ export default function Favourites() {
                   <div className="w-full flex items-center justify-between gap-4 px-4 py-2">
                     <img
                       src={activeButton === "btn1" ? courseFav : avtar}
-                      // src={courseFav}
                       alt="courseIcon"
                       loading="lazy"
                       className="w-6 h-6 object-contain md:w-10 md:h-10"
                     />
 
+                      <Link to={activeButton === "btn1" ? `/courses/${fav.course_id}` : `/${fav.user_id}/instructor-details`}>
                     <div className="flex flex-col">
                       <h3 className="font-semibold text-md md:text-lg">
                         {activeButton === "btn1"
@@ -91,6 +92,7 @@ export default function Favourites() {
                           : fav.course.title}
                       </h3>
                     </div>
+                          </Link>
 
                     <img
                       src={heart}

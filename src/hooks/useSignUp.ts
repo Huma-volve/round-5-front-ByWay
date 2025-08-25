@@ -22,12 +22,11 @@ export function useSignUp() {
       /**
        * If data is success insert in local/session storage && Redirect to otp route
        */
-
-      setAuthToken(data.data.access_token);
-      setRole(data.data.user.role);
-      setUserId(data.data.user.id);
-      setEmail(data.data.user.email);
-      toast.success(data.data.message);
+      setAuthToken(data.data.token);
+      setRole(data.data.role);
+      setUserId(data.data.user_id);
+      setEmail(data.data.email);
+      toast.success(data.message);
 
       //When user sign up, backend already has the email it should send an otp to the new registered user automatically
       //  navigate("/otp");

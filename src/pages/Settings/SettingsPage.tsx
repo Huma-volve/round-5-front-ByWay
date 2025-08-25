@@ -38,6 +38,18 @@ export default function SettingsPage() {
           <ChevronRight className="rtl:rotate-180" />
         </Link>
       </div>
+      {/* Close Account */}
+      <div className="mt-8 ml-4 md:ml-24 w-[90%] md:w-[50%]">
+        <Link
+          to="/close-account"
+          className="flex justify-between w-full items-center"
+        >
+          <h4 className="text-base font-semibold md:text-lg text-danger">
+            {t("settings.Account")}
+          </h4>
+          <ChevronRight className="rtl:rotate-180" />
+        </Link>
+      </div>
     </div>
   );
 }

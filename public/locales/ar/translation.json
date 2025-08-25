@@ -109,6 +109,8 @@
     "success": "ناجحة"
   },
   "instructor": {
+  "noCoursesYet": "لا توجد كورسات بعد",
+
     "reviews": "المراجعات",
     "courseName": "اسم الدورة",
     "Total Students": "إجمالي الطلاب",
@@ -422,7 +424,8 @@
   },
   "settings": {
     "Payment Methods": "طرق الدفع",
-    "Payment History": "تاريخ الدفع"
+    "Payment History": "تاريخ الدفع",
+    "Account" : "غلق ملفك الشخصي"
   },
   "payments": {
     "Choose your payment method": "اختر طريقة الدفع",

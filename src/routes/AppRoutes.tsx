@@ -5,6 +5,7 @@ import CloseAccount from "../pages/close account/CloseAccount";
 import Success from "../pages/success/Success";
 
 // Course Pages
+
 import CourseDetails from "@/components/learnerCourses/CourseDetails";
 import InstructorCourseDetails from "@/pages/Courses/CourseDetails/InstructorCourseDetails";
 import MyCourses from "@/pages/Courses/MyCourses/MyCourses";
@@ -12,6 +13,7 @@ import WatchVideo from "@/pages/Courses/WatchVideo";
 import LearnerCourseDetails from "@/pages/Courses/CourseDetails/LearnerCourseDetailes";
 import LearnerMyCourses from "@/pages/Courses/MyCourses/LearnerMyCourses";
 import CoursesPage from "@/pages/Courses/CoursesPage";
+
 
 // Instructor Pages
 import Instructor from "@/pages/instructor/Instructor";
@@ -67,14 +69,16 @@ import AuthProtectedRoute from "./AuthProtectedRoute";
 import ReviewsAndRatings from "@/pages/AdminDashboard/Reviews&Ratings/ReviewsAndRatings";
 import EditUserProfile from "@/pages/profile/EditUserProfile";
 import UserProfilePage from "@/pages/profile/UserProfilePage";
-// import WatchVideo from "@/pages/courses/WatchVideo";
+
 import NotFound from "@/pages/NotFound/NotFound";
 import ReportsAnalytics from "@/components/AdminDashboard/Reports&Analytics/ReportsAnalytics";
+import ScrollToTop from "@/utils/ScrollToTop";
 
 
 export default function AppRoutes() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         {/* Protected Routes */}
         <Route
@@ -88,7 +92,7 @@ export default function AppRoutes() {
           <Route path="/" element={<CoursesPage />} />
 
           {/* Course Discovery & Learning */}
-          <Route path="/courses">
+           <Route path="/courses">
             <Route index element={<CoursesPage />} />
             <Route path=":courseId" element={<CourseDetails />} />
           </Route>
@@ -142,7 +146,10 @@ export default function AppRoutes() {
             />
 
             {/* Lesson Management */}
-            <Route path="my-courses/:courseId/lessons" element={<ViewLessons />} />
+            <Route
+              path="my-courses/:courseId/lessons"
+              element={<ViewLessons />}
+            />
             <Route
               path="my-courses/:courseId/lessons/add"
               element={<AddLessons />}
