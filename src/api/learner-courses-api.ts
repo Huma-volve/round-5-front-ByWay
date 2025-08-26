@@ -49,3 +49,17 @@ export async function fetchMyCoursesDetails(courseId: string) {
   );
   return response.data.data;
 }
+export async function postReviewLearner(
+  courseId: string,
+  reviewData: { rating: number; review: string }
+) {
+  try {
+    const response = await axiosInstance.post(
+      `learner/courses/${courseId}/review`,
+      reviewData
+    );
+    return response.data?.data || { message: response.data?.message };
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || "Something went wrong");
+  }
+}

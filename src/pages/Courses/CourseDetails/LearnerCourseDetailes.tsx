@@ -4,17 +4,47 @@ import { useState } from "react";
 import FeedbackModal from "@/components/instructor/Modal/FeedBackModal";
 import { Link, useParams } from "react-router-dom";
 import useFetchMyCoursesDetails from "@/hooks/LearnerCourses/useFetchMyCoursesDetailes";
+import useAddReviewLearner from "@/hooks/LearnerCourses/useAddReviewLearner";
+import { toast } from "react-toastify";
 
 export default function LearnerCourseDetails() {
   const { learnerCourseId } = useParams<{ learnerCourseId: string }>();
   const { t } = useTranslation();
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   const { data: courseDetails } = useFetchMyCoursesDetails(learnerCourseId!);
+  const { addReview, isSuccess, isError, data, error } = useAddReviewLearner(
+    learnerCourseId!
+  );
 
+  // handleConfirmFeedback
   const handleConfirmFeedback = (rating: number, comment: string) => {
-    console.log("Rating:", rating);
-    console.log("Comment:", comment);
     setIsFeedbackOpen(false);
+    addReview({ rating, review: comment });
+    if (isSuccess) {
+      toast.success(data?.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+
+    if (isError) {
+      toast.error(error?.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   };
 
   return (
@@ -57,20 +87,25 @@ export default function LearnerCourseDetails() {
             {t("user.Send Feedback")}
           </button>
         </div>
-        {courseDetails?.content.map((lesson: {
-          id: number;
-          title: string;
-          video_url: string;
-        }, index: number) => (
-          <div
-            key={lesson.id}
-            className="flex items-center justify-between gap-3 border p-3 rounded-lg flex-wrap"
-          >
-            <div className="flex items-center gap-3">
-              <LessonCard lesson={lesson} index={index} />
+        {courseDetails?.content.map(
+          (
+            lesson: {
+              id: number;
+              title: string;
+              video_url: string;
+            },
+            index: number
+          ) => (
+            <div
+              key={lesson.id}
+              className="flex items-center justify-between gap-3 border p-3 rounded-lg flex-wrap"
+            >
+              <div className="flex items-center gap-3">
+                <LessonCard lesson={lesson} index={index} />
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        )}
       </div>
 
       <FeedbackModal
