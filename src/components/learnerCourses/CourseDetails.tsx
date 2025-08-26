@@ -97,7 +97,7 @@ function CourseDetails() {
         </div>
       </div>
       <div>
-        {course?.content.map((content) => (
+        {course?.content?.map((content) => (
           <div
             key={content.id}
             className="flex items-center gap-6 border w-fit py-3 px-7 rounded-xl mb-8"

@@ -88,7 +88,7 @@ export interface CoursesHome {
   id: number;
   title: string;
   description: string;
-  price: string; 
+  price: string;
   status: string;
   image_url: string | null;
   video_url: string;
@@ -113,7 +113,7 @@ export interface CoursesHome {
   content: {
     id: number;
     name: string;
-    image: string | null;
+    video_url: string 
   };
   created_at: string;
   updated_at: string;
@@ -140,6 +140,20 @@ export interface StatsHome {
   instructors: number;
   learners: number;
   reviews: number;
+}
+export interface CoursesDetails {
+  title: string;
+  description: string;
+  video_url: string;
+  content: {
+    id: number;
+    title: string;
+    video_url: string;
+  }[];
+  instructor: {
+    id: number;
+    name: string;
+  };
 }
 
 // الشكل الموحد اللي هتستخدمه جوة الواجهة
@@ -181,7 +195,7 @@ export interface FavouriteResponse {
     user_id: number;
     title: string;
     description: string;
-    image_url: string | null;  
+    image_url: string | null;
     video_url: string;
     status: string;
     price: string;
@@ -190,7 +204,7 @@ export interface FavouriteResponse {
     updated_at: string;
     user: {
       id: number;
-      name: string;  
+      name: string;
     };
   };
 }

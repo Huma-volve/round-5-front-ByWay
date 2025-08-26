@@ -8,13 +8,18 @@ function VideoLearner() {
   const { data: courseDetails } = useFetchMyCoursesDetails(learnerCourseId!);
 
   // filteredContent with videoId
-  const filteredContent = courseDetails?.content
-    .filter((item) => item.id === Number(videoId))
-    .map((item) => ({
-      id: item.id,
-      title: item.title,
-      video_url: item.video_url,
-    }));
+  const filteredContent: {
+    id: number;
+    title: string;
+    video_url: string;
+  }[] =
+    courseDetails?.content
+      ?.filter((item) => item.id === Number(videoId))
+      .map((item) => ({
+        id: item.id,
+        title: item.title,
+        video_url: item.video_url,
+      })) ?? [];
 
   console.log(filteredContent);
   return (

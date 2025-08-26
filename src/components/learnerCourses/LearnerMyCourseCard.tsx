@@ -27,7 +27,7 @@ export default function LearnerMyCourseCard() {
                 By {course.instructor?.name}
               </p>
               <div className="flex items-center">
-                {Array.from({ length: Number(course.rating) || 1 }).map(
+                {Array.from({ length: Number(course.average_rating) || 1 }).map(
                   (_, index) => (
                     <img key={index} src={StarIcon} alt="Ratings" />
                   )
