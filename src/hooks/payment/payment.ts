@@ -1,5 +1,6 @@
 import { checkoutConfirm, checkoutPayment, fetchPaymentMethods } from "@/api/payment-api"
-import { useMutation, useQuery } from "@tanstack/react-query"
+import axiosInstance from "@/lib/axios-instance";
+import { QueryClient, useMutation, useQuery } from "@tanstack/react-query"
 
 export const useFetchcheckout=()=>{
     return useQuery({
@@ -18,5 +19,15 @@ export const useFetchPaymentMethods=()=>{
     return useQuery({
         queryKey:["payment-methods"],
         queryFn:fetchPaymentMethods,
+    })
+}
+
+export const useFetchDeletePaymentMethod=()=>{
+    return useMutation({
+        mutationFn:({id}:{id:string})=>axiosInstance.delete(`payment-methods/${id}`),
+        onSuccess:()=>{
+            const queryClient = new QueryClient();
+            queryClient.invalidateQueries({ queryKey: ['payment-methods'] });
+        }
     })
 }

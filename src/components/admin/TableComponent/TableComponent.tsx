@@ -58,7 +58,7 @@ export default function TableComponent({ courses ,deleteCourse }: TableProps) {
     </TableHeader>
 
     <TableBody>
-      {courses.map((course, i) => (
+      {courses.length >0 && courses.map((course, i) => (
         <TableRow
           key={i}
           className={i % 2 === 0 ? "bg-background" : "bg-input"}

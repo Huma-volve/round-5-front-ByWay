@@ -35,7 +35,7 @@ const diff = closureDate.getTime() - now.getTime();
     return (
       <div className="w-[100%] lg:w-[50%] h-[60dvh] flex flex-col items-center justify-center mx-auto text-center">
         <p className="text-secondary font-400">
-          Account closure requested.closed within {Math.floor(diff / (1000 * 60 * 60 * 24))} day.
+          Account closure requested.closed within 14 day.
         </p>
       </div>
     );

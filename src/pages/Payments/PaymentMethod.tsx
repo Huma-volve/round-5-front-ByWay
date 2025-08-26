@@ -10,12 +10,12 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
-
+import { useQueryClient } from "@tanstack/react-query";
 interface paymentFormProps {}
 
 export default function PaymentMethod({}: paymentFormProps) {
   const { t } = useTranslation();
-
+const queryClient = useQueryClient();
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
@@ -87,7 +87,7 @@ export default function PaymentMethod({}: paymentFormProps) {
         setMessage("Payment method saved successfully!");
 
         setTimeout(() => {
-          navigate("/success");
+          navigate("/checkout");
         }, 1000);
       }
     } catch (err: any) {

@@ -79,3 +79,28 @@ export const fetchPaymentMethods = async () => {
         throw error;
     }
 }
+
+export const fetchDeletePaymentMethod = async (id: string) => {
+  try {
+    const response = await axiosInstance.delete(`payment-methods/${id}`);
+    if (response.status === 200) {
+      return {
+        success: true,
+        message: response.data?.message || "Payment method deleted successfully",
+        data: response.data,
+      };
+    }
+    return {
+      success: false,
+      message: "Unexpected response status",
+      data: response.data,
+    };
+  } catch (error) {
+    const axiosError = error as AxiosError<{ message?: string }>;
+    const errorMessage =
+      axiosError.response?.data?.message ||
+      "Failed to delete payment method";
+    toast.error(errorMessage);
+    throw error;
+  }
+}
