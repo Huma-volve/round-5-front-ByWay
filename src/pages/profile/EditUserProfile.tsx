@@ -17,15 +17,21 @@ const EditUserProfile = () => {
     axiosInstance.get("/profile")
       .then(res => {
         setUser(res.data.data.user);
+        setPreviewImage(res.data.data.user.image);
       })
   }, [])
 
   console.log(user)
   const [previewImage, setPreviewImage] = useState<string | undefined>(user?.image);
-  const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImage = (e: React.ChangeEvent<HTMLInputElement>,setFieldValue:any) => {
     const file = e.target.files?.[0];
     if (file) {
-      setPreviewImage(URL.createObjectURL(file));
+      const reader=new FileReader();
+      reader.onloadend = () => {
+        setFieldValue("image",reader.result);
+        setPreviewImage(reader.result as string);
+      }
+      reader.readAsDataURL(file);
     }
   };
 
@@ -34,7 +40,7 @@ const EditUserProfile = () => {
   }, [user]);
 
   if (!user) return <div>Loading...</div>;
-
+console.log(user.image);
   return (
     <Formik
       initialValues={{
@@ -46,7 +52,7 @@ const EditUserProfile = () => {
         linkedin_link: user?.linkedin_link || "",
         youtube_link: user?.youtube_link || "",
         facebook_link: user?.facebook_link || "",
-        image: user?.image || ""
+        image: profile || null,
       }}
       validationSchema={Yup.object({
         first_name: Yup.string()
@@ -68,8 +74,17 @@ const EditUserProfile = () => {
 
       })}
       onSubmit={(values, { setSubmitting }) => {
+        const formData = new FormData();
+        Object.keys(values).forEach(key => {
+          if (key === "image" && values.image) {
+            formData.append(key, values.image);
+          } else {
+            formData.append(key, (values as any)[key]);
+          }
+        })
+
         axiosInstance
-          .put("/profile", values)
+          .put("/profile", formData,)
           .then((res) => {
             setUser(res.data.data.user);
             toast.success(t("profile.profileUpdated"));
@@ -79,7 +94,7 @@ const EditUserProfile = () => {
           .finally(() => setSubmitting(false));
       }}
     >
-      {({ isSubmitting }) => (<div className="container m-8 p-12 ">
+      {({ isSubmitting ,setFieldValue}) => (<div className="container m-8 p-12 ">
         <div className="flex gap-4 m-3">
           <img src={edit} alt="edit" loading="lazy" />
           <h1 className="font-bold">{t("profile.Edit Profile")}</h1>
@@ -97,10 +112,12 @@ const EditUserProfile = () => {
             loading="lazy"
             className={`w-8 h-8 curser-pointer bg-placeholder  mb-[-10px]  py-2 rounded-full ${i18n.language === "ar" ? "mr-[-25px]" : "ml-[-25px]"} `}
           />
+          
           <input
             type="file"
             name="image"
-            onChange={handleImage}
+            accept="image/*"
+            onChange={(e) => handleImage(e, setFieldValue)}
             className={`curser-pointer opacity-0 rounded-full w-8  mb-[-10px] ${i18n.language === "ar" ? "mr-[-30px]" : "ml-[-30px]"} `}
           />
         </div>

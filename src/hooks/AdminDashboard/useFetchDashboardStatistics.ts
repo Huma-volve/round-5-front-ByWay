@@ -8,3 +8,4 @@ export const useFetchDashboardStatistics = () => {
     queryFn: fetchDshboardStatistics,
   });
 };
+

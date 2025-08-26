@@ -88,7 +88,7 @@ function AddAd({ open, onOpenChange }: PaymentDetailsProps) {
       <DialogContent className="w-[90%] lg:w-[450px] bg-white p-6 rounded-lg shadow-md">
         <DialogHeader>
           <DialogTitle className="text-[20px] font-medium text-primary mt-4 mb-2 text-center">
-            Add New Admin
+            {t("adminDetails.Add New Admin")}
           </DialogTitle>
          <form
       className="auth-form  !w-[90%] m-auto"
