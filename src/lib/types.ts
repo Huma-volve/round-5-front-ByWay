@@ -92,18 +92,21 @@ export interface CoursesHome {
   description: string;
   price: number;
   reviews_count: number;
-  average_rating: string;
+  average_rating: number;
   is_favorite: boolean;
+  progress: string;
+  course_image_url: string;
+  course_id: number;
   instructor: {
     id: number;
     name: string;
   };
   reviews: {
-    learner_name: string;
-    review: string;
     rating: number;
+    review: string;
+    user_image: string;
+    learner_name: string;
     created_at: string;
-    learner_image: string;
   }[];
   content: {
     id: number;

@@ -5,7 +5,6 @@ import useFetchCourses from "@/hooks/LearnerCourses/useFetchCourses";
 
 function CoursesPage() {
   const { data: courses, error, isLoading } = useFetchCourses();
-
   return (
     <>
       <CategoriesCourses />
