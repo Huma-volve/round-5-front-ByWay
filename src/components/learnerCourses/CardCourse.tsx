@@ -9,6 +9,7 @@ import { useFavourites } from "@/hooks/Favorites/useFavourites";
 import useAddFavorites from "@/hooks/Favorites/useAddFavorites";
 import useRemoveFavorites from "@/hooks/Favorites/useRemoveFavorites";
 import useAddToCart from "@/hooks/Cart/useAddToCart";
+import { toast } from "react-toastify";
 
 interface CardCourseProps {
   courses: CoursesHome[];
@@ -43,6 +44,7 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
     e.preventDefault();
     e.stopPropagation();
     addToCart(courseId);
+    toast.success("added To Cart")
   };
 
   if (error) {
