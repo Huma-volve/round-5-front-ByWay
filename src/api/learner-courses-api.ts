@@ -3,7 +3,8 @@ import type { CoursesHome, StatsHome } from "@/lib/types";
 
 interface AllCoursesResponse {
   data: {
-    courses: CoursesHome[];
+    courses: CoursesHome[] | PromiseLike<CoursesHome[]>;
+    data: CoursesHome[];
   };
 }
 export async function fetchStatsHome() {

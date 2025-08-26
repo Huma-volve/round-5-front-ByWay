@@ -86,11 +86,13 @@ export interface ReviewsAndRatings {
 }
 export interface CoursesHome {
   id: number;
-  image_url: string;
   title: string;
-  rating: number;
   description: string;
-  price: number;
+  price: string; 
+  status: string;
+  image_url: string | null;
+  video_url: string;
+  lessons_count: number;
   reviews_count: number;
   average_rating: number;
   is_favorite: boolean;
@@ -110,9 +112,13 @@ export interface CoursesHome {
   }[];
   content: {
     id: number;
-    title: string;
-  }[];
+    name: string;
+    image: string | null;
+  };
+  created_at: string;
+  updated_at: string;
 }
+
 export interface instructorDetails {
   id: number;
   instructor: {
@@ -175,12 +181,17 @@ export interface FavouriteResponse {
     user_id: number;
     title: string;
     description: string;
+    image_url: string | null;  
     video_url: string;
     status: string;
     price: string;
     category_id: number;
     created_at: string;
     updated_at: string;
+    user: {
+      id: number;
+      name: string;  
+    };
   };
 }
 
