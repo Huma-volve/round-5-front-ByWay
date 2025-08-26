@@ -65,7 +65,7 @@ export default function Favourites() {
             {t("adminUser.Loading")}
           </h1>
         ) : favourites.length > 0 ? (
-          <div className="mt-5 bg-border rounded-xl w-[95%] md:w-[50%] lg:w-[35%] flex flex-col gap-1 mr-4">
+          <div className="mt-5 bg-border rounded-xl w-[95%] md:w-[60%] lg:w-[50%] flex flex-col gap-1 mr-4">
             {favourites.map((fav, index) => (
               <div key={fav.id}>
                 {index > 0 && (
@@ -76,19 +76,19 @@ export default function Favourites() {
                       src={activeButton === "btn1" ? courseFav : avtar}
                       alt="courseIcon"
                       loading="lazy"
-                      className="w-6 h-6 object-contain md:w-10 md:h-10"
+                      className="w-12 h-12 object-contain md:w-10 md:h-10"
                     />
 
                       <Link to={activeButton === "btn1" ? `/courses/${fav.course_id}` : `/${fav.user_id}/instructor-details`}>
                     <div className="flex flex-col">
-                      <h3 className="font-semibold text-md md:text-lg">
+                      <h3 className="font-semibold text-sm md:text-base">
                         {activeButton === "btn1"
                           ? fav.course.title
-                          : fav.course.status}
+                          : fav.course.user.name}
                       </h3>
                       <h3 className="text-secondaryDark text-xs md:text-sm">
                         {activeButton === "btn1"
-                          ? fav.course.description
+                          ? fav.course.user.name
                           : fav.course.title}
                       </h3>
                     </div>

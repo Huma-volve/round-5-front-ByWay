@@ -27,10 +27,10 @@ export default function NotifyCard({ id , title, time, latest, onDelete, onMarkR
         <h5 className="text-xs sm:text-sm text-gray-500">{time}</h5>
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className={`flex items-center gap-2`}>
         <button
           onClick={()=>onMarkRead?.(id)}
-          className="p-2 rounded-full hover:bg-green-100 text-green-600 transition"
+          className={`p-2 rounded-full hover:bg-green-100 text-green-600 transition ${!latest ? "hidden" : "flex"} `}
         >
           <Check className="w-5 h-5" />
         </button>

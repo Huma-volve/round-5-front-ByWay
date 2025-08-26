@@ -46,14 +46,12 @@ export default function NotificationPage() {
       ) : (
         <div className="m-auto flex flex-col gap-3 justify-center items-center mt-12">
           {notifications
-            .slice()
-            .reverse()
             .map((notify: NotificationItem) => (
               <NotifyCard
                 key={notify.id}
                 title={notify.title}
                 time={notify.created_at.slice(0, 10)}
-                latest={notify.is_read}
+                latest={!notify.is_read}
                 id={notify.id}
                 onMarkRead={() => markAsRead(notify.id)}
                 onDelete={() => deleteNotification(notify.id)}

@@ -10,7 +10,7 @@ function AppFooter() {
   const { t } = useTranslation();
 
   return (
-    <footer className="bg-footer text-gray-300 py-10 mt-20">
+    <footer className="bg-footer text-gray-300 py-10 mt-20 w-full">
       <div className="container mx-auto px-4 md:px-8">
         <div className="md:grid md:grid-cols-4 gap-x-8 gap-y-6 flex flex-col">
           {/* Brand & Description */}

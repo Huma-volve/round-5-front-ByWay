@@ -3,6 +3,7 @@ import type { CoursesHome, StatsHome } from "@/lib/types";
 
 interface AllCoursesResponse {
   data: {
+    courses: CoursesHome[] | PromiseLike<CoursesHome[]>;
     data: CoursesHome[];
   };
 }
@@ -14,7 +15,7 @@ export async function fetchStatsHome() {
 }
 export async function fetchAllCourses(): Promise<CoursesHome[]> {
   const response = await axiosInstance.get<AllCoursesResponse>("all-courses");
-  return response.data.data.data;
+  return response.data.data.courses;
 }
 export async function fetchCourseDetails(
   courseId: string
