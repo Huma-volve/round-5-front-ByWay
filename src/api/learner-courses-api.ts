@@ -3,6 +3,7 @@ import type { CoursesHome, StatsHome } from "@/lib/types";
 
 interface AllCoursesResponse {
   data: {
+    courses: CoursesHome[] | PromiseLike<CoursesHome[]>;
     data: CoursesHome[];
   };
 }
