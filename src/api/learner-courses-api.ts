@@ -13,6 +13,10 @@ export async function fetchStatsHome() {
   );
   return response.data.data;
 }
+export async function fetchCategoriesCourses() {
+  const response = await axiosInstance.get("categories-for-platform");
+  return response.data.data;
+}
 export async function fetchAllCourses(): Promise<CoursesHome[]> {
   const response = await axiosInstance.get<AllCoursesResponse>("all-courses");
   return response.data.data.courses;
@@ -34,8 +38,28 @@ export async function fetchInstructorDetails(
   return response.data.data;
 }
 export async function fetchMyCourses(): Promise<CoursesHome[]> {
-  const response = await axiosInstance.get<{ data: CoursesHome[] }>(
-    "learner/courses"
+  const response = await axiosInstance.get<{
+    data: { courses: CoursesHome[] };
+  }>("learner/courses");
+  return response.data.data.courses;
+}
+export async function fetchMyCoursesDetails(courseId: string) {
+  const response = await axiosInstance.get(
+    `learner/courses/${courseId}/enrolled`
   );
   return response.data.data;
+}
+export async function postReviewLearner(
+  courseId: string,
+  reviewData: { rating: number; review: string }
+) {
+  try {
+    const response = await axiosInstance.post(
+      `learner/courses/${courseId}/review`,
+      reviewData
+    );
+    return response.data?.data || { message: response.data?.message };
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || "Something went wrong");
+  }
 }

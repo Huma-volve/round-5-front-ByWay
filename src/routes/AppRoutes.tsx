@@ -92,13 +92,12 @@ export default function AppRoutes() {
           <Route path="/" element={<CoursesPage />} />
 
           {/* Course Discovery & Learning */}
-           <Route path="/courses">
+          <Route path="/courses">
             <Route index element={<CoursesPage />} />
             <Route path=":courseId" element={<CourseDetails />} />
           </Route>
           {/* Learner Course Management */}
           <Route path="/learner-myCourses" element={<LearnerMyCourses />}>
-            <Route path=":learnerCourseId" element={<LearnerCourseDetails />} />
             <Route
               path=":learnerCourseId"
               element={<LearnerCourseDetails />}
