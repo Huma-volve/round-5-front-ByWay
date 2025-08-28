@@ -1,0 +1,120 @@
+[33ma73cc70[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m save progress before switching branch
+[33mca5e464[m Merge branch 'main' of https://github.com/tech-cell-eg/round-5-front-ByWay
+[33m6f5aba7[m Refactors RevenueChart for reusability and API integration
+[33m8cf2402[m editing the pattern of hooks
+[33ma6af538[m Merge branch 'main' of https://github.com/tech-cell-eg/round-5-front-ByWay
+[33mf0c839e[m Comments out unused dropdown separator
+[33m6ac3f54[m[33m ([m[1;31morigin/feature/fav-pay-setting[m[33m)[m Merge branch 'feature/fav-pay-setting' of https://github.com/tech-cell-eg/round-5-front-ByWay into feature/fav-pay-setting
+[33m4e83607[m editing all the routes and add the new api's
+[33m0ba9da4[m Merge branch 'main' of https://github.com/tech-cell-eg/round-5-front-ByWay into feature/fav-pay-setting
+[33mbf3f163[m adding the new api
+[33m406f095[m Removes unused revenue amount info array
+[33mca36963[m Merge branch 'main' of https://github.com/tech-cell-eg/round-5-front-ByWay
+[33m35cb95a[m Add RTL support and improve localization features
+[33m3231c95[m Merge main into my branch
+[33m24d757d[m Save my local changes
+[33m965a051[m Add video watching functionality for learner courses
+[33mc3e6bfc[m Refactor course components structure
+[33m8f8b666[m Merge branch 'main' of https://github.com/tech-cell-eg/round-5-front-ByWay
+[33m65cc1db[m Refactors admin dashboard data handling and translations
+[33mb7ac39e[m user profile && edit user profile API
+[33macadac5[m[33m ([m[1;31morigin/profile[m[33m)[m user profile && edit user profile API merge
+[33mf50f5e8[m user profile && edit user profile API
+[33md25b375[m Adds response interceptor for auth error handling
+[33mcbb661e[m Merge branch 'main' of https://github.com/tech-cell-eg/round-5-front-ByWay
+[33m86f872d[m Improves dashboard statistics handling and UI enhancements
+[33m2143d51[m Reorders sign-out actions to ensure proper navigation
+[33mdbeda9a[m Merge remote-tracking branch 'origin/feature/Browse-Courses'
+[33m542ebc5[m Merge remote-tracking branch 'origin' into profile
+[33m5c47e4a[m Refactors dashboard API and hooks, updates routing logic
+[33m2c3b9d7[m Merge remote-tracking branch 'origin/main' into feature/Browse-Courses
+[33m6739304[m Integrate API hooks and pagination for reviews management
+[33m009d271[m Fixes rating display and adds debugging log
+[33mdd0245a[m Merge remote-tracking branch 'origin' into profile
+[33mcad33f8[m user profile && edit user profile API
+[33ma77727d[m fix the path of locales
+[33m51e9c0f[m Update useFetchUserProfile.ts
+[33m037f892[m merging with main
+[33m9420a76[m editing the dropmenu
+[33m55f4f9a[m editing on drop menu
+[33m700d7c2[m adding all API's for User Management
+[33m25ed4a9[m Resolved merge conflicts
+[33md5c292e[m My local changes
+[33m8959679[m Merge branch 'main' of https://github.com/tech-cell-eg/round-5-front-ByWay
+[33mbc9ddad[m Merge branch 'main' of https://github.com/tech-cell-eg/round-5-front-ByWay
+[33mb1e4c3d[m Merge branch 'main' of https://github.com/tech-cell-eg/round-5-front-ByWay
+[33m699a1bf[m fix the problem on api
+[33ma47a399[m Relocate translation files and add Reviews & Ratings admin module
+[33m7800282[m Merge branch 'main' of https://github.com/tech-cell-eg/round-5-front-ByWay
+[33m1989216[m continue settings
+[33meb11016[m Refactors top-rated courses feature and improves API integration
+[33m9020414[m adding api
+[33me00fcf9[m adding API on User Management
+[33mc6ea6fb[m Final Settings
+[33m92a1a5c[m M
+[33m8ab7f97[m settings page
+[33mc396ebd[m Add role-based access control and route protection
+[33m6991908[m Merge branch 'main' of https://github.com/tech-cell-eg/round-5-front-ByWay
+[33m52df25c[m Refactors data imports and enhances instructor navigation
+[33mecd79b7[m Merge pull request #12 from tech-cell-eg/profile
+[33m1c16927[m add new admin
+[33mbd0c26e[m add new admin
+[33m67411cf[m Refines route structure and cleans up unused code
+[33m37a8c5c[m Course Mangement for Admin has been added
+[33maa03615[m Merge pull request #11 from tech-cell-eg/profile
+[33mf3aa7f2[m merge profile with main
+[33m8f1feef[m add popup menu for withdrow & payment
+[33md638c82[m Improve admin dashboard UI and navigation logic
+[33mdcb7941[m payment && revenue in admin dashboard
+[33m5da69c7[m Merge branch 'feature/fav-pay-setting' of https://github.com/tech-cell-eg/round-5-front-ByWay
+[33mba93a20[m Refactors and cleans up unused code and imports
+[33m4f0b3e4[m merging with main and editing the styling space
+[33m3805bcc[m Adding the admin user Management
+[33m623b440[m Merge branch 'main-feature' of https://github.com/tech-cell-eg/round-5-front-ByWay
+[33mabad845[m Add admin dashboard, enhance instructor features, and i18n updates
+[33m46257b8[m[33m ([m[1;31morigin/main-feature[m[33m)[m Sidebar
+[33m1950561[m Removes unused React import from StatsCourses component
+[33m249dbda[m Editing UI
+[33m860c6f3[m Redirect user to different home page based on role, fixed container for all routes, fixed text color in auth button
+[33md8a58a9[m Fixed layout shift for dropdown menu, organzied applayout, connected, dropdown links to routes
+[33ma84741c[m Delete TRANSLATION_IMPLEMENTATION_SUMMARY.md
+[33me0f54dd[m Delete LANGUAGE_TOGGLE_IMPLEMENTATION.md
+[33m38c0f2c[m Add language toggle and i18n support with RTL enhancements
+[33m273914e[m merging with authentcation updates
+[33mf2de0dc[m commiting
+[33mce5be04[m edit after merging
+[33m7fc5432[m[33m ([m[1;31morigin/layout/auth[m[33m)[m Connecting auth apis with ui, all auth functionality is done
+[33mbec2f46[m merging with main
+[33m0fcf96e[m Commit the final edition
+[33m58d4c9b[m Merge pull request #10 from tech-cell-eg/profile
+[33me72ce6f[m add final touch in profile
+[33m627ca00[m Merge pull request #9 from tech-cell-eg/feature/instructor-courses-reviews
+[33mac891be[m[33m ([m[1;31morigin/feature/instructor-courses-reviews[m[33m)[m Fixes formatting and improves route structure in AppRoutes
+[33mb98bc37[m Merge branch 'instructorPages' of https://github.com/tech-cell-eg/round-5-front-ByWay into feature/instructor-courses-reviews
+[33m9e99110[m Localize validation and UI text, enhance i18n support
+[33mfddfbaa[m UI Navbar, Footer, Auth Pages and logic, responsive design done
+[33md29b56a[m arabic translation
+[33m08ad99c[m Merge pull request #8 from tech-cell-eg/feature/instructor-courses-reviews
+[33m4ea5584[m Refactors review component for readability and consistency
+[33me5c9e67[m Merge branch 'feature/fav-pay-setting' of https://github.com/tech-cell-eg/round-5-front-ByWay into feature/instructor-courses-reviews
+[33mea28fda[m[33m ([m[1;31morigin/instructorPages[m[33m, [m[1;32minstructorPages[m[33m)[m fix translation
+[33m0dc72f3[m adding my courses for learner and thier detailes
+[33m701e59e[m merge profie (shopping)
+[33m96deefe[m shopping cart && payment
+[33m84834a3[m Add/Update routes folder
+[33m011785d[m Merge pull request #7 from tech-cell-eg/feature/instructor-courses-reviews
+[33m5e9b962[m Disable "Add Another Lesson" button until the last lesson is complete
+[33mcc03a6f[m Replace select dropdown with custom dropdown component
+[33m944f5aa[m merging and fix conflicts
+[33m7d6a470[m end of the ui
+[33m292be66[m footer
+[33maf95676[m Merge pull request #6 from tech-cell-eg/feature/instructor-courses-reviews
+[33m7002cc8[m Refactors course level handling and updates routing
+[33mf478f1a[m Merge remote-tracking branch 'origin/main' into instructorPages
+[33m2424501[m Refactors components for consistency and fixes formatting
+[33m0a8d9de[m Merge branch 'instructorPages' of https://github.com/tech-cell-eg/round-5-front-ByWay into feature/instructor-courses-reviews
+[33m495a09b[m some enhancements
+[33m2181c97[m Improve lesson duration display and clean up routes
+[33m9f96e12[m Merge branch 'main' of https://github.com/tech-cell-eg/round-5-front-ByWay into feature/instructor-courses-reviews
+[33md3331c9[m Add instructor course and lesson management features
+[33m8f22eaf[m Completing auth logic, handlin

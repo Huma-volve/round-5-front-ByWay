@@ -1,90 +1,57 @@
-import { useTranslation } from "react-i18next";
+
+import { useFetchDeletePaymentMethod, useFetchPaymentMethods } from "@/hooks/payment/payment";
 import Breadcrumb from "../../components/common/Breadcrumb";
 import { useBreadcrumb } from "../../hooks/useBreadcrumb";
-import fawry from "../../assets/images/icons/payment-fawry.png";
-import wallet from "../../assets/images/icons/payment-wallet.png";
-import visa from "../../assets/images/icons/payment-visa.png";
-import { useState } from "react";
-
+import PaymentMethod from "./PaymentMethod";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import { useTranslation } from "react-i18next";
+import { Trash2 } from "lucide-react";
+import { useQueryClient } from "@tanstack/react-query";
 export default function PaymethodPage() {
-  const { t } = useTranslation();
   const { getAutoBreadcrumb } = useBreadcrumb();
+  const { data, isLoading, isError } = useFetchPaymentMethods();
+  const methods = data?.dataMethods?.data || [];
+  const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+  const dataMutation = useFetchDeletePaymentMethod()
+  const queryClient = useQueryClient();
 
-  const [selected, setSelected] = useState<string>("");
+  const { i18n } = useTranslation();
+  const locale = i18n.language === "ar" ? "ar" : "en";
 
+  const handleDelete = (id: string) => {
+    dataMutation.mutate({ id },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ['payment-methods'] });
+        },
+      }
+    )
+  }
+
+  if (isLoading) return <p>Loading payment methods...</p>;
+  if (isError) return <p>Failed to load payment methods</p>;
   return (
     <div className="bg-background min-h-screen">
       <div className="m-4 mt-8">
         <Breadcrumb items={getAutoBreadcrumb()} className="mb-6 mt-5" />
       </div>
-
-      {/* Payment Methods */}
-      <div className="mt-16 flex flex-col w-full sm:w-[80%] md:w-[60%] lg:w-[50%] m-auto px-4">
-        {/* header */}
-        <div className="flex flex-col gap-1">
-          <h2 className="text-lg sm:text-2xl md:text-3xl font-semibold">
-            {t("payments.Choose your payment method")}:
-          </h2>
-          <h3 className="text-xs md:text-base text-secondaryDark">
-            {t("payments.Select your preferred way to pay for your courses")}.
-          </h3>
+      <Elements stripe={stripePromise} options={{ locale: locale }}>
+        <PaymentMethod />
+      </Elements>
+      {methods.length !== 0 &&
+        <>
+          <div className="text-categoryIcon font-medium mt-8 mb-4 ">Payment Methods : </div>
+          <div className="flex flex-wrap gap-4 w-full"> 
+          {methods.map((method: any) => (
+            <div key={method.id} className="flex items-center  justify-between gap-3 bg-revenue2Bg p-4 my-4 rounded-[8px] w-80">
+              <p className="text-primary capitalize">{method.brand}</p>
+              <Trash2 className="hover:text-danger w-5 cursor-pointer" onClick={() => handleDelete(method.id)} />
+            </div>
+          ))}
         </div>
-
-        {/* ways */}
-        <div className="mt-10 flex flex-col gap-4">
-          {/* Fawry */}
-          <label className={`flex items-center gap-4 border border-border rounded-lg px-4 py-3 cursor-pointer transition 
-            ${selected === "fawry" ? "bg-gray-100 border-secondary" : "bg-white hover:bg-gray-50"}`}>
-            <input
-              type="checkbox"
-              name="paymentMethod"
-              value="fawry"
-              checked={selected === "fawry"}
-              onChange={() => setSelected("fawry")}
-              className="w-5 h-5 accent-secondary cursor-pointer"
-            />
-            <div className="flex items-center gap-3">
-              <img src={fawry} alt="fawry icon" className="w-10 h-10 object-contain" />
-              <h3 className="text-base sm:text-lg font-medium">Fawry</h3>
-            </div>
-          </label>
-
-          {/* Wallet */}
-          <label className={`flex items-center gap-4 border border-border rounded-lg px-4 py-3 cursor-pointer transition 
-            ${selected === "wallet" ? "bg-gray-100 border-secondary" : "bg-white hover:bg-gray-50"}`}>
-            <input
-              type="checkbox"
-              name="paymentMethod"
-              value="wallet"
-              checked={selected === "wallet"}
-              onChange={() => setSelected("wallet")}
-              className="w-5 h-5 accent-secondary cursor-pointer"
-            />
-            <div className="flex items-center gap-3">
-              <img src={wallet} alt="E-Wallet icon" className="w-10 h-10 object-contain" />
-              <h3 className="text-base sm:text-lg font-medium">E-Wallet</h3>
-            </div>
-          </label>
-
-          {/* Visa */}
-          <label className={`flex items-center gap-4 border border-border rounded-lg px-4 py-3 cursor-pointer transition 
-            ${selected === "visa" ? "bg-gray-100 border-secondary" : "bg-white hover:bg-gray-50"}`}>
-            <input
-              type="checkbox"
-              name="paymentMethod"
-              value="visa"
-              checked={selected === "visa"}
-              onChange={() => setSelected("visa")}
-              className="w-5 h-5 accent-secondary cursor-pointer"
-            />
-            <div className="flex items-center gap-3">
-              <img src={visa} alt="Credit/Debit Card icon" className="w-10 h-10 object-contain" />
-              <h3 className="text-base sm:text-lg font-medium">Credit/Debit Card</h3>
-            </div>
-          </label>
-        </div>
-        <button className="mt-14 px-2 py-3 bg-success text-white rounded-md w-[200px] md:w-[300px] hover:bg-green-600 transition-all duration-300">{t("payments.Save Payment Method")}</button>
-      </div>
+        </>
+      }
     </div>
   );
 }

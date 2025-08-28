@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import StarIcon from "../../assets/images/icons/StarIcon.svg";
-import ImgProduct from "@/assets/images/ui-product.png";
+import ImgNotFound from "@/assets/images/image-not-found.png";
 import useFetchMyCourses from "@/hooks/LearnerCourses/useFetchMyCourses";
 
 export default function LearnerMyCourseCard() {
@@ -8,12 +8,12 @@ export default function LearnerMyCourseCard() {
   return (
     <>
       {Courses?.map((course) => (
-        <Link to={`${course.id}`} key={course.id}>
+        <Link to={`${course.course_id}`} key={course.id}>
           <div className="mb-20">
             <div>
               <img
-                className="w-full border border-[--category] rounded-2xl"
-                src={course.image || ImgProduct}
+                className="w-full h-36 border border-[--category] rounded-2xl"
+                src={course.course_image_url || ImgNotFound}
                 alt={course.title}
                 loading="lazy"
               />
@@ -27,7 +27,7 @@ export default function LearnerMyCourseCard() {
                 By {course.instructor?.name}
               </p>
               <div className="flex items-center">
-                {Array.from({ length: Number(course.rating) || 1 }).map(
+                {Array.from({ length: Number(course.average_rating) || 1 }).map(
                   (_, index) => (
                     <img key={index} src={StarIcon} alt="Ratings" />
                   )
@@ -41,7 +41,7 @@ export default function LearnerMyCourseCard() {
                 <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
                   <div
                     className="bg-blue-500 h-3 rounded-full transition-all duration-500"
-                    style={{ width: `${60}%` }}
+                    style={{ width: `${parseInt(course.progress)}%` }}
                   ></div>
                 </div>
               </div>

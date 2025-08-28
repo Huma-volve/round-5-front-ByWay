@@ -86,34 +86,40 @@ export interface ReviewsAndRatings {
 }
 export interface CoursesHome {
   id: number;
-  image_url: string;
-  image: string;
   title: string;
-  rating: number;
   description: string;
-  price: number;
+  price: string;
+  status: string;
+  image_url: string | null;
+  video_url: string;
+  lessons_count: number;
+  reviews_count: number;
   average_rating: number;
-  user: {
-    id: number;
-    name: string;
-    image: string;
-  };
+  is_favorite: boolean;
+  progress: string;
+  course_image_url: string;
+  course_id: number;
   instructor: {
     id: number;
     name: string;
   };
   reviews: {
-    learner_name: string;
-    review: string;
     rating: number;
+    review: string;
+    user_image: string;
+    learner_name: string;
     created_at: string;
-    learner_image: string;
   }[];
   content: {
     id: number;
-    title: string;
+    name: string;
+    video_url: string 
+    title:string;
   }[];
+  created_at: string;
+  updated_at: string;
 }
+
 export interface instructorDetails {
   id: number;
   instructor: {
@@ -135,6 +141,20 @@ export interface StatsHome {
   instructors: number;
   learners: number;
   reviews: number;
+}
+export interface CoursesDetails {
+  title: string;
+  description: string;
+  video_url: string;
+  content: {
+    id: number;
+    title: string;
+    video_url: string;
+  }[];
+  instructor: {
+    id: number;
+    name: string;
+  };
 }
 
 // الشكل الموحد اللي هتستخدمه جوة الواجهة
@@ -176,12 +196,17 @@ export interface FavouriteResponse {
     user_id: number;
     title: string;
     description: string;
+    image_url: string | null;
     video_url: string;
     status: string;
     price: string;
     category_id: number;
     created_at: string;
     updated_at: string;
+    user: {
+      id: number;
+      name: string;
+    };
   };
 }
 

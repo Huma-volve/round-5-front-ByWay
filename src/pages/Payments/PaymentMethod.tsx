@@ -10,12 +10,12 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { useQueryClient } from "@tanstack/react-query";
+interface paymentFormProps {}
 
-interface CheckoutFormProps {}
-
-export default function CheckoutForm({}: CheckoutFormProps) {
+export default function PaymentMethod({}: paymentFormProps) {
   const { t } = useTranslation();
-
+const queryClient = useQueryClient();
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
@@ -24,8 +24,6 @@ export default function CheckoutForm({}: CheckoutFormProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const [token] = useLocalStorage("auth_token", "");
-  console.log(token);
-  // const token = "60|vwpGRkzydBRZ40ifZfED597E61Ul6t1hckz13ntcc207d037"
 
   useEffect(() => {
     axios
@@ -89,7 +87,7 @@ export default function CheckoutForm({}: CheckoutFormProps) {
         setMessage("Payment method saved successfully!");
 
         setTimeout(() => {
-          navigate("/success");
+          navigate("/checkout");
         }, 1000);
       }
     } catch (err: any) {

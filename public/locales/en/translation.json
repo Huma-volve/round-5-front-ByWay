@@ -87,6 +87,8 @@
   },
   "instructor": {
     "reviews": "Reviews",
+    
+   "noCoursesYet" : "No Courses Yet",
     "courseName": "Course Name",
     "rating": "Rating",
     "review": "Review",
@@ -482,7 +484,7 @@
     "Save": "Save"
   },
   "success": {
-    "You have successfully subscribed to the course UI/UX Design": "You have successfully subscribed to the course UI/UX Design",
+    "You have successfully subscribed to the course UI/UX Design": "You have successfully subscribed to the course",
     "You Will Receive a confirmation email soon!": "You Will Receive a confirmation email soon!",
     "Go to My Courses": "Go to My Courses",
     "success": "success"
@@ -490,6 +492,7 @@
   "closeAccount": {
     "Close Account": "Close Account",
     "Close your account permanently.": "Close your account permanently.",
+    "Enter your password":"Enter your password",
     "Warning": "Warning",
     "warning1": "If you close your account, you will be unsubscribed from all 3 of your courses and will lose access to your account and data associated with your account forever, even if you choose to create a new account using the same email address in the future.",
     "warning2": "Please note, if you want to reinstate your account after submitting a deletion request, you will have 14 days after the initial submission date to reach out to"
@@ -648,6 +651,11 @@
     "Method": "Method",
     "Student": "Student",
     "Instructor": "Instructor",
-    "Course": "Course"
+    "Course": "Course",
+    "WithDrowal  Details": "Withdrawal Details",
+    "Request Date": "Request Date",
+    "Bank Name": "Bank Name",
+    "Account Number":"Account Number",
+    "Add New Admin": "Add New Admin"
   }
 }

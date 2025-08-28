@@ -41,13 +41,18 @@ export default function InstructorReviews() {
         </h1>
       </div>
       {/* Render paginated reviews */}
-      {pagination.data.map(({ id, courseName, review, rating }) => (
+      {pagination.data.map(({ id,  review, rating }) => (
         <Review
           key={id}
-          courseName={courseName}
-          review={review}
-          rating={rating}
-        />
+          // courseName={courseName}  courseName,
+          // review={review}
+          review={{
+      review: review,
+      rating: rating,
+      created_at: "2025-08-24",
+      user: { name: "John Doe" }
+    }}
+           />
       ))}
 
       {/* Pagination controls */}
@@ -64,8 +69,7 @@ export default function InstructorReviews() {
               link.active ? " text-black bg-gray-200" : "text-gray-400"
             } ${link.label === "<" && "rounded-l-md"} ${
               link.label === ">" && "rounded-r-md"
-            }`}
-          >
+            }`} >
             {link.label}
           </button>
         ))}

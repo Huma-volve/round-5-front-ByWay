@@ -1,12 +1,12 @@
 import StarIcon from "../../assets/images/icons/StarIcon.svg";
 import VideoIcon from "../../assets/images/icons/VideoIcon.svg";
-import Review from "../instructor/reviews/Review";
 import Breadcrumb from "../common/Breadcrumb";
 import { useBreadcrumb } from "../../hooks/useBreadcrumb";
 import { useTranslation } from "react-i18next";
 import useFetchCourseDetails from "@/hooks/LearnerCourses/useFetchCourseDetails";
 import { Link, useParams } from "react-router-dom";
 import { Loader2 } from "lucide-react";
+import ReviewLeanerCourses from "./ReviewLeanerCourses";
 
 function CourseDetails() {
   const { t } = useTranslation();
@@ -71,7 +71,7 @@ function CourseDetails() {
             {t("common.bestseller")}
           </p>
           <p>
-            ({course?.reviews?.length || 0} {t("common.ratings")})
+            ({course?.reviews_count || 0} {t("common.ratings")})
           </p>
           <div className="flex gap-1">
             {Array.from(
@@ -86,37 +86,39 @@ function CourseDetails() {
           <p className="text-xl font-[600] text-[--success]">
             {course?.price} EGP
           </p>
-          <button className="mt-3 mb-7 px-20 py-2 text-white bg-[--success] text-lg md:text-xl rounded-lg w-full sm:w-auto">
-            {t("common.buyNow")}
-          </button>{" "}
+          <Link to="/checkout">
+            <button className="mt-3 mb-7 px-20 py-2 text-white bg-[--success] text-lg md:text-xl rounded-lg w-full sm:w-auto">
+              {t("common.buyNow")}
+            </button>{" "}
+          </Link>
           <p className="mt-3 mb-7 border-[--rate] px-7 py-1 border text-lg md:text-xl rounded-lg w-fit">
             {t("common.content")}
           </p>
         </div>
       </div>
       <div>
-        {course?.content.map((content) => (
-          <div className="flex items-center gap-6 border w-fit py-3 px-7 rounded-xl mb-8">
+        {course?.content?.map((content) => (
+          <div
+            key={content.id}
+            className="flex items-center gap-6 border w-fit py-3 px-7 rounded-xl mb-8"
+          >
             <img className="w-5 md:w:10" src={VideoIcon} alt="VideoIcon" />
-            <Link
-              to={`/learner-myCourses/${courseId}`}
-              className="md:text-xl text-md font-[500] truncate w-48 md:w-96 hover:text-[--rate]"
-            >
+            <div className="md:text-xl text-md font-[500] w-48 md:w-96">
               {t("common.lesson")} {content.id}: {t("common.introductionTo")}{" "}
               {content.title}
-            </Link>
+            </div>
           </div>
         ))}
       </div>
       {course?.reviews.map((review, index) => (
-        <Review
+        <ReviewLeanerCourses
           key={index}
           variant="user"
-          name={review.learner_name}
-          review={review.review}
-          rating={review.rating}
-          date={review.created_at}
-          imageLearner={review.learner_image}
+          name={review?.learner_name}
+          review={review?.review}
+          rating={review?.rating}
+          date={review?.created_at}
+          imageLearner={review?.user_image}
         />
       ))}
     </div>
