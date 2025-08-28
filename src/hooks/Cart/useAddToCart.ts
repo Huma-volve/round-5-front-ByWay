@@ -1,4 +1,4 @@
-import { apiAddToCart, apiGetCart } from "@/api/cart-api";
+import { apiAddToCart, apiDeleteElementCart, apiGetCart } from "@/api/cart-api";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export default function useAddToCart() {
@@ -15,5 +15,14 @@ export const useFetchAllCart=()=>{
   return useQuery({
     queryKey: ["cart"],
     queryFn: apiGetCart,
+  });
+}
+export const useDeleteCartItem=()=>{
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (id:number) => apiDeleteElementCart(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
+    },
   });
 }

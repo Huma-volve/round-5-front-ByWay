@@ -8,14 +8,15 @@ export interface cartProps {
   course_id?:number;
   video_url?:number;
   description?: string;
+  rating?: string;
+  number_of_ratings?: number;
+  image_url: string;
+  id:number
 }
   user_id?: number;
   created_at?: string;
   updated_at?: string;
-  image: string;
-  auther?: string;
-  rate?: string;
-  number_of_ratings?: number;
+  instructor?: string;
   // rating_img?: string;
 }
 // import shopping from "../assets/images/shopping cart.svg";

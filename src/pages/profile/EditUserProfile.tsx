@@ -39,7 +39,7 @@ const EditUserProfile = () => {
     if (user?.image) setPreviewImage(user.image);
   }, [user]);
 
-  if (!user) return <div>Loading...</div>;
+  if (!user) return <div>{t("adminUser.Loading")}...</div>;
 console.log(user.image);
   return (
     <Formik
@@ -264,7 +264,7 @@ console.log(user.image);
             </div>
           </div>
           <button type="submit" disabled={isSubmitting} className="w-[110px] bg-primary rounded-lg p-2 text-white ml-[50%] md:ml-[75%] mt-4 hover:opacity-[.9]">
-            Save
+            {t("profile.Save")}
           </button>
         </Form>
       </div>

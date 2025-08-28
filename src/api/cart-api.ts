@@ -12,7 +12,7 @@ export async function apiAddToCart(courseId: number) {
   };
 }
 export async function apiRemoveFromCart(courseId: number) {
-  const response = await axiosInstance.post("learner/cart/remove", {
+  const response = await axiosInstance.post(`cart/${courseId}`, {
     course_id: courseId,
   });
   return {
@@ -33,6 +33,24 @@ export const apiGetCart = async ()=>{
     const errorMessage =
       axiosError.response?.data?.message ||
       "Failed to fetch cart";
+    toast.error(errorMessage);
+    throw error;
+  }
+}
+
+export const apiDeleteElementCart = async (id:number) => {
+  try{
+    const response = await axiosInstance.delete(`cart/${id}`);
+    if(response.data?.status===200){
+      toast.success("cart element deleted successfully")
+      response.data.message|| "cart element deleted successfully"
+    }
+    return response.data;
+  }catch(error){
+    const axiosError = error as AxiosError<{ message?: string }>;
+    const errorMessage =
+      axiosError.response?.data?.message ||
+      "Failed to delete cart element";
     toast.error(errorMessage);
     throw error;
   }

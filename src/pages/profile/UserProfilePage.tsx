@@ -30,7 +30,7 @@ const UserProfilePage = () => {
   const youtube = user?.youtube_link || "";
   const facebook = user?.facebook_link || "";
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div>{t("adminUser.Loading")}...</div>;
 
   return (
     <div className="container m-8 p-12  rounded-[10px] border-2  border-border">
