@@ -2,12 +2,12 @@
 
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js"
-import Payment from "@/components/payment/Payment";
+// import Payment from "@/components/payment/Payment";
 import Breadcrumb from "@/components/common/Breadcrumb";
 import { useBreadcrumb } from "@/hooks/useBreadcrumb";
 import { useTranslation } from "react-i18next";
 import Checkout from "./Checkout";
-import PaymentMethod from "./PaymentMethod";
+// import PaymentMethod from "./PaymentMethod";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 console.log(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY)

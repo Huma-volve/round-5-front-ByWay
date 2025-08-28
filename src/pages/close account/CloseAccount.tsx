@@ -9,9 +9,9 @@ const CloseAccount = () => {
   const closeAccountMutation = fetchCloseAccount();
   const {data:statusData} = fetchCloseAccountStatus();
   console.log("Account status data:", statusData?.data);
-const closureDate = new Date(statusData?.data?.data?.closure_date); 
-const now = new Date();
-const diff = closureDate.getTime() - now.getTime();
+// const closureDate = new Date(statusData?.data?.data?.closure_date); 
+// const now = new Date();
+// const diff = closureDate.getTime() - now.getTime();
   const handleCloseAccount = () => {
     if (!password) {
       toast.error("Please enter your password");
@@ -22,10 +22,17 @@ const diff = closureDate.getTime() - now.getTime();
       onSuccess: (res) => {
         toast.success(res.message || "Account closed successfully");
       },
-      onError: (err: any) => {
-        const errorMessage = err.response?.data?.message || "Error closing account";
-        toast.error(errorMessage)
-       
+      onError: (err: unknown) => {
+        interface ErrorResponse {
+          response?: {
+            data?: {
+              message?: string;
+            };
+          };
+        }
+        const error = err as ErrorResponse;
+        const errorMessage = error.response?.data?.message || "Error closing account";
+        toast.error(errorMessage);
       },
     });
   };

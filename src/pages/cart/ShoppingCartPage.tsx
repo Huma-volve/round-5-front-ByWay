@@ -1,12 +1,12 @@
 
 import { useBreadcrumb } from "@/hooks/useBreadcrumb";
 import Breadcrumb from "@/components/common/Breadcrumb";
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 import Cart from "@/components/cart/Cart";
 
 const ShoppingCartPage = () => {
   const { getAutoBreadcrumb } = useBreadcrumb();
-    const { t} = useTranslation();
+    // const { t} = useTranslation();
   return (
     <div className="container mx-auto my-8">
       <div >

@@ -11,7 +11,8 @@ type cardProps =  {
     description?:string;
     title?: string;
     rate?: number;
-    price?:number
+    price?: number;
+    image_url?: string | null;
   };
 
 };
