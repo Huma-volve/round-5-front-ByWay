@@ -5,6 +5,8 @@
  * across the application.
  */
 
+import { QueryClient } from "@tanstack/react-query";
+
 export const QUERY_KEYS = {
   // Admin Dashboard
   TOP_RATED_COURSES: ["topRatedCourses"] as const,
@@ -21,5 +23,7 @@ export const QUERY_KEYS = {
   // Auth
   USER_AUTH: ["userAuth"] as const,
 } as const;
+
+export const queryClient = new QueryClient();
 
 export default QUERY_KEYS;

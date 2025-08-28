@@ -24,6 +24,7 @@ import Revenue from "../pages/instructor/Revenue";
 import GetPaid from "@/pages/instructor/GetPaid";
 import Withdraw from "@/pages/instructor/Withdraw";
 import AddCourse from "@/pages/instructor/AddCourse";
+import UpdateCoursePage from "@/pages/instructor/UpdateCourse";
 import CourseSelection from "@/pages/instructor/CourseSelection";
 import AddLessons from "@/pages/instructor/AddLessons";
 import ViewLessons from "@/pages/instructor/ViewLessons";
@@ -81,13 +82,7 @@ export default function AppRoutes() {
       <ScrollToTop />
       <Routes>
         {/* Protected Routes */}
-        <Route
-          element={
-            <ProtectedRoute>
-              <AppLayout />
-            </ProtectedRoute>
-          }
-        >
+        <Route element={<AppLayout />}>
           {/* Home */}
           <Route path="/" element={<CoursesPage />} />
 
@@ -96,6 +91,14 @@ export default function AppRoutes() {
             <Route index element={<CoursesPage />} />
             <Route path=":courseId" element={<CourseDetails />} />
           </Route>
+        </Route>
+        <Route
+          element={
+            <ProtectedRoute>
+              <AppLayout />
+            </ProtectedRoute>
+          }
+        >
           {/* Learner Course Management */}
           <Route path="/learner-myCourses" element={<LearnerMyCourses />}>
             <Route
@@ -142,6 +145,10 @@ export default function AppRoutes() {
             <Route
               path="my-courses/:courseId/manage"
               element={<CourseSelection />}
+            />
+            <Route
+              path="my-courses/:courseId/update"
+              element={<UpdateCoursePage />}
             />
 
             {/* Lesson Management */}

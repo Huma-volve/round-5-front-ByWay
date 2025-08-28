@@ -8,10 +8,10 @@ import {
 import { useTranslation } from "react-i18next";
 interface PaymentDetailsProps {
   open: boolean;
-  id:string;
+  // id:string;
   onOpenChange: (open: boolean) => void;
 }
-function WithdrowDetails({id, open, onOpenChange }: PaymentDetailsProps) {
+function WithdrowDetails({ open, onOpenChange }: PaymentDetailsProps) {
   const { t } = useTranslation();
     return (
  <Dialog open={open} onOpenChange={onOpenChange} modal={true}>

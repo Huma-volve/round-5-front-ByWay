@@ -1,11 +1,11 @@
 import AppRoutes from "./routes/AppRoutes";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useLanguage } from "./hooks/useLanguage";
 import { useTranslation } from "react-i18next";
+import { queryClient } from "./lib/query-keys";
 
-const queryClient = new QueryClient();
 
 function App() {
   // Initialize language and direction handling

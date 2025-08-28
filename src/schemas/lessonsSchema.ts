@@ -4,7 +4,10 @@ import {
   supportedMaterialFormats,
 } from "@/data/addLessonsData";
 
-export const createLessonSchema = (t: (key: string) => string) =>
+export const createLessonSchema = (
+  t: (key: string) => string,
+  isEditMode: boolean = false
+) =>
   Yup.object().shape({
     lessonTitle: Yup.string()
       .min(3, t("validation.lesson.lessonTitleMin"))
@@ -21,26 +24,48 @@ export const createLessonSchema = (t: (key: string) => string) =>
       .max(180, t("validation.lesson.lessonDurationMax"))
       .required(t("validation.lesson.lessonDurationRequired")),
 
-    lessonVideo: Yup.mixed()
-      .required(t("validation.lesson.lessonVideoRequired"))
-      .test(
-        "fileSize",
-        t("validation.lesson.lessonVideoSizeLimit"),
-        (value) => {
-          if (!value || typeof value === "string") return true;
-          const file = value as File;
-          return file.size <= 500 * 1024 * 1024; // 500MB
-        }
-      )
-      .test(
-        "fileType",
-        t("validation.lesson.uploadValidVideoFile"),
-        (value) => {
-          if (!value || typeof value === "string") return true;
-          const file = value as File;
-          return supportedVideoFormats.includes(file.type);
-        }
-      ),
+    // Video is optional in edit mode
+    lessonVideo: isEditMode
+      ? Yup.mixed()
+          .nullable()
+          .test(
+            "fileSize",
+            t("validation.lesson.lessonVideoSizeLimit"),
+            (value) => {
+              if (!value || typeof value === "string") return true;
+              const file = value as File;
+              return file.size <= 500 * 1024 * 1024; // 500MB
+            }
+          )
+          .test(
+            "fileType",
+            t("validation.lesson.uploadValidVideoFile"),
+            (value) => {
+              if (!value || typeof value === "string") return true;
+              const file = value as File;
+              return supportedVideoFormats.includes(file.type);
+            }
+          )
+      : Yup.mixed()
+          .required(t("validation.lesson.lessonVideoRequired"))
+          .test(
+            "fileSize",
+            t("validation.lesson.lessonVideoSizeLimit"),
+            (value) => {
+              if (!value || typeof value === "string") return true;
+              const file = value as File;
+              return file.size <= 500 * 1024 * 1024; // 500MB
+            }
+          )
+          .test(
+            "fileType",
+            t("validation.lesson.uploadValidVideoFile"),
+            (value) => {
+              if (!value || typeof value === "string") return true;
+              const file = value as File;
+              return supportedVideoFormats.includes(file.type);
+            }
+          ),
 
     lessonMaterials: Yup.array()
       .of(
@@ -69,13 +94,36 @@ export const createLessonSchema = (t: (key: string) => string) =>
     isPreview: Yup.boolean(),
   });
 
-export const createAddLessonsValidationSchema = (t: (key: string) => string) =>
+export const createAddLessonsValidationSchema = (
+  t: (key: string) => string,
+  isEditMode: boolean = false
+) =>
   Yup.object().shape({
     courseId: Yup.string(),
     lessons: Yup.array()
-      .of(createLessonSchema(t))
+      .of(createLessonSchema(t, isEditMode))
       .min(1, t("validation.lesson.atLeastOneLessonRequired"))
       .required(t("validation.lesson.lessonsRequired")),
+  });
+
+export const createUpdateLessonValidationSchema = (
+  t: (key: string) => string
+) =>
+  Yup.object().shape({
+    title: Yup.string()
+      .min(3, t("validation.lesson.lessonTitleMin"))
+      .max(100, t("validation.lesson.lessonTitleMax"))
+      .required(t("validation.lesson.lessonTitleRequired")),
+
+    description: Yup.string()
+      .min(10, t("validation.lesson.lessonDescriptionMin"))
+      .max(500, t("validation.lesson.lessonDescriptionMax"))
+      .required(t("validation.lesson.lessonDescriptionRequired")),
+
+    order: Yup.number()
+      .min(1, t("validation.lesson.lessonOrderMin"))
+      .max(1000, t("validation.lesson.lessonOrderMax"))
+      .required(t("validation.lesson.lessonOrderRequired")),
   });
 
 // Keep old exports for backward compatibility

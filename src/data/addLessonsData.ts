@@ -1,9 +1,17 @@
+export interface LessonMaterialInput {
+  name: string;
+  type: "link" | "pdf" | "doc";
+  url?: string;
+  file?: File | null;
+}
+
 export interface LessonData {
   lessonTitle: string;
   lessonDescription: string;
   lessonDuration: number; // in minutes
   lessonVideo: File | null;
-  lessonMaterials: File[] | null;
+  // Structured material entries with name, type, and either url or file
+  materials?: LessonMaterialInput[];
   isPreview?: boolean;
 }
 

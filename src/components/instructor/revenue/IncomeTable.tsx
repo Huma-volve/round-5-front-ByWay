@@ -52,11 +52,11 @@ export default function IncomeTable({
   // Payment type color mapping
   const getPaymentTypeColor = (type: string) => {
     switch (type) {
-      case "Cash":
+      case "paypal":
         return "bg-green-100 text-green-800 border-green-200";
-      case "Credit Card":
+      case "stripe":
         return "bg-blue-100 text-blue-800 border-blue-200";
-      case "Bank Transfer":
+      case "bank":
         return "bg-purple-100 text-purple-800 border-purple-200";
       default:
         return "bg-gray-100 text-gray-800 border-gray-200";

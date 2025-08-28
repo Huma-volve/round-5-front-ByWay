@@ -18,7 +18,7 @@ export default function RevenueHeader() {
     content = (
       <div className="grid grid-cols-2 md:grid-cols-3 items-center gap-2 lg:gap-[10%] my-8">
         {/* Loading skeleton */}
-        {Array.from({ length: 3 }).map((_, index) => (
+        {Array.from({ length: 4 }).map((_, index) => (
           <div
             key={index}
             className="h-20 bg-gradient-to-r from-gray-200 to-gray-100 animate-pulse rounded-lg"
@@ -74,6 +74,18 @@ export default function RevenueHeader() {
           </span>
           <span className="text-sm text-gray-500">
             {t("instructor.revenue.stats.lastTransaction")}
+          </span>
+        </div>
+        <div className="h-[102px]  md:h-fit   flex flex-col items-center justify-center border  md:p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+          <span
+            className={`text-lg font-semibold ${checkIncrease(
+              analytics.last_transaction
+            )}`}
+          >
+            {currencyFormatter.format(analytics.minimum_withdrawal)}
+          </span>
+          <span className="text-sm text-gray-500">
+            {t("instructor.revenue.stats.minimumWithdrawal")}
           </span>
         </div>
       </div>

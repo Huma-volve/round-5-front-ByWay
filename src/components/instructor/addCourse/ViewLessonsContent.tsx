@@ -2,66 +2,58 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
-import { useCourse, useLessons } from "@/hooks/useCourseData";
+import useDeleteLesson from "@/hooks/instructor/useDeleteLesson";
 import LessonCard from "@/components/instructor/addCourse/LessonCard";
+import ViewLessonsContentSkeleton from "@/components/instructor/addCourse/ViewLessonsContentSkeleton";
 import DeleteConfirmationModal from "@/components/instructor/DeleteConfirmationModal";
-import type { Lesson } from "@/data/coursesData";
 import { useTranslation } from "react-i18next";
+import useFetchCourseById from "@/hooks/instructor/useFetchCourseById";
+import type { LessonData } from "@/lib/types";
 
 export default function ViewLessonsContent() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { courseId } = useParams<{ courseId: string }>();
-  const { course, loading: courseLoading } = useCourse(courseId);
-  const { t } = useTranslation();
-  const {
-    lessons,
-    loading: lessonsLoading,
-    deleteLesson,
-  } = useLessons(courseId);
+  const { data: courseResponse, isLoading: courseLoading } =
+    useFetchCourseById(courseId);
+  // Note: We could use useFetchLessonsByCourse for independent lesson fetching
+  // const { data: lessonsResponse, isLoading: lessonsLoading } =
+  //   useFetchLessonsByCourse(courseId);
+  const { mutate: deleteLessonMutate, isPending: isDeletingApi } =
+    useDeleteLesson(courseId || "");
+
+  const course = courseResponse?.data;
+  const lessonsResponse = course?.lessons || [];
+  console.log(course);
 
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [lessonToDelete, setLessonToDelete] = useState<Lesson | null>(null);
+  const [lessonToDelete, setLessonToDelete] = useState<LessonData | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const handleEditLesson = (lesson: Lesson) => {
+  const handleEditLesson = (lesson: LessonData) => {
     navigate(`/instructor/my-courses/${courseId}/lessons/edit/${lesson.id}`);
   };
 
-  const handleDeleteLesson = (lesson: Lesson) => {
+  const handleDeleteLesson = (lesson: LessonData) => {
     setLessonToDelete(lesson);
     setDeleteModalOpen(true);
   };
 
   const confirmDeleteLesson = async () => {
-    if (!lessonToDelete) return;
-
+    if (!lessonToDelete || !courseId) return;
     setIsDeleting(true);
-    // Simulate API call
-    setTimeout(() => {
-      deleteLesson(lessonToDelete.id);
-      setIsDeleting(false);
-      setDeleteModalOpen(false);
-      setLessonToDelete(null);
-    }, 1500);
+    deleteLessonMutate(lessonToDelete.id);
+    setIsDeleting(false);
+    setDeleteModalOpen(false);
+    setLessonToDelete(null);
   };
 
   const handleAddNewLesson = () => {
     navigate(`/instructor/my-courses/${courseId}/lessons/add`);
   };
 
-  if (courseLoading || lessonsLoading) {
-    return (
-      <div className="w-full">
-        <div className="w-full max-w-6xl mx-auto">
-          <div className="flex items-center justify-center min-h-[400px]">
-            <div className="text-center">
-              <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-              <p className="text-muted-foreground">Loading course lessons...</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+  if (courseLoading) {
+    return <ViewLessonsContentSkeleton showCourseHeader={true} cardCount={6} />;
   }
 
   return (
@@ -81,12 +73,17 @@ export default function ViewLessonsContent() {
                 <div className="flex gap-4 text-sm text-muted-foreground flex-wrap">
                   <span>
                     {t("instructor.lessons.totalLessons", {
-                      count: lessons.length,
+                      count: course?.lessons_count,
                     })}
                   </span>
                   <span>
                     {t("instructor.lessons.duration", {
-                      minutes: course.totalDuration,
+                      minutes:
+                        course?.lessons.reduce(
+                          (sum: number, lesson: LessonData) =>
+                            sum + (lesson.video_duration || 0),
+                          0
+                        ) / 60,
                     })}
                   </span>
                   <span className="capitalize">{course.status}</span>
@@ -104,12 +101,12 @@ export default function ViewLessonsContent() {
         )}
 
         {/* Lessons Grid */}
-        {lessons.length > 0 ? (
+        {lessonsResponse?.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {lessons.map((lesson) => (
+            {lessonsResponse.map((lesson: LessonData) => (
               <LessonCard
                 key={lesson.id}
-                lesson={lesson}
+                lesson={{ ...lesson }}
                 onEdit={handleEditLesson}
                 onDelete={handleDeleteLesson}
               />
@@ -149,7 +146,7 @@ export default function ViewLessonsContent() {
           })}
           description={t("instructor.deleteModal.lessonDeleteDescription")}
           itemName={lessonToDelete?.title || t("instructor.lessons.title")}
-          isLoading={isDeleting}
+          isLoading={isDeleting || isDeletingApi}
         />
       </div>
     </div>

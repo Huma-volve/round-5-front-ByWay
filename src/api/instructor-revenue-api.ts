@@ -43,3 +43,22 @@ export async function getInstructorRevenueGraphData() {
     throw error;
   }
 }
+export const fetchInstructorRecentPayouts = async () => {
+  try {
+    const response = await axiosInstance.get("instructor/payments");
+    // عرض رسالة نجاح
+    if (response.data?.status === 200) {
+      toast.success(
+        response.data.message || "Instructor recent payouts loaded successfully"
+      );
+    }
+    return response.data;
+  } catch (error) {
+    const axiosError = error as AxiosError<{ message?: string }>;
+    const errorMessage =
+      axiosError.response?.data?.message ||
+      "Failed to fetch instructor recent payouts";
+    toast.error(errorMessage);
+    throw error;
+  }
+};

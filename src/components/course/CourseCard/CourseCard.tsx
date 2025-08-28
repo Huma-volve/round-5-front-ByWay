@@ -11,7 +11,8 @@ type cardProps =  {
     description?:string;
     title?: string;
     rate?: number;
-    price?:number
+    price?: number;
+    image_url?: string | null;
   };
 
 };
@@ -32,7 +33,7 @@ export default function CourseCard({
         <div className="h-48 overflow-hidden">
           {variant === "instructor" ? (
             <img
-              src={instructorCourse}
+              src={course?.image_url ?? instructorCourse}
               alt="Instructor"
               className="w-full h-full object-cover"
             />

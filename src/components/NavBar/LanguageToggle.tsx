@@ -8,7 +8,6 @@ interface Language {
   code: string;
   name: string;
   nativeName: string;
-  flag: string;
 }
 
 const languages: Language[] = [
@@ -16,13 +15,11 @@ const languages: Language[] = [
     code: "en",
     name: "English",
     nativeName: "English",
-    flag: "🇺🇸",
   },
   {
     code: "ar",
     name: "Arabic",
     nativeName: "العربية",
-    flag: "🇸🇦",
   },
 ];
 
@@ -66,10 +63,9 @@ function LanguageToggle({ className = "" }: { className?: string }) {
     >
       <Languages />
       <span className="w-full flex items-center gap-2">
-        <span className="font-medium text-lg">{currentLanguage.flag}</span>
         <span
           className={
-            ` font-medium text-lg  ${className ? " " : " text-secondaryDark"}`
+            ` font-medium text-lg  ${className ? " " : " text-secondaryDark"} uppercase`
           }
         >
           {currentLanguage.code}
