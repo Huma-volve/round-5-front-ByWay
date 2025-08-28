@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { useQuery} from "@tanstack/react-query";
 import axios from "axios";
 import NoCourses from "@/components/instructor/empty/NoCourses";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 export default function MyCourses() {
 type Course = {
@@ -22,7 +23,7 @@ type Course = {
     rate?: number;
     price?:number };
     console.log("renderrrrrr")
-       const token = localStorage.getItem("auth_token");
+       const [token] = useLocalStorage("auth_token", '');
       console.log("TOKEN:", token)
 
 console.log("renderrrrrr MyCourses mounted");
@@ -34,7 +35,7 @@ const { data, error, isLoading, isFetching } = useQuery({
   queryFn: async () => {
     console.log("Running queryFn...");
     const { data } = await axios.get(
-      "http://round5-byway.huma-volve.com/api/instructor/courses",
+      "https://round5-byway.huma-volve.com/api/instructor/course-management/courses",
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -51,15 +52,17 @@ const { data, error, isLoading, isFetching } = useQuery({
 console.log("isLoading:", isLoading, "isFetching:", isFetching);
 
   const { t } = useTranslation();
+
+  const courses = data?.data?.data || [];
   return (
     <>
-     {data && data.length > 0 ? (
+     {courses.length > 0 ? (
           <>
 
       <section className="container py-12">
         <div className="flex justify-between items-center">
           <h1 className="text-bold text-xl lg:text-2xl mb-4">
-            {t("instructor.Courses")} ({data.total})
+            {t("instructor.Courses")} ({courses.length})
           </h1>
 
           <div className="flex items-center gap-4 mb-4 p-3 rounded-md shadow-sm">
@@ -84,7 +87,7 @@ console.log("isLoading:", isLoading, "isFetching:", isFetching);
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {data?.data?.map((course: Course) => (
+          {courses?.map((course: Course) => (
             <CourseCard
               id={String(course.id)}
               key={course.id }
