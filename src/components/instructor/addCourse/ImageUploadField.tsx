@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { ImageIcon, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 interface ImageUploadFieldProps {
   value?: File | string;
@@ -37,13 +38,13 @@ export default function ImageUploadField({
   const handleFileSelect = (file: File) => {
     // Validate file type
     if (!file.type.startsWith("image/")) {
-      alert(t("instructor.upload.pleaseSelectImageFile"));
+      toast.info(t("instructor.upload.pleaseSelectImageFile"));
       return;
     }
 
     // Validate file size (5MB limit)
     if (file.size > 5 * 1024 * 1024) {
-      alert(t("instructor.upload.fileSizeImageError"));
+      toast.info(t("instructor.upload.fileSizeImageError"));
       return;
     }
 

@@ -2,100 +2,92 @@ import { useFormik, FieldArray, FormikProvider } from "formik";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Plus, Trash2, ArrowLeft } from "lucide-react";
+import { Plus, Trash2 } from "lucide-react";
 import FormField from "@/components/ui/FormField";
 import VideoUploadField from "./VideoUploadField";
 import MaterialsUploadField from "./MaterialsUploadField";
-import type { AddLessonsData, LessonData } from "@/data/addLessonsData";
-import type { Lesson } from "@/data/coursesData";
+import type {
+  AddLessonsData,
+  LessonData,
+  LessonMaterialInput,
+} from "@/data/addLessonsData";
 import { createAddLessonsValidationSchema } from "@/schemas/lessonsSchema";
-import { useLesson } from "@/hooks/useCourseData";
-import { useEffect } from "react";
+import useCreateLesson from "@/hooks/instructor/useCreateLesson";
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 interface AddLessonsFormProps {
-  editMode?: boolean;
   courseId?: string;
-  existingLesson?: Lesson;
 }
 
 export default function AddLessonsForm({
-  editMode = false,
   courseId: propCourseId,
-  existingLesson,
 }: AddLessonsFormProps) {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { courseId: paramCourseId, lessonId } = useParams<{
+  const { courseId: paramCourseId } = useParams<{
     courseId: string;
-    lessonId: string;
   }>();
 
   // Use courseId from props or params
   const courseId = propCourseId || paramCourseId;
 
-  // Fetch lesson data if in edit mode and lessonId is provided
-  const { lesson: fetchedLesson } = useLesson(
-    editMode && lessonId ? lessonId : undefined
+  const { mutateAsync: createLessonMutate, isPending: isCreating } =
+    useCreateLesson(courseId || "");
+
+  const initialLesson = useMemo<LessonData>(
+    () => ({
+      lessonTitle: "",
+      lessonDescription: "",
+      lessonDuration: 0,
+      lessonVideo: null,
+      lessonMaterials: null,
+    }),
+    []
   );
 
-  // Determine the lesson to use (prop or fetched)
-  const lessonToEdit =
-    existingLesson || (editMode && lessonId ? fetchedLesson : null);
-
-  const initialLesson: LessonData = {
-    lessonTitle: "",
-    lessonDescription: "",
-    lessonDuration: 0,
-    lessonVideo: null,
-    lessonMaterials: null,
-  };
-
-  // Convert lesson data for editing (note: files will need to be re-uploaded)
-  const convertLessonForEdit = (lesson: Lesson): LessonData => ({
-    lessonTitle: lesson.title,
-    lessonDescription: lesson.description,
-    lessonDuration: lesson.duration,
-    lessonVideo: null, // User will need to re-upload video
-    lessonMaterials: null, // User will need to re-upload materials
-  });
+  const initialValues = useMemo<AddLessonsData>(
+    () => ({
+      courseId: courseId || "",
+      lessons: [initialLesson],
+    }),
+    [courseId, initialLesson]
+  );
 
   const formik = useFormik<AddLessonsData>({
-    initialValues: {
-      courseId: courseId || "",
-      lessons:
-        editMode && lessonToEdit
-          ? [convertLessonForEdit(lessonToEdit)]
-          : [initialLesson],
-    },
+    initialValues,
     validationSchema: createAddLessonsValidationSchema(t),
-    enableReinitialize: true, // This allows form to reinitialize when lessonToEdit changes
-    onSubmit: (values) => {
-      console.log("Lessons submitted:", values);
-      if (editMode) {
-        // Handle lesson update
-        console.log("Updating lesson:", values);
-        // Navigate back to lessons view
-        navigate(`/instructor/my-courses/${courseId}/lessons`);
-      } else {
-        // Handle lesson creation
-        console.log("Creating lessons:", values);
-        // Navigate back to course selection or dashboard
-        navigate(`/instructor/my-courses/${courseId}/manage`);
+    enableReinitialize: true,
+    onSubmit: async (values) => {
+      if (!courseId) return;
+
+      for (const l of values.lessons) {
+        const validMaterials = (l.materials || [])
+          .filter((m: LessonMaterialInput) => {
+            if (!m || !m.type) return false;
+            if (m.type === "link") return Boolean(m.name && m.url);
+            return Boolean(m.name && m.file);
+          })
+          .map((m: LessonMaterialInput) => ({
+            name: m.name,
+            type: m.type,
+            url: m.type === "link" ? m.url : undefined,
+            file: m.type !== "link" ? m.file || null : undefined,
+          }));
+
+        await createLessonMutate({
+          title: l.lessonTitle,
+          description: l.lessonDescription,
+          video: l.lessonVideo,
+          video_duration: Number(l.lessonDuration) * 60,
+          materials: validMaterials,
+        });
       }
+      navigate(`/instructor/my-courses/${courseId}/lessons`);
     },
   });
 
-  // Update form values when lesson data is loaded
-  useEffect(() => {
-    if (editMode && lessonToEdit) {
-      formik.setValues({
-        courseId: courseId || "",
-        lessons: [convertLessonForEdit(lessonToEdit)],
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lessonToEdit, editMode, courseId]);
+  // Removed useEffect that was calling setValues on every render to avoid update depth loops
 
   const addNewLesson = () => {
     const newLessons = [...formik.values.lessons, { ...initialLesson }];
@@ -152,29 +144,6 @@ export default function AddLessonsForm({
     <FormikProvider value={formik}>
       <div className="w-full">
         <div className="md:w-[80%]">
-          {/* Header with back button for edit mode */}
-          {editMode && (
-            <div className="mb-6">
-              <Button
-                type="button"
-                variant="ghost"
-                onClick={() =>
-                  navigate(`/instructor/my-courses${courseId}/lessons`)
-                }
-                className="mb-4"
-              >
-                <ArrowLeft className="h-4 w-4 mr-2 rtl:rotate-180" />
-                {t("instructor.lessons.backToLessons")}
-              </Button>
-              <h1 className="text-2xl font-bold ml-3 rtl:mr-3">
-                {t("instructor.lessons.editLesson")}
-              </h1>
-              <p className="text-muted-foreground ml-3 rtl:mr-3">
-                {t("instructor.lessons.updateLessonDescription")}
-              </p>
-            </div>
-          )}
-
           <form onSubmit={formik.handleSubmit} className="space-y-8">
             <FieldArray name="lessons">
               {() => (
@@ -187,11 +156,9 @@ export default function AddLessonsForm({
                       <CardHeader className="pb-4">
                         <div className="flex items-center justify-between">
                           <CardTitle className="text-lg">
-                            {editMode
-                              ? t("instructor.lessons.editLesson")
-                              : t("instructor.lessons.title")}
+                            {t("instructor.lessons.title")}
                           </CardTitle>
-                          {!editMode && formik.values.lessons.length > 1 && (
+                          {formik.values.lessons.length > 1 && (
                             <Button
                               type="button"
                               variant="ghost"
@@ -287,37 +254,37 @@ export default function AddLessonsForm({
                             {t("instructor.lessons.lessonMaterials")}
                           </label>
                           <MaterialsUploadField
-                            value={lesson.lessonMaterials}
-                            onChange={(files) =>
+                            value={
+                              (lesson.materials as
+                                | LessonMaterialInput[]
+                                | undefined) || []
+                            }
+                            onChange={(materials) =>
                               formik.setFieldValue(
-                                `lessons.${index}.lessonMaterials`,
-                                files
+                                `lessons.${index}.materials`,
+                                materials
                               )
                             }
-                            error={getFieldError(
-                              `lessons.${index}.lessonMaterials`
-                            )}
+                            error={getFieldError(`lessons.${index}.materials`)}
                           />
                         </div>
                       </CardContent>
                     </Card>
                   ))}
 
-                  {/* Add Another Lesson Button - Only show when not in edit mode */}
-                  {!editMode && (
-                    <div className="flex justify-center pt-4">
-                      <Button
-                        type="button"
-                        variant="outline"
-                        onClick={addNewLesson}
-                        disabled={!isLastLessonComplete()}
-                        className="w-full max-w-md bg-white hover:shadow-md hover:bg-gray-500 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
-                        <Plus className="h-4 w-4 mr-2" />
-                        {t("instructor.lessons.addAnotherLesson")}
-                      </Button>
-                    </div>
-                  )}
+                  {/* Add Another Lesson Button */}
+                  <div className="flex justify-center pt-4">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={addNewLesson}
+                      disabled={!isLastLessonComplete()}
+                      className="w-full max-w-md bg-white hover:shadow-md hover:bg-gray-500 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <Plus className="h-4 w-4 mr-2" />
+                      {t("instructor.lessons.addAnotherLesson")}
+                    </Button>
+                  </div>
                 </div>
               )}
             </FieldArray>
@@ -327,14 +294,10 @@ export default function AddLessonsForm({
               <Button
                 type="submit"
                 className="w-full text-primary hover:text-white bg-white hover:bg-primary"
-                disabled={formik.isSubmitting}
+                disabled={formik.isSubmitting || isCreating}
               >
-                {formik.isSubmitting
-                  ? editMode
-                    ? t("instructor.lessons.updatingLesson")
-                    : t("instructor.lessons.uploadingLessons")
-                  : editMode
-                  ? t("instructor.lessons.updateLesson")
+                {formik.isSubmitting || isCreating
+                  ? t("instructor.lessons.uploadingLessons")
                   : t("instructor.lessons.saveLessons")}
               </Button>
             </div>

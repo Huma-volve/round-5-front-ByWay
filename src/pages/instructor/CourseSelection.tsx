@@ -21,7 +21,7 @@ export default function CourseSelection() {
     setDeleteModalOpen,
     isDeleting,
     handleDeleteCourse,
-  } = useCourseManagement(navigate);
+  } = useCourseManagement(navigate, courseId);
 
   const courseActions = createCourseActions(
     courseId,

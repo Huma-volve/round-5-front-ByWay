@@ -39,7 +39,8 @@
     "signOut": "Sign out",
     "students": "Students",
     "aboutMe": "About Me",
-    "instructorDetails": "Instructor Details"
+    "instructorDetails": "Instructor Details",
+    "add": "Add"
   },
   "auth": {
     "loginToAccount": "Log in into your account",
@@ -135,7 +136,8 @@
       "stats": {
         "totalProfits": "Total Profits",
         "availableBalance": "Available Balance",
-        "lastTransaction": "Last Transaction"
+        "lastTransaction": "Last Transaction",
+        "minimumWithdrawal": "Minimum Withdrawal"
       },
       "empty": {
         "title": "No revenue data yet",
@@ -181,9 +183,9 @@
         "all": "All"
       },
       "paymentTypes": {
-        "cash": "Cash",
-        "creditCard": "Credit Card",
-        "bankTransfer": "Bank Transfer"
+        "cash": "Paypal",
+        "creditCard": "Stripe",
+        "bankTransfer": "Bank"
       },
       "empty": {
         "title": "No transactions yet",
@@ -268,6 +270,10 @@
           "title": "View Lessons",
           "description": "View and manage existing course lessons"
         },
+        "updateCourse": {
+          "title": "Update Course",
+          "description": "Edit course information and details"
+        },
         "deleteCourse": {
           "title": "Delete Course",
           "description": "Permanently delete this course and all its content"
@@ -280,6 +286,11 @@
         "tip3": "Regularly update and organize your course content",
         "tip4": "Monitor student engagement and feedback"
       }
+    },
+    "updateCourse": {
+      "title": "Update Course",
+      "description": "Edit and update your course information",
+      "submitButton": "Update Course"
     },
     "lessons": {
       "title": "Lessons",
@@ -296,6 +307,8 @@
       "lessonDescriptionPlaceholder": "Enter lesson description",
       "lessonDuration": "Lesson Duration (minutes)",
       "lessonDurationPlaceholder": "Enter duration in minutes",
+      "lessonOrder": "Lesson Order",
+      "lessonOrderPlaceholder": "Enter lesson order number",
       "lessonVideo": "Lesson Video",
       "lessonMaterials": "Lesson Materials (Optional)",
       "freePreview": "Make this lesson available as a free preview",
@@ -317,7 +330,13 @@
       "deleteAction": "Delete lesson",
       "previewAvailable": "Preview available",
       "totalLessons": "{{count}} lesson",
-      "totalLessons_plural": "{{count}} lessons"
+      "totalLessons_plural": "{{count}} lessons",
+      "materialName": "Material Name",
+      "materialType": "Material Type",
+      "materialLink": "Material Link",
+      "materialFile": "Material File",
+      "fileUploadDisabled": "File upload is temporarily disabled. You can use links instead.",
+      "fileUploadDisabledLinkOnly": "File upload is temporarily disabled. You can only use links."
     },
     "deleteModal": {
       "deleteTitle": "Delete {{itemType}}",
@@ -359,6 +378,9 @@
       "lessonDurationRequired": "Lesson duration is required",
       "lessonDurationMin": "Duration must be at least 1 minute",
       "lessonDurationMax": "Duration must be less than 3 hours",
+      "lessonOrderRequired": "Lesson order is required",
+      "lessonOrderMin": "Order must be at least 1",
+      "lessonOrderMax": "Order must be less than 180",
       "lessonVideoRequired": "Lesson video is required",
       "lessonVideoSizeLimit": "Video file size must be less than 500MB",
       "uploadValidVideoFile": "Please upload a valid video file",
@@ -412,7 +434,7 @@
   "settings": {
     "Payment Methods": "Payment Methods",
     "Payment History": "Payment History",
-    "Account" : "Close Your Account"
+    "Account": "Close Your Account"
   },
   "payments": {
     "Choose your payment method": "Choose your payment method",

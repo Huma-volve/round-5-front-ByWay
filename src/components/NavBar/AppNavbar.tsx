@@ -20,8 +20,7 @@ function AppNavbar() {
 
   const user_id = localStorage.getItem("user_id") || null;
 
-  const [role] = useLocalStorage("role", "")
-
+  const [role] = useLocalStorage("role", "");
 
   const searchHandler = (value: string) => {
     console.log("Searching for:", value);
@@ -44,7 +43,6 @@ function AppNavbar() {
               loading="lazy"
             />
           </Link>
-
           {/* Desktop Search */}
           <AppSearchBar />
 
@@ -66,7 +64,10 @@ function AppNavbar() {
                 <Link to="/shopping-cart">
                   <ShoppingCart size={20} className="hover:fill-blue-500" />
                 </Link>
-                <Link to="/favourites" className={`${role === "instructor" ? "hidden" : "block"}`}>
+                <Link
+                  to="/favourites"
+                  className={`${role === "instructor" ? "hidden" : "block"}`}
+                >
                   <Heart size={20} className="hover:stroke-red-600" />
                 </Link>
                 <div className="relative">

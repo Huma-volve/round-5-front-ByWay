@@ -1,4 +1,4 @@
-import { Video, Eye, Trash2 } from "lucide-react";
+import { Video, Eye, Trash2, Edit } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export interface CourseAction {
@@ -9,6 +9,7 @@ export interface CourseAction {
   action: () => void;
   primary?: boolean;
   destructive?: boolean;
+  edit?: boolean;
 }
 
 export const createCourseActions = (
@@ -46,6 +47,21 @@ export const createCourseActions = (
       }
     },
     primary: false,
+  },
+  {
+    id: "update-course",
+    title: t("instructor.courseManagement.actions.updateCourse.title"),
+    description: t(
+      "instructor.courseManagement.actions.updateCourse.description"
+    ),
+    icon: Edit,
+    action: () => {
+      if (courseId) {
+        navigate(`/instructor/my-courses/${courseId}/update`);
+      }
+    },
+    primary: false,
+    edit: true
   },
   {
     id: "delete-course",

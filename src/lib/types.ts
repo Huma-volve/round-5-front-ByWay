@@ -200,3 +200,104 @@ export interface PaymentItem {
     brand: string;
   }[];
 }
+export interface createCourseData {
+  title: string;
+  description: string;
+  price: number;
+  category_id: number;
+  image: File | null;
+  video: File | null;
+}
+
+export interface updateCourseData {
+  title: string;
+  description: string;
+  price: number;
+  category_id: number;
+}
+
+// Lessons types
+export interface LessonMaterial {
+  name: string;
+  type: "link" | "pdf" | "doc";
+  url?: string;
+  file?: File | null;
+}
+
+export interface CreateLessonInput {
+  title: string;
+  description: string;
+  video: File | null;
+  video_duration?: number | string;
+  order?: number | string;
+  materials?: LessonMaterial[];
+}
+
+export interface UpdateLessonInput {
+  title?: string;
+  description?: string;
+  video?: File | null;
+  video_duration?: number | string;
+  order?: number | string;
+  materials?: LessonMaterial[];
+}
+
+export interface UpdateLessonData {
+  title: string;
+  description: string;
+  order: number;
+}
+
+export interface LessonDTO {
+  id: number;
+  title: string;
+  description: string;
+  video_url: string;
+  video_duration: number;
+  formatted_duration: string;
+  materials: {
+    url?: string;
+    name: string;
+    type: string;
+  }[];
+  materials_count: number;
+  order: number;
+  course_id: number;
+  completion_status: string;
+  completion_date: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface LessonsListResponse {
+  data: LessonDTO[];
+  meta: {
+    total: number;
+    course_id: number;
+    total_duration: number;
+    formatted_total_duration: string;
+  };
+}
+
+export interface LessonResponse {
+  success?: boolean;
+  message?: string;
+  data: LessonDTO;
+}
+
+export interface LessonData {
+  id: number;
+  title: string;
+  description: string;
+  video_url: string;
+  video_duration: number;
+  formatted_duration: string;
+  materials: LessonMaterial[];
+  materials_count: number;
+  order: number;
+  course_id: number;
+  completion_status: string;
+  completion_date: string | null;
+  created_at: string;
+  updated_at: string;
+}

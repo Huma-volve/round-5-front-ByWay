@@ -39,7 +39,8 @@
     "signOut": "تسجيل الخروج",
     "students": "الطلاب",
     "aboutMe": "عنّي",
-    "instructorDetails": "تفاصيل المدرب"
+    "instructorDetails": "تفاصيل المدرب",
+    "add": "إضافة"
   },
   "auth": {
     "loginToAccount": "سجل الدخول إلى حسابك",
@@ -158,7 +159,8 @@
       "stats": {
         "totalProfits": "إجمالي الأرباح",
         "availableBalance": "الرصيد المتاح",
-        "lastTransaction": "آخر معاملة"
+        "lastTransaction": "آخر معاملة",
+        "minimumWithdrawal": "الحد الأدنى للسحب"
       },
       "empty": {
         "title": "لا توجد بيانات إيرادات بعد",
@@ -183,9 +185,9 @@
         "all": "الكل"
       },
       "paymentTypes": {
-        "cash": "نقداً",
-        "creditCard": "بطاقة ائتمان",
-        "bankTransfer": "تحويل بنكي"
+        "cash": "باي بال",
+        "creditCard": "استرايب",
+        "bankTransfer": "بنك"
       },
       "empty": {
         "title": "لا توجد معاملات بعد",
@@ -263,6 +265,10 @@
           "title": "عرض الدروس",
           "description": "عرض وإدارة دروس الدورة الموجودة"
         },
+        "updateCourse": {
+          "title": "تحديث الدورة",
+          "description": "تعديل معلومات وتفاصيل الدورة"
+        },
         "deleteCourse": {
           "title": "حذف الدورة",
           "description": "حذف هذه الدورة وجميع محتوياتها نهائياً"
@@ -275,6 +281,11 @@
         "tip3": "حدّث ونظم محتوى دورتك بانتظام",
         "tip4": "راقب تفاعل الطلاب والتعليقات"
       }
+    },
+    "updateCourse": {
+      "title": "تحديث الدورة",
+      "description": "تعديل وتحديث معلومات دورتك",
+      "submitButton": "تحديث الدورة"
     },
     "lessons": {
       "title": "الدروس",
@@ -291,6 +302,8 @@
       "lessonDescriptionPlaceholder": "أدخل وصف الدرس",
       "lessonDuration": "مدة الدرس (بالدقائق)",
       "lessonDurationPlaceholder": "أدخل المدة بالدقائق",
+      "lessonOrder": "ترتيب الدرس",
+      "lessonOrderPlaceholder": "أدخل رقم ترتيب الدرس",
       "lessonVideo": "فيديو الدرس",
       "lessonMaterials": "مواد الدرس (اختيارية)",
       "freePreview": "جعل هذا الدرس متاحاً كمعاينة مجانية",
@@ -312,7 +325,13 @@
       "deleteAction": "حذف درس",
       "previewAvailable": "معاينة متاحة",
       "totalLessons": "{{count}} درس",
-      "totalLessons_plural": "{{count}} دروس"
+      "totalLessons_plural": "{{count}} دروس",
+      "materialName": "اسم المادة",
+      "materialType": "نوع المادة",
+      "materialLink": "رابط المادة",
+      "materialFile": "ملف المادة",
+      "fileUploadDisabled": "رفع الملفات معطل مؤقتاً. يمكنك استخدام الروابط بدلاً من ذلك.",
+      "fileUploadDisabledLinkOnly": "رفع الملفات معطل مؤقتاً. يمكنك استخدام الروابط فقط."
     },
     "deleteModal": {
       "deleteTitle": "حذف {{itemType}}",
@@ -354,6 +373,9 @@
       "lessonDurationRequired": "مدة الدرس مطلوبة",
       "lessonDurationMin": "المدة يجب أن تكون دقيقة واحدة على الأقل",
       "lessonDurationMax": "المدة يجب أن تكون أقل من 3 ساعات",
+      "lessonOrderRequired": "ترتيب الدرس مطلوب",
+      "lessonOrderMin": "الترتيب يجب أن يكون 1 على الأقل",
+      "lessonOrderMax": "الترتيب يجب أن يكون أقل من 180",
       "lessonVideoRequired": "فيديو الدرس مطلوب",
       "lessonVideoSizeLimit": "حجم ملف الفيديو يجب أن يكون أقل من 500 ميجابايت",
       "uploadValidVideoFile": "يرجى رفع ملف فيديو صالح",
@@ -423,7 +445,7 @@
   "settings": {
     "Payment Methods": "طرق الدفع",
     "Payment History": "تاريخ الدفع",
-    "Account" : "غلق ملفك الشخصي"
+    "Account": "غلق ملفك الشخصي"
   },
   "payments": {
     "Choose your payment method": "اختر طريقة الدفع",

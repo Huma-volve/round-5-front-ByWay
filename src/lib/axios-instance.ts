@@ -42,9 +42,9 @@ axiosInstance.interceptors.response.use(
 
       // Redirect to sign-in page
       // Using window.location to ensure we can redirect from anywhere in the app
-      if (window.location.pathname !== "/signin") {
-        window.location.href = "/signin";
-      }
+      // if (window.location.pathname !== "/signin") {
+      //   window.location.href = "/signin";
+      // }
     }
 
     return Promise.reject(error);
