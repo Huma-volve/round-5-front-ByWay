@@ -13,49 +13,55 @@ import MobileSearch from "./MobileSearch";
 import LanguageToggle from "./LanguageToggle";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 
+import { useFavourites } from "@/hooks/Favorites/useFavourites";
+import { useNotifications } from "@/hooks/useNotifications";
+
 function AppNavbar() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
   const user_id = localStorage.getItem("user_id") || null;
+  const [role] = useLocalStorage("role", "");
 
-  const [role] = useLocalStorage("role", "")
+  const { favourites } = useFavourites();
+  const hasFavourites = favourites.length > 0;
 
+  const { notifications } = useNotifications();
+  const unreadCount = notifications.filter((n) => !n.is_read).length;
 
   const searchHandler = (value: string) => {
     console.log("Searching for:", value);
-    // add your search logic here
   };
 
   return (
     <>
       <NavigationMenu
         className="flex justify-center items-center shadow-md shadow-accent navbar-container"
-        style={{ direction: "ltr" }}
-      >
-        <div className="container flex items-center gap-4 lg:gap-24 mt-3 py-3">
+        style={{ direction: "ltr" }}>
+        <div className="container flex items-center justify-between gap-2 sm:gap-4 lg:gap-24 mt-3 py-3">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0">
             <img
               src={logo}
               alt="Logo"
-              className="h-8 w-auto sm:h-10"
+              className="h-7 w-auto sm:h-8 md:h-10"
               loading="lazy"
             />
           </Link>
 
-          {/* Desktop Search */}
-          <AppSearchBar />
+          {/* Desktop Search → مخفي في الشاشات الصغيرة */}
+          <div className="hidden md:block flex-1">
+            <AppSearchBar />
+          </div>
 
           {/* Actions */}
-          <div className="ml-auto flex items-center gap-4 *:stroke-secondaryDark navbar-actions">
-            {/* Language Toggle */}
+          <div className="flex items-center gap-2 sm:gap-4 *:stroke-secondaryDark navbar-actions ml-auto">
             <LanguageToggle />
 
             {!user_id ? (
               <Link to={pathname === "/signin" ? "/signup" : "/signin"}>
-                <Button className="bg-secondaryDark text-white">
+                <Button className="bg-secondaryDark text-white text-xs sm:text-sm px-2 sm:px-4">
                   {pathname === "/signin"
                     ? t("common.signUp")
                     : t("common.signIn")}
@@ -64,20 +70,30 @@ function AppNavbar() {
             ) : (
               <>
                 <Link to="/shopping-cart">
-                  <ShoppingCart size={20} className="hover:fill-blue-500" />
+                  <ShoppingCart size={18} className="hover:fill-blue-500" />
                 </Link>
-                <Link to="/favourites" className={`${role === "instructor" ? "hidden" : "block"}`}>
-                  <Heart size={20} className="hover:stroke-red-600" />
+
+                <Link
+                  to="/favourites"
+                  className={`${role === "instructor" ? "hidden" : "block"}`}>
+                  <Heart
+                    size={18}
+                    className={`hover:stroke-red-600 ${
+                      hasFavourites ? "stroke-red-600 fill-red-600" : ""
+                    }`}
+                  />
                 </Link>
-                <div className="relative">
+
+                <div className="relative mt-[2px]">
                   <BellWithBadge
-                    count={5}
+                    count={unreadCount}
                     onClick={() => navigate("/notifications")}
                   />
                 </div>
+
                 <NavDropdown
                   icon={
-                    <CircleUserRound className="cursor-pointer" size={20} />
+                    <CircleUserRound className="cursor-pointer" size={18} />
                   }
                 />
               </>
@@ -89,4 +105,5 @@ function AppNavbar() {
     </>
   );
 }
+
 export default AppNavbar;
