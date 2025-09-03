@@ -433,7 +433,10 @@
     "and": "و",
     "You can withdraw any amount between": "يمكنك ان تسحب اي رصيد بين",
     "Enter a valid amount": "ادخل قيمه صالحه",
-    "Save": "حفظ"
+    "Save": "حفظ",
+    "withdraw": "سحب",
+    "less than minimum withdrawal": "اقل من الحد الادني للسحب",
+    "more than available balance": " اكثر من الرصيد المتاح"
   },
   "favourite": {
     "Courses": "الدورات",

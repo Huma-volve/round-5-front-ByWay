@@ -1,4 +1,5 @@
 import axiosInstance from "@/lib/axios-instance";
+import type { WithdrawalRequest } from "@/lib/types";
 import type { AxiosError } from "axios";
 import { toast } from "react-toastify";
 
@@ -62,3 +63,25 @@ export const fetchInstructorRecentPayouts = async () => {
     throw error;
   }
 };
+
+export const withdraw = async (values: WithdrawalRequest) => {
+  console.log(values)
+  try {
+    const response = await axiosInstance.post("instructor/withdrawals/request",values);
+    // عرض رسالة نجاح
+    if (response.data?.status === 200) {
+      toast.success(
+        response.data.message || "Instructor recent payouts loaded successfully"
+      );
+    }
+    return response.data;
+  } catch (error) {
+    const axiosError = error as AxiosError<{ message?: string }>;
+    const errorMessage =
+      axiosError.response?.data?.message ||
+      "Failed to fetch instructor recent payouts";
+    toast.error(errorMessage);
+    throw error;
+  }
+};
+

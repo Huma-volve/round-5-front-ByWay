@@ -75,7 +75,8 @@ function AppNavbar() {
 
                 <Link
                   to="/favourites"
-                  className={`${role === "instructor" ? "hidden" : "block"}`}>
+                  // className={`${role === "instructor" ? "hidden" : "block"}`}
+                  >
                   <Heart
                     size={18}
                     className={`hover:stroke-red-600 ${
