@@ -94,7 +94,7 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
               onClick={(e) => {
                 handleFavorite(course.id, e);
               }}
-              className={`absolute -top-1 -left-1 w-8 h-8 p-1 
+              className={`absolute -top-1 -left-1 size-[30px] p-1 
               rounded-full cursor-pointer shadow transition
               ${
                 isFavoriteCourse(course.id)
