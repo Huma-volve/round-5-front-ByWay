@@ -5,6 +5,7 @@ import type {
   SignInFormType,
   SignUpFormType,
 } from "@/lib/types";
+import type { AxiosError } from "axios";
 import { type NavigateFunction } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -20,16 +21,23 @@ export async function signIn(formData: SignInFormType) {
 
 //you should be authenticated to be able to signout
 export async function signOut(navigate: NavigateFunction) {
-
-   //blocks code blow it if returns an error
-  const { data } = await axiosInstance.post("logout");
-  toast.success(data.message);
-  localStorage.removeItem("auth_token");
-  localStorage.removeItem("email");
-  localStorage.removeItem("user_id");
-  localStorage.removeItem("role");
-  navigate("/signin");
-
+  try {
+    toast.loading("Signing out...", { toastId: "signOut" });
+    const { data } = await axiosInstance.post("logout");
+    toast.dismiss("signOut");
+    toast.success(data.message);
+    localStorage.removeItem("auth_token");
+    localStorage.removeItem("email");
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("role");
+    localStorage.removeItem("name");
+    navigate("/signin");
+  } catch (error) {
+    toast.dismiss("signOut");
+    const axiosError = error as AxiosError<{ message?: string }>;
+    toast.error(axiosError?.response?.data?.message || "Failed to sign out");
+    throw error;
+  }
 }
 
 export async function generateOTP(formData: ForgotFormType) {
