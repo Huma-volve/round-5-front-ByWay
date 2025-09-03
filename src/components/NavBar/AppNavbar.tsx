@@ -22,7 +22,7 @@ function AppNavbar() {
   const { t } = useTranslation();
 
   const user_id = localStorage.getItem("user_id") || null;
-  const [role] = useLocalStorage("role", "");
+  // const [role] = useLocalStorage("role", "");
 
   const { favourites } = useFavourites();
   const hasFavourites = favourites.length > 0;

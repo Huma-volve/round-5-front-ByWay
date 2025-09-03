@@ -12,14 +12,20 @@ import axiosInstance from "@/lib/axios-instance";
 export default function InstructorProfile() {
   const { t } = useTranslation();
   const mutation = useMutation({
- mutationFn: async (values: unknown) => {
-   const { data } = await axiosInstance.post("/instructor/profile/store", values ,
-   {  headers: {
-        Accept: "application/json",
-        
-      }   } ); return data; },
+    mutationFn: async (values: unknown) => {
+      const { data } = await axiosInstance.post(
+        "/instructor/profile/store",
+        values,
+        {
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      );
+      return data;
+    },
 
- onSuccess: (data) => {
+    onSuccess: (data) => {
       toast.success(data?.message);
     },
   });
@@ -32,11 +38,15 @@ export default function InstructorProfile() {
         headline: "",
         about: "",
         skills: "",
-        workExperience: [{ jobTitle: "", companyName: "", startDate: "", endDate: "" }], }}
+        workExperience: [
+          { jobTitle: "", companyName: "", startDate: "", endDate: "" },
+        ],
+      }}
       validationSchema={getInstructorProfileSchema}
       onSubmit={(values) => {
         mutation.mutate(values);
-      }} >
+      }}
+    >
       {({ values }) => (
         <Form className="container mx-auto py-4">
           <section className="space-y-5">
@@ -47,18 +57,29 @@ export default function InstructorProfile() {
               render={(arrayHelpers) => (
                 <>
                   {values.workExperience.map((exp, index) => (
-                    <WorkExperienceForm    key={index} index={index}
-                      title={`${t("instructor.workExperience.Work Experience")} ${index + 1}`}
+                    <WorkExperienceForm
+                      key={index}
+                      index={index}
+                      title={`${t(
+                        "instructor.workExperience.Work Experience"
+                      )} ${index + 1}`}
                       onAdd={() =>
                         arrayHelpers.push({
                           jobTitle: "",
                           companyName: "",
                           startDate: "",
-                          endDate: "", }) }/>
+                          endDate: "",
+                        })
+                      }
+                    />
                   ))}
                 </>
-              )} />
- <Button type="submit" className="btn space-y-4 bg-success hover:bg-green-600">
+              )}
+            />
+            <Button
+              type="submit"
+              className="btn space-y-4 bg-success hover:bg-green-600"
+            >
               {t("save.Save")}
             </Button>
           </section>
@@ -67,13 +88,3 @@ export default function InstructorProfile() {
     </Formik>
   );
 }
-
-
-
-
-
-
-
-
-
-
