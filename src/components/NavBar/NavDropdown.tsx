@@ -33,16 +33,19 @@ function NavDropdown({ icon }: { icon: ReactElement }) {
         collisionPadding={8}
         sticky="always"
       >
-        {role === "instructor" && (
-          <DropdownMenuItem asChild>
-            <Link className="drop-item" to="/instructor/home">
-              {t("common.home")}
-            </Link>
-          </DropdownMenuItem>
-        )}
+         {role === "instructor"
+         // && (
+          // <DropdownMenuItem asChild>
+          //   <Link className="drop-item"  to={`${role === "instructor" ? '/instructor/profile' : '/profile' }`}>
+          //  {/*  */}
+          //     {t("common.home")}
+          //   </Link>
+          // </DropdownMenuItem>
+        //)
+        } 
         
         <DropdownMenuItem asChild>
-          <Link className="drop-item" to={`${role === "instructor" ? '/instructor/profile' : '/profile' }`}>
+          <Link className="drop-item" to="/instructor/home" >
             {t("common.profile")}
           </Link>
         </DropdownMenuItem>

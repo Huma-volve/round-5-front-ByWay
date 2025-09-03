@@ -3,10 +3,11 @@ import WorkExperienceForm from "../../../components/instructor/WorkExperienceFor
 import MainForm from "../../../components/instructor/MainForm/MainForm";
 import { useTranslation } from "react-i18next";
 import { useMutation } from "@tanstack/react-query";
-import axiosInstance from "@/api/instructor-courses-api";
+
 import { toast } from "react-toastify";
 import { Formik, Form, FieldArray } from "formik";
 import { getInstructorProfileSchema } from "@/schemas/InstructorProfileSchema";
+import axiosInstance from "@/lib/axios-instance";
 
 export default function InstructorProfile() {
   const { t } = useTranslation();

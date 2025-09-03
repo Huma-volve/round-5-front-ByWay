@@ -5,7 +5,7 @@ import { NavigationMenu } from "@radix-ui/react-navigation-menu";
 import { useTranslation } from "react-i18next";
 
 import AppSearchBar from "./AppSearchBar";
-import { CircleUserRound, Heart, ShoppingCart } from "lucide-react";
+import { CircleUserRound, Edit, Heart, ShoppingCart } from "lucide-react";
 import { Button } from "../ui/button";
 import NavDropdown from "./NavDropdown";
 import BellWithBadge from "./BellWithBadge";
@@ -62,20 +62,34 @@ function AppNavbar() {
             ) : (
               <>
                 <Link to="/shopping-cart">
-                  <ShoppingCart size={20} className="hover:fill-blue-500" />
+                  <ShoppingCart size={20} className="" />
                 </Link>
+
                 <Link
                   to="/favourites"
                   className={`${role === "instructor" ? "hidden" : "block"}`}
                 >
                   <Heart size={20} className="hover:stroke-red-600" />
                 </Link>
+
                 <div className="relative">
                   <BellWithBadge
                     count={5}
                     onClick={() => navigate("/notifications")}
                   />
                 </div>
+
+                <Link
+                  to={`${
+                    role === "instructor" ? "/instructor/profile" : "/profile"
+                  }`}
+                >
+                  <Edit
+                    size={20}
+                    className=" text-gray-500 hover:text-gray-700 cursor-pointer"
+                  />
+                </Link>
+
                 <NavDropdown
                   icon={
                     <CircleUserRound className="cursor-pointer" size={20} />
