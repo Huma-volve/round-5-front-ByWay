@@ -70,8 +70,9 @@ function AppNavbar() {
             ) : (
               <>
                 <Link to="/shopping-cart">
-                  <ShoppingCart size={18} className="hover:fill-blue-500" />
-                </Link>
+
+                  <ShoppingCart size={20} className="" />
+                         </Link>
 
                 <Link
                   to="/favourites"
@@ -85,14 +86,20 @@ function AppNavbar() {
                   />
                 </Link>
 
-                <div className="relative mt-[2px]">
-                  <BellWithBadge
+
+                <div className="relative">
+     <div className="relative mt-[2px]">
+           <BellWithBadge
                     count={unreadCount}
                     onClick={() => navigate("/notifications")}
                   />
                 </div>
 
-                <NavDropdown
+
+             
+
+</div>
+      <NavDropdown
                   icon={
                     <CircleUserRound className="cursor-pointer" size={18} />
                   }
