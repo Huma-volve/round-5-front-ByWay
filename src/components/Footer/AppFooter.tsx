@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "@/assets/images/icons/logo-text.svg";
+import logo from "@/assets/images/icons/logo.svg";
 import { useTranslation } from "react-i18next";
 import facebook from "@/assets/images/icons/facebook.svg";
 import google from "@/assets/images/icons/google.svg";
@@ -15,13 +15,14 @@ function AppFooter() {
         <div className="md:grid md:grid-cols-4 gap-x-8 gap-y-6 flex flex-col">
           {/* Brand & Description */}
           <div>
-            <Link to="/" className="block mb-4">
+            <Link to="/" className="mb-4 flex items-center gap-2">
               <img
                 className="h-8 w-auto"
                 src={logo}
                 alt="Byway Logo"
                 loading="lazy"
               />
+              <h5 className="text-white text-sm">ByWay</h5>
             </Link>
             <p className="text-sm leading-relaxed">{t("footer.description")}</p>
           </div>

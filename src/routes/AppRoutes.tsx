@@ -7,12 +7,12 @@ import Success from "../pages/success/Success";
 // Course Pages
 
 import CourseDetails from "@/components/learnerCourses/CourseDetails";
-import InstructorCourseDetails from "@/pages/Courses/CourseDetails/InstructorCourseDetails";
-import MyCourses from "@/pages/Courses/MyCourses/MyCourses";
-import WatchVideo from "@/pages/Courses/WatchVideo";
-import LearnerCourseDetails from "@/pages/Courses/CourseDetails/LearnerCourseDetailes";
-import LearnerMyCourses from "@/pages/Courses/MyCourses/LearnerMyCourses";
-import CoursesPage from "@/pages/Courses/CoursesPage";
+import InstructorCourseDetails from "@/pages/courses/CourseDetails/InstructorCourseDetails";
+import MyCourses from "@/pages/courses/MyCourses/MyCourses";
+import WatchVideo from "@/pages/courses/WatchVideo";
+import LearnerCourseDetails from "@/pages/courses/CourseDetails/LearnerCourseDetailes";
+import LearnerMyCourses from "@/pages/courses/MyCourses/LearnerMyCourses";
+import CoursesPage from "@/pages/courses/CoursesPage";
 
 
 // Instructor Pages
