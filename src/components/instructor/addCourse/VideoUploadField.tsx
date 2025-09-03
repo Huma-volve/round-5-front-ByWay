@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { Video, Upload, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 interface VideoUploadFieldProps {
   value?: File | string;
@@ -37,13 +38,13 @@ export default function VideoUploadField({
   const handleFileSelect = (file: File) => {
     // Validate file type
     if (!file.type.startsWith("video/")) {
-      alert(t("instructor.upload.pleaseSelectVideoFile"));
+      toast.info(t("instructor.upload.pleaseSelectVideoFile"));
       return;
     }
 
     // Validate file size (500MB limit)
     if (file.size > 500 * 1024 * 1024) {
-      alert(t("instructor.upload.fileSizeVideoError"));
+      toast.info(t("instructor.upload.fileSizeVideoError"));
       return;
     }
 

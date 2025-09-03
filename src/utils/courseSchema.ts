@@ -2,41 +2,29 @@ import * as yup from "yup";
 
 export const createCourseValidationSchema = (t: (key: string) => string) =>
   yup.object({
-    courseTitle: yup
+    title: yup
       .string()
       .required(t("validation.course.courseTitleRequired"))
       .min(3, t("validation.course.courseTitleMin"))
       .max(100, t("validation.course.courseTitleMax")),
 
-    courseCategory: yup
-      .string()
+    category_id: yup
+      .number()
       .required(t("validation.course.courseCategoryRequired")),
 
-    courseLevel: yup
-      .array()
-      .of(yup.string())
-      .min(1, t("validation.course.courseLevelMin"))
-      .required(t("validation.course.courseLevelRequired")),
-
-    courseDescription: yup
+    description: yup
       .string()
       .required(t("validation.course.courseDescriptionRequired"))
       .min(10, t("validation.course.courseDescriptionMin"))
       .max(1000, t("validation.course.courseDescriptionMax")),
 
-    videoTitle: yup
-      .string()
-      .required(t("validation.course.videoTitleRequired"))
-      .min(3, t("validation.course.videoTitleMin"))
-      .max(100, t("validation.course.videoTitleMax")),
-
-    coursePrice: yup
+    price: yup
       .number()
       .required(t("validation.course.coursePriceRequired"))
       .positive(t("validation.course.coursePricePositive"))
       .max(9999, t("validation.course.coursePriceMax")),
 
-    courseThumbnail: yup
+    image: yup
       .mixed()
       .required(t("validation.course.courseThumbnailRequired"))
       .test(
@@ -58,7 +46,7 @@ export const createCourseValidationSchema = (t: (key: string) => string) =>
         return true;
       }),
 
-    introVideo: yup
+    video: yup
       .mixed()
       .required(t("validation.course.introVideoRequired"))
       .test(
@@ -79,6 +67,31 @@ export const createCourseValidationSchema = (t: (key: string) => string) =>
         }
         return true;
       }),
+  });
+
+export const updateCourseValidationSchema = (t: (key: string) => string) =>
+  yup.object({
+    title: yup
+      .string()
+      .required(t("validation.course.courseTitleRequired"))
+      .min(3, t("validation.course.courseTitleMin"))
+      .max(100, t("validation.course.courseTitleMax")),
+
+    category_id: yup
+      .number()
+      .required(t("validation.course.courseCategoryRequired")),
+
+    description: yup
+      .string()
+      .required(t("validation.course.courseDescriptionRequired"))
+      .min(10, t("validation.course.courseDescriptionMin"))
+      .max(1000, t("validation.course.courseDescriptionMax")),
+
+    price: yup
+      .number()
+      .required(t("validation.course.coursePriceRequired"))
+      .positive(t("validation.course.coursePricePositive"))
+      .max(9999, t("validation.course.coursePriceMax")),
   });
 
 // Keep the old export for backward compatibility, but it will use English messages

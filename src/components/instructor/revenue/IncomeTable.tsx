@@ -1,4 +1,4 @@
-import { useState , useMemo} from "react";
+import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import {
   flexRender,
@@ -25,7 +25,22 @@ import {
   PAYMENT_FILTER_OPTIONS,
   type IncomeTableData,
 } from "../../../data/incomeTableData";
-export default function IncomeTable() {
+import IncomeTableLoadingDesign from "./IncomeTableLoadingDesign";
+import IncomeTableErrorDesign from "./IncomeTableErrorDesign";
+import IncomeTableEmptyState from "./IncomeTableEmptyState";
+export default function IncomeTable({
+  isAdmin = false,
+  apiData,
+  isPending,
+  isError,
+  error,
+}: {
+  isAdmin?: boolean;
+  apiData?: IncomeTableData[];
+  isPending?: boolean;
+  isError?: boolean;
+  error?: Error | null;
+}) {
   const { t, i18n } = useTranslation();
   const [sorting, setSorting] = useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
@@ -37,18 +52,33 @@ export default function IncomeTable() {
   // Payment type color mapping
   const getPaymentTypeColor = (type: string) => {
     switch (type) {
-      case "Cash":
+      case "paypal":
         return "bg-green-100 text-green-800 border-green-200";
-      case "Credit Card":
+      case "stripe":
         return "bg-blue-100 text-blue-800 border-blue-200";
-      case "Bank Transfer":
+      case "bank":
         return "bg-purple-100 text-purple-800 border-purple-200";
       default:
         return "bg-gray-100 text-gray-800 border-gray-200";
     }
   };
 
-  const data = useMemo<IncomeTableData[]>(() => INCOME_TABLE_DATA, []);
+  // Check if we have real API data vs empty data vs no data
+  const hasApiData = apiData !== undefined && apiData !== null;
+  const isDataEmpty = hasApiData && apiData.length === 0;
+
+  const data = useMemo<IncomeTableData[]>(() => {
+    if (hasApiData && apiData.length > 0) {
+      return apiData;
+    }
+    // For development/demo purposes, fall back to static data if no API data is provided
+    // In production, this should probably be removed
+    if (!hasApiData) {
+      return INCOME_TABLE_DATA;
+    }
+    // If API returned empty array, return empty array (will show empty state)
+    return [];
+  }, [apiData, hasApiData]);
 
   const columns = useMemo<ColumnDef<IncomeTableData>[]>(
     () => [
@@ -160,35 +190,59 @@ export default function IncomeTable() {
     },
   });
 
+  // Loading state
+  if (isPending) {
+    return <IncomeTableLoadingDesign isAdmin={isAdmin} />;
+  }
+
+  // Error state
+  if (isError) {
+    return <IncomeTableErrorDesign isAdmin={isAdmin} error={error} />;
+  }
+
+  // Empty state - when API returned successfully but with no data
+  if (isDataEmpty) {
+    return <IncomeTableEmptyState isAdmin={isAdmin} />;
+  }
+
   return (
     <div className="w-full space-y-4 mt-16 mb-8 flex flex-col gap-2">
       {/* Filters & Search */}
-      <h1 className="text-2xl font-bold mb-2 ps-4">
-        {t("instructor.income.title")}
+      <h1
+        className={`text-xl md:text-2xl font-bold mb-2 ps-4 ${
+          isAdmin && "text-primary ps-0"
+        }`}
+      >
+        {isAdmin
+          ? t("admin.home.recentPayoutRequests")
+          : t("instructor.income.title")}
       </h1>
-      <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between px-4">
-        <div className="relative w-full sm:max-w-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-gray-300">
-          <Search
-            className={`absolute ${
-              isRTL ? "left-3" : "right-3"
-            } top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600`}
-          />
-          <Input
-            placeholder={t("instructor.income.search.placeholder")}
-            value={globalFilter ?? ""}
-            onChange={(e) => setGlobalFilter(e.target.value)}
-            className={`${isRTL ? "pl-10" : "pr-10"}`}
+      {!isAdmin && (
+        <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between px-4">
+          <div className="relative w-full sm:max-w-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-gray-300">
+            <Search
+              className={`absolute ${
+                isRTL ? "left-3" : "right-3"
+              } top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600`}
+            />
+            <Input
+              placeholder={t("instructor.income.search.placeholder")}
+              value={globalFilter ?? ""}
+              onChange={(e) => setGlobalFilter(e.target.value)}
+              className={`${isRTL ? "pl-10" : "pr-10"}`}
+            />
+          </div>
+
+          <CustomDropdown
+            value={paymentFilter}
+            onValueChange={setPaymentFilter}
+            placeholder={t("instructor.income.filters.paymentPlaceholder")}
+            options={PAYMENT_FILTER_OPTIONS}
+            t={t}
+            className="w-full sm:w-[180px]"
           />
         </div>
-        <CustomDropdown
-          value={paymentFilter}
-          onValueChange={setPaymentFilter}
-          placeholder={t("instructor.income.filters.paymentPlaceholder")}
-          options={PAYMENT_FILTER_OPTIONS}
-          t={t}
-          className="w-full sm:w-[180px]"
-        />
-      </div>
+      )}
 
       {/* Responsive Table Container */}
       <div className="rounded-lg mx-4">
@@ -214,14 +268,34 @@ export default function IncomeTable() {
               ))}
             </TableHeader>
             <TableBody>
-              {table
-                .getRowModel()
-                .rows.filter((row) =>
-                  paymentFilter && paymentFilter !== "all"
-                    ? row.original.type === paymentFilter
-                    : true
-                )
-                .map((row) => (
+              {(() => {
+                const filteredRows = table
+                  .getRowModel()
+                  .rows.filter((row) =>
+                    paymentFilter && paymentFilter !== "all"
+                      ? row.original.type === paymentFilter
+                      : true
+                  );
+
+                if (filteredRows.length === 0) {
+                  return (
+                    <TableRow>
+                      <TableCell colSpan={4} className="text-center py-12">
+                        <div className="flex flex-col items-center">
+                          <Search className="h-12 w-12 text-gray-300 mb-4" />
+                          <p className="text-lg font-medium text-gray-900 mb-2">
+                            {t("instructor.income.empty.noResults")}
+                          </p>
+                          <p className="text-gray-500">
+                            {t("instructor.income.empty.noResultsDescription")}
+                          </p>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  );
+                }
+
+                return filteredRows.map((row) => (
                   <TableRow key={row.id} className="hover:bg-gray-50">
                     {row.getVisibleCells().map((cell) => (
                       <TableCell
@@ -235,7 +309,8 @@ export default function IncomeTable() {
                       </TableCell>
                     ))}
                   </TableRow>
-                ))}
+                ));
+              })()}
             </TableBody>
           </Table>
         </div>

@@ -13,7 +13,9 @@ export default function CourseActionCard({ action }: CourseActionCardProps) {
     <Card
       className={`cursor-pointer hover:shadow-lg transition-shadow ${
         action.primary ? "ring-2 ring-primary ring-opacity-50" : ""
-      } ${action.destructive ? "border-red-200 hover:border-red-300" : ""}`}
+      } ${action.destructive ? "border-red-200 hover:border-red-300" : ""} ${
+        action.edit ? "border-green-200 hover:border-green-300" : ""
+      }`}
       onClick={action.action}
     >
       <CardHeader>
@@ -24,6 +26,8 @@ export default function CourseActionCard({ action }: CourseActionCardProps) {
                 ? "bg-primary text-white"
                 : action.destructive
                 ? "bg-red-100 text-red-600"
+                : action.edit
+                ? "bg-green-100 text-green-600"
                 : "bg-secondary text-white"
             }`}
           >
@@ -47,6 +51,8 @@ export default function CourseActionCard({ action }: CourseActionCardProps) {
               ? " text-primary hover:bg-primary hover:text-white"
               : action.destructive
               ? "text-destructive hover:bg-destructive hover:text-destructive-foreground"
+              : action.edit
+              ? "text-green-600 hover:bg-green-600 hover:text-white"
               : "text-gray-600 hover:bg-secondary hover:text-white"
           }`}
           onClick={(e) => {

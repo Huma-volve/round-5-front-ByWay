@@ -8,9 +8,9 @@ export interface IncomeTableData {
 
 // Payment types constants
 export const PaymentType = {
-  CASH: "Cash",
-  CREDIT_CARD: "Credit Card",
-  BANK_TRANSFER: "Bank Transfer",
+  CASH: "paypal",
+  CREDIT_CARD: "stripe",
+  BANK_TRANSFER: "bank",
 } as const;
 
 // Sample income data

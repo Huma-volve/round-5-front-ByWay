@@ -10,7 +10,6 @@ export default function CourseManagementTips() {
       </h3>
       <ul className="space-y-1 text-sm text-muted-foreground">
         <li>• {t("instructor.courseManagement.tips.tip1")}</li>
-        <li>• {t("instructor.courseManagement.tips.tip2")}</li>
         <li>• {t("instructor.courseManagement.tips.tip3")}</li>
         <li>• {t("instructor.courseManagement.tips.tip4")}</li>
       </ul>

@@ -2,12 +2,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Edit, Trash2, Clock, FileText } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import type { Lesson } from "@/data/coursesData";
+import type { LessonData } from "@/lib/types";
 
 interface LessonCardProps {
-  lesson: Lesson;
-  onEdit: (lesson: Lesson) => void;
-  onDelete: (lesson: Lesson) => void;
+  lesson: LessonData;
+  onEdit: (lesson: LessonData) => void;
+  onDelete: (lesson: LessonData) => void;
 }
 
 export default function LessonCard({
@@ -16,9 +16,9 @@ export default function LessonCard({
   onDelete,
 }: LessonCardProps) {
   const { t } = useTranslation();
-  const formatDuration = (minutes: number) => {
-    const hours = Math.floor(minutes / 60);
-    const mins = minutes % 60;
+  const formatDuration = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600);
+    const mins = Math.floor((seconds % 3600) / 60);
     if (hours > 0) {
       return `${hours}h ${mins}m`;
     }
@@ -67,7 +67,7 @@ export default function LessonCard({
           {/* Duration */}
           <div className="flex items-center gap-2 text-sm">
             <Clock className="h-4 w-4 text-muted-foreground" />
-            <span>{formatDuration(lesson.duration)}</span>
+            <span>{formatDuration(lesson.video_duration)}</span>
           </div>
 
           {/* Materials */}
@@ -88,7 +88,7 @@ export default function LessonCard({
           <span>{t("instructor.lessons.lesson", { order: lesson.order })}</span>
           <span>
             {t("instructor.lessons.updated", {
-              date: new Date(lesson.updatedAt).toLocaleDateString(),
+              date: new Date(lesson.updated_at).toLocaleDateString(),
             })}
           </span>
         </div>

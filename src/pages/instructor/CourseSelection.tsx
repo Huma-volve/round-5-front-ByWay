@@ -21,7 +21,7 @@ export default function CourseSelection() {
     setDeleteModalOpen,
     isDeleting,
     handleDeleteCourse,
-  } = useCourseManagement(navigate);
+  } = useCourseManagement(navigate, courseId);
 
   const courseActions = createCourseActions(
     courseId,
@@ -33,11 +33,12 @@ export default function CourseSelection() {
   return (
     <div className="container my-3">
       <div className="flex md:gap-52 items-center flex-col gap-4 md:flex-row mb-10">
-        <Breadcrumb items={getAutoBreadcrumb()} />
+        <Breadcrumb items={getAutoBreadcrumb(undefined, course?.title)} />
       </div>
         <h1 className="text-3xl font-bold mb-20 text-center">
           {t("instructor.courseManagement.title")}
         </h1>
+      {/* <h2></h2> */}
 
       <div className="mt-8">
         <div className="mb-6">

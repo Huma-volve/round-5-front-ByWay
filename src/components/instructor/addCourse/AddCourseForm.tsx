@@ -1,62 +1,49 @@
 import { useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
 import FormField from "@/components/ui/FormField";
-import type { CourseData } from "@/data/addCourseData";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+// import { categories } from "@/data/BrowseCourses";
 import { createCourseValidationSchema } from "@/utils/courseSchema";
 import VideoUploadField from "./VideoUploadField";
 import ImageUploadField from "./ImageUploadField";
 import { useTranslation } from "react-i18next";
+import type { createCourseData } from "@/lib/types";
+import useAddNewCourse from "@/hooks/instructor/useAddNewCourse";
+import useGetCategories from "@/hooks/instructor/useGetCategories";
 
 export default function AddCourseForm() {
-  const navigate = useNavigate();
+  const { mutate, isPending } = useAddNewCourse();
+  const { data, isLoading } = useGetCategories();
+  const categories = data?.data || [];
   const { t } = useTranslation();
 
-  // Define course levels with translations inside the component
-  const courseLevels = [
-    { id: "beginner", label: t("instructor.addCourse.courseLevel.beginner") },
-    {
-      id: "intermediate",
-      label: t("instructor.addCourse.courseLevel.intermediate"),
-    },
-    { id: "advanced", label: t("instructor.addCourse.courseLevel.advanced") },
-  ];
-
-  const formik = useFormik<CourseData>({
+  const formik = useFormik<createCourseData>({
     initialValues: {
-      courseTitle: "",
-      courseCategory: "",
-      courseLevel: [],
-      courseDescription: "",
-      videoTitle: "Intro Video",
-      coursePrice: 0,
-      courseThumbnail: null,
-      introVideo: null,
+      title: "",
+      category_id: 0,
+      description: "",
+      price: 0,
+      image: null,
+      video: null,
     },
     validationSchema: createCourseValidationSchema(t),
     onSubmit: (values) => {
       // handle form submission here
       console.log("Form submitted:", values);
+      mutate(values);
       // Simulate course creation and get courseId
-      const courseId = "course-" + Date.now(); // In real app, this would come from API response
+      // const courseId = "course-" + Date.now(); // In real app, this would come from API response
       // Navigate to course management page with the new courseId
-      navigate(`/instructor/courses/${courseId}/manage`);
+      // navigate(`/instructor/my-courses/${courseId}/manage`);
     },
   });
-
-  const handleLevelChange = (levelId: string, checked: boolean) => {
-    const currentLevels = formik.values.courseLevel;
-    if (checked) {
-      formik.setFieldValue("courseLevel", [...currentLevels, levelId]);
-    } else {
-      formik.setFieldValue(
-        "courseLevel",
-        currentLevels.filter((id) => id !== levelId)
-      );
-    }
-  };
 
   return (
     <div className="w-full">
@@ -65,57 +52,60 @@ export default function AddCourseForm() {
           {/* Course Title */}
           <FormField
             id="courseTitle"
-            name="courseTitle"
+            name="title"
             label={t("instructor.addCourse.courseTitle")}
             placeholder={t("instructor.addCourse.courseTitlePlaceholder")}
-            value={formik.values.courseTitle}
+            value={formik.values.title}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            error={formik.errors.courseTitle}
-            touched={formik.touched.courseTitle}
+            error={formik.errors.title}
+            touched={formik.touched.title}
             className="bg-white"
           />
 
           {/* Course Category */}
-          <FormField
-            id="courseCategory"
-            name="courseCategory"
-            label={t("instructor.addCourse.courseCategory")}
-            placeholder={t("instructor.addCourse.courseCategoryPlaceholder")}
-            value={formik.values.courseCategory}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.errors.courseCategory}
-            touched={formik.touched.courseCategory}
-          />
-
-          {/* Course Level */}
-          <div className="space-y-3">
-            <Label className="text-base">
-              {t("instructor.addCourse.courseLevel.title")}
+          <div className="space-y-2">
+            <Label htmlFor="courseCategory" className="text-base">
+              {t("instructor.addCourse.courseCategory")}
             </Label>
-            <div className="flex flex-col gap-3 bg-white w-fit p-4 rounded-lg shadow-sm">
-              {courseLevels.map((level) => (
-                <div key={level.id} className="flex items-center space-x-2 ">
-                  <Label
-                    htmlFor={level.id}
-                    className="text-base font-medium w-[100px]"
-                  >
-                    {level.label}
-                  </Label>
-                  <Checkbox
-                    id={level.id}
-                    checked={formik.values.courseLevel.includes(level.id)}
-                    onCheckedChange={(checked: boolean) =>
-                      handleLevelChange(level.id, checked)
-                    }
+            {isLoading ? (
+              <p className="text-gray-500 animate-pulse ps-1">Loading categories...</p>
+            ) : (
+              <Select
+                value={
+                  formik.values.category_id === 0
+                    ? "0"
+                    : formik.values.category_id.toString()
+                }
+                onValueChange={(value) =>
+                  formik.setFieldValue("category_id", parseInt(value))
+                }
+              >
+                <SelectTrigger className="bg-white">
+                  <SelectValue
+                    placeholder={t(
+                      "instructor.addCourse.courseCategoryPlaceholder"
+                    )}
                   />
-                </div>
-              ))}
-            </div>
-            {formik.touched.courseLevel && formik.errors.courseLevel && (
-              <p className="text-sm text-red-500">
-                {formik.errors.courseLevel}
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="0" disabled>
+                    {t("instructor.addCourse.courseCategoryDefault")}
+                  </SelectItem>
+                  {categories.map((category: { id: number; name: string }) => (
+                    <SelectItem
+                      key={category.id}
+                      value={category.id.toString()}
+                    >
+                      {category.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
+            {formik.touched.category_id && formik.errors.category_id && (
+              <p className="text-red-500 text-sm mt-1">
+                {formik.errors.category_id}
               </p>
             )}
           </div>
@@ -123,42 +113,30 @@ export default function AddCourseForm() {
           {/* Course Description */}
           <FormField
             id="courseDescription"
-            name="courseDescription"
+            name="description"
             label={t("instructor.addCourse.courseDescription")}
             type="textarea"
             placeholder={t("instructor.addCourse.courseDescriptionPlaceholder")}
-            value={formik.values.courseDescription}
+            value={formik.values.description}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            error={formik.errors.courseDescription}
-            touched={formik.touched.courseDescription}
+            error={formik.errors.description}
+            touched={formik.touched.description}
             rows={4}
-          />
-
-          {/* Video Title */}
-          <FormField
-            id="videoTitle"
-            name="videoTitle"
-            label={t("instructor.addCourse.videoTitle")}
-            value={formik.values.videoTitle}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.errors.videoTitle}
-            touched={formik.touched.videoTitle}
           />
 
           {/* Course Price */}
           <FormField
             id="coursePrice"
-            name="coursePrice"
+            name="price"
             label={t("instructor.addCourse.coursePrice") + " ($)"}
             type="number"
             placeholder="0.00"
-            value={formik.values.coursePrice || ""}
+            value={formik.values.price || ""}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            error={formik.errors.coursePrice}
-            touched={formik.touched.coursePrice}
+            error={formik.errors.price}
+            touched={formik.touched.price}
             min="0"
             step="0.01"
           />
@@ -169,11 +147,11 @@ export default function AddCourseForm() {
               {t("instructor.addCourse.courseThumbnail")}
             </Label>
             <ImageUploadField
-              value={formik.values.courseThumbnail || undefined}
-              onChange={(file) => formik.setFieldValue("courseThumbnail", file)}
+              value={formik.values.image || undefined}
+              onChange={(file) => formik.setFieldValue("image", file)}
               error={
-                formik.touched.courseThumbnail && formik.errors.courseThumbnail
-                  ? String(formik.errors.courseThumbnail)
+                formik.touched.image && formik.errors.image
+                  ? String(formik.errors.image)
                   : undefined
               }
             />
@@ -185,11 +163,11 @@ export default function AddCourseForm() {
               {t("instructor.addCourse.introVideo")}
             </Label>
             <VideoUploadField
-              value={formik.values.introVideo || undefined}
-              onChange={(file) => formik.setFieldValue("introVideo", file)}
+              value={formik.values.video || undefined}
+              onChange={(file) => formik.setFieldValue("video", file)}
               error={
-                formik.touched.introVideo && formik.errors.introVideo
-                  ? String(formik.errors.introVideo)
+                formik.touched.video && formik.errors.video
+                  ? String(formik.errors.video)
                   : undefined
               }
             />
@@ -200,9 +178,9 @@ export default function AddCourseForm() {
             <Button
               type="submit"
               className="w-full text-primary hover:text-white bg-white hover:bg-primary"
-              disabled={formik.isSubmitting}
+              disabled={isPending}
             >
-              {formik.isSubmitting
+              {isPending
                 ? "Creating Course..."
                 : t("instructor.addCourse.submitButton")}
             </Button>

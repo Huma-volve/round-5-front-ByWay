@@ -9,7 +9,7 @@ import { paginateLaravel } from "../../utils/paginationSimulator";
 import INSTRUCTOR_REVIEWS_DATA from "../../data/instructorReviewsData";
 
 export default function InstructorReviews() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { getAutoBreadcrumb } = useBreadcrumb();
 
   const [page, setPage] = useState(1);
@@ -29,37 +29,30 @@ export default function InstructorReviews() {
       setPage(Number(link.label));
     }
   }
-  function toggleLanguage() {
-    const newLang = i18n.language === "en" ? "ar" : "en";
-    i18n.changeLanguage(newLang);
-    document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
-    document.documentElement.lang = newLang;
-  }
 
   return (
-    <div className="container mx-auto py-2 flex flex-col items-center justify-center gap-2">
+    <div className="mt-6 mx-auto py-2 flex flex-col items-center justify-center gap-2">
       <div className="w-full max-w-4xl">
-        <Breadcrumb items={getAutoBreadcrumb()} className="mb-6" />
+        <Breadcrumb items={getAutoBreadcrumb()} className="" />
       </div>
-      <div className="text-start w-full py-4 font-bold text-xl px-8 lg:px-0">
+      <div className="text-center w-full py-4 font-bold text-xl px-8 lg:px-0 ">
         <h1>
           {t("instructor.reviews")} ({pagination.total})
         </h1>
       </div>
-      <button
-        onClick={toggleLanguage}
-        className="bg-[var(--primary)] mt-4 px-4 py-2 rounded text-white"
-      >
-        Toggle
-      </button>
       {/* Render paginated reviews */}
-      {pagination.data.map(({ id, courseName, review, rating }) => (
+      {pagination.data.map(({ id,  review, rating }) => (
         <Review
           key={id}
-          courseName={courseName}
-          review={review}
-          rating={rating}
-        />
+          // courseName={courseName}  courseName,
+          // review={review}
+          review={{
+      review: review,
+      rating: rating,
+      created_at: "2025-08-24",
+      user: { name: "John Doe" }
+    }}
+           />
       ))}
 
       {/* Pagination controls */}
@@ -76,8 +69,7 @@ export default function InstructorReviews() {
               link.active ? " text-black bg-gray-200" : "text-gray-400"
             } ${link.label === "<" && "rounded-l-md"} ${
               link.label === ">" && "rounded-r-md"
-            }`}
-          >
+            }`} >
             {link.label}
           </button>
         ))}
