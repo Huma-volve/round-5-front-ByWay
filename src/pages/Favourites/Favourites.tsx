@@ -16,7 +16,8 @@ export default function Favourites() {
   const { t } = useTranslation();
   const { getAutoBreadcrumb } = useBreadcrumb();
   const [activeButton, setActiveButton] = useState<"btn1" | "btn2">("btn1");
-  const { mutate: removeFavorite, isPending: isRemoving, error: removeError } =
+  const [removingIds, setRemovingIds] = useState<number[]>([]);
+  const { mutate: removeFavorite, error: removeError } =
     useRemoveFavorites();
   const { favourites, isLoading, isError, error } = useFavourites();
 
@@ -25,8 +26,10 @@ export default function Favourites() {
 
   const handleFavorite = (courseId: number) => {
     if (isFavoriteCourse(courseId)) {
+        setRemovingIds((prev) => [...prev, courseId]);;
       removeFavorite(courseId, {
         onSuccess: () => {
+          setRemovingIds((prev) => prev.filter((id) => id !== courseId));
           toast.success(t("Removed Successfully"));
         },
       });
@@ -114,7 +117,7 @@ export default function Favourites() {
                     </div>
                   </Link>
 
-                  {isRemoving ? (
+                  {removingIds.includes(fav.course_id) ? (
                     <Loader2 className="w-5 h-5 md:w-6 md:h-6 animate-spin text-gray-500 mr-4 rtl:ml-4" />
                   ) : (
                     <Heart
