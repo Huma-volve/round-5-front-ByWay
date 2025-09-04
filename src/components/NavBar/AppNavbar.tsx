@@ -11,7 +11,7 @@ import NavDropdown from "./NavDropdown";
 import BellWithBadge from "./BellWithBadge";
 import MobileSearch from "./MobileSearch";
 import LanguageToggle from "./LanguageToggle";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
+// import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 import { useFavourites } from "@/hooks/Favorites/useFavourites";
 import { useNotifications } from "@/hooks/useNotifications";
@@ -70,14 +70,13 @@ function AppNavbar() {
             ) : (
               <>
                 <Link to="/shopping-cart">
-
                   <ShoppingCart size={20} className="" />
-                         </Link>
+                </Link>
 
                 <Link
                   to="/favourites"
                   // className={`${role === "instructor" ? "hidden" : "block"}`}
-                  >
+                >
                   <Heart
                     size={18}
                     className={`hover:stroke-red-600 ${
@@ -86,20 +85,15 @@ function AppNavbar() {
                   />
                 </Link>
 
-
                 <div className="relative">
-     <div className="relative mt-[2px]">
-           <BellWithBadge
-                    count={unreadCount}
-                    onClick={() => navigate("/notifications")}
-                  />
+                  <div className="relative mt-[2px]">
+                    <BellWithBadge
+                      count={unreadCount}
+                      onClick={() => navigate("/notifications")}
+                    />
+                  </div>
                 </div>
-
-
-             
-
-</div>
-      <NavDropdown
+                <NavDropdown
                   icon={
                     <CircleUserRound className="cursor-pointer" size={18} />
                   }
