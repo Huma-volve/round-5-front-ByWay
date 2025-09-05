@@ -88,7 +88,7 @@ export default function PaymentMethod(/*{}: paymentFormProps*/) {
 
         setTimeout(() => {
           navigate("/checkout");
-        }, 1000);
+        }, 10);
       }
     } catch (err: any) {
       setMessage("Error: " + err.message);
@@ -110,8 +110,8 @@ export default function PaymentMethod(/*{}: paymentFormProps*/) {
   };
 
   return (
-    <div className="max-w-md mx-auto ">
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="min-w-[60%] h-[200px] p-8 mx-auto  rounded-lg bg-[#F8FAFC]">
+      <form onSubmit={handleSubmit} className="space-y-4 ">
         <div className="bg-gray-50 p-4 rounded border">
           <CardElement options={cardStyle} />
         </div>
@@ -119,10 +119,10 @@ export default function PaymentMethod(/*{}: paymentFormProps*/) {
         <button
           type="submit"
           disabled={!stripe || !elements || !clientSecret}
-          className={`w-full py-3 px-4 rounded text-white font-medium ${
+          className={`w-full py-2 px-4  rounded text-white font-medium ${
             !stripe || !elements || !clientSecret
               ? "bg-gray-400 cursor-not-allowed"
-              : "bg-primary hover:opacity-[0.8] transition duration-300"
+              : "bg-primary hover:opacity-[0.8]  transition duration-300"
           }`}
         >
           {loading

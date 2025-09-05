@@ -2,35 +2,21 @@ import { type userProfile } from "@/data/userProfile";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import edit from "../../assets/images/icons/edit.svg";
-import axiosInstance from "@/lib/axios-instance";
-import { useEffect, useState } from "react";
 import profile from "../../assets/images/icons/profile.svg";
+import { useFetchUserProfile } from "@/hooks/learner-profile";
 
 const UserProfilePage = () => {
-  const [user, setData] = useState<userProfile>();
   const { t, i18n } = useTranslation();
-  const [isLoading, setIsLoading] = useState(true);
+  const { data, isLoading } = useFetchUserProfile();
 
-  useEffect(() => {
-    setIsLoading(true);
-    axiosInstance
-      .get("/profile")
-      .then((res) => {
-        setData(res.data.data.user);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setIsLoading(false);
-      });
-  }, []);
-
+  const user = (data ?? null) as userProfile | null;
+  console.log({user});
   const twitter = user?.twitter_link || "";
   const linkedin = user?.linkedin_link || "";
   const youtube = user?.youtube_link || "";
   const facebook = user?.facebook_link || "";
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div>{t("adminUser.Loading")}...</div>;
 
   return (
     <div className="container m-8 p-12  rounded-[10px] border-2  border-border">
@@ -46,9 +32,8 @@ const UserProfilePage = () => {
           src={edit}
           alt="edit"
           loading="lazy"
-          className={`w-8 h-8  curser-pointer bg-border  mt-[-20px]   py-2 rounded-full absolute ${
-            i18n.language === "ar" ? "left-[15%] " : "right-[15%] "
-          }`}
+          className={`w-8 h-8  curser-pointer bg-border  mt-[-20px]   py-2 rounded-full absolute ${i18n.language === "ar" ? "left-[15%] " : "right-[15%] "
+            }`}
         />
       </Link>
       <div className="flex gap-8 flex-wrap justify-center mt-[50px] text-secondary">

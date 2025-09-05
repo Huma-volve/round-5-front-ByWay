@@ -1,6 +1,7 @@
 import { useFetchcheckout, useFetchPaymentMethods, useCheckoutConfirm } from "@/hooks/payment/payment";
 import { currencyFormatter } from "@/utils/CurrencyFormatter";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -10,6 +11,7 @@ function Checkout() {
   const [payment_method_id, setPaymentMethodId] = useState<string | undefined>(undefined);
   const navigate = useNavigate();
   const checkoutMutation = useCheckoutConfirm();
+  const { t } = useTranslation();
   console.log("checkoutMutation", checkoutMutation);
   const handlePayment = () => {
     if (!payment_method_id) {
@@ -39,22 +41,22 @@ function Checkout() {
     checkoutRefetch();
   }, []);
 
-  if (isLoading) return <p>Loading payment methods...</p>;
+  if (isLoading) return <p>{t("adminUser.Loading")}...</p>;
   if (isError) return <p>Failed to load payment methods</p>;
 
   const methods = data?.dataMethods?.data || [];
   if (checkoutData === undefined || checkoutData?.data?.data?.total === 0 || checkoutMutation.status === "success") {
-    return <p className="text-primary text-center font-medium h-[40vh] flex items-center justify-center">Cart is Empty,check your Cart </p>;
+    return <p className="text-primary text-center font-medium h-[40vh] flex items-center justify-center">{t("cart.Cart is Empty,check your Cart")} </p>;
   }
   if (loading) {
-    return <p className="text-primary text-center font-medium h-[40vh] flex">Loading...</p>;
+    return <p className="text-primary text-center font-medium h-[40vh] flex">{t("adminUser.Loading")}...</p>;
   }
   console.log(methods)
   return (
     <div className="space-y-4">
-      <h1 className="text-primary text-center font-bold text-[20px]">Checkout Information</h1>
-      <p className="text-secondaryDark font-medium ">Order Id : <span className="text-primary font-normal">{checkoutData?.data?.data?.order_id}</span></p>
-      <p className="text-secondaryDark font-medium mb-4">Total : <span className="text-primary font-normal ">{currencyFormatter.format(checkoutData?.data?.data?.total)}</span></p>
+      <h1 className="text-primary text-center font-bold text-[20px]">{t("cart.Checkout Information")}</h1>
+      <p className="text-secondaryDark font-medium ">{t("cart.Order Id")} : <span className="text-primary font-normal">{checkoutData?.data?.data?.order_id}</span></p>
+      <p className="text-secondaryDark font-medium mb-4">{t("cart.Total")} : <span className="text-primary font-normal ">{currencyFormatter.format(checkoutData?.data?.data?.total)}</span></p>
       {methods.length ? (
         <>
           <h2 className="text-primary font-medium pt-4 text-[20px] ">Select Payment Method</h2>
@@ -76,13 +78,13 @@ function Checkout() {
         className="bg-primary text-white px-4 py-2 rounded hover:opacity-[.9] disabled:bg-gray-400"
         disabled={!payment_method_id || checkoutMutation.status === "pending"}
       >
-        {checkoutMutation.status === "pending" ? "Processing..." : "Payment"}
+        {checkoutMutation.status === "pending" ? "Processing..." : "Checkout Now"}
       </button>
         </>
       ) 
       : (
         <div className="mt-4 ">
-      <Link to="/settings/paymethod" className="bg-primary hover:opacity-[.7] text-white py-2 px-4  rounded-[8px]">Add Payment Method</Link>
+      <Link to="/settings/paymethod" className="bg-primary hover:opacity-[.7] text-white py-2 px-4  rounded-[8px]">{t("cart.Add Payment Method")}</Link>
       </div>)
       }
     
