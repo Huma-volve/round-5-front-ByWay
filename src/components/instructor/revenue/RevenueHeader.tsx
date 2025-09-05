@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useFetchInstructorRevenueAnalytics from "@/hooks/instructor/useFetchInstructorRevenueAnalytics";
 import { currencyFormatter } from "@/utils/CurrencyFormatter";
 
@@ -13,6 +13,13 @@ export default function RevenueHeader() {
   const { data, isPending, isError, error } =
     useFetchInstructorRevenueAnalytics();
   const analytics = data?.data || {};
+
+  const navigate = useNavigate();
+
+  const handleGetPaid = () => {
+    navigate("/instructor/get-paid",{state:{analytics:{...analytics,available_balance:analytics.available_balance<0?-1*analytics.available_balance:analytics.available_balance}}});
+  };
+
   let content;
   if (isPending) {
     content = (
@@ -58,7 +65,7 @@ export default function RevenueHeader() {
               analytics.available_balance
             )}`}
           >
-            {currencyFormatter.format(analytics.available_balance)}
+            {currencyFormatter.format((analytics.available_balance<0?-1*analytics.available_balance:analytics.available_balance))}
           </span>
           <span className="text-sm text-gray-500">
             {t("instructor.revenue.stats.availableBalance")}
@@ -98,12 +105,12 @@ export default function RevenueHeader() {
         <p className="text-placeholder">
           {t("instructor.revenue.paidMessage")}
         </p>
-        <Link
-          to="/instructor/get-paid"
+        <button
+          onClick={handleGetPaid}
           className=" py-3 px-6 bg-[var(--primary)] text-white rounded-lg hover:bg-opacity-90 transition-colors duration-200"
         >
           {t("instructor.revenue.getPaid")}
-        </Link>
+        </button>
       </div>
       {content}
     </div>

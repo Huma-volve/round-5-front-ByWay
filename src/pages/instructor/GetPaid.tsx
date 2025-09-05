@@ -1,71 +1,48 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-interface Errors {
-  paymentMethod?: string;
-  bankName?: string;
-  amount?: string;
-  accountValue?: string;
-}
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 export default function GetPaid() {
   const navigate = useNavigate();
+  const {state} = useLocation();
   const { t } = useTranslation();
-
-  const [paymentMethod, setPaymentMethod] = useState<string>("");
-  const [bankName, setBankName] = useState<string>("");
-  const [account, setAccount] = useState<string>("");
-  const [accountValue, setAccountValue] = useState<string>("");
-  const [saveDetails, setSaveDetails] = useState<boolean>(false);
-  const [errors, setErrors] = useState<Errors>({});
-
-  const validate = (): boolean => {
-    const newErrors: Errors = {};
-
-    if (!paymentMethod) {
-      newErrors.paymentMethod = t("withdraw.Please select a payment method");
-    }
-    if (paymentMethod === "bank" && !bankName) {
-      newErrors.bankName = t("withdraw.Please select a bank");
-    }
-    if (!account || account.length <= 0) {
-      newErrors.amount = t("withdraw.Please enter a valid account Name");
-    }
-    if (!accountValue) {
-      newErrors.accountValue =
-        paymentMethod === "bank"
-          ? t("withdraw.Please enter your account number")
-          : t("withdraw.Please enter your account email");
-    } else {
-      if (paymentMethod === "bank" && accountValue.length < 6) {
-        newErrors.accountValue = t("withdraw.Account number must be at least 6 digits");
-      }
-      if (paymentMethod !== "bank" && !/\S+@\S+\.\S+/.test(accountValue)) {
-        newErrors.accountValue = t("withdraw.Please enter a valid email");
-      }
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleConfirm = () => {
-    if (validate()) {
-      navigate("/instructor/withdraw");
-    }
-  };
+  const formik = useFormik({
+    initialValues: {
+      payment_method: "",
+      bank_name: "",
+      account_name: "",
+      account_number: 0,
+      email: "",
+    },
+    validationSchema: Yup.object({
+      payment_method: Yup.string().required(t("withdraw.Please select a payment method")),
+      bank_name: Yup.string().when("payment_method", {
+        is: "bank",
+        then: (schema) => schema.required(t("withdraw.Please select a bank")),
+      }),
+      account_name: Yup.string().required(t("withdraw.Please enter a valid account Name")),
+      account_number: Yup.number().required(
+        t("withdraw.Please enter your account number")
+      ),
+      email: Yup.string().required(t("withdraw.Please enter your email")),
+    }),
+    onSubmit: (values) => {
+      navigate("/instructor/withdraw",{state:{values,analytics:state?.analytics}});
+    },
+  });
 
   return (
-    <div className="container my-6 mx-auto mt-12 bg-background">
+    <form onSubmit={formik.handleSubmit} className="container my-6 mx-auto mt-12 bg-background">
       <h1 className="text-2xl font-bold mb-6">{t("withdraw.Enter Payment Details")}</h1>
 
       {/* Payment Method */}
       <label className="block font-medium mb-2">{t("withdraw.Payment Method")}</label>
       <select
-        value={paymentMethod}
-        onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-          setPaymentMethod(e.target.value)
-        }
+        value={formik.values.payment_method}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        name="payment_method"
         className="w-full lg:w-[50%] border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-primary"
       >
         <option value="">{t("withdraw.Please Select")}</option>
@@ -73,8 +50,8 @@ export default function GetPaid() {
         <option value="bank">{t("withdraw.Bank Transfer")}</option>
         <option value="fawry">{t("withdraw.Fawry")}</option>
       </select>
-      {errors.paymentMethod && (
-        <p className="text-red-500 text-sm mt-1">{errors.paymentMethod}</p>
+      {formik.touched.payment_method && formik.errors.payment_method && (
+        <p className="text-red-500 text-sm mt-1">{formik.errors.payment_method}</p>
       )}
 
       {/* Acount */}
@@ -82,49 +59,51 @@ export default function GetPaid() {
         <label className="block font-medium mb-2">{t("withdraw.Account Name")}</label>
         <input
           type="text"
-          value={account}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setAccount(e.target.value)
-          }
+          value={formik.values.account_name}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          name="account_name"
           className="w-full lg:w-[50%] border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-primary"
           placeholder={t("withdraw.Enter Account Name")}
         />
-        {errors.amount && (
-          <p className="text-red-500 text-sm mt-1">{errors.amount}</p>
+        {formik.touched.account_name && formik.errors.account_name && (
+          <p className="text-red-500 text-sm mt-1">{formik.errors.account_name}</p>
         )}
       </div>
 
       {/* Account Email / Number */}
       <div className="mt-4">
         <label className="block font-medium mb-2">
-          {paymentMethod === "bank" ? t("withdraw.Account Number") : t("withdraw.Account Email")}
+          {formik.values.payment_method === "bank" ? t("withdraw.Account Number") : t("withdraw.Account Email")}
         </label>
         <input
-          type={paymentMethod === "bank" ? "number" : "email"}
-          value={accountValue}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setAccountValue(e.target.value)
-          }
+          type={formik.values.payment_method === "bank" ? "number" : "email"}
+          value={formik.values.payment_method === "bank" ? formik.values.account_number : formik.values.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          name={formik.values.payment_method === "bank" ? "account_number" : "email"}
           className="w-full lg:w-[50%] border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-primary"
           placeholder={
-            paymentMethod === "bank"
+            formik.values.payment_method === "bank"
               ? t("withdraw.Enter Account Number")
               : t("withdraw.Enter Account Email")
           }
         />
-        {errors.accountValue && (
-          <p className="text-red-500 text-sm mt-1">{errors.accountValue}</p>
+        {formik.values.payment_method === "bank" ? formik.touched.account_number && formik.errors.account_number && (
+          <p className="text-red-500 text-sm mt-1">{formik.errors.account_number}</p>
+        ) : formik.touched.email && formik.errors.email && (
+          <p className="text-red-500 text-sm mt-1">{formik.errors.email}</p>
         )}
-      </div>
+        </div>
 {/* Bank Select */}
-      {paymentMethod === "bank" && (
+      {formik.values.payment_method === "bank" && (
         <div className="mt-4 transition-all duration-300 ease-in-out">
           <label className="block font-medium mb-2">{t("withdraw.Bank Name")}</label>
           <select
-            value={bankName}
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-              setBankName(e.target.value)
-            }
+            value={formik.values.bank_name}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            name="bank_name"
             className="w-full lg:w-[50%] border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-primary"
           >
             <option value="">{t("withdraw.Please Select")}</option>
@@ -132,14 +111,14 @@ export default function GetPaid() {
             <option value="alahly">Al-Ahly</option>
             <option value="egypt">Bank of Egypt</option>
           </select>
-          {errors.bankName && (
-            <p className="text-red-500 text-sm mt-1">{errors.bankName}</p>
+          {formik.touched.bank_name && formik.errors.bank_name && (
+            <p className="text-red-500 text-sm mt-1">{formik.errors.bank_name}</p>
           )}
         </div>
       )}
 
       {/* Save details */}
-      <div className="mt-4 flex items-center">
+      {/* <div className="mt-4 flex items-center">
         <input
           type="radio"
           id="saveDetails"
@@ -150,15 +129,15 @@ export default function GetPaid() {
         <label htmlFor="saveDetails" className="cursor-pointer text-secondaryDark">
           {t("withdraw.Save These Details")}
         </label>
-      </div>
+      </div> */}
 
       {/* Confirm Button */}
       <button
         className="mt-6 w-full lg:w-[50%] bg-success text-white py-2 rounded-lg hover:bg-green-700 transition"
-        onClick={handleConfirm}
+        type="submit"
       >
         {t("withdraw.Continue")}
       </button>
-    </div>
+    </form>
   );
 }

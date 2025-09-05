@@ -4,11 +4,10 @@ import inactiveStarIcon from "../../../assets/images/icons/star-inactive-icon.sv
 
 import { CircleUserRound } from "lucide-react";
 import type { InstructorReview } from "@/data/instructorReviewsData";
-import type { review } from "@/pages/Courses/CourseDetails/InstructorCourseDetails";
 type ReviewProps = InstructorReview & {
   variant?: "course" | "user";
   review: {
-    review: review;
+    review: string;
     rating: number;
     created_at: string;
     user: {

@@ -326,3 +326,12 @@ export interface LessonData {
   created_at: string;
   updated_at: string;
 }
+
+export interface WithdrawalRequest {
+  amount: number;
+  payment_method: string;
+  bank_name: string;
+  account_name: string;
+  account_number?: number;
+  email?: string;
+}

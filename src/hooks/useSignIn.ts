@@ -14,21 +14,23 @@ export function useSignIn() {
   const [, setUserId] = useLocalStorage("user_id", "");
   const [, setAuthToken] = useLocalStorage("auth_token", "");
   const [, setEmail] = useLocalStorage("email", "");
+  const [, setName] = useLocalStorage("name","")
 
   const { mutate, error, isPending, data } = useMutation({
     mutationFn: signIn,
     onSuccess: (data) => {
-console.log(data);
+// console.log(data);
 
-      localStorage.setItem("auth_token", data.data.access_token);
-      localStorage.setItem("user_id", data.data.user.id);
-      localStorage.setItem("email", data.data.user.email);
-      localStorage.setItem("role", data.data.user.role);
+      // localStorage.setItem("auth_token", data.data.access_token);
+      // localStorage.setItem("user_id", data.data.user.id);
+      // localStorage.setItem("email", data.data.user.email);
+      // localStorage.setItem("role", data.data.user.role);
 
       setAuthToken(data.data.access_token)
       setRole(data.data.user.role)
       setUserId(data.data.user.id)
       setEmail(data.data.user.email)
+      setName(data.data.user.name)
   // Dispatch custom event to notify other components of localStorage change
       window.dispatchEvent(new Event("localStorageUpdate"));
 

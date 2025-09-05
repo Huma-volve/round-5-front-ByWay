@@ -10,6 +10,7 @@ import useAddFavorites from "@/hooks/Favorites/useAddFavorites";
 import useRemoveFavorites from "@/hooks/Favorites/useRemoveFavorites";
 import useAddToCart from "@/hooks/Cart/useAddToCart";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 interface CardCourseProps {
   courses: CoursesHome[];
@@ -20,10 +21,12 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
   const { t } = useTranslation();
   const [role] = useLocalStorage("role", "");
   const { favourites } = useFavourites();
+  const [loadingIds, setLoadingIds] = useState<number[]>([]);
   const { mutate: removeFavorite } = useRemoveFavorites();
   const { mutate: addFavorite } = useAddFavorites();
   const { mutate: addToCart } = useAddToCart();
   const navigate = useNavigate();
+
   // Check courseId Favorite
   const isFavoriteCourse = (courseId: number) =>
     favourites.some((fav) => fav.course_id === courseId);
@@ -32,10 +35,31 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
   const handleFavorite = (courseId: number, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+
+    setLoadingIds((prev) => [...prev, courseId]);
+
     if (isFavoriteCourse(courseId)) {
-      removeFavorite(courseId);
+      removeFavorite(courseId, {
+        onSuccess: () => {
+          toast.success(t("Removed from favourites"));
+          setLoadingIds((prev) => prev.filter((id) => id !== courseId));
+        },
+        onError: () => {
+          toast.error(t("Failed to remove favourite"));
+          setLoadingIds((prev) => prev.filter((id) => id !== courseId));
+        },
+      });
     } else {
-      addFavorite(courseId);
+      addFavorite(courseId, {
+        onSuccess: () => {
+          toast.success(t("Added to favourites"));
+          setLoadingIds((prev) => prev.filter((id) => id !== courseId));
+        },
+        onError: () => {
+          toast.error(t("Failed to add favourite"));
+          setLoadingIds((prev) => prev.filter((id) => id !== courseId));
+        },
+      });
     }
   };
 
@@ -43,8 +67,10 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
   const handleAddToCart = (courseId: number, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    addToCart(courseId);
-    toast.success("added To Cart")
+    addToCart(courseId, {
+      onSuccess: () => toast.success(t("Added to cart")),
+      onError: () => toast.error(t("Failed to add to cart")),
+    });
   };
 
   if (error) {
@@ -60,22 +86,20 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
       <div className="flex items-center justify-center mx-auto h-screen">
         <div className="flex items-center gap-2">
           <Loader2 className="w-6 h-6 animate-spin text-gray-600" />
-          <span className="text-sm text-gray-600">Loading...</span>
         </div>
       </div>
     );
   }
+
   return (
     <>
       {courses.map((course) => (
         <div
           onClick={() => {
             navigate(
-              `${
-                role === "instructor"
-                  ? `/instructor/course-details/${course.id}`
-                  : `/courses/${course.id}`
-              }`
+              role === "instructor"
+                ? `/instructor/course-details/${course.id}`
+                : `/courses/${course.id}`
             );
           }}
           key={course.id}
@@ -90,19 +114,26 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
                 loading="lazy"
               />
             </div>
-            <Heart
-              onClick={(e) => {
-                handleFavorite(course.id, e);
-              }}
-              className={`absolute -top-1 -left-1 w-8 h-8 p-1 
-              rounded-full cursor-pointer shadow transition
-              ${
-                isFavoriteCourse(course.id)
-                  ? "bg-red-800 text-white"
-                  : "bg-white text-red-500 hover:bg-red-800 hover:text-white"
-              }`}
-              fill={isFavoriteCourse(course.id) ? "currentColor" : "none"}
-            />
+
+            {loadingIds.includes(course.id) ? (
+              <Loader2
+                className="absolute -top-1 -left-1 size-[30px] p-1 rounded-full
+                bg-white text-gray-500 shadow animate-spin"
+              />
+            ) : (
+              <Heart
+                onClick={(e) => handleFavorite(course.id, e)}
+                className={`absolute -top-1 -left-1 size-[30px] p-1 
+                  rounded-full cursor-pointer shadow transition
+                  ${
+                    isFavoriteCourse(course.id)
+                      ? "bg-red-800 text-white"
+                      : "bg-white text-red-500 hover:bg-red-800 hover:text-white"
+                  }`}
+                fill={isFavoriteCourse(course.id) ? "currentColor" : "none"}
+              />
+            )}
+
             <div className="border-2 w-full border-[--category] rounded-2xl mt-3 px-4 py-3 shadow">
               <h5 className="font-[600] text-lg lg:text-lg xl:text-xl truncate">
                 {course.title}

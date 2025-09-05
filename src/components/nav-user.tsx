@@ -28,15 +28,18 @@ import { signOut } from "@/api/auth-api";
 import { useNavigate } from "react-router-dom";
 import LanguageToggle from "./NavBar/LanguageToggle";
 import { useTranslation } from "react-i18next";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 export function NavUser() {
   const { t } = useTranslation();
   const { isMobile } = useSidebar();
   const navigate = useNavigate();
+  const [email]=useLocalStorage("email","");
+  const [name]=useLocalStorage("name","");
 
   const user = {
-    name: "shadcn",
-    email: "m@example.com",
+    name: name,
+    email: email,
     avatar: "/avatars/shadcn.jpg",
   };
 
@@ -52,7 +55,7 @@ export function NavUser() {
               <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage src={user.avatar} alt={user.name} />
                 <AvatarFallback className="rounded-lg text-secondaryDark">
-                  CN
+                  {user.name.slice(0, 2).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">

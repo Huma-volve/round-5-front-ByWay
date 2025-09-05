@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import Breadcrumb from "../../components/common/Breadcrumb";
 import { useBreadcrumb } from "../../hooks/useBreadcrumb";
 import { usePaymentHistory } from "../../hooks/usePaymentHistory";
+import LoadingCards from "@/components/common/LoadingCards";
 
 export default function PayHistoryPage() {
   const { t } = useTranslation();
@@ -16,7 +17,7 @@ export default function PayHistoryPage() {
       </div>
 
       <div className="w-[95%] md:w-[80%] mb-12 ml-2 md:ml-20 mr:8 md:mr-4 mt-8 overflow-x-auto">
-        {isLoading && <p className="text-gray-500">{t("loading")}</p>}
+        {isLoading && <LoadingCards />}
 
         {!isLoading && history.length > 0 ? (
           <>
@@ -91,9 +92,11 @@ export default function PayHistoryPage() {
           </>
         ) : (
           !isLoading && (
-            <h1 className="text-center text-red-600">
-              {t("payments.No payment history found")}
+            <div className="w-[95%] md:w-[60%] lg:w-[50%] mx-auto mt-10 p-4 bg-gray-100 border border-gray-300 text-gray-700 rounded-lg text-center shadow-sm">
+            <h1 className="text-base md:text-lg font-semibold">
+            {t("payments.No payment history found")}
             </h1>
+          </div>
           )
         )}
       </div>

@@ -422,7 +422,10 @@
     "Minimum Withdrawal": "Minimum Withdrawal",
     "and": "and",
     "You can withdraw any amount between": "You can withdraw any amount between",
-    "Enter a valid amount": "Enter a valid amount"
+    "Enter a valid amount": "Enter a valid amount",
+    "withdraw": "Withdraw",
+    "less than minimum withdrawal": "Less than minimum withdrawal",
+    "more than available balance": "More than available balance"
   },
   "favourite": {
     "Courses": "Courses",
