@@ -78,7 +78,7 @@ function Checkout() {
         className="bg-primary text-white px-4 py-2 rounded hover:opacity-[.9] disabled:bg-gray-400"
         disabled={!payment_method_id || checkoutMutation.status === "pending"}
       >
-        {checkoutMutation.status === "pending" ? "Processing..." : "Payment"}
+        {checkoutMutation.status === "pending" ? "Processing..." : "Checkout Now"}
       </button>
         </>
       ) 

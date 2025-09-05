@@ -1,6 +1,5 @@
 import { closeAccount, closeAccountStatus } from "@/api/learner-profile-api";
 import { getUserProfile, updateUserProfile } from "@/api/user-profile-api";
-import type { userProfile } from "@/data/userProfile";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const fetchCloseAccount = () => {
