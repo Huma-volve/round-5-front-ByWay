@@ -464,7 +464,9 @@
     "Edit Profile": "Edit Profile",
     "Learner Reviews": "Learner Reviews",
     "View more Reviews": "View more Reviews",
-    "link required": "Please enter a link"
+    "link required": "Please enter a link",
+    "Save":"Save",
+    "Profile Updated":"Profile Updated"
   },
   "workExperience": {
     "jobTitle": "Job Title",
@@ -499,6 +501,7 @@
     "Warning": "Warning",
     "warning1": "If you close your account, you will be unsubscribed from all 3 of your courses and will lose access to your account and data associated with your account forever, even if you choose to create a new account using the same email address in the future.",
     "warning2": "Please note, if you want to reinstate your account after submitting a deletion request, you will have 14 days after the initial submission date to reach out to"
+,  "Account closure requested.closed within 14 day.":"Account closure requested.closed within 14 day."
   },
   "cart": {
     "Price": "Price",
@@ -515,7 +518,14 @@
     "Remove": "Remove",
     "Save for later": "Save for later",
     "rating": "Rating",
-    "by": "by"
+    "by": "by",
+    "Payment Methods":"Payment Methods",
+    "Error loading cart":"Error loading cart",
+    "Cart is Empty": "Cart is Empty",
+    "Cart is Empty,check your Cart": "Cart is Empty,check your Cart",
+    "Order Id": "Order Id",
+    "Add Payment Method": "Add Payment Method",
+    "Checkout Information": "Checkout Information"
   },
   "user": {
     "Send Feedback": "Send Feedback"

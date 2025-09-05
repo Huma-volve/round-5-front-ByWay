@@ -42,7 +42,7 @@ const CloseAccount = () => {
     return (
       <div className="w-[100%] lg:w-[50%] h-[60dvh] flex flex-col items-center justify-center mx-auto text-center">
         <p className="text-secondary font-400">
-          Account closure requested.closed within 14 day.
+          {t("closeAccount.Account closure requested.closed within 14 day.")}
         </p>
       </div>
     );

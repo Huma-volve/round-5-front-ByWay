@@ -22,7 +22,7 @@ export const checkoutPayment = async () => {
     const errorMessage =
       axiosError.response?.data?.message ||
       "Failed to process checkout payment";
-    toast.error(errorMessage);
+    // toast.error(errorMessage);
     throw error;
   }
 };
@@ -49,7 +49,7 @@ export const checkoutConfirm=async(payment_method_id:string,order_id:number)=>{
         const errorMessage =
         axiosError.response?.data?.message ||
         "Failed to confirm checkout payment";
-        toast.error(errorMessage);
+        // toast.error(errorMessage);
         throw error;
     }
 
