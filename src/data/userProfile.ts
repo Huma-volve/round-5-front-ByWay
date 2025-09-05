@@ -1,4 +1,3 @@
-import profile from "../assets/images/icons/profile.svg";
 export interface userProfile {
   id?: number;
   image: string;
@@ -12,18 +11,19 @@ export interface userProfile {
   facebook_link: string;
 }
 
-const USER_PROFILE: userProfile[] = [
-  {
-    id: 1,
-    image: profile,
-    first_name: "Omnya",
-    last_name: "Mohamed",
-    headline: "A student passionate about learning design and user experience.",
-    about: "UI UX Design",
-    twitter_link: "https://twitter.com/yourusername",
-    linkedin_link: "https://www.linkedin.com/in/yourusername",
-    youtube_link: "https://www.youtube.com/@yourchannelname",
-    facebook_link: "https://www.facebook.com/yourusername",
-  },
-];
-export default USER_PROFILE;
+// import profile from "../assets/images/icons/profile.svg";
+// const USER_PROFILE: userProfile[] = [
+//   {
+//     id: 1,
+//     image: profile,
+//     first_name: "Omnya",
+//     last_name: "Mohamed",
+//     headline: "A student passionate about learning design and user experience.",
+//     about: "UI UX Design",
+//     twitter_link: "https://twitter.com/yourusername",
+//     linkedin_link: "https://www.linkedin.com/in/yourusername",
+//     youtube_link: "https://www.youtube.com/@yourchannelname",
+//     facebook_link: "https://www.facebook.com/yourusername",
+//   },
+// ];
+// export default USER_PROFILE;
