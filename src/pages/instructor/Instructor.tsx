@@ -1,34 +1,33 @@
- import CourseCard from "@/components/course/CourseCard/CourseCard";
-// import { Button } from "@/components/ui/button";
-// import RatingsOverview from "@/components/instructor/reviews/RatingsOverview";
+import CourseCard from "@/components/course/CourseCard/CourseCard";
+import { Button } from "@/components/ui/button";
+import RatingsOverview from "@/components/instructor/reviews/RatingsOverview";
 import InstructorCard from "@/components/instructor/InstructorCard/InstructorCard";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import NoCourses from "@/components/instructor/empty/NoCourses";
-// import NoReviews from "@/components/instructor/empty/NoReviews";
+import NoReviews from "@/components/instructor/empty/NoReviews";
 import { useInstructor } from "@/api/useInstructor";
 import LoadingCourses from "@/components/course/CourseCard/LoadingCourses";
 import ErrorState from "@/components/course/CourseCard/ErrorState";
-// import Review from "@/components/learnerCourses/ReviewLeanerCourses";
-
+import Review from "@/components/learnerCourses/ReviewLeanerCourses";
 
 export default function Instructor() {
-    type Course = {
-  id: number;
-  title: string;
-  description: string;
-  status: string;
-  key?: number;
-  rate?: number;
-  price?:number 
-   image_url? :string};
+  type Course = {
+    id: number;
+    title: string;
+    description: string;
+    status: string;
+    key?: number;
+    rate?: number;
+    price?: number;
+    image_url?: string;
+  };
   const { t } = useTranslation();
-  const { data, isLoading,error } = useInstructor();
+  const { data, isLoading, error } = useInstructor();
 
-
-   if (isLoading) return <LoadingCourses />;
-   if (error) return <ErrorState/>;
+  if (isLoading) return <LoadingCourses />;
+  if (error) return <ErrorState />;
 
   return (
     <main className="container py-12 space-y-12">
@@ -51,7 +50,7 @@ export default function Instructor() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {data.data.map((course: Course) => (
               <CourseCard
-                key={course.id} 
+                key={course.id}
                 course={course}
                 id={String(course.id)}
                 variant="instructor"
@@ -61,8 +60,8 @@ export default function Instructor() {
         ) : (
           <NoCourses />
         )}
-</section>
-      {/* {data?.reviews && data.reviews.length > 0 ? (
+      </section>
+      {data?.reviews && data.reviews.length > 0 ? (
         <section className="space-y-3 px-4 sm:px-6">
           <h2 className="text-xl lg:text-2xl font-semibold">
             {t("profile.Learner Reviews")}
@@ -90,7 +89,7 @@ export default function Instructor() {
         </section>
       ) : (
         <NoReviews />
-      )} */}
+      )}
     </main>
   );
 }

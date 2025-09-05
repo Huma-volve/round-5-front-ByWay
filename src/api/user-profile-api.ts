@@ -20,7 +20,7 @@ export const getUserProfile=async ()=>{
 export const updateUserProfile=async (data:FormData)=>{
     try{
         const res=await  axiosInstance.put("/profile",data,{
-            // headers:{"content-type":"multipart/form-data"}
+            headers:{"content-type":"multipart/form-data"}
         })
         if(res.status===200){
             toast.success(res.data.message);
