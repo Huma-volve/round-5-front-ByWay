@@ -17,6 +17,16 @@ interface CardCourseProps {
   error: boolean;
   isLoading: boolean;
 }
+
+/**
+ * For images that are thumbnails like corse images it should have a fixed aspect ratio on front-end that matches the 
+ * original image's aspect ration i.e the server shouldn't accept an image with a different aspect ration other than 
+ * determined. For now I will make it object-cover but it should have an aspect-ration property
+ * 
+ * Sometimes the link of the image is sent corrupted from the server, we should use "onError" attribute to handle
+ * if image is corrupted and display a fallback "ImgNotFound"
+ */
+
 function CardCourse({ courses, error, isLoading }: CardCourseProps) {
   const { t } = useTranslation();
   const [role] = useLocalStorage("role", "");
@@ -26,6 +36,7 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
   const { mutate: addFavorite } = useAddFavorites();
   const { mutate: addToCart } = useAddToCart();
   const navigate = useNavigate();
+  console.log(courses);
 
   // Check courseId Favorite
   const isFavoriteCourse = (courseId: number) =>
@@ -108,8 +119,9 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
           <div className="mb-20 relative">
             <div className="relative">
               <img
-                className="w-full h-44 border border-[--category] rounded-2xl"
+                className="w-full h-44 border border-[--category] rounded-2xl object-cover object-center"
                 src={course?.image_url || ImgNotFound}
+                onError={(e)=>e.currentTarget.src=ImgNotFound}
                 alt={course.title}
                 loading="lazy"
               />
