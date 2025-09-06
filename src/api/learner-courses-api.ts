@@ -1,5 +1,5 @@
 import axiosInstance from "@/lib/axios-instance";
-import type { CoursesHome, StatsHome } from "@/lib/types";
+import type { CoursesHome, MyCoursesLearner, StatsHome } from "@/lib/types";
 
 interface AllCoursesResponse {
   data: {
@@ -37,9 +37,9 @@ export async function fetchInstructorDetails(
   );
   return response.data.data;
 }
-export async function fetchMyCourses(): Promise<CoursesHome[]> {
+export async function fetchMyCourses(): Promise<MyCoursesLearner[]> {
   const response = await axiosInstance.get<{
-    data: { courses: CoursesHome[] };
+    data: { courses: MyCoursesLearner[] };
   }>("learner/courses");
   return response.data.data.courses;
 }

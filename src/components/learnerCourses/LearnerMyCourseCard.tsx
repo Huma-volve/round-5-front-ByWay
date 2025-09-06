@@ -8,7 +8,7 @@ export default function LearnerMyCourseCard() {
   return (
     <>
       {Courses?.map((course) => (
-        <Link to={`${course.course_id}`} key={course.id}>
+        <Link to={`${course.course_id}`} key={course.course_id}>
           <div className="mb-20">
             <div>
               <img
@@ -24,16 +24,16 @@ export default function LearnerMyCourseCard() {
                 {course.title}
               </h5>
               <p className="text-sm my-2 text-[--secondary-dark]">
-                By {course.instructor?.name}
+                By {course.instructor}
               </p>
               <div className="flex items-center">
-                {Array.from({ length: Number(course.average_rating) || 1 }).map(
+                {Array.from({ length: Number(course.average_rating) || 0 }).map(
                   (_, index) => (
                     <img key={index} src={StarIcon} alt="Ratings" />
                   )
                 )}
                 <span className="lg:text-md text-sm font-[600] ml-2">
-                  (100 Ratings)
+                  (0 Ratings)
                 </span>
               </div>
               <p className="text-xs my-4 truncate">{course.description}</p>

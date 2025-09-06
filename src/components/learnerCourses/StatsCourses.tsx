@@ -53,12 +53,12 @@ function StatsCourses() {
             </div>
           ))}
       </div>
-      <div className="mx-10 mt-32">
+      <div className="mt-32">
         <div className="flex justify-between items-center mb-7">
           <h3 className="text-lg font-semibold">{t("common.allCourses")}</h3>
-          <Link to="/courses" className="text-[var(--category-icon)] text-sm">
+          {/* <Link to="/courses" className="text-[var(--category-icon)] text-sm">
             {t("common.seeAll")}
-          </Link>
+          </Link> */}
         </div>
       </div>
     </>

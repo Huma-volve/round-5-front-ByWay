@@ -20,8 +20,6 @@ function VideoLearner() {
         title: item.title,
         video_url: item.video_url,
       })) ?? [];
-
-  console.log(filteredContent);
   return (
     <>
       <div>

@@ -120,6 +120,14 @@ export interface CoursesHome {
   updated_at: string;
 }
 
+export interface MyCoursesLearner {
+  course_id: number;
+  title: string;
+  course_image_url: string;
+  instructor: string;
+  progress: string;
+} 
+
 export interface instructorDetails {
   id: number;
   instructor: {
