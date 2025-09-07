@@ -29,7 +29,6 @@ function CoursesPage() {
             totalPages={pagination?.last_page}
             handlePageChange={handlePageChange}
           />
-          {console.log(pagination)}
         </section>
       )}
     </>

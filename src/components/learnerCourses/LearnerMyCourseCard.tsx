@@ -5,6 +5,13 @@ import useFetchMyCourses from "@/hooks/LearnerCourses/useFetchMyCourses";
 
 export default function LearnerMyCourseCard() {
   const { data: Courses } = useFetchMyCourses();
+  if (!Courses) {
+    return (
+      <div className="grid col-span-5 place-items-center h-60">
+        No courses found
+      </div>
+    );
+  }
   return (
     <>
       {Courses?.map((course) => (

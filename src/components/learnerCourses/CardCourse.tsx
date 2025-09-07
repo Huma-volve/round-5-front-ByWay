@@ -11,21 +11,13 @@ import useRemoveFavorites from "@/hooks/Favorites/useRemoveFavorites";
 import useAddToCart from "@/hooks/Cart/useAddToCart";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import CardCourseLoading from "./CardCourseLoading";
 
 interface CardCourseProps {
   courses: CoursesHome[];
   error: boolean;
   isLoading: boolean;
 }
-
-/**
- * For images that are thumbnails like corse images it should have a fixed aspect ratio on front-end that matches the 
- * original image's aspect ration i.e the server shouldn't accept an image with a different aspect ration other than 
- * determined. For now I will make it object-cover but it should have an aspect-ration property
- * 
- * Sometimes the link of the image is sent corrupted from the server, we should use "onError" attribute to handle
- * if image is corrupted and display a fallback "ImgNotFound"
- */
 
 function CardCourse({ courses, error, isLoading }: CardCourseProps) {
   const { t } = useTranslation();
@@ -46,28 +38,22 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
     e.preventDefault();
     e.stopPropagation();
 
-    setLoadingIds((prev) => [...prev, courseId]);
-
     if (isFavoriteCourse(courseId)) {
       removeFavorite(courseId, {
         onSuccess: () => {
           toast.success(t("Removed from favourites"));
-          setLoadingIds((prev) => prev.filter((id) => id !== courseId));
         },
         onError: () => {
           toast.error(t("Failed to remove favourite"));
-          setLoadingIds((prev) => prev.filter((id) => id !== courseId));
         },
       });
     } else {
       addFavorite(courseId, {
         onSuccess: () => {
           toast.success(t("Added to favourites"));
-          setLoadingIds((prev) => prev.filter((id) => id !== courseId));
         },
         onError: () => {
           toast.error(t("Failed to add favourite"));
-          setLoadingIds((prev) => prev.filter((id) => id !== courseId));
         },
       });
     }
@@ -92,13 +78,7 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
   }
 
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center mx-auto h-screen">
-        <div className="flex items-center gap-2">
-          <Loader2 className="w-6 h-6 animate-spin text-gray-600" />
-        </div>
-      </div>
-    );
+    return <CardCourseLoading />;
   }
 
   return (
@@ -120,42 +100,45 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
               <img
                 className="w-full h-44 border border-[--category] rounded-2xl object-cover object-center"
                 src={course?.image_url || ImgNotFound}
-                onError={(e)=>e.currentTarget.src=ImgNotFound}
+                onError={(e) => (e.currentTarget.src = ImgNotFound)}
                 alt={course.title}
                 loading="lazy"
               />
             </div>
 
-            {loadingIds.includes(course.id) ? (
-              <Loader2
-                className="absolute -top-1 -left-1 size-[30px] p-1 rounded-full
-                bg-white text-gray-500 shadow animate-spin"
-              />
-            ) : (
-              <Heart
-                onClick={(e) => handleFavorite(course.id, e)}
-                className={`absolute -top-1 -left-1 size-[30px] p-1 
+            <Heart
+              onClick={(e) => handleFavorite(course.id, e)}
+              className={`absolute -top-1 -left-1 size-[30px] p-1 
                   rounded-full cursor-pointer shadow transition
                   ${
                     isFavoriteCourse(course.id)
                       ? "bg-red-800 text-white"
                       : "bg-white text-red-500 hover:bg-red-800 hover:text-white"
                   }`}
-                fill={isFavoriteCourse(course.id) ? "currentColor" : "none"}
-              />
-            )}
+              fill={isFavoriteCourse(course.id) ? "currentColor" : "none"}
+            />
 
             <div className="border-2 w-full border-[--category] rounded-2xl mt-3 px-4 py-3 shadow">
               <h5 className="font-[600] text-lg lg:text-lg xl:text-xl truncate">
                 {course.title}
               </h5>
               {course.instructor ? (
-                <Link
-                  to={`/${course.instructor?.id}/instructor-details`}
-                  className="block text-sm my-2 text-[--secondary-dark] hover:text-blue-500 cursor-pointer"
+                <p
+                  // to={`/${course.instructor?.id}/instructor-details`}
+                  className="block text-sm my-2 text-[--secondary-dark"
                 >
-                  {t("common.by")} {course.instructor?.name}
-                </Link>
+                  {t("common.by")}{" "}
+                  <span
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      navigate(`/${course.instructor?.id}/instructor-details`);
+                    }}
+                    className="hover:text-blue-500 cursor-pointer"
+                  >
+                    {course.instructor?.name}
+                  </span>
+                </p>
               ) : (
                 <div className="my-2"></div>
               )}

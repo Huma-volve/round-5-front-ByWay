@@ -6,7 +6,24 @@ export default function useAddFavorites() {
 
   return useMutation({
     mutationFn: addFavoriteLearner,
-    onSuccess: () => {
+    onMutate: async (courseId: number) => {
+      await queryClient.cancelQueries({ queryKey: ["favourites"] });
+      const previousFavourites = queryClient.getQueryData<any[]>([
+        "favourites",
+      ]);
+      queryClient.setQueryData<any[]>(["favourites"], (old = []) => [
+        ...old,
+        { course_id: courseId },
+      ]);
+
+      return { previousFavourites };
+    },
+    onError: (_err, _courseId, context) => {
+      if (context?.previousFavourites) {
+        queryClient.setQueryData(["favourites"], context.previousFavourites);
+      }
+    },
+    onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["favourites"] });
     },
   });
