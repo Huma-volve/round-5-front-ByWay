@@ -36,7 +36,6 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
   const { mutate: addFavorite } = useAddFavorites();
   const { mutate: addToCart } = useAddToCart();
   const navigate = useNavigate();
-  console.log(courses);
 
   // Check courseId Favorite
   const isFavoriteCourse = (courseId: number) =>
@@ -87,7 +86,7 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
   if (error) {
     return (
       <div className="flex items-center justify-center h-screen">
-        Error loading reviews
+        Error loading courses.
       </div>
     );
   }

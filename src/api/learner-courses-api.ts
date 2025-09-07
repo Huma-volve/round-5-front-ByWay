@@ -17,9 +17,11 @@ export async function fetchCategoriesCourses() {
   const response = await axiosInstance.get("categories-for-platform");
   return response.data.data;
 }
-export async function fetchAllCourses(): Promise<CoursesHome[]> {
-  const response = await axiosInstance.get<AllCoursesResponse>("all-courses");
-  return response.data.data.courses;
+export async function fetchAllCourses(page: number): Promise<CoursesHome[]> {
+  const response = await axiosInstance.get<AllCoursesResponse>(
+    `all-courses?per_page=12&page=${page}`
+  );
+  return response.data.data;
 }
 export async function fetchCourseDetails(
   courseId: string
