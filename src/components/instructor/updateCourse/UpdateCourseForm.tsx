@@ -92,18 +92,18 @@ export default function UpdateCourseForm() {
 
               {/* Course Category */}
               {categories && (
-                <div className="space-y-2">
+                <div className="space-y-2 ">
                   <Label htmlFor="courseCategory" className="text-base">
                     {t("instructor.addCourse.courseCategory")}
                   </Label>
-                  <div className="relative">
+                  <div className="relative ">
                     <button
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
                         setIsDropdownOpen(!isDropdownOpen);
                       }}
-                      className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                      className=" flex h-10 w-full items-center justify-between rounded-md border border-input bg-white shadow-sm px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       <span
                         className={

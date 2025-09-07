@@ -22,37 +22,37 @@ export const checkoutPayment = async () => {
     const errorMessage =
       axiosError.response?.data?.message ||
       "Failed to process checkout payment";
-    // toast.error(errorMessage);
+    toast.error(errorMessage);
     throw error;
   }
 };
-export const checkoutConfirm=async(payment_method_id:string,order_id:number)=>{
-    try {
-        const response = await axiosInstance.post("checkout/confirm",{
-        payment_method_id,
-        order_id
-        });
-        if (response.status === 200) {
-        return {
-            success: true,
-            message: response.data?.message || "Checkout payment confirmed successfully",
-            dataConfirm: response.data,
-        };
-        }
-        return {
-        success: false,
-        message: "Unexpected response status",
-        dataConfirm: response.data,
-        };
-    } catch (error) {
-        const axiosError = error as AxiosError<{ message?: string }>;
-        const errorMessage =
-        axiosError.response?.data?.message ||
-        "Failed to confirm checkout payment";
-        // toast.error(errorMessage);
-        throw error;
-    }
 
+export const checkoutConfirm = async (payment_method_id: string, order_id: number) => {
+  try {
+    const response = await axiosInstance.post("checkout/confirm", {
+      payment_method_id,
+      order_id
+    });
+    if (response.status === 200) {
+      return {
+        success: true,
+        message: response.data?.message || "Checkout payment confirmed successfully",
+        dataConfirm: response.data,
+      };
+    }
+    return {
+      success: false,
+      message: "Unexpected response status",
+      dataConfirm: response.data,
+    };
+  } catch (error) {
+    const axiosError = error as AxiosError<{ message?: string }>;
+    const errorMessage =
+      axiosError.response?.data?.message ||
+      "Failed to confirm checkout payment";
+    toast.error(errorMessage);
+    throw error;
+  }
 }
 
 export const fetchPaymentMethods = async () => {

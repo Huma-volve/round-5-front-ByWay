@@ -1,16 +1,22 @@
-import Breadcrumb from "@/components/common/Breadcrumb";
+// import Breadcrumb from "@/components/common/Breadcrumb";
 import CardCourse from "@/components/learnerCourses/CardCourse";
 import useInstructorDetails from "@/hooks/LearnerCourses/useInstructorDetails";
-import { useBreadcrumb } from "@/hooks/useBreadcrumb";
+// import { useBreadcrumb } from "@/hooks/useBreadcrumb";
 import { CircleUser, Loader2 } from "lucide-react";
+import { useMemo } from "react";
+import NewBreadCrumb from "@/components/common/NewBreadCrumb";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
 function InstructorDetails() {
   const { t } = useTranslation();
   const { instructorId } = useParams();
-  const { getAutoBreadcrumb } = useBreadcrumb();
+  // const { getAutoBreadcrumb } = useBreadcrumb();
   const { instructor, error, isLoading } = useInstructorDetails(instructorId!);
+  const breadcrumbItems = useMemo(() => [
+    { label: "common.home", link: "/" },
+    { label: instructor?.instructor?.name || "Instructor Details" },
+  ], [instructor?.instructor?.name]);
   const courses = instructor?.courses?.data;
   if (!instructorId) {
     return (
@@ -40,7 +46,8 @@ function InstructorDetails() {
   return (
     <div className="mt-12">
       <div className="mb-10">
-        <Breadcrumb items={getAutoBreadcrumb()} />
+        {/* <Breadcrumb items={getAutoBreadcrumb()} /> */}
+        <NewBreadCrumb items={breadcrumbItems} />
       </div>
       <div>
         <div className="flex items-center flex-wrap md:justify-start justify-center gap-2">

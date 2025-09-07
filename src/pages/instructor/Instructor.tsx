@@ -73,8 +73,15 @@ export default function Instructor() {
             </div>
             <div className="md:col-span-2">
               <div className="mb-9 space-y-4">
-                {data.reviews.map((review: any) => (
-                  <Review key={review.id} variant="user" review={review} />
+                {data.reviews.map((reviewData: any) => (
+                  <Review 
+                    key={reviewData.id} 
+                    variant="user" 
+                    name={reviewData.user?.name || "Anonymous"}
+                    rating={reviewData.rating}
+                    date={reviewData.created_at || "2025-08-24"}
+                    review={reviewData.review}
+                  />
                 ))}
               </div>
               <div className="flex justify-center">

@@ -25,7 +25,7 @@ function Record() {
   const { data, isLoading } = useFetchPaymentRecords(currentPage);
   const records = data?.data?.data || [];
   const [id, setId] = useState<string>(records[0]?.id);
-  const [idW, /*setIdW*/] = useState<string>(records[0]?.id);
+  // const [idW, /*setIdW*/] = useState<string>(records[0]?.id);
   const approvemutation = useFetchApproveWithdrawal();
   const totalPages = data?.data?.last_page ;
   console.log(data?.data.last_page);
@@ -211,7 +211,7 @@ function Record() {
       </div>
 
       <PaymentDetails id={id} open={openDialog} onOpenChange={setOpenDialog} />
-      <WithdrowDetails id={idW} open={openDialogW} onOpenChange={setOpenDialogW} />
+      <WithdrowDetails /*id={idW}*/ open={openDialogW} onOpenChange={setOpenDialogW} />
     </div>
   );
 }
