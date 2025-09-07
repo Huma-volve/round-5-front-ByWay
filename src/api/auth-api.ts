@@ -11,6 +11,11 @@ import { toast } from "react-toastify";
 
 export async function signUp(formData: SignUpFormType) {
   const { data } = await axiosInstance.post("register", formData);
+  if (data?.user) {
+    localStorage.setItem("user_id", data.user.id);
+    localStorage.setItem("role", data.user.role);
+    localStorage.setItem("auth_token", JSON.stringify(data.token));
+  }
   return data;
 }
 
