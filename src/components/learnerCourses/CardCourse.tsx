@@ -1,7 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import StarIcon from "../../assets/images/icons/StarIcon.svg";
 import { useTranslation } from "react-i18next";
-import { Heart, Loader2 } from "lucide-react";
+import { Heart } from "lucide-react";
 import ImgNotFound from "@/assets/images/image-not-found.png";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import type { CoursesHome } from "@/lib/types";
@@ -10,7 +10,6 @@ import useAddFavorites from "@/hooks/Favorites/useAddFavorites";
 import useRemoveFavorites from "@/hooks/Favorites/useRemoveFavorites";
 import useAddToCart from "@/hooks/Cart/useAddToCart";
 import { toast } from "react-toastify";
-import { useState } from "react";
 import CardCourseLoading from "./CardCourseLoading";
 
 interface CardCourseProps {
@@ -23,7 +22,6 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
   const { t } = useTranslation();
   const [role] = useLocalStorage("role", "");
   const { favourites } = useFavourites();
-  const [loadingIds, setLoadingIds] = useState<number[]>([]);
   const { mutate: removeFavorite } = useRemoveFavorites();
   const { mutate: addFavorite } = useAddFavorites();
   const { mutate: addToCart } = useAddToCart();
@@ -105,19 +103,18 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
                 loading="lazy"
               />
             </div>
-
-            <Heart
-              onClick={(e) => handleFavorite(course.id, e)}
-              className={`absolute -top-1 -left-1 size-[30px] p-1 
+              <Heart
+                onClick={(e) => handleFavorite(course.id, e)}
+                className={`absolute -top-1 -left-1 size-[30px] p-1 
                   rounded-full cursor-pointer shadow transition
                   ${
                     isFavoriteCourse(course.id)
                       ? "bg-red-800 text-white"
                       : "bg-white text-red-500 hover:bg-red-800 hover:text-white"
                   }`}
-              fill={isFavoriteCourse(course.id) ? "currentColor" : "none"}
-            />
-
+                fill={isFavoriteCourse(course.id) ? "currentColor" : "none"}
+              />
+          
             <div className="border-2 w-full border-[--category] rounded-2xl mt-3 px-4 py-3 shadow">
               <h5 className="font-[600] text-lg lg:text-lg xl:text-xl truncate">
                 {course.title}

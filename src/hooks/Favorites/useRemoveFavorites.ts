@@ -1,33 +1,28 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { removeFavoriteLearner } from "@/api/favourites-api";
+import type { FavouriteResponse } from "@/lib/types";
 
 export default function useRemoveFavorites() {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: removeFavoriteLearner,
-
     onMutate: async (courseId: number) => {
       await queryClient.cancelQueries({ queryKey: ["favourites"] });
 
-      const previousFavourites = queryClient.getQueryData<
-        { course_id: number }[]
-      >(["favourites"]);
+      const prevFavourites = queryClient.getQueryData<FavouriteResponse[]>(["favourites"]);
 
-      queryClient.setQueryData<{ course_id: number }[]>(
-        ["favourites"],
-        (old = []) => old.filter((f) => f.course_id !== courseId)
+      queryClient.setQueryData<FavouriteResponse[]>(["favourites"], (old = []) =>
+        old.filter((fav) => fav.course_id !== courseId)
       );
 
-      return { previousFavourites };
+      return { prevFavourites };
     },
-
-    onError: (_err, courseId, context) => {
-      if (context?.previousFavourites) {
-        queryClient.setQueryData(["favourites"], context.previousFavourites);
+    onError: (_err, _courseId, context) => {
+      if (context?.prevFavourites) {
+        queryClient.setQueryData(["favourites"], context.prevFavourites);
       }
     },
-
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["favourites"] });
     },

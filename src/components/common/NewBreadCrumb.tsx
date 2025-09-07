@@ -23,8 +23,8 @@ export default function NewBreadCrumb({ items }: breadCrumbProps) {
     index: number,
     isLast: boolean
   ) => (
-    <>
-      <BreadcrumbItem key={index}>
+    <div key={item.label + index} className="flex items-center gap-3">
+      <BreadcrumbItem>
         {item.link ? (
           <BreadcrumbLink className="cursor-pointer" asChild>
             <Link to={item.link}>{t(item.label)}</Link>
@@ -36,7 +36,7 @@ export default function NewBreadCrumb({ items }: breadCrumbProps) {
         )}
       </BreadcrumbItem>
       {!isLast && <BreadcrumbSeparator />}
-    </>
+    </div>
   );
 
   const renderBreadcrumbs = () => {

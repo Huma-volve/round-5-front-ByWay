@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { usePaymentHistory } from "../../hooks/usePaymentHistory";
 import { useMemo } from "react";
 import NewBreadCrumb from "../../components/common/NewBreadCrumb";
-import LoadingCards from "@/components/common/LoadingCards";
+import LoadingDesign from "@/components/AdminDashboard/UserManagement/LoadingDesign";
 
 export default function PayHistoryPage() {
   const { t } = useTranslation();
@@ -25,7 +25,7 @@ export default function PayHistoryPage() {
       </div>
 
       <div className="w-[95%] md:w-[80%] mb-12 ml-2 md:ml-20 mr:8 md:mr-4 mt-8 overflow-x-auto">
-        {isLoading && <LoadingCards />}
+        {isLoading && <LoadingDesign />}
 
         {!isLoading && history.length > 0 ? (
           <>

@@ -1,26 +1,28 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addFavoriteLearner } from "@/api/favourites-api";
+import type {FavouriteResponse} from "@/lib/types"; 
 
 export default function useAddFavorites() {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: addFavoriteLearner,
+    // Optimistic Update
     onMutate: async (courseId: number) => {
       await queryClient.cancelQueries({ queryKey: ["favourites"] });
-      const previousFavourites = queryClient.getQueryData<any[]>([
-        "favourites",
-      ]);
-      queryClient.setQueryData<any[]>(["favourites"], (old = []) => [
+
+      const prevFavourites = queryClient.getQueryData<FavouriteResponse[]>(["favourites"]);
+
+      queryClient.setQueryData<FavouriteResponse[]>(["favourites"], (old = []) => [
         ...old,
-        { course_id: courseId },
+        { course_id: courseId } as FavouriteResponse,
       ]);
 
-      return { previousFavourites };
+      return { prevFavourites };
     },
     onError: (_err, _courseId, context) => {
-      if (context?.previousFavourites) {
-        queryClient.setQueryData(["favourites"], context.previousFavourites);
+      if (context?.prevFavourites) {
+        queryClient.setQueryData(["favourites"], context.prevFavourites);
       }
     },
     onSettled: () => {

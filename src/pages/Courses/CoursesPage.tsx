@@ -8,8 +8,8 @@ import { useState } from "react";
 function CoursesPage() {
   const [page, setPage] = useState(1);
   const { data, error, isLoading } = useFetchCourses(page);
-  const courses = data?.courses;
-  const pagination = data?.pagination;
+  const courses = data?.data?.courses;
+  const pagination = data?.data?.pagination;
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
