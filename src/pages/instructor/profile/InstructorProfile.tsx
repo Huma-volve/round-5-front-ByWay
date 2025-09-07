@@ -56,7 +56,7 @@ export default function InstructorProfile() {
               name="workExperience"
               render={(arrayHelpers) => (
                 <>
-                  {values.workExperience.map((exp, index) => (
+                  {values.workExperience.map((_, index) => (
                     <WorkExperienceForm
                       key={index}
                       index={index}

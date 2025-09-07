@@ -1,13 +1,4 @@
 import CourseCard from "@/components/course/CourseCard/CourseCard";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-  PaginationEllipsis,
-} from "@/components/ui/pagination";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -18,6 +9,7 @@ import LoadingCourses from "@/components/course/CourseCard/LoadingCourses";
 import ErrorState from "@/components/course/CourseCard/ErrorState";
 import type { AxiosError } from "axios";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
+import PaginationBar from "@/components/common/PaginationBar";
 
 export default function MyCourses() {
   const [page, setPage] = useState(1);
@@ -32,7 +24,6 @@ export default function MyCourses() {
   };
   type Course = {
     id: number;
-
     title: string;
     description: string;
     status: string;
@@ -115,101 +106,11 @@ export default function MyCourses() {
 
       {courses.length > 0 && (
         <section className="pb-12">
-          <Pagination>
-            <PaginationContent>
-              <PaginationItem>
-                <PaginationPrevious
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (currentPage > 1) {
-                      handlePageChange(currentPage - 1);
-                    }
-                  }}
-                  className={
-                    currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
-                  }
-                />
-              </PaginationItem>
-              {totalPages > 1 ? (
-                <>
-                  {currentPage > 3 && (
-                    <PaginationItem>
-                      <PaginationLink
-                        href="#"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handlePageChange(1);
-                        }}
-                      >
-                        1
-                      </PaginationLink>
-                    </PaginationItem>
-                  )}
-                  {currentPage > 3 && <PaginationEllipsis />}
-                  {Array.from({ length: 3 }, (_, i) => currentPage - 1 + i)
-                    .filter((page) => page > 0 && page <= totalPages)
-                    .map((page) => (
-                      <PaginationItem key={page}>
-                        <PaginationLink
-                          href="#"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handlePageChange(page);
-                          }}
-                          isActive={page === currentPage}
-                        >
-                          {page}
-                        </PaginationLink>
-                      </PaginationItem>
-                    ))}
-                  {currentPage < totalPages - 2 && <PaginationEllipsis />}
-                  {currentPage < totalPages - 2 && (
-                    <PaginationItem>
-                      <PaginationLink
-                        href="#"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handlePageChange(totalPages);
-                        }}
-                      >
-                        {totalPages}
-                      </PaginationLink>
-                    </PaginationItem>
-                  )}
-                </>
-              ) : (
-                <PaginationItem>
-                  <PaginationLink
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handlePageChange(currentPage);
-                    }}
-                    isActive={true}
-                  >
-                    {currentPage}
-                  </PaginationLink>
-                </PaginationItem>
-              )}
-              <PaginationItem>
-                <PaginationNext
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (currentPage < totalPages) {
-                      handlePageChange(currentPage + 1);
-                    }
-                  }}
-                  className={
-                    currentPage === totalPages
-                      ? "opacity-50 cursor-not-allowed"
-                      : ""
-                  }
-                />
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
+          <PaginationBar
+            currentPage={currentPage}
+            totalPages={totalPages}
+            handlePageChange={handlePageChange}
+          />
         </section>
       )}
     </>

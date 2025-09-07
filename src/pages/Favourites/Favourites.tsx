@@ -1,7 +1,8 @@
 import { useTranslation } from "react-i18next";
-import Breadcrumb from "../../components/common/Breadcrumb";
-import { useBreadcrumb } from "../../hooks/useBreadcrumb";
-import { useState } from "react";
+// import Breadcrumb from "../../components/common/Breadcrumb";
+// import { useBreadcrumb } from "../../hooks/useBreadcrumb";
+import { useState, useMemo } from "react";
+import NewBreadCrumb from "../../components/common/NewBreadCrumb";
 import { useFavourites } from "@/hooks/Favorites/useFavourites";
 import { Heart, Loader2 } from "lucide-react";
 import { toast } from "react-toastify";
@@ -14,7 +15,11 @@ import LoadingCards from "@/components/common/LoadingCards";
 
 export default function Favourites() {
   const { t } = useTranslation();
-  const { getAutoBreadcrumb } = useBreadcrumb();
+  // const { getAutoBreadcrumb } = useBreadcrumb();
+  const breadcrumbItems = useMemo(() => [
+    { label: "common.home", link: "/" },
+    { label: "common.favourites" },
+  ], []);
   const [activeButton, setActiveButton] = useState<"btn1" | "btn2">("btn1");
   const [removingIds, setRemovingIds] = useState<number[]>([]);
   const { mutate: removeFavorite, error: removeError } =
@@ -40,7 +45,8 @@ export default function Favourites() {
     <div className="bg-background container">
       <div className="ml-4">
         {/* The Stack pages */}
-        <Breadcrumb items={getAutoBreadcrumb()} className="mb-6 mt-5" />
+        {/* <Breadcrumb items={getAutoBreadcrumb()} className="mb-6 mt-5" /> */}
+        <NewBreadCrumb items={breadcrumbItems} />
 
         {/* Buttons */}
         <div

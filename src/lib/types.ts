@@ -126,6 +126,8 @@ export interface MyCoursesLearner {
   course_image_url: string;
   instructor: string;
   progress: string;
+  average_rating?: number;
+  description?: string;
 } 
 
 export interface instructorDetails {
@@ -342,4 +344,19 @@ export interface WithdrawalRequest {
   account_name: string;
   account_number?: number;
   email?: string;
+}
+
+export interface PaginationData {
+    currentPage: number;
+    totalPages: number;
+    handlePageChange: (newPage: number) => void;
+}
+
+interface breadCrumbItem {
+  label: string;
+  link?:string;
+}
+
+export interface breadCrumbProps {
+  items: breadCrumbItem[];
 }
