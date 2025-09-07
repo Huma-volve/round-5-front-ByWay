@@ -36,7 +36,7 @@ function NavDropdown({ icon }: { icon: ReactElement }) {
         <DropdownMenuItem asChild>
           <Link
             className="drop-item"
-            to={`${role === "instructor" ? "/instructor/profile" : "/profile"}`}
+            to={`${role === "instructor" ? "/instructor" : "/profile"}`}
           >
             {/*  */}
             {t("common.home")}

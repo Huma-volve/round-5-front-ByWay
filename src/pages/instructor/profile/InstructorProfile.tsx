@@ -1,90 +1,81 @@
+import { useForm } from "react-hook-form";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import WorkExperienceForm from "../../../components/instructor/WorkExperienceForm/WorkExperienceForm";
-import MainForm from "../../../components/instructor/MainForm/MainForm";
-import { useTranslation } from "react-i18next";
-import { useMutation } from "@tanstack/react-query";
+import type { EditProfileForm } from "@/types/EditForm";
 
-import { toast } from "react-toastify";
-import { Formik, Form, FieldArray } from "formik";
-import { getInstructorProfileSchema } from "@/schemas/InstructorProfileSchema";
 import axiosInstance from "@/lib/axios-instance";
+import { getEditProfileDefaults } from "@/schemas/editProfileDefaults";
+import { toast } from "react-toastify";
 
-export default function InstructorProfile() {
-  const { t } = useTranslation();
-  const mutation = useMutation({
-    mutationFn: async (values: unknown) => {
-      const { data } = await axiosInstance.post(
-        "/instructor/profile/store",
-        values,
-        {
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      );
-      return data;
-    },
-
-    onSuccess: (data) => {
-      toast.success(data?.message);
+export default function EditProfile() {
+  const queryClient = useQueryClient();
+  const { data: profileData, isLoading } = useQuery({
+    queryKey: ["profile"],
+    queryFn: async () => {
+      const res = await axiosInstance.get("/api/profile");
+      return res.data.data;
     },
   });
 
-  return (
-    <Formik
-      initialValues={{
-        fname: "",
-        lname: "",
-        headline: "",
-        about: "",
-        skills: "",
-        workExperience: [
-          { jobTitle: "", companyName: "", startDate: "", endDate: "" },
-        ],
-      }}
-      validationSchema={getInstructorProfileSchema}
-      onSubmit={(values) => {
-        mutation.mutate(values);
-      }}
-    >
-      {({ values }) => (
-        <Form className="container mx-auto py-4">
-          <section className="space-y-5">
-            <MainForm />
+  const mutation = useMutation({
+    mutationFn: async (updatedData: EditProfileForm) => {
+      const res = await axiosInstance.patch("instructor/profile/update", updatedData, {
+      headers: {
+        Accept: "application/json",
+      },
+    });
+      return res.data;
+    },
+    onSuccess: () => {
+    toast.success('Profile updated successfully')
+     queryClient.invalidateQueries({ queryKey: ["profile"] });
 
-            <FieldArray
-              name="workExperience"
-              render={(arrayHelpers) => (
-                <>
-                  {values.workExperience.map((_, index) => (
-                    <WorkExperienceForm
-                      key={index}
-                      index={index}
-                      title={`${t(
-                        "instructor.workExperience.Work Experience"
-                      )} ${index + 1}`}
-                      onAdd={() =>
-                        arrayHelpers.push({
-                          jobTitle: "",
-                          companyName: "",
-                          startDate: "",
-                          endDate: "",
-                        })
-                      }
-                    />
-                  ))}
-                </>
-              )}
-            />
-            <Button
-              type="submit"
-              className="btn space-y-4 bg-success hover:bg-green-600"
-            >
-              {t("save.Save")}
-            </Button>
-          </section>
-        </Form>
-      )}
-    </Formik>
+   
+    },
+  });
+
+  const { register, handleSubmit } = useForm<EditProfileForm>({
+    defaultValues: profileData ? getEditProfileDefaults(profileData) : undefined,
+  });
+
+  const onSubmit = (data: EditProfileForm) => {
+    mutation.mutate(data);
+  };
+
+ if (isLoading) return <p>Loading...</p>;
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-white">
+      <h2 className="text-xl font-semibold pt-4">Edit Profile</h2>
+
+      <div className="space-y-3">
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium">First Name</label>
+            <Input {...register("first_name")} placeholder="First name" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Last Name</label>
+            <Input {...register("last_name")} placeholder="Last name" />
+          </div>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium">Email</label>
+          <Input {...register("email")} type="email" placeholder="Email" />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium">Bio</label>
+          <Textarea {...register("bio")} placeholder="Write your bio..." />
+        </div>
+      </div>
+
+        <Button type="submit" className="bg-success w-full " disabled={mutation.isLoading}>
+        {mutation.isLoading ? "Saving..." : "Save Changes"}
+      </Button>
+    </form>
   );
 }
