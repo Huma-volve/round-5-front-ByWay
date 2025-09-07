@@ -73,8 +73,8 @@ export default function EditProfile() {
         </div>
       </div>
 
-        <Button type="submit" className="bg-success w-full " disabled={mutation.isLoading}>
-        {mutation.isLoading ? "Saving..." : "Save Changes"}
+        <Button type="submit" className="bg-success w-full " disabled={mutation.isPending}>
+        {mutation.isPending ? "Saving..." : "Save Changes"}
       </Button>
     </form>
   );

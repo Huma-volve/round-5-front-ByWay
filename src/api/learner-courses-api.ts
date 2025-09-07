@@ -1,12 +1,13 @@
 import axiosInstance from "@/lib/axios-instance";
-import type { CoursesHome, MyCoursesLearner, StatsHome } from "@/lib/types";
+import type { CoursesHome, CoursesHomeResponse, MyCoursesLearner, StatsHome } from "@/lib/types";
+import type { AxiosError } from "axios";
 
-interface AllCoursesResponse {
-  data: {
-    courses: CoursesHome[] | PromiseLike<CoursesHome[]>;
-    data: CoursesHome[];
-  };
-}
+// interface AllCoursesResponse {
+//   data: {
+//     courses: CoursesHome[] | PromiseLike<CoursesHome[]>;
+//     data: CoursesHome[];
+//   };
+// }
 export async function fetchStatsHome() {
   const response = await axiosInstance.get<{ data: StatsHome }>(
     "learner/platform-analytics"
@@ -17,11 +18,11 @@ export async function fetchCategoriesCourses() {
   const response = await axiosInstance.get("categories-for-platform");
   return response.data.data;
 }
-export async function fetchAllCourses(page: number): Promise<CoursesHome[]> {
-  const response = await axiosInstance.get<AllCoursesResponse>(
+export async function fetchAllCourses(page: number): Promise<CoursesHomeResponse> {
+  const response = await axiosInstance.get<CoursesHomeResponse>(
     `all-courses?per_page=12&page=${page}`
   );
-  return response.data.data;
+  return response.data;
 }
 export async function fetchCourseDetails(
   courseId: string
@@ -61,7 +62,8 @@ export async function postReviewLearner(
       reviewData
     );
     return response.data?.data || { message: response.data?.message };
-  } catch (error: any) {
-    throw new Error(error.response?.data?.message || "Something went wrong");
+  } catch (error) {
+    const axiosError = error as AxiosError<{message? : string }>;
+    throw new Error(axiosError.response?.data?.message || "Something went wrong");
   }
 }

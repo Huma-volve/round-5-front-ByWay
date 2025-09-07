@@ -99,6 +99,7 @@ export interface CoursesHome {
   progress: string;
   course_image_url: string;
   course_id: number;
+  
   instructor: {
     id: number;
     name: string;
@@ -118,6 +119,19 @@ export interface CoursesHome {
   }[];
   created_at: string;
   updated_at: string;
+}
+export interface CoursesHomeResponse {
+  data : {
+  courses : CoursesHome[];
+  pagination : {
+    current_page: number | undefined;
+    last_page: number | undefined;
+    per_page: number | undefined;
+    total: number | undefined;
+    from: number | undefined;
+    to: number | undefined
+    }
+  }
 }
 
 export interface MyCoursesLearner {
@@ -347,8 +361,8 @@ export interface WithdrawalRequest {
 }
 
 export interface PaginationData {
-    currentPage: number;
-    totalPages: number;
+    currentPage: number | undefined;
+    totalPages: number | undefined;
     handlePageChange: (newPage: number) => void;
 }
 

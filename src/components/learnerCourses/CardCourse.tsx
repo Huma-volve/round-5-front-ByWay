@@ -10,7 +10,6 @@ import useAddFavorites from "@/hooks/Favorites/useAddFavorites";
 import useRemoveFavorites from "@/hooks/Favorites/useRemoveFavorites";
 import useAddToCart from "@/hooks/Cart/useAddToCart";
 import { toast } from "react-toastify";
-import { useState } from "react";
 
 interface CardCourseProps {
   courses: CoursesHome[];
@@ -31,7 +30,6 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
   const { t } = useTranslation();
   const [role] = useLocalStorage("role", "");
   const { favourites } = useFavourites();
-  const [loadingIds, setLoadingIds] = useState<number[]>([]);
   const { mutate: removeFavorite } = useRemoveFavorites();
   const { mutate: addFavorite } = useAddFavorites();
   const { mutate: addToCart } = useAddToCart();
@@ -46,28 +44,22 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
     e.preventDefault();
     e.stopPropagation();
 
-    setLoadingIds((prev) => [...prev, courseId]);
-
     if (isFavoriteCourse(courseId)) {
       removeFavorite(courseId, {
         onSuccess: () => {
           toast.success(t("Removed from favourites"));
-          setLoadingIds((prev) => prev.filter((id) => id !== courseId));
         },
         onError: () => {
           toast.error(t("Failed to remove favourite"));
-          setLoadingIds((prev) => prev.filter((id) => id !== courseId));
         },
       });
     } else {
       addFavorite(courseId, {
         onSuccess: () => {
           toast.success(t("Added to favourites"));
-          setLoadingIds((prev) => prev.filter((id) => id !== courseId));
         },
         onError: () => {
           toast.error(t("Failed to add favourite"));
-          setLoadingIds((prev) => prev.filter((id) => id !== courseId));
         },
       });
     }
@@ -125,13 +117,6 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
                 loading="lazy"
               />
             </div>
-
-            {loadingIds.includes(course.id) ? (
-              <Loader2
-                className="absolute -top-1 -left-1 size-[30px] p-1 rounded-full
-                bg-white text-gray-500 shadow animate-spin"
-              />
-            ) : (
               <Heart
                 onClick={(e) => handleFavorite(course.id, e)}
                 className={`absolute -top-1 -left-1 size-[30px] p-1 
@@ -143,8 +128,7 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
                   }`}
                 fill={isFavoriteCourse(course.id) ? "currentColor" : "none"}
               />
-            )}
-
+          
             <div className="border-2 w-full border-[--category] rounded-2xl mt-3 px-4 py-3 shadow">
               <h5 className="font-[600] text-lg lg:text-lg xl:text-xl truncate">
                 {course.title}

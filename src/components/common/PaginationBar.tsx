@@ -21,16 +21,16 @@ export default function PaginationBar({
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              if (currentPage > 1) {
-                handlePageChange(currentPage - 1);
+              if (currentPage! > 1) {
+                handlePageChange(currentPage! - 1);
               }
             }}
             className={currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""}
           />
         </PaginationItem>
-        {totalPages > 1 ? (
+        {totalPages! > 1 ? (
           <>
-            {currentPage > 3 && (
+            {currentPage! > 3 && (
               <PaginationItem>
                 <PaginationLink
                   href="#"
@@ -43,9 +43,9 @@ export default function PaginationBar({
                 </PaginationLink>
               </PaginationItem>
             )}
-            {currentPage > 3 && <PaginationEllipsis />}
-            {Array.from({ length: 3 }, (_, i) => currentPage - 1 + i)
-              .filter((page) => page > 0 && page <= totalPages)
+            {currentPage! > 3 && <PaginationEllipsis />}
+            {Array.from({ length: 3 }, (_, i) => currentPage! - 1 + i)
+              .filter((page) => page > 0 && page <= totalPages!)
               .map((page) => (
                 <PaginationItem key={page}>
                   <PaginationLink
@@ -60,14 +60,14 @@ export default function PaginationBar({
                   </PaginationLink>
                 </PaginationItem>
               ))}
-            {currentPage < totalPages - 2 && <PaginationEllipsis />}
-            {currentPage < totalPages - 2 && (
+            {currentPage! < totalPages! - 2 && <PaginationEllipsis />}
+            {currentPage! < totalPages! - 2 && (
               <PaginationItem>
                 <PaginationLink
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
-                    handlePageChange(totalPages);
+                    handlePageChange(totalPages!);
                   }}
                 >
                   {totalPages}
@@ -81,7 +81,7 @@ export default function PaginationBar({
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                handlePageChange(currentPage);
+                handlePageChange(currentPage!);
               }}
               isActive={true}
             >
@@ -94,8 +94,8 @@ export default function PaginationBar({
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              if (currentPage < totalPages) {
-                handlePageChange(currentPage + 1);
+              if (currentPage! < totalPages!) {
+                handlePageChange(currentPage! + 1);
               }
             }}
             className={
