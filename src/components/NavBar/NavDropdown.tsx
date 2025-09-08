@@ -39,7 +39,7 @@ function NavDropdown({ icon }: { icon: ReactElement }) {
             to={`${role === "instructor" ? "/instructor" : "/profile"}`}
           >
             {/*  */}
-            {t("common.home")}
+            {role === "instructor" ? t("common.home") : t("common.profile")}
           </Link>
         </DropdownMenuItem>
 
