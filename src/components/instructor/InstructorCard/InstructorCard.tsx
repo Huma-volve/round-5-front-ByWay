@@ -8,8 +8,8 @@ export default function InstructorCard() {
  const instructor = instructors[0];
 
   return (
-    <Link
-      to="/instructor/instructor-details"
+    <div
+  
       className="flex justify-between py-6 w-full"
     >
       <div>
@@ -44,6 +44,6 @@ export default function InstructorCard() {
           <Edit size={20} />
         </Link>
       </div>
-    </Link>
+    </div>
   );
 }

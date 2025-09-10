@@ -7,6 +7,8 @@ const getProfile = async () => {
 };
 
 export function useProfile() {
+
+    
   return useQuery({
     queryKey: ["profile"],
     queryFn: getProfile,

@@ -31,7 +31,7 @@ function StatsCourses() {
 
   return (
     <>
-      <div className="grid grid-cols-1 mx-10 mt-14 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center">
+      <div className="grid grid-cols-1 mx-10  sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center">
         {data &&
           stats.map((item, index) => (
             <div

@@ -96,9 +96,11 @@ import { getEditProfileDefaults } from "@/schemas/editProfileDefaults";
 import { useProfile } from "@/hooks/instructor/useProfile";
 import { useUpdateProfile } from "@/hooks/instructor/useUpdateProfile";
 import React from "react";
+import ErrorDesign from "@/components/AdminDashboard/UserManagement/ErrorDesign";
+import LoadingDesign from "@/components/AdminDashboard/UserManagement/LoadingDesign";
 
 export default function EditProfile() {
-  const { data: profileData, isLoading, isError } = useProfile();
+  const { data: profileData, isLoading, isError , error } = useProfile();
   const { mutate: updateProfile, isPending } = useUpdateProfile();
 
   const { register, handleSubmit, reset } = useForm<EditProfileForm>({
@@ -112,6 +114,8 @@ React.useEffect(() => {
     }
   }, [profileData, reset]);
 
+    if (isLoading) return <LoadingDesign />;
+    if (isError) return <ErrorDesign message={error?.message} />;
  
 
   const onSubmit = (data: EditProfileForm) => {
@@ -119,7 +123,8 @@ React.useEffect(() => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-white p-6 rounded-xl shadow">
+    <section className="flex items-center min-h-[80vh]">
+    <form onSubmit={handleSubmit(onSubmit)} className=" space-y-6 bg-white p-6 rounded-xl shadow  w-full">
       <h2 className="text-xl font-semibold">Edit Profile</h2>
 
       <div className="space-y-3">
@@ -145,9 +150,10 @@ React.useEffect(() => {
         </div>
       </div>
 
-      <Button type="submit" className="bg-success w-full" disabled={isPending}>
+      <Button type="submit" className="bg-success w-full text-white" disabled={isPending}>
         {isPending ? "Saving..." : "Save Changes"}
       </Button>
     </form>
+    </section>
   );
 }
