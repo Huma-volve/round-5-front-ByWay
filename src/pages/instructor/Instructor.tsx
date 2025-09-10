@@ -30,7 +30,7 @@ export default function Instructor() {
   if (error) return <ErrorState />;
 
   return (
-    <main className="container py-12 space-y-12">
+    <main className="container py-12  space-y-12">
       <section className="space-y-3">
         <InstructorCard />
 
