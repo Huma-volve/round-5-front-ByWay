@@ -104,15 +104,15 @@ function CourseDetails() {
             </div>
           </div>
           <div>
-            {course?.content?.map((content) => (
+            {course?.content?.map((content,index) => (
               <div
                 key={content.id}
-                className="flex items-center gap-6 border w-fit py-3 px-7 rounded-xl mb-8"
+                className="flex items-center gap-6 border max-w-[590px] py-3 px-7 rounded-xl mb-8"
               >
                 <img className="w-5 md:w:10" src={VideoIcon} alt="VideoIcon" />
-                <div className="md:text-xl text-md font-[500] w-48 md:w-96">
-                  {t("common.lesson")} {content.id}:{" "}
-                  {t("common.introductionTo")} {content.title}
+                <div className="md:text-xl text-md font-[500] ">
+                  {t("common.lesson")} {index + 1}{" "}:
+                  {" "}{t("common.introductionTo")} {content.title}
                 </div>
               </div>
             ))}

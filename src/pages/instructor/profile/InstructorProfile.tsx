@@ -14,7 +14,7 @@ export default function EditProfile() {
   const { data: profileData, isLoading } = useQuery({
     queryKey: ["profile"],
     queryFn: async () => {
-      const res = await axiosInstance.get("/api/profile");
+      const res = await axiosInstance.get("instructor/profile");
       return res.data.data;
     },
   });
