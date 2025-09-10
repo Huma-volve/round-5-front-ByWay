@@ -19,6 +19,7 @@ import { Save } from "lucide-react";
 import axiosInstance from "@/lib/axios-instance";
 import { useUpdateCourseStatus } from "@/hooks/useUpdateCourseStatus";
 import { useCourse } from "@/hooks/AdminDashboard/useCourse";
+import type { AxiosError } from "axios";
 export default function EditCourse() {
   const navigate = useNavigate();
   const updateStatusMutation = useUpdateCourseStatus();
@@ -67,8 +68,12 @@ export default function EditCourse() {
             await axiosInstance.put(`/courses/${id}`, values);
             toast.success("Course updated successfully!");
             navigate("/admin/course-manage");
-          } catch (err: any) {
-            toast.error("Error: " + err.message);
+          } catch (err) {
+            const axiosError = err as AxiosError<{ message?: string }>;
+            const errorMessage =
+              axiosError.response?.data?.message ||
+              "Failed to update course";
+            toast.error(errorMessage);
           } finally {
             setSubmitting(false);
           }

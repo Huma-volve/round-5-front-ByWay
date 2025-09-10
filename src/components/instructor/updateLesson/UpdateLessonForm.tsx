@@ -176,7 +176,7 @@ export default function UpdateLessonForm() {
             >
               {formik.isSubmitting || isUpdating
                 ? t("instructor.lessons.updatingLesson")
-                : t("instructor.updateCourse.submitButton")}
+                : t("instructor.lessons.updateLesson")}
             </Button>
           </form>
         )}

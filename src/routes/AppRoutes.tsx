@@ -119,7 +119,7 @@ export default function AppRoutes() {
           <Route path="/instructor">
             <Route index element={<Instructor />} />
             <Route index path="home" element={<Instructor />} />
-         
+
             {/* Public Instructor Profile */}
 
             {/* Instructor Dashboard & Reviews */}

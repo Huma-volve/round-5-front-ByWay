@@ -297,6 +297,19 @@ export interface UpdateLessonData {
   order: number;
 }
 
+export interface CourseDataForInstructor{
+  data:{
+    id: number;
+    title: string;
+    description: string;
+    price: number;
+    category_id: number;
+    image: File | null;
+    video: File | null;
+    lessons:LessonDTO[]
+  }
+}
+
 export interface LessonDTO {
   id: number;
   title: string;

@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
-import { Skeleton } from "@/components/ui/skeleton";
+// import { Skeleton } from "@/components/ui/skeleton";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import LoadingDesign from "../UserManagement/LoadingDesign";
 import ErrorDesign from "../UserManagement/ErrorDesign";
