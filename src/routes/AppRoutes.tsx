@@ -220,7 +220,7 @@ export default function AppRoutes() {
           <Route path="course-manage/edit/:id" element={<EditCourse />} />
           <Route
             path="course-manage/course-details/:courseId"
-            element={<InstructorCourseDetails />}
+            element={<CourseDetails />}
           />
           <Route path="settings" element={<AdminSettings />} />
           <Route path="analytics" element={<ReportsAnalytics />} />

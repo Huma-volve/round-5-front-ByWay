@@ -10,9 +10,11 @@ import NewBreadCrumb from "../common/NewBreadCrumb";
 import { useMemo } from "react";
 import CourseDetailsLoading from "./CourseDetailsLoading";
 import ImgNotFound from "../../assets/images/image-not-found.png";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 function CourseDetails() {
   const { t } = useTranslation();
+  const [role]= useLocalStorage("role","");
   // const { getAutoBreadcrumb } = useBreadcrumb();
   const { courseId } = useParams<{ courseId: string | undefined }>();
   const { data: course, error, isLoading } = useFetchCourseDetails(courseId!);
@@ -46,7 +48,7 @@ function CourseDetails() {
     <>
       <div className="mt-5">
         {/* <Breadcrumb items={getAutoBreadcrumb()} className="mb-6 mt-5" /> */}
-        <NewBreadCrumb items={breadcrumbItems} />
+        {role !== "admin" && <NewBreadCrumb items={breadcrumbItems} />}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-20">
         <div className="md:col-span-2">
