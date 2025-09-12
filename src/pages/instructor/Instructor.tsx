@@ -4,35 +4,23 @@ import RatingsOverview from "@/components/instructor/reviews/RatingsOverview";
 import InstructorCard from "@/components/instructor/InstructorCard/InstructorCard";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-
 import NoCourses from "@/components/instructor/empty/NoCourses";
 import NoReviews from "@/components/instructor/empty/NoReviews";
 import { useInstructor } from "@/api/useInstructor";
-import LoadingCourses from "@/components/course/CourseCard/LoadingCourses";
 import ErrorState from "@/components/course/CourseCard/ErrorState";
 import Review from "@/components/learnerCourses/ReviewLeanerCourses";
-
+import InstructorDataSkelton from "@/components/instructor/InstructorCard/InstructorDataSkelton";
+import type { Course } from "@/types/Course";
 export default function Instructor() {
-  type Course = {
-    id: number;
-    title: string;
-    description: string;
-    status: string;
-    key?: number;
-    rate?: number;
-    price?: number;
-    image_url?: string;
-  };
   const { t } = useTranslation();
   const { data, isLoading, error } = useInstructor();
 
-  if (isLoading) return <LoadingCourses />;
   if (error) return <ErrorState />;
 
   return (
     <main className="container py-12  space-y-12">
       <section className="space-y-3">
-        <InstructorCard />
+        {isLoading ? <InstructorDataSkelton /> : <InstructorCard />}
 
         <h2 className="flex justify-between items-center">
           <p className="text-xl lg:text-2xl font-semibold">
@@ -74,9 +62,9 @@ export default function Instructor() {
             <div className="md:col-span-2">
               <div className="mb-9 space-y-4">
                 {data.reviews.map((reviewData: any) => (
-                  <Review 
-                    key={reviewData.id} 
-                    variant="user" 
+                  <Review
+                    key={reviewData.id}
+                    variant="user"
                     name={reviewData.user?.name || "Anonymous"}
                     rating={reviewData.rating}
                     date={reviewData.created_at || "2025-08-24"}

@@ -6,39 +6,26 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectTrigger,
-  SelectContent,
-  SelectItem,
-  SelectValue,
-} from "@/components/ui/select";
 import CourseSchema from "@/schemas/courseSchema";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Save } from "lucide-react";
 import axiosInstance from "@/lib/axios-instance";
-import { useUpdateCourseStatus } from "@/hooks/useUpdateCourseStatus";
 import { useCourse } from "@/hooks/AdminDashboard/useCourse";
 import type { AxiosError } from "axios";
+import ErrorState from "@/components/course/CourseCard/ErrorState";
+import CourseFormSkeleton from "./CourseFormSkeleton";
 export default function EditCourse() {
   const navigate = useNavigate();
-  const updateStatusMutation = useUpdateCourseStatus();
   const { id } = useParams<{ id: string }>();
   const { t } = useTranslation();
+  const { data, isLoading, isError } = useCourse(id);
 
-  const { data, isLoading, isError, error } = useCourse(id);
-
-  if (isLoading)
+  if (isLoading) return <CourseFormSkeleton/>;
+  if (isError)
     return (
-      <Skeleton className="container space-y-4 min-h-screen w-full rounded-full" />
+      <div className="flex justify-center items-center">
+        <ErrorState />
+      </div>
     );
-  if (isError) return <p>Error: {(error as Error).message}</p>;
-
-  if (isLoading)
-    return (
-      <Skeleton className="container space-y-4 min-h-screen w-full rounded-full" />
-    );
-  if (isError) return <p>Error: {(error as Error).message}</p>;
 
   return (
     <div className="container space-y-4 min-h-screen">
@@ -71,15 +58,14 @@ export default function EditCourse() {
           } catch (err) {
             const axiosError = err as AxiosError<{ message?: string }>;
             const errorMessage =
-              axiosError.response?.data?.message ||
-              "Failed to update course";
+              axiosError.response?.data?.message || "Failed to update course";
             toast.error(errorMessage);
           } finally {
             setSubmitting(false);
           }
         }}
       >
-        {({ values, setFieldValue }) => (
+        {() => (
           <Form>
             <Card className="rounded-2xl shadow-sm">
               <CardHeader>
@@ -94,48 +80,6 @@ export default function EditCourse() {
                   <Field as={Input} name="title" />
                   <ErrorMessage
                     name="title"
-                    component="p"
-                    className="text-red-500 my-2 text-sm"
-                  />
-                </div>
-
-                <div>
-                  <Label>{t("instructor.courseManagement.selectStatus")}</Label>
-
-                  <Select
-                    value={values.status}
-                    onValueChange={(val) => {
-                      setFieldValue("status", val);
-                      if (id) {
-                        updateStatusMutation.mutate({
-                          courseId: id,
-                          status: val as "published" | "draft" | "pending",
-                        });
-                      }
-                    }}
-                  >
-                    <SelectTrigger>
-                      <SelectValue
-                        placeholder={t(
-                          "instructor.courseManagement.placeholders.status"
-                        )}
-                      />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="published">
-                        {t("instructor.courseManagement.published")}
-                      </SelectItem>
-                      <SelectItem value="draft">
-                        {t("instructor.courseManagement.draft")}
-                      </SelectItem>
-                      <SelectItem value="pending">
-                        {t("instructor.courseManagement.pending")}
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-
-                  <ErrorMessage
-                    name="status"
                     component="p"
                     className="text-red-500 my-2 text-sm"
                   />
