@@ -34,12 +34,12 @@ export default function CourseCard({
         />
       </div>
 
-      <div className="p-4 flex flex-col flex-grow">
-        <h2 className="text-xl font-semibold text-gray-800">
+      <div className="p-4 flex flex-col flex-grow ">
+        <h2 className="text-xl font-semibold text-gray-800 truncate">
           {course?.title ?? "Untitled"}
         </h2>
 
-        <p className="text-gray-500 text-sm mb-4">
+        <p className="text-gray-500 text-sm mb-4 truncate">
           {course?.description ?? "No description available"}
         </p>
 

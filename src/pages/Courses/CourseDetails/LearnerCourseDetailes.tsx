@@ -51,11 +51,16 @@ export default function LearnerCourseDetails() {
     <section className="container py-12 space-y-8">
       <div className="flex flex-col lg:flex-row-reverse gap-6 items-center">
         <div className="flex-shrink-0 lg:w-1/2 w-full">
-          <video
-            src={courseDetails?.video_url}
-            controls
-            className="max-h-[350px] lg:max-h-[400px] object-cover w-full rounded-lg"
-          />
+          {courseDetails?.video_url ? (
+            <video
+              controls
+              className="max-h-[350px] lg:max-h-[400px] object-cover w-full rounded-lg"
+            >
+              <source src={courseDetails.video_url} type="video/mp4" />
+            </video>
+          ) : (
+            <p>No video available</p>
+          )}
         </div>
 
         <div className="space-y-2 lg:w-1/2 w-full">

@@ -8,10 +8,10 @@ export async function getCourseById(courseId: string | undefined) {
     const response = await axiosInstance.get(
       `instructor/course-management/courses/${courseId}`
     );
-    if (response.data?.success === true) {
-      console.log(response.data);
-      toast.success(response.data.message || "Course loaded successfully");
-    }
+    // if (response.data?.success === true) {
+    //   console.log(response.data);
+    //   toast.success(response.data.message || "Course loaded successfully");
+    // }
     return response.data;
   } catch (error) {
     const axiosError = error as AxiosError<{ message?: string }>;
@@ -112,10 +112,10 @@ export async function deleteCourse(courseId: string | undefined) {
 export async function getCategoriesForCourse() {
   try {
     const response = await axiosInstance.get("categories-for-platform");
-    if (response.data?.status === 200) {
-      console.log(response.data);
-      toast.success(response.data.message || "Categories loaded successfully");
-    }
+    // if (response.data?.status === 200) {
+    //   console.log(response.data);
+    //   toast.success(response.data.message || "Categories loaded successfully");
+    // }
     return response.data;
   } catch (error) {
     const axiosError = error as AxiosError<{ message?: string }>;

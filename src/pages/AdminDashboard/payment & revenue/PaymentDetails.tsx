@@ -11,8 +11,8 @@ import type { paymentDetails } from "@/data/paymentRecord";
 import LoadingDesign from "@/components/AdminDashboard/UserManagement/LoadingDesign";
 
 interface PaymentDetailsProps {
+  id: string;
   open: boolean;
-  id:string;
   onOpenChange: (open: boolean) => void;
 }
 
@@ -74,4 +74,5 @@ function PaymentDetails({ id ,open, onOpenChange }: PaymentDetailsProps) {
   )
 }
 
-export default PaymentDetails
+export default PaymentDetails;
+export type { PaymentDetailsProps };

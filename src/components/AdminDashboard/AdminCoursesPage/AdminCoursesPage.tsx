@@ -4,8 +4,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
-import { Skeleton } from "@/components/ui/skeleton";
+// import { Skeleton } from "@/components/ui/skeleton";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
+import LoadingDesign from "../UserManagement/LoadingDesign";
+import ErrorDesign from "../UserManagement/ErrorDesign";
 export default function AdminCoursesPage() {
   const [token] = useLocalStorage("auth_token", "");
   const queryClient = useQueryClient();
@@ -56,22 +58,9 @@ export default function AdminCoursesPage() {
   });
 
   const { t } = useTranslation();
-  if (isLoading)
-    return (
-      <div className="p-6 space-y-2">
-        <Skeleton className="h-6 w-48" />
-        <Skeleton className="h-4 w-80" />
-        <div className="space-y-2 mt-4">
-          {[...Array(5)].map((_, i) => (
-            <div key={i} className="flex space-x-2">
-              <Skeleton className="h-6 w-full" />
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  if (isError) return <p>Error: {error.message}</p>;
-
+ 
+    if (isLoading) return <LoadingDesign />;
+    if (isError) return <ErrorDesign message={error?.message} />;
   return (
     <div className="p-6 container space-y-4">
       <div className="space-y-2">

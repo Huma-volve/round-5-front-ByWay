@@ -1,16 +1,21 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { useBreadcrumb } from "../../hooks/useBreadcrumb";
+// import { useBreadcrumb } from "../../hooks/useBreadcrumb";
 import type { InstructorReview } from "../../data/instructorReviewsData";
 import type { LaravelPagination } from "../../utils/paginationSimulator";
 import Review from "../../components/instructor/reviews/Review";
-import Breadcrumb from "../../components/common/Breadcrumb";
+// import Breadcrumb from "../../components/common/Breadcrumb";
+import NewBreadCrumb from "../../components/common/NewBreadCrumb";
 import { paginateLaravel } from "../../utils/paginationSimulator";
 import INSTRUCTOR_REVIEWS_DATA from "../../data/instructorReviewsData";
 
 export default function InstructorReviews() {
   const { t } = useTranslation();
-  const { getAutoBreadcrumb } = useBreadcrumb();
+  // const { getAutoBreadcrumb } = useBreadcrumb();
+  const breadcrumbItems = useMemo(() => [
+    { label: "common.home", link: "/" },
+    { label: "instructor.reviews" },
+  ], []);
 
   const [page, setPage] = useState(1);
 
@@ -33,7 +38,8 @@ export default function InstructorReviews() {
   return (
     <div className="mt-6 mx-auto py-2 flex flex-col items-center justify-center gap-2">
       <div className="w-full max-w-4xl">
-        <Breadcrumb items={getAutoBreadcrumb()} className="" />
+        {/* <Breadcrumb items={getAutoBreadcrumb()} className="" /> */}
+        <NewBreadCrumb items={breadcrumbItems} />
       </div>
       <div className="text-center w-full py-4 font-bold text-xl px-8 lg:px-0 ">
         <h1>
@@ -41,18 +47,19 @@ export default function InstructorReviews() {
         </h1>
       </div>
       {/* Render paginated reviews */}
-      {pagination.data.map(({ id,  review, rating }) => (
+      {pagination.data.map(({ id, review: reviewText, rating, name }) => (
         <Review
           key={id}
-          // courseName={courseName}  courseName,
-          // review={review}
+          id={id}
+          rating={rating}
+          name={name || "Anonymous"}
           review={{
-      review: review,
-      rating: rating,
-      created_at: "2025-08-24",
-      user: { name: "John Doe" }
-    }}
-           />
+            review: reviewText,
+            rating: rating,
+            created_at: "2025-08-24",
+            user: { name: name || "Anonymous" }
+          }}
+        />
       ))}
 
       {/* Pagination controls */}

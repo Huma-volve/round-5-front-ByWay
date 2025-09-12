@@ -40,7 +40,8 @@
     "students": "الطلاب",
     "aboutMe": "عنّي",
     "instructorDetails": "تفاصيل المدرب",
-    "add": "إضافة"
+    "add": "إضافة",
+    "of": "من"
   },
   "auth": {
     "loginToAccount": "سجل الدخول إلى حسابك",

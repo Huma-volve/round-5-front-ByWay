@@ -15,13 +15,11 @@ function VideoLearner() {
   }[] =
     courseDetails?.content
       ?.filter((item) => item.id === Number(videoId))
-      .map((item) => ({
-        id: item.id,
+      .map((item,index) => ({
+        id: index+1,
         title: item.title,
         video_url: item.video_url,
       })) ?? [];
-
-  console.log(filteredContent);
   return (
     <>
       <div>

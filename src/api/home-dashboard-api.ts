@@ -9,11 +9,11 @@ export const fetchTopRatedCourses =
       const response = await axiosInstance.get("dashboard/top-rated-courses");
 
       // عرض رسالة نجاح
-      if (response.data?.status === 200) {
-        toast.success(
-          response.data.message || "Top-rated courses loaded successfully"
-        );
-      }
+      // if (response.data?.status === 200) {
+      //   toast.success(
+      //     response.data.message || "Top-rated courses loaded successfully"
+      //   );
+      // }
 
       return response.data;
     } catch (error) {
@@ -31,11 +31,11 @@ export const fetchDshboardStatistics = async () => {
   try {
     const response = await axiosInstance.get("dashboard/statistics");
     // عرض رسالة نجاح
-    if (response.data?.status === 200) {
-      toast.success(
-        response.data.message || "Dashboard statistics loaded successfully"
-      );
-    }
+    // if (response.data?.status === 200) {
+    //   toast.success(
+    //     response.data.message || "Dashboard statistics loaded successfully"
+    //   );
+    // }
     return response.data;
   } catch (error) {
     const axiosError = error as AxiosError<{ message?: string }>;
@@ -51,11 +51,11 @@ export const fetchAdminRevenueGraphData = async () => {
   try {
     const response = await axiosInstance.get("dashboard/revenue-report");
     // عرض رسالة نجاح
-    if (response.data?.status === 200) {
-      toast.success(
-        response.data.message || "Admin revenue graph data loaded successfully"
-      );
-    }
+    // if (response.data?.status === 200) {
+    //   toast.success(
+    //     response.data.message || "Admin revenue graph data loaded successfully"
+    //   );
+    // }
     return response.data;
   } catch (error) {
     const axiosError = error as AxiosError<{ message?: string }>;
@@ -71,11 +71,11 @@ export const fetchAdminRecentPayouts = async () => {
   try {
     const response = await axiosInstance.get("dashboard/recent-payments");
     // عرض رسالة نجاح
-    if (response.data?.status === 200) {
-      toast.success(
-        response.data.message || "Admin recent payouts loaded successfully"
-      );
-    }
+    // if (response.data?.status === 200) {
+    //   toast.success(
+    //     response.data.message || "Admin recent payouts loaded successfully"
+    //   );
+    // }
     return response.data;
   } catch (error) {
     const axiosError = error as AxiosError<{ message?: string }>;

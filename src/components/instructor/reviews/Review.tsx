@@ -3,15 +3,18 @@ import activeStarIcon from "../../../assets/images/icons/star-active-icon.svg";
 import inactiveStarIcon from "../../../assets/images/icons/star-inactive-icon.svg";
 
 import { CircleUserRound } from "lucide-react";
-import type { InstructorReview } from "@/data/instructorReviewsData";
-type ReviewProps = InstructorReview & {
+type ReviewProps = {
+  id?: number;
+  name?: string;
+  rating: number;
+  date?: string;
+  imageLearner?: string;
   variant?: "course" | "user";
-  review: {
+  review: string | {
     review: string;
     rating: number;
     created_at: string;
     user: {
-      //id: number,
       name: string;
     };
   };
@@ -22,8 +25,12 @@ export default function Review({
   review,
   variant = "course",
   imageLearner,
+  rating,
 }: ReviewProps) {
   const { t } = useTranslation();
+
+  const reviewText = typeof review === 'string' ? review : review.review;
+  const reviewRating = typeof review === 'string' ? (rating || 0) : review.rating;
 
   return (
     <>
@@ -40,7 +47,7 @@ export default function Review({
             <p className="flex items-center gap-2 text-sm sm:text-base">
               <span className="font-medium">{t("instructor.rating")}:</span>
               <span className="flex gap-1">
-                {Array(review.rating)
+                {Array(reviewRating)
                   .fill(0)
                   .map((_, i) => (
                     <img
@@ -51,7 +58,7 @@ export default function Review({
                       className="w-4 h-4"
                     />
                   ))}
-                {Array(5 - review.rating)
+                {Array(5 - reviewRating)
                   .fill(0)
                   .map((_, i) => (
                     <img
@@ -66,7 +73,7 @@ export default function Review({
             </p>
             <p className="flex flex-col md:flex-row  md:gap-2 text-sm sm:text-base">
               <span className="font-medium">{t("instructor.review")}:</span>
-              <span>{review.review}</span>
+              <span>{reviewText}</span>
             </p>
           </>
         ) : (
@@ -86,14 +93,14 @@ export default function Review({
 
                 <p className="font-bold text-sm sm:text-base">{name}</p>
                 <p className="font-bold text-sm sm:text-base">
-                  {review?.user?.name}
+                  {typeof review === 'object' ? review.user?.name : name}
                 </p>
               </div>
 
               <div className="flex items-center gap-1">
                 {/* <span className="text-sm font-medium">{`${rating} Ratings`}</span> */}
                 <span className="flex gap-1">
-                  {Array(review.rating)
+                  {Array(reviewRating)
                     .fill(0)
                     .map((_, i) => (
                       <img
@@ -103,7 +110,7 @@ export default function Review({
                         className="w-4 h-4"
                       />
                     ))}
-                  {Array(5 - review.rating)
+                  {Array(5 - reviewRating)
                     .fill(0)
                     .map((_, i) => (
                       <img
@@ -116,10 +123,10 @@ export default function Review({
                 </span>
               </div>
 
-              <span className="text-xs text-gray-500">{review.created_at}</span>
+              <span className="text-xs text-gray-500">{typeof review === 'object' ? new Date(review.created_at).toLocaleDateString() : 'N/A'}</span>
             </div>
             <p className="max-w-lg text-sm sm:text-base leading-relaxed">
-              {review.review}
+              <p>{reviewText}</p>
             </p>
           </>
         )}

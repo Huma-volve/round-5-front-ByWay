@@ -1,20 +1,30 @@
-import Breadcrumb from "@/components/common/Breadcrumb";
-import { useBreadcrumb } from "@/hooks/useBreadcrumb";
+// import Breadcrumb from "@/components/common/Breadcrumb";
+// import { useBreadcrumb } from "@/hooks/useBreadcrumb";
 import { useNavigate, useParams } from "react-router-dom";
-import { useCourse } from "@/hooks/useCourseData";
+import { useMemo } from "react";
+import NewBreadCrumb from "@/components/common/NewBreadCrumb";
+// import { useCourse } from "@/hooks/useCourseData";
 import { useCourseManagement } from "@/hooks/useCourseManagement";
 import { createCourseActions } from "@/data/courseActionsData";
 import CourseActionCard from "@/components/instructor/addCourse/CourseActionCard";
 import CourseManagementTips from "@/components/instructor/addCourse/CourseManagementTips";
 import DeleteConfirmationModal from "@/components/instructor/DeleteConfirmationModal";
 import { useTranslation } from "react-i18next";
+import useFetchCourseById from "@/hooks/instructor/useFetchCourseById";
 
 export default function CourseSelection() {
-  const { getAutoBreadcrumb } = useBreadcrumb();
+  // const { getAutoBreadcrumb } = useBreadcrumb();
   const navigate = useNavigate();
   const { courseId } = useParams<{ courseId: string }>();
-  const { course } = useCourse(courseId);
+  const { data,isLoading } = useFetchCourseById(courseId);
+  const course = data?.data;  
   const { t } = useTranslation();
+  const breadcrumbItems = useMemo(
+    () => [
+      { label: "common.home", link: "/" },
+      { label: "instructor.courseManagement.title" },
+    ],[]
+  );
 
   const {
     deleteModalOpen,
@@ -32,12 +42,17 @@ export default function CourseSelection() {
 
   return (
     <div className="container my-3">
-      <div className="flex md:gap-52 items-center flex-col gap-4 md:flex-row mb-10">
-        <Breadcrumb items={getAutoBreadcrumb(undefined, course?.title)} />
+      <div className="">
+        {/* <Breadcrumb items={getAutoBreadcrumb(undefined, course?.title)} /> */}
+        <NewBreadCrumb items={breadcrumbItems} />
       </div>
-        <h1 className="text-3xl font-bold mb-20 text-center">
-          {t("instructor.courseManagement.title")}
-        </h1>
+      <h1 className="text-3xl font-bold mb-20 text-center flex justify-center">
+        {isLoading ? (
+          <p className="text-center h-12 w-1/2 bg-gray-200 animate-pulse" ></p>
+        ) : (
+          course?.title || t("instructor.courseManagement.title")
+        )}
+      </h1>
       {/* <h2></h2> */}
 
       <div className="mt-8">

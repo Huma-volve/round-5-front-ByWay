@@ -5,9 +5,9 @@ import { toast } from "react-toastify";
 export const fetchPaymentStistics = async () => {
   try{
     const response =await axiosInstance.get("payments/statistics")
-    if(response.data?.status===200){
-      response.data.message|| "payment statistics loaded successfully"
-    }
+    // if(response.data?.status===200){
+    //   response.data.message|| "payment statistics loaded successfully"
+    // }
     return response.data;
   }
   catch(error){
@@ -23,9 +23,9 @@ export const fetchPaymentStistics = async () => {
 export const fetchPaymentRecords = async (page:number) => {
     try{
         const response=await axiosInstance.get(`payments/all?page=${page}`)
-        if(response.data?.status===200){
-            response.data.message|| "payment records loaded successfully"
-        }
+        // if(response.data?.status===200){
+        //     response.data.message|| "payment records loaded successfully"
+        // }
         return response.data;
     }catch(error){
         const axiosError = error as AxiosError<{ message?: string }>;
@@ -40,9 +40,9 @@ export const fetchPaymentRecords = async (page:number) => {
 export const fetchPaymentRecordDetails = async (id:number) => {
     try{
         const response=await axiosInstance.get(`payments/${id}`)
-        if(response.data?.status===200){
-            response.data.message|| "payment record details loaded successfully"
-        }
+        // if(response.data?.status===200){
+        //     response.data.message|| "payment record details loaded successfully"
+        // }
         return response.data;
     }catch(error){
         const axiosError = error as AxiosError<{ message?: string }>;
@@ -58,7 +58,7 @@ export const approveWithdrawal=async(id:number)=>{
   try{
       const response=await axiosInstance.patch(`payments/withdrawals/approve/${id}`)
       if(response.data?.status===200){
-          response.data.message|| "withdrawal request approved successfully"
+          toast.success(response.data.message|| "withdrawal request approved successfully")
       }
       return response.data;
   }catch(error){

@@ -47,7 +47,7 @@ export default function UserManagementPage() {
     }
   };
 
-  if (isLoading) return <LoadingDesign />;
+  // if (isLoading) return <LoadingDesign />;
   if (isError) return <ErrorDesign message={error?.message} />;
 
   return (
@@ -63,7 +63,9 @@ export default function UserManagementPage() {
           )}
         </p>
       </div>
-
+      {isLoading ? <LoadingDesign /> 
+      :
+      <>
       {/* search */}
       <div className="w-full md:w-[60%] border mt-8 border-gray-300 rounded-lg shadow-sm bg-white">
         <div className="flex items-center gap-2 p-3">
@@ -180,6 +182,8 @@ export default function UserManagementPage() {
           </div>
         </div>
       )}
+      </>
+      }
     </div>
   );
 }

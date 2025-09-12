@@ -1,9 +1,9 @@
 import { fetchMyCourses } from "@/api/learner-courses-api";
-import type { CoursesHome } from "@/lib/types";
+import type { MyCoursesLearner } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
 
 export default function useFetchMyCourses() {
-  const { data, error, isLoading } = useQuery<CoursesHome[]>({
+  const { data, error, isLoading } = useQuery<MyCoursesLearner[]>({
     queryKey: ["my-courses"],
     queryFn: fetchMyCourses,
   });
