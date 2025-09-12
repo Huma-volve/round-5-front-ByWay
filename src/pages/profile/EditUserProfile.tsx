@@ -24,12 +24,12 @@ const EditUserProfile = () => {
 
   console.log(user)
   const [previewImage, setPreviewImage] = useState<string | undefined>(user?.image);
-  const handleImage = (e: React.ChangeEvent<HTMLInputElement>,setFieldValue:any) => {
+  const handleImage = (e: React.ChangeEvent<HTMLInputElement>, setFieldValue: any) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader=new FileReader();
+      const reader = new FileReader();
       reader.onloadend = () => {
-        setFieldValue("image",reader.result);
+        setFieldValue("image", reader.result);
         setPreviewImage(reader.result as string);
       }
       reader.readAsDataURL(file);
@@ -41,7 +41,7 @@ const EditUserProfile = () => {
   }, [user]);
 
   if (!user) return <EditUserProfileLoading />;
-console.log(user.image);
+  console.log(user.image);
   return (
     <Formik
       initialValues={{
@@ -95,7 +95,7 @@ console.log(user.image);
           .finally(() => setSubmitting(false));
       }}
     >
-      {({ isSubmitting ,setFieldValue}) => (<div className="container m-8 p-12 ">
+      {({ isSubmitting, setFieldValue }) => (<div className="container m-8 p-12 ">
         <div className="flex gap-4 m-3">
           <img src={edit} alt="edit" loading="lazy" />
           <h1 className="font-bold">{t("profile.Edit Profile")}</h1>
@@ -113,7 +113,7 @@ console.log(user.image);
             loading="lazy"
             className={`w-8 h-8 curser-pointer bg-placeholder  mb-[-10px]  py-2 rounded-full ${i18n.language === "ar" ? "mr-[-25px]" : "ml-[-25px]"} `}
           />
-          
+
           <input
             type="file"
             name="image"
@@ -266,8 +266,8 @@ console.log(user.image);
           </div>
           <button type="submit" disabled={isSubmitting} className={`w-[150px] rounded-lg p-2 ml-[50%] md:ml-[75%] mt-4 
     ${isSubmitting ? "bg-gray-400 cursor-not-allowed" : "bg-primary hover:opacity-90 text-white"}`}
->
-  {isSubmitting ? t("profile.Saving") : t("profile.Save")}
+          >
+            {isSubmitting ? t("profile.Saving") : t("profile.Save")}
           </button>
         </Form>
       </div>

@@ -40,7 +40,8 @@
     "students": "Students",
     "aboutMe": "About Me",
     "instructorDetails": "Instructor Details",
-    "add": "Add"
+    "add": "Add",
+    "of":"of"
   },
   "auth": {
     "loginToAccount": "Log in into your account",

@@ -99,6 +99,7 @@ export interface CoursesHome {
   progress: string;
   course_image_url: string;
   course_id: number;
+  
   instructor: {
     id: number;
     name: string;
@@ -119,6 +120,29 @@ export interface CoursesHome {
   created_at: string;
   updated_at: string;
 }
+export interface CoursesHomeResponse {
+  data : {
+  courses : CoursesHome[];
+  pagination : {
+    current_page: number | undefined;
+    last_page: number | undefined;
+    per_page: number | undefined;
+    total: number | undefined;
+    from: number | undefined;
+    to: number | undefined
+    }
+  }
+}
+
+export interface MyCoursesLearner {
+  course_id: number;
+  title: string;
+  course_image_url: string;
+  instructor: string;
+  progress: string;
+  average_rating?: number;
+  description?: string;
+} 
 
 export interface instructorDetails {
   id: number;
@@ -273,6 +297,19 @@ export interface UpdateLessonData {
   order: number;
 }
 
+export interface CourseDataForInstructor{
+  data:{
+    id: number;
+    title: string;
+    description: string;
+    price: number;
+    category_id: number;
+    image: File | null;
+    video: File | null;
+    lessons:LessonDTO[]
+  }
+}
+
 export interface LessonDTO {
   id: number;
   title: string;
@@ -334,4 +371,19 @@ export interface WithdrawalRequest {
   account_name: string;
   account_number?: number;
   email?: string;
+}
+
+export interface PaginationData {
+    currentPage: number | undefined;
+    totalPages: number | undefined;
+    handlePageChange: (newPage: number) => void;
+}
+
+interface breadCrumbItem {
+  label: string;
+  link?:string;
+}
+
+export interface breadCrumbProps {
+  items: breadCrumbItem[];
 }

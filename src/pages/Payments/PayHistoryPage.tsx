@@ -1,30 +1,38 @@
 // src/pages/PayHistoryPage.tsx
 import { useTranslation } from "react-i18next";
-import Breadcrumb from "../../components/common/Breadcrumb";
-import { useBreadcrumb } from "../../hooks/useBreadcrumb";
+// import Breadcrumb from "../../components/common/Breadcrumb";
+// import { useBreadcrumb } from "../../hooks/useBreadcrumb";
 import { usePaymentHistory } from "../../hooks/usePaymentHistory";
-import LoadingCards from "@/components/common/LoadingCards";
+import { useMemo } from "react";
+import NewBreadCrumb from "../../components/common/NewBreadCrumb";
+import LoadingDesign from "@/components/AdminDashboard/UserManagement/LoadingDesign";
 
 export default function PayHistoryPage() {
   const { t } = useTranslation();
-  const { getAutoBreadcrumb } = useBreadcrumb();
+  // const { getAutoBreadcrumb } = useBreadcrumb();
+  const breadcrumbItems = useMemo(() => [
+    { label: "common.home", link: "/" },
+    { label: "common.settings", link: "/settings" },
+    { label: "common.paymentHistory" },
+  ], []);
   const { history, isLoading } = usePaymentHistory();
 
   return (
     <div className="bg-background w-full">
       <div className="m-4 mt-8">
-        <Breadcrumb items={getAutoBreadcrumb()} className="mb-6 mt-5" />
+        {/* <Breadcrumb items={getAutoBreadcrumb()} className="mb-6 mt-5" /> */}
+        <NewBreadCrumb items={breadcrumbItems} />
       </div>
 
       <div className="w-[95%] md:w-[80%] mb-12 ml-2 md:ml-20 mr:8 md:mr-4 mt-8 overflow-x-auto">
-        {isLoading && <LoadingCards />}
+        {isLoading && <LoadingDesign />}
 
         {!isLoading && history.length > 0 ? (
           <>
             {/* Desktop / Tablet */}
             <table className="hidden md:table w-full table-auto border-collapse border border-border rounded-lg">
               <thead className="border border-border">
-                <tr className="text-left rtl:text-left text-sm text-primary">
+                <tr className="text-left rtl:text-right text-sm text-primary">
                   <th className="px-4 py-2">{t("payments.Date")}</th>
                   <th className="px-4 py-2">{t("payments.Course")}</th>
                   <th className="px-4 py-2">{t("payments.Amount")}</th>
