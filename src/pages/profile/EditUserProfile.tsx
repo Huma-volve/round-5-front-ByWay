@@ -4,25 +4,32 @@ import { useTranslation } from "react-i18next";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import edit from "../../assets/images/icons/edit.svg";
+import axiosInstance from "@/lib/axios-instance";
 import profile from "../../assets/images/icons/profile.svg";
 import { toast } from "react-toastify";
-import { useFetchUpdateUserProfile, useFetchUserProfile } from "@/hooks/learner-profile";
-import { queryClient } from "@/lib/query-keys";
+import EditUserProfileLoading from "@/components/user-profile/EditUserProfileLoading";
 
 const EditUserProfile = () => {
-const { t, i18n } = useTranslation();
-const {data }=useFetchUserProfile();
-const user =(data ?? null) as userProfile |null
-const updateUserProfile=useFetchUpdateUserProfile();
+  const { t, i18n } = useTranslation();
+
+  const [user, setUser] = useState<userProfile>();
+
+  useEffect(() => {
+    axiosInstance.get("/profile")
+      .then(res => {
+        setUser(res.data.data.user);
+        setPreviewImage(res.data.data.user.image);
+      })
+  }, [])
 
   console.log(user)
   const [previewImage, setPreviewImage] = useState<string | undefined>(user?.image);
   const handleImage = (e: React.ChangeEvent<HTMLInputElement>,setFieldValue:any) => {
     const file = e.target.files?.[0];
     if (file) {
-        setFieldValue("image",file);
-      const reader = new FileReader();
+      const reader=new FileReader();
       reader.onloadend = () => {
+        setFieldValue("image",reader.result);
         setPreviewImage(reader.result as string);
       }
       reader.readAsDataURL(file);
@@ -33,7 +40,8 @@ const updateUserProfile=useFetchUpdateUserProfile();
     if (user?.image) setPreviewImage(user.image);
   }, [user]);
 
-console.log(user?.image);
+  if (!user) return <EditUserProfileLoading />;
+console.log(user.image);
   return (
     <Formik
       initialValues={{
@@ -45,7 +53,7 @@ console.log(user?.image);
         linkedin_link: user?.linkedin_link || "",
         youtube_link: user?.youtube_link || "",
         facebook_link: user?.facebook_link || "",
-        image: user?.image || profile || null,
+        image: user?.image || profile,
       }}
       validationSchema={Yup.object({
         first_name: Yup.string()
@@ -75,10 +83,17 @@ console.log(user?.image);
             formData.append(key, (values as any)[key]);
           }
         })
-        updateUserProfile.mutate(formData,{onSuccess:()=>{
-          toast.success(t("profile.Profile Updated"))}})
-          queryClient.invalidateQueries({ queryKey: ["userProfile"] });
-        }}
+
+        axiosInstance
+          .put("/profile", formData,)
+          .then((res) => {
+            setUser(res.data.data.user);
+            setPreviewImage(res.data.data.user.image);
+            toast.success(t("profile.Profile Updated"));
+          })
+          .catch((err) => console.error(err))
+          .finally(() => setSubmitting(false));
+      }}
     >
       {({ isSubmitting ,setFieldValue}) => (<div className="container m-8 p-12 ">
         <div className="flex gap-4 m-3">
@@ -249,8 +264,10 @@ console.log(user?.image);
               </div>
             </div>
           </div>
-          <button type="submit" disabled={isSubmitting} className="w-[110px] bg-primary rounded-lg p-2 text-white ml-[50%] md:ml-[75%] mt-4 hover:opacity-[.9]">
-            {t("profile.Save")}
+          <button type="submit" disabled={isSubmitting} className={`w-[150px] rounded-lg p-2 ml-[50%] md:ml-[75%] mt-4 
+    ${isSubmitting ? "bg-gray-400 cursor-not-allowed" : "bg-primary hover:opacity-90 text-white"}`}
+>
+  {isSubmitting ? t("profile.Saving") : t("profile.Save")}
           </button>
         </Form>
       </div>

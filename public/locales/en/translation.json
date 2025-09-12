@@ -466,7 +466,8 @@
     "View more Reviews": "View more Reviews",
     "link required": "Please enter a link",
     "Save":"Save",
-    "Profile Updated":"Profile Updated"
+    "Profile Updated":"Profile Updated",
+    "Saving":"Saving..."
   },
   "workExperience": {
     "jobTitle": "Job Title",
@@ -489,7 +490,7 @@
     "Save": "Save"
   },
   "success": {
-    "You have successfully subscribed to the course UI/UX Design": "You have successfully subscribed to the course",
+    "You have successfully subscribed to the course": "You have successfully subscribed to the course",
     "You Will Receive a confirmation email soon!": "You Will Receive a confirmation email soon!",
     "Go to My Courses": "Go to My Courses",
     "success": "success"
@@ -525,7 +526,13 @@
     "Cart is Empty,check your Cart": "Cart is Empty,check your Cart",
     "Order Id": "Order Id",
     "Add Payment Method": "Add Payment Method",
-    "Checkout Information": "Checkout Information"
+    "Checkout Information": "Checkout Information",
+    "Failed to remove item": "Failed to remove item",
+    "Added to cart": "Added to cart",
+    "Failed to add to cart": "Failed to add to cart",
+    "cart element deleted successfully": "cart element deleted successfully",
+    "Processing": "Processing...",
+    "Checkout Now": "Checkout Now"
   },
   "user": {
     "Send Feedback": "Send Feedback"

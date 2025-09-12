@@ -15,6 +15,7 @@ import LanguageToggle from "./LanguageToggle";
 
 import { useFavourites } from "@/hooks/Favorites/useFavourites";
 import { useNotifications } from "@/hooks/useNotifications";
+import { useFetchAllCart } from "@/hooks/Cart/useAddToCart";
 
 function AppNavbar() {
   const { pathname } = useLocation();
@@ -29,6 +30,9 @@ function AppNavbar() {
 
   const { notifications } = useNotifications();
   const unreadCount = notifications.filter((n) => !n.is_read).length;
+
+  const { data: cartData } = useFetchAllCart();
+  const cartCount = cartData?.data?.length || 0;
 
   const searchHandler = (value: string) => {
     console.log("Searching for:", value);
@@ -69,19 +73,23 @@ function AppNavbar() {
               </Link>
             ) : (
               <>
-                <Link to="/shopping-cart">
+                <Link to="/shopping-cart" className="relative">
                   <ShoppingCart size={20} className="" />
+                  {cartCount > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-danger text-white rounded-full text-xs w-4 h-4 flex items-center justify-center">
+                      {cartCount}
+                    </span>
+                  )}
                 </Link>
 
                 <Link
                   to="/favourites"
-                  // className={`${role === "instructor" ? "hidden" : "block"}`}
+                // className={`${role === "instructor" ? "hidden" : "block"}`}
                 >
                   <Heart
                     size={18}
-                    className={`hover:stroke-red-600 ${
-                      hasFavourites ? "stroke-red-600 fill-red-600" : ""
-                    }`}
+                    className={`hover:stroke-red-600 ${hasFavourites ? "stroke-red-600 fill-red-600" : ""
+                      }`}
                   />
                 </Link>
 
@@ -107,5 +115,7 @@ function AppNavbar() {
     </>
   );
 }
+
+
 
 export default AppNavbar;

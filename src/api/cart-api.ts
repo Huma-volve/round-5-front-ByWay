@@ -3,6 +3,7 @@ import type { AxiosError } from "axios";
 import { toast } from "react-toastify";
 
 export async function apiAddToCart(courseId: number) {
+
   const response = await axiosInstance.post("learner/cart/add", {
     course_id: courseId,
   });
@@ -42,7 +43,6 @@ export const apiDeleteElementCart = async (id:number) => {
   try{
     const response = await axiosInstance.delete(`cart/${id}`);
     if(response.data?.status===200){
-      toast.success("cart element deleted successfully")
       response.data.message|| "cart element deleted successfully"
     }
     return response.data;

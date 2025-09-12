@@ -402,7 +402,8 @@
     "View more Reviews": "عرض المزيد من التقييمات",
     "link required": "الرجاء إدخال رابط",
     "Save":" حفظ",
-    "Profile Updated":"تم تحديث الملف الشخصى"
+    "Profile Updated":"تم تحديث الملف الشخصى",
+    "Saving":"جاري الحفظ"
   },
   "withdraw": {
     "Enter Payment Details": "ادخل تفاصيل الدفع",
@@ -500,7 +501,13 @@
     "Cart is Empty,check your Cart": "السلة فارغة، تحقق من سلتك",
     "Order Id": "رقم الطلب",
     "Add Payment Method": "إضافة طريقة دفع",
-    "Checkout Information": "معلومات الدفع"
+    "Checkout Information": "معلومات الدفع",
+    "Failed to remove item": "فشل في إزالة العنصر",
+    "Added to cart": "تمت الإضافة إلى السلة",
+    "Failed to add to cart": "فشل في الإضافة إلى السلة",
+    "cart element deleted successfully": "تم حذف عنصر السلة بنجاح",
+    "Processing": "...جاري المعالجة",
+    "Checkout Now": "الدفع الآن"
   },
   "user": {
     "Send Feedback": "ارسال الملاحظات"
