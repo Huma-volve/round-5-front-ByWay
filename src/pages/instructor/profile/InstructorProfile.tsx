@@ -1,90 +1,159 @@
+// import { useForm } from "react-hook-form";
+// import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+// import { Input } from "@/components/ui/input";
+// import { Textarea } from "@/components/ui/textarea";
+// import { Button } from "@/components/ui/button";
+// import type { EditProfileForm } from "@/types/EditForm";
+
+// import axiosInstance from "@/lib/axios-instance";
+// import { getEditProfileDefaults } from "@/schemas/editProfileDefaults";
+// import { toast } from "react-toastify";
+// import { useProfile } from "@/hooks/instructor/useProfile";
+
+// export default function EditProfile() {
+//   const queryClient = useQueryClient();
+//   // const { data: profileData, isLoading } = useQuery({
+//   //   queryKey: ["profile"],
+//   //   queryFn: async () => {
+//   //     const res = await axiosInstance.get("/api/profile");
+//   //     return res.data.data;
+//   //   },
+//   // });
+
+
+//     const { data: profileData, isLoading, isError } = useProfile();
+
+//   if (isLoading) return <p>Loading...</p>;
+//   if (isError) return <p>Something went wrong!</p>;
+
+
+//   function EditProfileForm() {
+//   const { mutate: updateProfile, isPending } = useUpdateProfile();
+
+//   const handleSubmit = (e: React.FormEvent) => {
+//     e.preventDefault();
+//     const updatedData = {
+//       name: "New Name",
+//       email: "newemail@example.com",
+//     };
+//     updateProfile(updatedData);
+//   };
+
+
+//   const { register, handleSubmit } = useForm<EditProfileForm>({
+//     defaultValues: profileData ? getEditProfileDefaults(profileData) : undefined,
+//   });
+
+//   const onSubmit = (data: EditProfileForm) => {
+//     mutation.mutate(data);
+//   };
+
+//  if (isLoading) return <p>Loading...</p>;
+
+//   return (
+//     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-white">
+//       <h2 className="text-xl font-semibold pt-4">Edit Profile</h2>
+
+//       <div className="space-y-3">
+//         <div className="grid grid-cols-2 gap-4">
+//           <div>
+//             <label className="block text-sm font-medium">First Name</label>
+//             <Input {...register("first_name")} placeholder="First name" />
+//           </div>
+//           <div>
+//             <label className="block text-sm font-medium">Last Name</label>
+//             <Input {...register("last_name")} placeholder="Last name" />
+//           </div>
+//         </div>
+
+//         <div>
+//           <label className="block text-sm font-medium">Email</label>
+//           <Input {...register("email")} type="email" placeholder="Email" />
+//         </div>
+
+//         <div>
+//           <label className="block text-sm font-medium">Bio</label>
+//           <Textarea {...register("bio")} placeholder="Write your bio..." />
+//         </div>
+//       </div>
+
+//         <Button type="submit" className="bg-success w-full " disabled={mutation.isPending}>
+//         {mutation.isPending ? "Saving..." : "Save Changes"}
+//       </Button>
+//     </form>
+//   );
+// }
+
+
+
+import { useForm } from "react-hook-form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import WorkExperienceForm from "../../../components/instructor/WorkExperienceForm/WorkExperienceForm";
-import MainForm from "../../../components/instructor/MainForm/MainForm";
-import { useTranslation } from "react-i18next";
-import { useMutation } from "@tanstack/react-query";
+import type { EditProfileForm } from "@/types/EditForm";
 
-import { toast } from "react-toastify";
-import { Formik, Form, FieldArray } from "formik";
-import { getInstructorProfileSchema } from "@/schemas/InstructorProfileSchema";
-import axiosInstance from "@/lib/axios-instance";
+import { getEditProfileDefaults } from "@/schemas/editProfileDefaults";
+import { useProfile } from "@/hooks/instructor/useProfile";
+import { useUpdateProfile } from "@/hooks/instructor/useUpdateProfile";
+import React from "react";
+import ErrorDesign from "@/components/AdminDashboard/UserManagement/ErrorDesign";
+import LoadingDesign from "@/components/AdminDashboard/UserManagement/LoadingDesign";
 
-export default function InstructorProfile() {
-  const { t } = useTranslation();
-  const mutation = useMutation({
-    mutationFn: async (values: unknown) => {
-      const { data } = await axiosInstance.post(
-        "/instructor/profile/store",
-        values,
-        {
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      );
-      return data;
-    },
+export default function EditProfile() {
+  const { data: profileData, isLoading, isError , error } = useProfile();
+  const { mutate: updateProfile, isPending } = useUpdateProfile();
 
-    onSuccess: (data) => {
-      toast.success(data?.message);
-    },
+  const { register, handleSubmit, reset } = useForm<EditProfileForm>({
+    defaultValues: profileData ? getEditProfileDefaults(profileData) : undefined,
   });
 
-  return (
-    <Formik
-      initialValues={{
-        fname: "",
-        lname: "",
-        headline: "",
-        about: "",
-        skills: "",
-        workExperience: [
-          { jobTitle: "", companyName: "", startDate: "", endDate: "" },
-        ],
-      }}
-      validationSchema={getInstructorProfileSchema}
-      onSubmit={(values) => {
-        mutation.mutate(values);
-      }}
-    >
-      {({ values }) => (
-        <Form className="container mx-auto py-4">
-          <section className="space-y-5">
-            <MainForm />
+  
+React.useEffect(() => {
+    if (profileData) {
+      reset(getEditProfileDefaults(profileData));
+    }
+  }, [profileData, reset]);
 
-            <FieldArray
-              name="workExperience"
-              render={(arrayHelpers) => (
-                <>
-                  {values.workExperience.map((exp, index) => (
-                    <WorkExperienceForm
-                      key={index}
-                      index={index}
-                      title={`${t(
-                        "instructor.workExperience.Work Experience"
-                      )} ${index + 1}`}
-                      onAdd={() =>
-                        arrayHelpers.push({
-                          jobTitle: "",
-                          companyName: "",
-                          startDate: "",
-                          endDate: "",
-                        })
-                      }
-                    />
-                  ))}
-                </>
-              )}
-            />
-            <Button
-              type="submit"
-              className="btn space-y-4 bg-success hover:bg-green-600"
-            >
-              {t("save.Save")}
-            </Button>
-          </section>
-        </Form>
-      )}
-    </Formik>
+    if (isLoading) return <LoadingDesign />;
+    if (isError) return <ErrorDesign message={error?.message} />;
+ 
+
+  const onSubmit = (data: EditProfileForm) => {
+    updateProfile(data);
+  };
+
+  return (
+    <section className="flex items-center min-h-[80vh]">
+    <form onSubmit={handleSubmit(onSubmit)} className=" space-y-6 bg-white p-6 rounded-xl shadow  w-full">
+      <h2 className="text-xl font-semibold">Edit Profile</h2>
+
+      <div className="space-y-3">
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium">First Name</label>
+            <Input {...register("first_name")} placeholder="First name" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Last Name</label>
+            <Input {...register("last_name")} placeholder="Last name" />
+          </div>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium">Email</label>
+          <Input {...register("email")} type="email" placeholder="Email" />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium">Bio</label>
+          <Textarea {...register("bio")} placeholder="Write your bio..." />
+        </div>
+      </div>
+
+      <Button type="submit" className="bg-success w-full text-white" disabled={isPending}>
+        {isPending ? "Saving..." : "Save Changes"}
+      </Button>
+    </form>
+    </section>
   );
 }

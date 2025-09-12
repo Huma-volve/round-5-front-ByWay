@@ -1,18 +1,25 @@
 import { useTranslation } from "react-i18next";
-import Breadcrumb from "../../components/common/Breadcrumb";
-import { useBreadcrumb } from "../../hooks/useBreadcrumb";
+// import Breadcrumb from "../../components/common/Breadcrumb";
+// import { useBreadcrumb } from "../../hooks/useBreadcrumb";
 import { Link } from "react-router-dom";
+import { useMemo } from "react";
+import NewBreadCrumb from "../../components/common/NewBreadCrumb";
 import { ChevronRight } from "lucide-react";
 
 export default function SettingsPage() {
   const { t } = useTranslation();
-  const { getAutoBreadcrumb } = useBreadcrumb();
+  // const { getAutoBreadcrumb } = useBreadcrumb();
+  const breadcrumbItems = useMemo(() => [
+    { label: "common.home", link: "/" },
+    { label: "common.settings" },
+  ], []);
 
   return (
     <div className="container bg-background">
       {/* the stack of pathes */}
       <div className="m-4 mt-8">
-        <Breadcrumb items={getAutoBreadcrumb()} className="mb-6 mt-5" />
+        {/* <Breadcrumb items={getAutoBreadcrumb()} className="mb-6 mt-5" /> */}
+        <NewBreadCrumb items={breadcrumbItems} />
       </div>
       {/* payment method */}
       <div className="mt-8 ml-4 md:ml-24 w-[90%] md:w-[50%]">

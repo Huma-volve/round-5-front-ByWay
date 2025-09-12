@@ -6,7 +6,7 @@ export const getUserProfile=async ()=>{
     try{
         const res=await  axiosInstance.get("/profile")
         if(res.status===200){
-            toast.success(res.data.message);
+            // toast.success(res.data.message);
             return res.data?.data?.user;
         }
 

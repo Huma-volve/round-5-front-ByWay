@@ -10,7 +10,7 @@ export default function ProtectedRoute({
   const [role] = useLocalStorage("role", "");
   const [userId] = useLocalStorage("user_id", "");
 
-  if (!!userId && role !== "admin") {
+  if (!!userId && role) {
     return children;
   }
   return <Navigate to="/signin" replace />; 

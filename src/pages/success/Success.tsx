@@ -1,15 +1,22 @@
 import success from "../../assets/images/icons/success.svg";
 import rocket from "../../assets/images/icons/rocket.svg";
 import { Link } from "react-router-dom";
-import Breadcrumb from "@/components/common/Breadcrumb";
-import { useBreadcrumb } from "@/hooks/useBreadcrumb";
+// import Breadcrumb from "@/components/common/Breadcrumb";
+// import { useBreadcrumb } from "@/hooks/useBreadcrumb";
 import { useTranslation } from "react-i18next";
+import { useMemo } from "react";
+import NewBreadCrumb from "@/components/common/NewBreadCrumb";
 const Success = () => {
-  const { getAutoBreadcrumb } = useBreadcrumb();
+  // const { getAutoBreadcrumb } = useBreadcrumb();
   const { t } = useTranslation();
+  const breadcrumbItems = useMemo(() => [
+    { label: "common.home", link: "/" },
+    { label: "success.success" },
+  ], []);
   return (
     <div className="container mt-8">
-      <Breadcrumb items={getAutoBreadcrumb()} className="mb-6 mt-5" />
+      {/* <Breadcrumb items={getAutoBreadcrumb()} className="mb-6 mt-5" /> */}
+      <NewBreadCrumb items={breadcrumbItems} />
       <div className="w-[90%] lg:w-[50%] h-[70dvh] flex flex-col items-center justify-center gap-6 mx-auto text-center">
         <img
           src={success}

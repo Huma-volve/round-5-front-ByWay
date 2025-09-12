@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import AppNavbar from "../NavBar/AppNavbar";
 import AppFooter from "../Footer/AppFooter";
-import authImage from "@/assets/images/auth-image.jpg"
+import authImage from "@/assets/images/auth-image.jpeg"
 
 export default function AuthLayout() {
   return (

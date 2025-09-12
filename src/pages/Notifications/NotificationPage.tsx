@@ -1,15 +1,21 @@
 // src/pages/NotificationPage.tsx
 import bellBack from "../../assets/images/notify-bell.jpg";
 import { useTranslation } from "react-i18next";
-import Breadcrumb from "../../components/common/Breadcrumb";
-import { useBreadcrumb } from "../../hooks/useBreadcrumb";
+// import Breadcrumb from "../../components/common/Breadcrumb";
+// import { useBreadcrumb } from "../../hooks/useBreadcrumb";
 import NotifyCard from "../../components/notification/NotifyCard";
+import { useMemo } from "react";
+import NewBreadCrumb from "../../components/common/NewBreadCrumb";
 import { useNotifications } from "@/hooks/useNotifications";
 import type { NotificationItem } from "@/lib/types";
 
 export default function NotificationPage() {
   const { t } = useTranslation();
-  const { getAutoBreadcrumb } = useBreadcrumb();
+  // const { getAutoBreadcrumb } = useBreadcrumb();
+  const breadcrumbItems = useMemo(() => [
+    { label: "common.home", link: "/" },
+    { label: "common.notifications" },
+  ], []);
   const { notifications, isLoading, markAsRead, deleteNotification } = useNotifications();
 
   if (isLoading) {
@@ -23,7 +29,8 @@ export default function NotificationPage() {
   return (
     <div className="bg-background w-full">
       <div className="m-4 mt-8 ">
-        <Breadcrumb items={getAutoBreadcrumb()} className="mb-6 mt-5" />
+        {/* <Breadcrumb items={getAutoBreadcrumb()} className="mb-6 mt-5" /> */}
+        <NewBreadCrumb items={breadcrumbItems} />
       </div>
 
       {notifications.length === 0 ? (

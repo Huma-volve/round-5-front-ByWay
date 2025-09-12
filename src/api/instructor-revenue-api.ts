@@ -6,13 +6,13 @@ import { toast } from "react-toastify";
 export async function getInstructorRevenueAnalytics() {
   try {
     const response = await axiosInstance.get("instructor/revenue-analytics");
-    if (response.data?.status === 200) {
-      console.log(response.data);
-      toast.success(
-        response.data.message ||
-          "Instructor revenue analytics loaded successfully"
-      );
-    }
+    // if (response.data?.status === 200) {
+    //   console.log(response.data);
+    //   toast.success(
+    //     response.data.message ||
+    //       "Instructor revenue analytics loaded successfully"
+    //   );
+    // }
     return response.data;
   } catch (error) {
     const axiosError = error as AxiosError<{ message?: string }>;
@@ -27,13 +27,13 @@ export async function getInstructorRevenueAnalytics() {
 export async function getInstructorRevenueGraphData() {
   try {
     const response = await axiosInstance.get("instructor/revenue-report");
-    if (response.data?.status === 200) {
-      console.log(response.data);
-      toast.success(
-        response.data.message ||
-          "Instructor revenue graph data loaded successfully"
-      );
-    }
+    // if (response.data?.status === 200) {
+    //   console.log(response.data);
+    //   toast.success(
+    //     response.data.message ||
+    //       "Instructor revenue graph data loaded successfully"
+    //   );
+    // }
     return response.data;
   } catch (error) {
     const axiosError = error as AxiosError<{ message?: string }>;
@@ -48,11 +48,11 @@ export const fetchInstructorRecentPayouts = async () => {
   try {
     const response = await axiosInstance.get("instructor/payments");
     // عرض رسالة نجاح
-    if (response.data?.status === 200) {
-      toast.success(
-        response.data.message || "Instructor recent payouts loaded successfully"
-      );
-    }
+    // if (response.data?.status === 200) {
+    //   toast.success(
+    //     response.data.message || "Instructor recent payouts loaded successfully"
+    //   );
+    // }
     return response.data;
   } catch (error) {
     const axiosError = error as AxiosError<{ message?: string }>;
