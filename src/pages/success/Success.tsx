@@ -22,18 +22,18 @@ const Success = () => {
           src={success}
           alt="success"
           loading="lazy"
-          className="w-40 lg:w-48 mb-6"
+          className="w-32 lg:w-32 mb-6"
         />
-        <h1 className="font-medium text-[20px] lg:text-[24px]">
+        <h1 className="font-medium text-[16px] lg:text-[20px]">
 
           {t("success.You have successfully subscribed to the course")}
         </h1>
-        <p className="font-medium text-[15px] lg:text-[20px] text-secondary">
+        <p className="font-medium text-[15px] lg:text-[18px] text-secondary">
           {t("success.You Will Receive a confirmation email soon!")}
         </p>
         <div className="flex gap-3 items-center ">
           <img src={rocket} alt="rocket icon" loading="lazy" />
-          <Link to="/" className="font-medium lg:text-[20px]">
+          <Link to="/" className="font-medium lg:text-[18px]">
 
             {t("success.Go to My Courses")}
           </Link>

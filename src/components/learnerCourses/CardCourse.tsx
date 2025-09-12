@@ -62,8 +62,8 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
     e.preventDefault();
     e.stopPropagation();
     addToCart(courseId, {
-      onSuccess: () => toast.success(t("Added to cart")),
-      onError: () => toast.error(t("Failed to add to cart")),
+      onSuccess: () => toast.success(t("cart.Added to cart")),
+      onError: () => toast.error(t("cart.Failed to add to cart")),
     });
   };
 

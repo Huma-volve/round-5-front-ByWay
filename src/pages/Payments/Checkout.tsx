@@ -21,13 +21,10 @@ function Checkout() {
     checkoutMutation.mutate(
       { payment_method_id, order_id: checkoutData?.data?.data?.order_id },
       {
-        onSuccess: async (res) => {
-          console.log("Checkout confirmed:", res);
+        onSuccess: async () => {
           toast.success("Payment successfully!");
-          await checkoutRefetch();
-          
           navigate("/success");
-        
+          await checkoutRefetch();
         },
         onError: (err) => {
           console.error("Checkout failed:", err);
@@ -41,7 +38,23 @@ function Checkout() {
     checkoutRefetch();
   }, []);
 
-  if (isLoading) return <p>{t("adminUser.Loading")}...</p>;
+  if (isLoading) return      <div className="space-y-4 animate-pulse">
+        <div className="h-6 w-1/3 bg-gray-300 rounded mx-auto" /> 
+        <div className="h-4 w-1/4 bg-gray-200 rounded" /> 
+        <div className="h-4 w-1/5 bg-gray-200 rounded" /> 
+        <div className="pt-4 space-y-2">
+          <div className="h-5 w-1/3 bg-gray-300 rounded" /> 
+          <div className="flex items-center gap-3">
+            <div className="w-5 h-5 bg-gray-300 rounded-full" />
+            <div className="h-4 w-20 bg-gray-200 rounded" />
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-5 h-5 bg-gray-300 rounded-full" />
+            <div className="h-4 w-24 bg-gray-200 rounded" />
+          </div>
+          <div className="h-10 w-32 bg-gray-300 rounded mx-auto mt-4" /> 
+        </div>
+      </div>;
   if (isError) return <p>Failed to load payment methods</p>;
 
   const methods = data?.dataMethods?.data || [];
@@ -75,10 +88,10 @@ function Checkout() {
           ))}
       <button
         onClick={handlePayment}
-        className="bg-primary text-white px-4 py-2 rounded hover:opacity-[.9] disabled:bg-gray-400"
-        disabled={!payment_method_id || checkoutMutation.status === "pending"}
+        className="bg-primary text-white px-4 py-2 rounded hover:opacity-[.9] disabled:bg-gray-400 disabled:cursor-not-allowed "
+        disabled={!payment_method_id || checkoutMutation.status === "pending" }
       >
-        {checkoutMutation.status === "pending" ? "Processing..." : "Checkout Now"}
+        {checkoutMutation.status === "pending" ? t("cart.Processing") : t("cart.Checkout Now")}
       </button>
         </>
       ) 
