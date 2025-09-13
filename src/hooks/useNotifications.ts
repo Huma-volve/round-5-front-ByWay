@@ -17,8 +17,10 @@ import type { AxiosError } from "axios";
 import { useLocalStorage } from "./useLocalStorage";
 
 export function useNotifications() {
-  const [role] = useLocalStorage("role", "")
+  const [role] = useLocalStorage("role", "");
   const queryClient = useQueryClient();
+
+  const token = localStorage.getItem("auth_token");
 
   // Fetch Notifications
   const {
@@ -49,6 +51,7 @@ export function useNotifications() {
         }));
       }
     },
+    enabled: !!role && !!token,
   });
 
   // Mark as Read

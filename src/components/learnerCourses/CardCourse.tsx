@@ -3,7 +3,6 @@ import StarIcon from "../../assets/images/icons/StarIcon.svg";
 import { useTranslation } from "react-i18next";
 import { Heart } from "lucide-react";
 import ImgNotFound from "@/assets/images/image-not-found.png";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
 import type { CoursesHome } from "@/lib/types";
 import { useFavourites } from "@/hooks/Favorites/useFavourites";
 import useAddFavorites from "@/hooks/Favorites/useAddFavorites";
@@ -20,7 +19,6 @@ interface CardCourseProps {
 
 function CardCourse({ courses, error, isLoading }: CardCourseProps) {
   const { t } = useTranslation();
-  const [role] = useLocalStorage("role", "");
   const { favourites } = useFavourites();
   const { mutate: removeFavorite } = useRemoveFavorites();
   const { mutate: addFavorite } = useAddFavorites();
@@ -85,9 +83,7 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
         <div
           onClick={() => {
             navigate(
-              role === "instructor"
-                ? `/instructor/course-details/${course.id}`
-                : `/courses/${course.id}`
+                `/courses/${course.id}`
             );
           }}
           key={course.id}
@@ -147,7 +143,7 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
                   )
                 )}
                 <span className="lg:text-md text-sm font-[600] ml-2">
-                  ({course.reviews_count} {t("common.ratings")})
+                  ({course.reviews_count} {t("common.reviews")})
                 </span>
               </div>
               <p className="text-md my-4 truncate">{course.description}</p>
