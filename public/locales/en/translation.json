@@ -41,7 +41,8 @@
     "aboutMe": "About Me",
     "instructorDetails": "Instructor Details",
     "add": "Add",
-    "of":"of"
+    "of":"of",
+    "reviews" : "Reviews"
   },
   "auth": {
     "loginToAccount": "Log in into your account",

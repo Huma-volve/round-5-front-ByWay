@@ -1,5 +1,6 @@
 import { apiAddToCart, apiDeleteElementCart, apiGetCart } from "@/api/cart-api";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useLocalStorage } from "../useLocalStorage";
 
 export default function useAddToCart() {
   const queryClient = useQueryClient();
@@ -11,18 +12,21 @@ export default function useAddToCart() {
   });
 }
 
-export const useFetchAllCart=()=>{
+export const useFetchAllCart = () => {
+  const [token] = useLocalStorage("token", "")
   return useQuery({
     queryKey: ["cart"],
     queryFn: apiGetCart,
+    enabled: !!token,
   });
-}
-export const useDeleteCartItem=()=>{
+};
+
+export const useDeleteCartItem = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (id:number) => apiDeleteElementCart(id),
+    mutationFn: (id: number) => apiDeleteElementCart(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["cart"] });
     },
   });
-}
+};
