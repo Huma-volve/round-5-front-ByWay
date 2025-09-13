@@ -46,26 +46,9 @@ export default function UserManagementPage() {
       });
     }
   };
-
-  // if (isLoading) return <LoadingDesign />;
-  if (isError) return <ErrorDesign message={error?.message} />;
-
-  return (
-    <div>
-      {/* header */}
-      <div className="flex flex-col gap-2 w-full mt-12">
-        <h1 className="md:text-3xl text-[#2C4E80] font-bold">
-          {t("adminUser.User Management")}
-        </h1>
-        <p className="text-sm md:text-base text-gray-600">
-          {t(
-            "adminUser.Manage all registered users including learners and instructors"
-          )}
-        </p>
-      </div>
-      {isLoading ? <LoadingDesign /> 
-      :
-      <>
+  const content = isLoading ? <LoadingDesign /> : isError ? 
+   <ErrorDesign message={error?.message} /> : 
+   <>
       {/* search */}
       <div className="w-full md:w-[60%] border mt-8 border-gray-300 rounded-lg shadow-sm bg-white">
         <div className="flex items-center gap-2 p-3">
@@ -183,7 +166,20 @@ export default function UserManagementPage() {
         </div>
       )}
       </>
-      }
+  return (
+    <div>
+      {/* header */}
+      <div className="flex flex-col gap-2 w-full mt-12">
+        <h1 className="md:text-3xl text-[#2C4E80] font-bold">
+          {t("adminUser.User Management")}
+        </h1>
+        <p className="text-sm md:text-base text-gray-600">
+          {t(
+            "adminUser.Manage all registered users including learners and instructors"
+          )}
+        </p>
+      </div>
+      {content}
     </div>
   );
 }

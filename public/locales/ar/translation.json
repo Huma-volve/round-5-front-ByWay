@@ -41,7 +41,8 @@
     "aboutMe": "عنّي",
     "instructorDetails": "تفاصيل المدرب",
     "add": "إضافة",
-    "of": "من"
+    "of": "من",
+    "reviews" : "الاراء"
   },
   "auth": {
     "loginToAccount": "سجل الدخول إلى حسابك",

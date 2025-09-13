@@ -12,6 +12,7 @@ export async function apiAddToCart(courseId: number) {
     message: response.data.message,
   };
 }
+
 export async function apiRemoveFromCart(courseId: number) {
   const response = await axiosInstance.post(`cart/${courseId}`, {
     course_id: courseId,
@@ -22,14 +23,17 @@ export async function apiRemoveFromCart(courseId: number) {
   };
 }
 
-export const apiGetCart = async ()=>{
-  try{
+export const apiGetCart = async () => {
+  try {
     const response = await axiosInstance.get("cart");
-    if(response.data?.status===200){
-      response.data.message|| "cart loaded successfully"
+
+    if (response.data?.status === 200) {
+      toast.success(response.data.message || "Cart loaded successfully");
     }
+
     return response.data;
-  }catch(error){
+
+  } catch (error) {
     const axiosError = error as AxiosError<{ message?: string }>;
     const errorMessage =
       axiosError.response?.data?.message ||
@@ -37,13 +41,14 @@ export const apiGetCart = async ()=>{
     toast.error(errorMessage);
     throw error;
   }
-}
+};
+
 
 export const apiDeleteElementCart = async (id:number) => {
   try{
     const response = await axiosInstance.delete(`cart/${id}`);
     if(response.data?.status===200){
-      response.data.message|| "cart element deleted successfully"
+     toast.success(response.data.message|| "cart element deleted successfully");
     }
     return response.data;
   }catch(error){
