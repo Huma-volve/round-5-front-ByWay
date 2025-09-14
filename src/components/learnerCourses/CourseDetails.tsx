@@ -14,7 +14,7 @@ import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 function CourseDetails() {
   const { t } = useTranslation();
-  const [role]= useLocalStorage("role","");
+  const [role] = useLocalStorage("role", "");
   // const { getAutoBreadcrumb } = useBreadcrumb();
   const { courseId } = useParams<{ courseId: string | undefined }>();
   const { data: course, error, isLoading } = useFetchCourseDetails(courseId!);
@@ -51,7 +51,7 @@ function CourseDetails() {
         {role !== "admin" && <NewBreadCrumb items={breadcrumbItems} />}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-20">
-        <div className="md:col-span-2">
+        <div className="md:col-span-2 order-2 md:order-1">
           {/* The Stack pages */}
           <div>
             <h3 className="text-[--rate] font-[600] text-2xl">
@@ -100,21 +100,23 @@ function CourseDetails() {
                   {t("common.buyNow")}
                 </button>{" "}
               </Link>
-              <p className="mt-3 mb-7 border-[--rate] px-7 py-1 border text-lg md:text-xl rounded-lg w-fit">
-                {t("common.content")}
-              </p>
+              {course?.content && course.content.length > 0 ? (
+                <p className="mt-3 mb-7 border-[--rate] px-7 py-1 border text-lg md:text-xl rounded-lg w-fit">
+                  {t("common.content")}
+                </p>
+              ) : null}
             </div>
           </div>
           <div>
-            {course?.content?.map((content,index) => (
+            {course?.content?.map((content, index) => (
               <div
                 key={content.id}
                 className="flex items-center gap-6 border max-w-[590px] py-3 px-7 rounded-xl mb-8"
               >
                 <img className="w-5 md:w:10" src={VideoIcon} alt="VideoIcon" />
                 <div className="md:text-xl text-md font-[500] ">
-                  {t("common.lesson")} {index + 1}{" "}:
-                  {" "}{t("common.introductionTo")} {content.title}
+                  {t("common.lesson")} {index + 1} :{" "}
+                  {t("common.introductionTo")} {content.title}
                 </div>
               </div>
             ))}
@@ -131,7 +133,7 @@ function CourseDetails() {
             />
           ))}
         </div>
-        <div className="md:col-span-1">
+        <div className="md:col-span-1 order-1 md:order-2">
           <img src={course?.image_url || ImgNotFound} alt={course?.title} />
         </div>
       </div>
