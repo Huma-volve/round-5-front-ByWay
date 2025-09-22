@@ -5,7 +5,6 @@ import { useLanguage } from "./hooks/useLanguage";
 import { useTranslation } from "react-i18next";
 import { queryClient } from "./lib/query-keys";
 
-
 function App() {
   // Initialize language and direction handling
   useLanguage();

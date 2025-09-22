@@ -27,7 +27,7 @@ export function useGenerateOTP() {
         state: formData.email,
       });
     },
-    onError: (error: AxiosError<{message: string}>) => {
+    onError: (error: AxiosError<{ message: string }>) => {
       toast.error(error.response?.data?.message || "Failed to generate OTP");
       console.log(error);
     },

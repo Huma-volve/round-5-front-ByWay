@@ -16,7 +16,7 @@ export function useOTP() {
        *
        */
     },
-    onError: (error: AxiosError<{message: string}>) => {
+    onError: (error: AxiosError<{ message: string }>) => {
       toast.error(error.response?.data?.message || "Verification failed");
 
       console.log(error);

@@ -56,9 +56,9 @@ export default function AdminCoursesPage() {
   });
 
   const { t } = useTranslation();
- 
-    if (isLoading) return <LoadingDesign />;
-    if (isError) return <ErrorDesign message={error?.message} />;
+
+  if (isLoading) return <LoadingDesign />;
+  if (isError) return <ErrorDesign message={error?.message} />;
   return (
     <div className="p-6 container space-y-4">
       <div className="space-y-2">
