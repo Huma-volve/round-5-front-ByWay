@@ -10,7 +10,7 @@ import type { AxiosError } from "axios";
 // }
 export async function fetchStatsHome() {
   const response = await axiosInstance.get<{ data: StatsHome }>(
-    "learner/platform-analytics"
+    "platform-analytics"
   );
   return response.data.data;
 }

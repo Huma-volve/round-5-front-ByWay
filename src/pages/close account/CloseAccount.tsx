@@ -4,7 +4,7 @@ import {
 } from "@/hooks/learner-profile";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 const CloseAccount = () => {
   const { t } = useTranslation();

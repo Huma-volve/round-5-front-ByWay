@@ -14,7 +14,7 @@ import PaymentDetails from "@/pages/AdminDashboard/payment & revenue/PaymentDeta
 import WithdrowDetails from "@/pages/AdminDashboard/payment & revenue/WithdrowDetails";
 import { useFetchApproveWithdrawal, useFetchPaymentRecords, useFetchRejectWithdrawal } from "@/hooks/AdminDashboard/useFetchPaymentRevenue";
 
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 function Record() {
   const [openDialog, setOpenDialog] = useState(false); // PaymentDetails

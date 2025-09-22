@@ -1,43 +1,50 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteLesson } from "@/api/instructor-lessons-manage-api";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import type { CourseDataForInstructor, LessonResponse } from "@/lib/types";
 
 export default function useDeleteLesson(courseId: string) {
   const queryClient = useQueryClient();
 
   return useMutation<
-    LessonResponse, 
-    Error, 
-    string | number, 
+    LessonResponse,
+    Error,
+    string | number,
     { previousLessonData: unknown }
   >({
     mutationFn: (lessonId) => deleteLesson(courseId, lessonId),
     onMutate: async (lessonId) => {
-      queryClient.cancelQueries({ queryKey: ["course", "for-update", courseId] });
-      const previousLessonData = queryClient.getQueryData(["course", "for-update", courseId]);
-      queryClient.setQueryData(["course", "for-update", courseId],
-        (old:unknown)=>{
-          if(!old) return old;
+      queryClient.cancelQueries({
+        queryKey: ["course", "for-update", courseId],
+      });
+      const previousLessonData = queryClient.getQueryData([
+        "course",
+        "for-update",
+        courseId,
+      ]);
+      queryClient.setQueryData(
+        ["course", "for-update", courseId],
+        (old: unknown) => {
+          if (!old) return old;
           const typedOldData = old as CourseDataForInstructor;
-          const updatedLessons = typedOldData.data.lessons.filter((lesson)=>{
+          const updatedLessons = typedOldData.data.lessons.filter((lesson) => {
             const isMatch = Number(lesson.id) === Number(lessonId);
-            
-            if(isMatch){
+
+            if (isMatch) {
               return false;
             }
             return lesson;
           });
-          
+
           return {
             ...typedOldData,
-            data:{
+            data: {
               ...typedOldData.data,
               lessons: updatedLessons,
-            }
+            },
           };
         }
-      )
+      );
       return { previousLessonData };
     },
     onSuccess: (data) => {
@@ -47,13 +54,18 @@ export default function useDeleteLesson(courseId: string) {
     onError: (error: Error, _lessonId, context) => {
       toast.error(error.message || "Failed to delete lesson");
 
-      if(context?.previousLessonData){
-        queryClient.setQueryData(["course", "for-update", courseId], context.previousLessonData);
+      if (context?.previousLessonData) {
+        queryClient.setQueryData(
+          ["course", "for-update", courseId],
+          context.previousLessonData
+        );
       }
     },
     onSettled: () => {
-      queryClient.invalidateQueries({queryKey:["course", "for-update", courseId]});
+      queryClient.invalidateQueries({
+        queryKey: ["course", "for-update", courseId],
+      });
       queryClient.invalidateQueries({ queryKey: ["lessons", courseId] });
-    }
+    },
   });
 }

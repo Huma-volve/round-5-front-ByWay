@@ -3,7 +3,7 @@ export interface userProfile {
   image: string;
   first_name: string;
   last_name: string;
-  headline: string;
+  bio: string;
   about: string;
   twitter_link: string;
   linkedin_link: string;

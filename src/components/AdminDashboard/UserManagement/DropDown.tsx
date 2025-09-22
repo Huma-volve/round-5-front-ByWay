@@ -39,7 +39,7 @@ export function UserActionsDropdown({
           <DropdownMenu.Item asChild>
             <Link
               to={`${user.id}`}
-              className="px-4 py-2 hover:bg-gray-100 cursor-pointer block"
+              className="px-4 py-2 hover:bg-gray-100 outline-none hover:outline-none cursor-pointer block"
             >
               {t("adminUser.View Profile")}
             </Link>
@@ -47,7 +47,7 @@ export function UserActionsDropdown({
 
           <DropdownMenu.Item
             onClick={() => toggleUserStatus.mutate({ id: user.id })}
-            className={`px-4 py-2 hover:bg-gray-100 cursor-pointer ${
+            className={`px-4 py-2 hover:bg-gray-100 outline-none hover:outline-none cursor-pointer ${
               user.status === "Active" ? "text-red-900" : "text-blue-700"
             }`}
           >
@@ -63,7 +63,7 @@ export function UserActionsDropdown({
 
           <DropdownMenu.Item
             onClick={() => handleDeleteClick({ id: user.id, name: user.name })}
-            className="px-4 py-2 text-red-600 hover:bg-red-50 cursor-pointer"
+            className="px-4 py-2 text-red-600 hover:bg-red-50 outline-none hover:outline-none cursor-pointer"
           >
             {t("adminUser.Delete User")}
           </DropdownMenu.Item>

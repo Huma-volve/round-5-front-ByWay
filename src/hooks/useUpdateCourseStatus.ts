@@ -1,7 +1,7 @@
 // src/hooks/useUpdateCourseStatus.ts
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axiosInstance from "@/lib/axios-instance";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import type { UpdateCourseResponse } from "@/data/AdminDashboard/UpdateCourseResponse";
 import type { UpdateCourseStatusProps } from "@/data/AdminDashboard/UpdateCourseStatusProps";
 

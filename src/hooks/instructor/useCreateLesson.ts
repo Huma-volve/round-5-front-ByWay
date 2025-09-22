@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createLesson } from "@/api/instructor-lessons-manage-api";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import type { CreateLessonInput, LessonResponse } from "@/lib/types";
 
 export default function useCreateLesson(courseId: string) {

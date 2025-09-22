@@ -13,7 +13,7 @@ import FormError from "@/components/AuthForms/FormError";
 import { useTranslation } from "react-i18next";
 import { Spinner } from "@/components/common/Spinner";
 import { useFetchAddAdmin } from "@/hooks/AdminDashboard/useFetchAddAdmin";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 interface PaymentDetailsProps {
   open: boolean;

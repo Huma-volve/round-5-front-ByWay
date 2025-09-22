@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { Video, Upload, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 interface VideoUploadFieldProps {
   value?: File | string;

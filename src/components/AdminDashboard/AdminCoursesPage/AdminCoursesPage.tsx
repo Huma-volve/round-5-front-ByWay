@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import TableComponent from "@/components/admin/TableComponent/TableComponent";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { useQuery } from "@tanstack/react-query";
 // import { Skeleton } from "@/components/ui/skeleton";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
@@ -44,14 +44,12 @@ export default function AdminCoursesPage() {
     },
 
     onError: (error) => {
-      toast.dismiss("deleteCourse");
       toast.error(error.message || "Unexpected error");
     },
     onMutate: () => {
-      toast.loading("Deleting course...", { toastId: "deleteCourse" });
+      toast.loading("Deleting course...");
     },
     onSuccess: () => {
-      toast.dismiss("deleteCourse");
       toast.success("Course deleted successfully");
       queryClient.invalidateQueries({ queryKey: ["courses"] });
     },

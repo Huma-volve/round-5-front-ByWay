@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { signUp } from "@/api/auth-api";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import type { AxiosError } from "axios";
 import { useLocalStorage } from "./useLocalStorage";
 
