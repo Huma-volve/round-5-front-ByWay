@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import ErrorDesign from "@/components/AdminDashboard/UserManagement/ErrorDesign";
 import { useFetchUserProfileDashboard } from "@/hooks/AdminDashboard/useFetchUserProfile";
-import UserProfileSkeleton from "@/components/AdminDashboard/UserManagement/userProfileSkeleton";
+import UserProfileSkeleton from "@/components/AdminDashboard/UserManagement/UserProfileSkeleton";
 
 export default function UserManagementDetailes() {
   const { userId } = useParams();
