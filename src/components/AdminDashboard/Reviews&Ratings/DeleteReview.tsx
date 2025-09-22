@@ -1,7 +1,7 @@
 import useDeleteReview from "@/hooks/AdminDashboard/Reviews&Ratings/useDeleteReview";
 import useViewReview from "@/hooks/AdminDashboard/Reviews&Ratings/useViewReview";
 import { useTranslation } from "react-i18next";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 interface DeleteReviewProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;

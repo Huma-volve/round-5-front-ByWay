@@ -5,8 +5,7 @@ import { useState, useMemo } from "react";
 import NewBreadCrumb from "../../components/common/NewBreadCrumb";
 import { useFavourites } from "@/hooks/Favorites/useFavourites";
 import { Heart } from "lucide-react";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "sonner";
 import courseFav from "@/assets/images/course-fav.png";
 import avtar from "@/assets/images/avatar-fav.png";
 import useRemoveFavorites from "@/hooks/Favorites/useRemoveFavorites";
@@ -47,14 +46,16 @@ export default function Favourites() {
         <div
           className={`mb-4 flex font-semibold bg-[#F1F1F1] rounded-full w-fit ${
             favourites.length === 0 ? "hidden" : "flex"
-          }`}>
+          }`}
+        >
           <button
             className={`px-5 py-2 rounded-full transition-all duration-300 ${
               activeButton === "btn1"
                 ? "bg-[#72727242]"
                 : "bg-transparent text-gray-700"
             }`}
-            onClick={() => setActiveButton("btn1")}>
+            onClick={() => setActiveButton("btn1")}
+          >
             {t("favourite.Courses")}
           </button>
           <button
@@ -63,7 +64,8 @@ export default function Favourites() {
                 ? "bg-[#72727242]"
                 : "bg-transparent text-gray-700"
             }`}
-            onClick={() => setActiveButton("btn2")}>
+            onClick={() => setActiveButton("btn2")}
+          >
             {t("favourite.Instractor")}
           </button>
         </div>
@@ -104,7 +106,8 @@ export default function Favourites() {
                         ? `/courses/${fav.course_id}`
                         : `/${fav.user_id}/instructor-details`
                     }
-                    className="flex-1">
+                    className="flex-1"
+                  >
                     <div className="flex flex-col items-start justify-center">
                       <h3
                         className="font-semibold text-xs md:text-base truncate max-w-[120px] sm:max-w-[200px] md:max-w-[250px]"
@@ -112,7 +115,8 @@ export default function Favourites() {
                           activeButton === "btn1"
                             ? fav.course.title
                             : fav.course.user.name
-                        }>
+                        }
+                      >
                         {activeButton === "btn1"
                           ? fav.course.title
                           : fav.course.user.name}
@@ -123,7 +127,8 @@ export default function Favourites() {
                           activeButton === "btn1"
                             ? fav.course.user.name
                             : fav.course.title
-                        }>
+                        }
+                      >
                         {activeButton === "btn1"
                           ? fav.course.user.name
                           : fav.course.title}

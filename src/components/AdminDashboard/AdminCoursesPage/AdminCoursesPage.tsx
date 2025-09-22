@@ -1,29 +1,18 @@
 import { useTranslation } from "react-i18next";
 import TableComponent from "@/components/admin/TableComponent/TableComponent";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { useQuery } from "@tanstack/react-query";
 // import { Skeleton } from "@/components/ui/skeleton";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
 import LoadingDesign from "../UserManagement/LoadingDesign";
 import ErrorDesign from "../UserManagement/ErrorDesign";
+import axiosInstance from "@/lib/axios-instance";
 export default function AdminCoursesPage() {
-  const [token] = useLocalStorage("auth_token", "");
   const queryClient = useQueryClient();
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["courses"],
     queryFn: async () => {
-      const options = {
-        url: "https://round5-byway.huma-volve.com/api/courses",
-        method: "get",
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      };
-      const { data } = await axios.request(options);
-
+      const { data } = await axiosInstance.get("courses");
       console.log("all courses", data.data);
       return data.data;
     },
@@ -31,36 +20,26 @@ export default function AdminCoursesPage() {
   const { mutate } = useMutation({
     mutationKey: ["course"],
     mutationFn: async (id: number) => {
-      const options = {
-        url: `https://round5-byway.huma-volve.com/api/courses/${id}`,
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-
-      const { data } = await axios.request(options);
+      const { data } = await axiosInstance.delete(`courses/${id}`);
       return data.data;
     },
 
     onError: (error) => {
-      toast.dismiss("deleteCourse");
       toast.error(error.message || "Unexpected error");
     },
     onMutate: () => {
-      toast.loading("Deleting course...", { toastId: "deleteCourse" });
+      toast.loading("Deleting course...");
     },
     onSuccess: () => {
-      toast.dismiss("deleteCourse");
       toast.success("Course deleted successfully");
       queryClient.invalidateQueries({ queryKey: ["courses"] });
     },
   });
 
   const { t } = useTranslation();
- 
-    if (isLoading) return <LoadingDesign />;
-    if (isError) return <ErrorDesign message={error?.message} />;
+
+  if (isLoading) return <LoadingDesign />;
+  if (isError) return <ErrorDesign message={error?.message} />;
   return (
     <div className="p-6 container space-y-4">
       <div className="space-y-2">

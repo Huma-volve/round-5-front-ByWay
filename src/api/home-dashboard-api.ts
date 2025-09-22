@@ -1,7 +1,7 @@
 import axiosInstance from "@/lib/axios-instance";
 import type { TopRatedCoursesResponse } from "@/lib/types";
 import type { AxiosError } from "axios";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 export const fetchTopRatedCourses =
   async (): Promise<TopRatedCoursesResponse> => {

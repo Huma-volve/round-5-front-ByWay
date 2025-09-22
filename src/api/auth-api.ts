@@ -7,7 +7,7 @@ import type {
 } from "@/lib/types";
 import type { AxiosError } from "axios";
 import { type NavigateFunction } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 export async function signUp(formData: SignUpFormType) {
   const { data } = await axiosInstance.post("register", formData);
@@ -26,10 +26,10 @@ export async function signIn(formData: SignInFormType) {
 
 //you should be authenticated to be able to signout
 export async function signOut(navigate: NavigateFunction) {
+  const loadingId = toast.loading("Signing out...");
   try {
-    toast.loading("Signing out...", { toastId: "signOut" });
     const { data } = await axiosInstance.post("logout");
-    toast.dismiss("signOut");
+    toast.dismiss(loadingId);
     toast.success(data.message);
     localStorage.removeItem("auth_token");
     localStorage.removeItem("email");
@@ -38,7 +38,7 @@ export async function signOut(navigate: NavigateFunction) {
     localStorage.removeItem("name");
     navigate("/signin");
   } catch (error) {
-    toast.dismiss("signOut");
+    toast.dismiss(loadingId);
     const axiosError = error as AxiosError<{ message?: string }>;
     toast.error(axiosError?.response?.data?.message || "Failed to sign out");
     throw error;

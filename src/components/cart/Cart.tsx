@@ -8,7 +8,7 @@ import shopping from "../../assets/images/shopping cart.svg";
 import {  ShoppingCart } from "lucide-react";
 import TotalCost from "./TotalCost";
 import CartLoading from "./CartLoading";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 const Cart = () => {
   const { t } = useTranslation();
   const { data, isLoading, error } = useFetchAllCart();

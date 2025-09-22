@@ -8,7 +8,7 @@ import { useFavourites } from "@/hooks/Favorites/useFavourites";
 import useAddFavorites from "@/hooks/Favorites/useAddFavorites";
 import useRemoveFavorites from "@/hooks/Favorites/useRemoveFavorites";
 import useAddToCart from "@/hooks/Cart/useAddToCart";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import CardCourseLoading from "./CardCourseLoading";
 
 interface CardCourseProps {

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { uploadLessonMaterial } from "@/api/instructor-lessons-manage-api";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 export default function useUploadLessonMaterial(
   courseId: string,

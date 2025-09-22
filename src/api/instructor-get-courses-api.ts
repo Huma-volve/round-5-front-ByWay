@@ -1,6 +1,6 @@
 import axiosInstance from "@/lib/axios-instance";
 import type { AxiosError } from "axios";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 export function fetchInstructorCourses(pageNumber?: number) {
   try {

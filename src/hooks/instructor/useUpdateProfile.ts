@@ -1,11 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axiosInstance from "@/lib/axios-instance";
-import { toast } from "react-hot-toast";
+import { toast } from "sonner";
+import type { AxiosError } from "axios";
 
 export interface EditProfileForm {
   name?: string;
   email?: string;
-  password?: string
+  password?: string;
 }
 
 const updateProfile = async (updatedData: EditProfileForm) => {
@@ -30,7 +31,7 @@ export function useUpdateProfile() {
       toast.success("Profile updated successfully");
       queryClient.invalidateQueries({ queryKey: ["profile"] });
     },
-    onError: (error: any) => {
+    onError: (error: AxiosError<{ message: string }>) => {
       toast.error(error.response?.data?.message || "Something went wrong");
     },
   });

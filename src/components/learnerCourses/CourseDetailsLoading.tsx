@@ -1,6 +1,7 @@
 export default function CourseDetailsLoading() {
   return (
-    <div className="md:mx-24 mx-5 mt-12">
+    <div>
+    <div className=" mt-12">
       <div className="flex gap-5 mb-8">
         <p className="h-5 w-20 bg-gray-200 rounded-md animate-pulse"></p>
         <p className="h-5 w-20 bg-gray-300 rounded-md animate-pulse"></p>
@@ -17,6 +18,7 @@ export default function CourseDetailsLoading() {
         <p className="h-5 w-20 bg-gray-200 rounded-md animate-pulse"></p>
         <p className="h-10 w-52 bg-gray-200 rounded-md animate-pulse"></p>
       </div>
+    </div>
     </div>
   );
 }

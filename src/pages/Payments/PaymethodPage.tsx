@@ -9,7 +9,7 @@ import { Trash2 } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 import PaymentMethodLoading from "@/components/payment/PaymentMethodLoading";
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 export default function PaymethodPage() {
   const { getAutoBreadcrumb } = useBreadcrumb();
   const { data, isLoading, isError } = useFetchPaymentMethods();

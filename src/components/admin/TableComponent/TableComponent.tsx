@@ -1,8 +1,19 @@
-import { Table, TableBody, TableCaption, TableCell, TableHead,
-   TableHeader, TableRow,} from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { Link } from "react-router-dom";
-import {DropdownMenu,DropdownMenuContent,DropdownMenuItem,
-  DropdownMenuLabel,DropdownMenuTrigger} from  "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useTranslation } from "react-i18next";
 import { MoreVertical } from "lucide-react";
 import { useUpdateCourseStatus } from "@/hooks/useUpdateCourseStatus";
@@ -86,14 +97,14 @@ export default function TableComponent({ courses, deleteCourse }: TableProps) {
                       </button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
-                      <DropdownMenuLabel>
+                      <DropdownMenuItem>
                         <Link
                           to={`course-details/${course.id}`}
                           className="p-0 h-auto text-revenue2-graph text-blue-500"
                         >
                           {t("instructor.courseManagement.viewCourse")}
                         </Link>
-                      </DropdownMenuLabel>
+                      </DropdownMenuItem>
 
                       <DropdownMenuItem>
                         <Link
@@ -114,12 +125,15 @@ export default function TableComponent({ courses, deleteCourse }: TableProps) {
                               },
                               {
                                 onSuccess: () => {
-                                  setLocalCourses(prev =>
-                                    prev.map(c =>
+                                  setLocalCourses((prev) =>
+                                    prev.map((c) =>
                                       c.id === course.id
                                         ? { ...c, status: "published" }
-                                        : c  ));
-       }, }
+                                        : c
+                                    )
+                                  );
+                                },
+                              }
                             )
                           }
                           disabled={updateStatusMutation.isPending}
@@ -191,7 +205,6 @@ export default function TableComponent({ courses, deleteCourse }: TableProps) {
 //  const { t } = useTranslation();
 //  const updateStatusMutation = useUpdateCourseStatus()
 
- 
 //   return (
 //     <>
 //       <div className="rounded-2xl shadow-md bg-secondary-background border border-border-card p-4">
@@ -281,7 +294,7 @@ export default function TableComponent({ courses, deleteCourse }: TableProps) {
 //                        updateStatusMutation.mutate({
 //                            courseId: course.id.toString(),
 //                           status: "published", })}
-                           
+
 //                             className="p-0 h-auto text-green-600"
 //                           >
 //                             {/* {t('instructor.courseManagement.Approve')} */}

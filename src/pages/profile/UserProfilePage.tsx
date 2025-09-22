@@ -69,9 +69,9 @@ const UserProfilePage = () => {
 
         <div className="my-8">
           <h1 className="text-primary text-[17px] md:text-[20px] font-bold mb-2">
-            {t("profile.Headline")}
+            {t("profile.Bio")}
           </h1>
-          <p>{user?.headline}</p>
+          <p>{user?.bio}</p>
         </div>
         <div className="">
           <h1 className="text-primary text-[17px] md:text-[20px] font-bold mb-2">

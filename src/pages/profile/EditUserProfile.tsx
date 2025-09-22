@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import edit from "../../assets/images/icons/edit.svg";
 import axiosInstance from "@/lib/axios-instance";
 import profile from "../../assets/images/icons/profile.svg";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import EditUserProfileLoading from "@/components/user-profile/EditUserProfileLoading";
 
 const EditUserProfile = () => {
@@ -47,7 +47,7 @@ const EditUserProfile = () => {
       initialValues={{
         first_name: user?.first_name || "",
         last_name: user?.last_name || "",
-        headline: user?.headline || "",
+        bio: user?.bio || "",
         about: user?.about || "",
         twitter_link: user?.twitter_link || "",
         linkedin_link: user?.linkedin_link || "",
@@ -62,7 +62,7 @@ const EditUserProfile = () => {
         last_name: Yup.string()
           .min(2, t('instructor.lastNameMin'))
           .required(t('instructor.lastNameRequired')),
-        headline: Yup.string()
+        bio: Yup.string()
           .max(50, t('instructor.headlineMax'))
           .required(t('instructor.headlineRequired')),
         about: Yup.string()
@@ -161,19 +161,19 @@ const EditUserProfile = () => {
 
             <div className="my-8">
               <label
-                htmlFor="headline"
+                htmlFor="bio"
                 className="text-primary text-[17px] md:text-[20px] font-bold mb-2"
               >
-                {t("profile.Headline")}
+                {t("profile.Bio")}
               </label>
               <br />
               <Field
-                name="headline"
+                name="bio"
                 as="textarea"
                 className="mt-2 border-2 border-border rounded-[8px] p-[16px] w-[90%] outline-none hover:border-primary "
               />
               <div className="text-danger text-[13px]">
-                <ErrorMessage name="headline" />
+                <ErrorMessage name="bio" />
               </div>
             </div>
             <div className="">

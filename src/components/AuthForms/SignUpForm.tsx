@@ -18,7 +18,7 @@ function SignUpForm() {
     name: /^[A-Za-z\s]{2,50}$/,
     email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     phone: /^(\+2)?01[0125][0-9]{8}$/,
-    password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+    password: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
   };
 
   //Scheme
@@ -61,7 +61,6 @@ function SignUpForm() {
     validationSchema: scheme,
     onSubmit: (values) => {
       const formData = {
-        name: values.first_name.concat(" ", values.last_name),
         first_name: values.first_name,
         last_name: values.last_name,
         email: values.email,

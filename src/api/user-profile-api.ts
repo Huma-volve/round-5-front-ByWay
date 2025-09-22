@@ -1,6 +1,6 @@
 
 import axiosInstance from "@/lib/axios-instance"
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 export const getUserProfile=async ()=>{
     try{

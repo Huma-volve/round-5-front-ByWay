@@ -1,7 +1,7 @@
 import axiosInstance from "@/lib/axios-instance";
 import type { createCourseData, updateCourseData } from "@/lib/types";
 import type { AxiosError } from "axios";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 export async function getCourseById(courseId: string | undefined) {
   try {

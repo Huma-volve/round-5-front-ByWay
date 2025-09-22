@@ -2,7 +2,7 @@ import { deleteCourse } from "@/api/instructor-course-manage-api";
 import { queryClient } from "@/lib/query-keys";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 export default function useDeleteCourse(courseId: string|undefined) {
   const navigate = useNavigate();

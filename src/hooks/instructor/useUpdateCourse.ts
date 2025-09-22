@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { updateCourse } from "@/api/instructor-course-manage-api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import type { updateCourseData } from "@/lib/types";
 
 interface CourseApiResponse {

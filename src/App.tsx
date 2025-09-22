@@ -1,11 +1,9 @@
 import AppRoutes from "./routes/AppRoutes";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { ToastContainer, Slide } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Toaster } from "sonner";
 import { useLanguage } from "./hooks/useLanguage";
 import { useTranslation } from "react-i18next";
 import { queryClient } from "./lib/query-keys";
-
 
 function App() {
   // Initialize language and direction handling
@@ -17,20 +15,16 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <AppRoutes />
-        <ToastContainer
+        <Toaster
           position="top-center"
-          autoClose={2000}
-          hideProgressBar
-          closeOnClick
-          pauseOnHover
-          draggable
-          theme="light"
-          transition={Slide}
-          rtl={isRTL}
-          className={isRTL ? "toast-container-rtl" : "toast-container-ltr"}
-          toastClassName={isRTL ? "toast-rtl" : "toast-ltr"}
-          style={{
-            direction: isRTL ? "rtl" : "ltr",
+          duration={2000}
+          closeButton
+          richColors
+          dir={isRTL ? "rtl" : "ltr"}
+          toastOptions={{
+            style: {
+              direction: isRTL ? "rtl" : "ltr",
+            },
           }}
         />
       </QueryClientProvider>

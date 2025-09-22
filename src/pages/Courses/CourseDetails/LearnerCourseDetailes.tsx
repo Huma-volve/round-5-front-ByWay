@@ -5,7 +5,7 @@ import FeedbackModal from "@/components/instructor/Modal/FeedBackModal";
 import { Link, useParams } from "react-router-dom";
 import useFetchMyCoursesDetails from "@/hooks/LearnerCourses/useFetchMyCoursesDetailes";
 import useAddReviewLearner from "@/hooks/LearnerCourses/useAddReviewLearner";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 export default function LearnerCourseDetails() {
   const { learnerCourseId } = useParams<{ learnerCourseId: string }>();
@@ -21,29 +21,11 @@ export default function LearnerCourseDetails() {
     setIsFeedbackOpen(false);
     addReview({ rating, review: comment });
     if (isSuccess) {
-      toast.success(data?.message, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      toast.success(data?.message);
     }
 
     if (isError) {
-      toast.error(error?.message, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      toast.error(error?.message);
     }
   };
 

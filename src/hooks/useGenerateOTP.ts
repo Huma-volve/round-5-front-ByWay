@@ -1,7 +1,8 @@
 import { generateOTP } from "@/api/auth-api";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
+import type { AxiosError } from "axios";
 
 /**
  * When user signup app should set the auth + user's info in session or local storage || (cash) user's mail, redirect to otp.
@@ -20,15 +21,14 @@ export function useGenerateOTP() {
        * In OTPForm component we can either retrieve user's email from this navigate state or email set in localStorage after signup.
        */
 
-      toast.success("OTP has been sent to your mail")
+      toast.success("OTP has been sent to your mail");
 
       navigate("/otp", {
         state: formData.email,
       });
-
     },
-    onError: (error:any) => {
-      toast.error(error.response.data.message);
+    onError: (error: AxiosError<{ message: string }>) => {
+      toast.error(error.response?.data?.message || "Failed to generate OTP");
       console.log(error);
     },
   });
