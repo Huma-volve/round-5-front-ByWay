@@ -7,9 +7,8 @@ import type {
   SetupIntentResult,
 } from "@stripe/stripe-js";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useTranslation } from "react-i18next";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
+import axiosInstance from "@/lib/axios-instance";
 // import { useQueryClient } from "@tanstack/react-query";
 // interface paymentFormProps {}
 
@@ -23,19 +22,11 @@ export default function PaymentMethod(/*{}: paymentFormProps*/) {
   const [clientSecret, setClientSecret] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
-  const [token] = useLocalStorage("auth_token", "");
 
   useEffect(() => {
-    axios
+    axiosInstance
       .post(
-        "https://round5-byway.huma-volve.com/api/payment-methods/setup-intent",
-        {},
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        'payment-methods/setup-intent'
       )
       .then((res) => {
         setClientSecret(res.data.data.client_secret);
@@ -71,17 +62,11 @@ export default function PaymentMethod(/*{}: paymentFormProps*/) {
         const paymentMethod = result.setupIntent.payment_method;
         console.log("Payment Method :", paymentMethod);
 
-        await axios.post(
-          "https://round5-byway.huma-volve.com/api/payment-methods",
+        await axiosInstance.post(
+          'payment-methods',
           {
             payment_method: paymentMethod,
           },
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
         );
 
         setMessage("Payment method saved successfully!");

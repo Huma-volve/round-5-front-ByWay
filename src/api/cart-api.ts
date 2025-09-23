@@ -27,9 +27,9 @@ export const apiGetCart = async () => {
   try {
     const response = await axiosInstance.get("cart");
 
-    if (response.data?.status === 200) {
-      toast.success(response.data.message || "Cart loaded successfully");
-    }
+    // if (response.data?.status === 200) {
+    //   toast.success(response.data.message || "Cart loaded successfully");
+    // }
 
     return response.data;
 
