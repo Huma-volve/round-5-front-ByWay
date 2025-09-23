@@ -13,7 +13,7 @@ export default function useAddToCart() {
 }
 
 export const useFetchAllCart = () => {
-  const [token] = useLocalStorage("token", "")
+  const [token,] = useLocalStorage("auth_token", "")
   return useQuery({
     queryKey: ["cart"],
     queryFn: apiGetCart,
