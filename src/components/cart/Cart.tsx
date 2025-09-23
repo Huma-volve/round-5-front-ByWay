@@ -59,7 +59,7 @@ const Cart = () => {
             {cartItems.map((item: cartProps) => (
               <div className="my-4 w-[100%] gap-3 flex flex-wrap" key={item.id}>
                 {/* <img src={`https://round5-byway.huma-volve.com/api${item.course.image_url}` || shopping} alt="shopping cart" /> */}
-                <img src={shopping} alt="shopping cart" />
+                <img src={item.course.image_url||shopping} alt="shopping cart" className="md:w-[80%] lg:w-[40%] "/>
                 <div className="flex flex-col gap-1">
                   <div className="w-[100%] flex justify-between gap-2 flex-wrap items-center ">
                     <h1 className="font-bold ">
