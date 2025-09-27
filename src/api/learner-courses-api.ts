@@ -36,7 +36,7 @@ export async function fetchInstructorDetails(
   instructorId: string
 ): Promise<CoursesHome> {
   const response = await axiosInstance.get<{ data: CoursesHome }>(
-    `all-instructors/${instructorId}`
+    `instructor/details/${instructorId}`
   );
   return response.data.data;
 }

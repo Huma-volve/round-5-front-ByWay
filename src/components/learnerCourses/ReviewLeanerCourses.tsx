@@ -26,48 +26,67 @@ export default function Review({
 
   return (
     <>
-      <div className="border p-4 rounded-2xl shadow-sm mb-4 flex flex-col gap-3 mx-auto lg:mx-0 hover:shadow-md transition-shadow duration-200 lg:w-[80%]  ">
+      <div className="border p-4 rounded-2xl shadow-sm mb-4 flex flex-col gap-3 mx-auto lg:mx-0 hover:shadow-md transition-shadow duration-200 w-full lg:w-[80%]  ">
         {variant === "course" ? (
-          <>
-            <h3 className="flex flex-wrap items-center gap-2 text-sm sm:text-base">
-              <span className="whitespace-nowrap font-medium">
-                {t("instructor.courseName")}:
-              </span>
-              <span className="font-bold">{courseName}</span>
-            </h3>
+          <div className="flex justify-between w-full">
+            <div className="flex flex-col gap-3 w-full">
+              <div className="flex flex-wrap items-center justify-between gap-2 w-full">
+                <h3 className="flex flex-wrap items-center gap-2 text-sm sm:text-base">
+                  <span className="whitespace-nowrap font-medium">
+                    {t("instructor.courseName")}:
+                  </span>
+                  <span className="font-bold">{courseName}</span>
+                </h3>
+                <p className="flex gap-2 items-center text-sm sm:text-base">
+                  {imageLearner ? (
+                    <img
+                      src={imageLearner}
+                      loading="lazy"
+                      alt={name}
+                      className="size-7 rounded-full object-cover"
+                    />
+                  ) : (
+                    <CircleUserRound />
+                  )}
+                  <p className="capitalize">{name}</p>
+                </p>
+                <p>{date}</p>
+              </div>
 
-            <p className="flex items-center gap-2 text-sm sm:text-base">
-              <span className="font-medium">{t("instructor.rating")}:</span>
-              <span className="flex gap-1">
-                {Array(rating)
-                  .fill(0)
-                  .map((_, i) => (
-                    <img
-                      key={i}
-                      src={activeStarIcon}
-                      alt="Star"
-                      loading="lazy"
-                      className="w-4 h-4"
-                    />
-                  ))}
-                {Array(5 - rating)
-                  .fill(0)
-                  .map((_, i) => (
-                    <img
-                      key={i}
-                      src={inactiveStarIcon}
-                      alt="Star"
-                      loading="lazy"
-                      className="w-4 h-4 opacity-50"
-                    />
-                  ))}
-              </span>
-            </p>
-            <p className="flex flex-col md:flex-row  md:gap-2 text-sm sm:text-base">
-              <span className="font-medium">{t("instructor.review")}:</span>
-              <span>{review}</span>
-            </p>
-          </>
+              <p className="flex items-center gap-2 text-sm sm:text-base">
+                <span className="font-medium">{t("instructor.rating")}:</span>
+                <span className="flex gap-1">
+                  {Array(rating)
+                    .fill(0)
+                    .map((_, i) => (
+                      <img
+                        key={i}
+                        src={activeStarIcon}
+                        alt="Star"
+                        loading="lazy"
+                        className="w-4 h-4"
+                      />
+                    ))}
+                  {Array(5 - rating)
+                    .fill(0)
+                    .map((_, i) => (
+                      <img
+                        key={i}
+                        src={inactiveStarIcon}
+                        alt="Star"
+                        loading="lazy"
+                        className="w-4 h-4 opacity-50"
+                      />
+                    ))}
+                </span>
+              </p>
+              <p className="flex flex-col md:flex-row  md:gap-2 text-sm sm:text-base">
+                <span className="font-medium">{t("instructor.review")}:</span>
+                <span>{review}</span>
+              </p>
+            </div>
+            <div className="flex flex-col justify-between"></div>
+          </div>
         ) : (
           <>
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
@@ -83,7 +102,9 @@ export default function Review({
                   <CircleUserRound />
                 )}
 
-                <p className="font-bold text-sm sm:text-base">{name}</p>
+                <p className="font-bold text-sm sm:text-base capitalize">
+                  {name}
+                </p>
               </div>
 
               <div className="flex items-center gap-1">

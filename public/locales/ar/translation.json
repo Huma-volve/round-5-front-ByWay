@@ -42,7 +42,11 @@
     "instructorDetails": "تفاصيل المدرب",
     "add": "إضافة",
     "of": "من",
-    "reviews" : "الاراء"
+    "reviews": "الاراء",
+    "average_rating": "متوسط التقييم",
+    "hours": "ساعات",
+    "saving": "جاري الحفظ...",
+    "somethingWentWrong": "حدث خطأ ما"
   },
   "auth": {
     "loginToAccount": "سجل الدخول إلى حسابك",
@@ -112,8 +116,8 @@
     "success": "ناجحة"
   },
   "instructor": {
-  "noCoursesYet": "لا توجد كورسات بعد",
-
+    "noCoursesYet": "لا توجد كورسات بعد",
+    "dashboard": "لوحة التحكم",
     "reviews": "المراجعات",
     "courseName": "اسم الدورة",
     "Total Students": "إجمالي الطلاب",
@@ -178,6 +182,7 @@
         "customer": "العميل",
         "date": "التاريخ",
         "paymentType": "نوع الدفع",
+        "paymentMethod": "طريقة الدفع",
         "amount": "المبلغ",
         "scrollHint": "مرر أفقياً لرؤية جميع الأعمدة"
       },
@@ -387,6 +392,20 @@
       "uploadValidMaterialFiles": "يرجى رفع ملفات مواد صالحة",
       "atLeastOneLessonRequired": "درس واحد على الأقل مطلوب",
       "lessonsRequired": "الدروس مطلوبة"
+    },
+    "profile": {
+      "firstNameRequired": "الاسم الأول مطلوب",
+      "firstNameMinLength": "الاسم الأول يجب أن يكون حرفين على الأقل",
+      "firstNameMaxLength": "الاسم الأول يجب أن يكون أقل من 50 حرف",
+      "lastNameRequired": "اسم العائلة مطلوب",
+      "lastNameMinLength": "اسم العائلة يجب أن يكون حرفين على الأقل",
+      "lastNameMaxLength": "اسم العائلة يجب أن يكون أقل من 50 حرف",
+      "bioMaxLength": "النبذة المختصرة يجب أن تكون أقل من 200 حرف",
+      "aboutMaxLength": "قسم 'عنك' يجب أن يكون أقل من 1000 حرف",
+      "nationalityMaxLength": "الجنسية يجب أن تكون أقل من 50 حرف",
+      "invalidUrl": "يرجى إدخال رابط صحيح",
+      "fileTooLarge": "حجم الملف يجب أن يكون أقل من 5 ميجابايت",
+      "invalidFileType": "يُسمح بملفات الصور فقط (JPEG, PNG, WebP)"
     }
   },
   "profile": {
@@ -400,12 +419,36 @@
     "Youtube": "يوتيوب",
     "Facebook": "فيسبوك",
     "Edit Profile": "تعديل الملف الشخصى",
+    "editProfile": "تعديل الملف الشخصي",
+    "updateYourInformation": "قم بتحديث معلوماتك الشخصية وروابط وسائل التواصل الاجتماعي",
+    "clickToUploadImage": "انقر لرفع صورتك الشخصية",
+    "basicInformation": "المعلومات الأساسية",
+    "firstName": "الاسم الأول",
+    "enterFirstName": "أدخل الاسم الأول",
+    "lastName": "اسم العائلة",
+    "enterLastName": "أدخل اسم العائلة",
+    "nationality": "الجنسية",
+    "enterNationality": "أدخل جنسيتك",
+    "aboutYou": "نبذة عنك",
+    "bio": "نبذة مختصرة",
+    "enterBio": "أدخل نبذة مختصرة عن نفسك",
+    "bioDescription": "وصف مختصر عن نفسك (حد أقصى 200 حرف)",
+    "about": "عنك",
+    "enterAbout": "أخبرنا المزيد عن نفسك وخبرتك وتخصصك",
+    "aboutDescription": "معلومات تفصيلية عن خلفيتك وخبرتك (حد أقصى 1000 حرف)",
+    "socialLinks": "روابط وسائل التواصل الاجتماعي",
+    "twitterLink": "رابط تويتر/X",
+    "linkedinLink": "رابط لينكد إن",
+    "youtubeLink": "رابط يوتيوب",
+    "facebookLink": "رابط فيسبوك",
+    "saveChanges": "حفظ التغييرات",
+    "profileUpdatedSuccessfully": "تم تحديث الملف الشخصي بنجاح",
     "Learner Reviews": "تقييمات المتدربين",
     "View more Reviews": "عرض المزيد من التقييمات",
     "link required": "الرجاء إدخال رابط",
-    "Save":" حفظ",
-    "Profile Updated":"تم تحديث الملف الشخصى",
-    "Saving":"جاري الحفظ"
+    "Save": " حفظ",
+    "Profile Updated": "تم تحديث الملف الشخصى",
+    "Saving": "جاري الحفظ"
   },
   "withdraw": {
     "Enter Payment Details": "ادخل تفاصيل الدفع",
@@ -474,12 +517,11 @@
   "closeAccount": {
     "Close Account": "إغلاق الحساب",
     "Close your account permanently.": "إغلاق حسابك بشكل دائم.",
-    "Enter your password":" أدخل كلمة المرور الخاصة بك",
+    "Enter your password": " أدخل كلمة المرور الخاصة بك",
     "Warning": "تحذير",
     "warning1": " : إذا قمت بإغلاق حسابك، فستتم إلغاء اشتراكك من جميع الدورات الثلاث الخاصة بك وستفقد الوصول إلى حسابك والبيانات المرتبطة بحسابك إلى الأبد، حتى إذا اخترت إنشاء حساب جديد باستخدام نفس عنوان البريد الإلكتروني في المستقبل.",
-    "warning2": "يرجى ملاحظة أنه إذا كنت تريد إعادة تفعيل حسابك بعد تقديم طلب الحذف، فسيكون أمامك 14 يومًا من تاريخ التقديم الأولي للتواصل عبر البريد الإلكتروني privacy@udemy.com لإلغاء هذا الطلب"
-  ,"Account closure requested.closed within 14 day.":"تم طلب إغلاق الحساب. سيتم إغلاق الحساب خلال 14 يومًا."
-  
+    "warning2": "يرجى ملاحظة أنه إذا كنت تريد إعادة تفعيل حسابك بعد تقديم طلب الحذف، فسيكون أمامك 14 يومًا من تاريخ التقديم الأولي للتواصل عبر البريد الإلكتروني privacy@udemy.com لإلغاء هذا الطلب",
+    "Account closure requested.closed within 14 day.": "تم طلب إغلاق الحساب. سيتم إغلاق الحساب خلال 14 يومًا."
   },
   "cart": {
     "Price": "السعر",
@@ -498,7 +540,7 @@
     "rating": "تقييم",
     "by": "بواسطة",
     "Payment Methods": "طرق الدفع",
-    "Error loading cart":"خطأ",
+    "Error loading cart": "خطأ",
     "Cart is Empty": "السلة فارغة",
     "Cart is Empty,check your Cart": "السلة فارغة، تحقق من سلتك",
     "Order Id": "رقم الطلب",
@@ -652,7 +694,7 @@
     "WithDrowal  Details": "تفاصيل السحب",
     "Request Date": "تاريخ الطلب",
     "Bank Name": "اسم البنك",
-    "Account Number":" رقم الحساب",
+    "Account Number": " رقم الحساب",
     "Add New Admin": "إضافة مشرف جديد"
   }
 }
