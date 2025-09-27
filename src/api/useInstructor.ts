@@ -6,9 +6,8 @@ export function useInstructor() {
   return useQuery({
     queryKey: ["instructor"],
     queryFn: async () => {
-      const { data } = await axiosInstance.get(`/instructor/course-management/courses`);
-      console.log("Instructor API response:", data);
-      return data;
+      const { data } = await axiosInstance.get(`instructor/profile`);
+      return data.data;
     },
   });
 }

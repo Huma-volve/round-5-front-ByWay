@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useLocalStorage } from "../useLocalStorage";
 
 export default function useStatsHome() {
-  const [token] = useLocalStorage("token", "");
+  const [token,] = useLocalStorage("auth_token", "");
 
   const { data, error, isError, isLoading } = useQuery<StatsHome>({
     queryKey: ["statsHome"],

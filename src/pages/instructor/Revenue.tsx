@@ -3,12 +3,18 @@ import RevenueHeader from "@/components/instructor/revenue/RevenueHeader";
 import IncomeTable from "@/components/instructor/revenue/IncomeTable";
 import useFetchInstructorRevenueGraphData from "@/hooks/instructor/useFetchInstructorRevenueGraphData";
 import useFetchInstructorRecentPayOuts from "@/hooks/instructor/useFetchInstructorRecentPayOuts";
+import NewBreadCrumb from "@/components/common/NewBreadCrumb";
 
 export default function Revenue() {
   const { data: recentPayouts, isPending, isError, error } = useFetchInstructorRecentPayOuts();
-  console.log(recentPayouts);
+  // breadcrumb items
+  const breadcrumbItems = [
+    { label: "common.home", link: "/" },
+    { label: "instructor.revenue.title" },
+  ];
   return (
-    <div className=" mt-12">
+    <div className="container">
+      <NewBreadCrumb items={breadcrumbItems} />
       <RevenueHeader />
       <RevenueChart
         useRevenueHook={useFetchInstructorRevenueGraphData}

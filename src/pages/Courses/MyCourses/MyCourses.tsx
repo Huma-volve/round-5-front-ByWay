@@ -10,7 +10,17 @@ import ErrorState from "@/components/course/CourseCard/ErrorState";
 import type { AxiosError } from "axios";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import PaginationBar from "@/components/common/PaginationBar";
-
+import NewBreadCrumb from "@/components/common/NewBreadCrumb";
+export type Course = {
+    id: number;
+    title: string;
+    description: string;
+    status: string;
+    name?: string;
+    key?: number;
+    rate?: number;
+    price?: number;
+  };
 export default function MyCourses() {
   const [page, setPage] = useState(1);
   const [localPage, setLocalPage] = useLocalStorage<number>("localPage", 1);
@@ -21,16 +31,6 @@ export default function MyCourses() {
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
     setLocalPage(newPage);
-  };
-  type Course = {
-    id: number;
-    title: string;
-    description: string;
-    status: string;
-    name?: string;
-    key?: number;
-    rate?: number;
-    price?: number;
   };
 
   const { data, error, isLoading, isError , refetch} = useFetchCourses(page);
@@ -44,6 +44,13 @@ export default function MyCourses() {
   const currentPage = meta?.current_page;
   const totalCourses = meta?.total;
   const coursesPerThisPage = meta?.to - meta?.from + 1;
+
+
+  // breadcrumb items
+  const breadcrumbItems = [
+    { label: "common.home", link: "/" },
+    { label: "common.myCourses" },
+  ];
 
   let content = (
     <div className="container  pt-12  flex justify-center items-center">
@@ -70,11 +77,10 @@ export default function MyCourses() {
       </div>
     );
   }
-
-  console.log(courses, meta);
   return (
     <>
-      <section className="container py-12">
+      <section className="container pb-12">
+        <NewBreadCrumb items={breadcrumbItems} />
         <div className="flex justify-between items-center">
           <h1 className="text-bold text-xl lg:text-2xl mb-4">
             {t("instructor.Courses")} ({coursesPerThisPage || 0} {t("common.of")} {totalCourses || 0})

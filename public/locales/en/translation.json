@@ -41,8 +41,12 @@
     "aboutMe": "About Me",
     "instructorDetails": "Instructor Details",
     "add": "Add",
-    "of":"of",
-    "reviews" : "Reviews"
+    "of": "of",
+    "reviews": "Reviews",
+    "average_rating": "Average Rating",
+    "hours": "hours",
+    "saving": "Saving...",
+    "somethingWentWrong": "Something went wrong"
   },
   "auth": {
     "loginToAccount": "Log in into your account",
@@ -89,8 +93,8 @@
   },
   "instructor": {
     "reviews": "Reviews",
-    
-   "noCoursesYet" : "No Courses Yet",
+    "dashboard": "Dashboard",
+    "noCoursesYet": "No Courses Yet",
     "courseName": "Course Name",
     "rating": "Rating",
     "review": "Review",
@@ -176,6 +180,7 @@
         "customer": "Customer",
         "date": "Date",
         "paymentType": "Payment Type",
+        "paymentMethod": "Payment Method",
         "amount": "Amount",
         "scrollHint": "Scroll horizontally to see all columns"
       },
@@ -392,6 +397,20 @@
       "uploadValidMaterialFiles": "Please upload valid material files",
       "atLeastOneLessonRequired": "At least one lesson is required",
       "lessonsRequired": "Lessons are required"
+    },
+    "profile": {
+      "firstNameRequired": "First name is required",
+      "firstNameMinLength": "First name must be at least 2 characters",
+      "firstNameMaxLength": "First name must be less than 50 characters",
+      "lastNameRequired": "Last name is required",
+      "lastNameMinLength": "Last name must be at least 2 characters",
+      "lastNameMaxLength": "Last name must be less than 50 characters",
+      "bioMaxLength": "Bio must be less than 200 characters",
+      "aboutMaxLength": "About section must be less than 1000 characters",
+      "nationalityMaxLength": "Nationality must be less than 50 characters",
+      "invalidUrl": "Please enter a valid URL",
+      "fileTooLarge": "File size must be less than 5MB",
+      "invalidFileType": "Only image files (JPEG, PNG, WebP) are allowed"
     }
   },
   "withdraw": {
@@ -464,12 +483,36 @@
     "Youtube": "Youtube",
     "Facebook": "Facebook",
     "Edit Profile": "Edit Profile",
+    "editProfile": "Edit Profile",
+    "updateYourInformation": "Update your personal information and social media links",
+    "clickToUploadImage": "Click to upload your profile image",
+    "basicInformation": "Basic Information",
+    "firstName": "First Name",
+    "enterFirstName": "Enter your first name",
+    "lastName": "Last Name",
+    "enterLastName": "Enter your last name",
+    "nationality": "Nationality",
+    "enterNationality": "Enter your nationality",
+    "aboutYou": "About You",
+    "bio": "Bio",
+    "enterBio": "Enter a brief bio about yourself",
+    "bioDescription": "A short description about yourself (max 200 characters)",
+    "about": "About",
+    "enterAbout": "Tell us more about yourself, your experience, and expertise",
+    "aboutDescription": "Detailed information about your background and expertise (max 1000 characters)",
+    "socialLinks": "Social Media Links",
+    "twitterLink": "Twitter/X Link",
+    "linkedinLink": "LinkedIn Link",
+    "youtubeLink": "YouTube Link",
+    "facebookLink": "Facebook Link",
+    "saveChanges": "Save Changes",
+    "profileUpdatedSuccessfully": "Profile updated successfully",
     "Learner Reviews": "Learner Reviews",
     "View more Reviews": "View more Reviews",
     "link required": "Please enter a link",
-    "Save":"Save",
-    "Profile Updated":"Profile Updated",
-    "Saving":"Saving..."
+    "Save": "Save",
+    "Profile Updated": "Profile Updated",
+    "Saving": "Saving..."
   },
   "workExperience": {
     "jobTitle": "Job Title",
@@ -500,11 +543,11 @@
   "closeAccount": {
     "Close Account": "Close Account",
     "Close your account permanently.": "Close your account permanently.",
-    "Enter your password":"Enter your password",
+    "Enter your password": "Enter your password",
     "Warning": "Warning",
     "warning1": "If you close your account, you will be unsubscribed from all 3 of your courses and will lose access to your account and data associated with your account forever, even if you choose to create a new account using the same email address in the future.",
-    "warning2": "Please note, if you want to reinstate your account after submitting a deletion request, you will have 14 days after the initial submission date to reach out to"
-,  "Account closure requested.closed within 14 day.":"Account closure requested.closed within 14 day."
+    "warning2": "Please note, if you want to reinstate your account after submitting a deletion request, you will have 14 days after the initial submission date to reach out to",
+    "Account closure requested.closed within 14 day.": "Account closure requested.closed within 14 day."
   },
   "cart": {
     "Price": "Price",
@@ -522,8 +565,8 @@
     "Save for later": "Save for later",
     "rating": "Rating",
     "by": "by",
-    "Payment Methods":"Payment Methods",
-    "Error loading cart":"Error loading cart",
+    "Payment Methods": "Payment Methods",
+    "Error loading cart": "Error loading cart",
     "Cart is Empty": "Cart is Empty",
     "Cart is Empty,check your Cart": "Cart is Empty,check your Cart",
     "Order Id": "Order Id",
@@ -677,7 +720,7 @@
     "WithDrowal  Details": "Withdrawal Details",
     "Request Date": "Request Date",
     "Bank Name": "Bank Name",
-    "Account Number":"Account Number",
+    "Account Number": "Account Number",
     "Add New Admin": "Add New Admin"
   }
 }
