@@ -6,6 +6,7 @@ export default function useInstructorDetails(instructorId: string) {
     data: instructor,
     error,
     isLoading,
+    isError
   } = useQuery<instructorDetails>({
     queryKey: ["instructorDetails", instructorId],
     queryFn: () =>
@@ -18,5 +19,6 @@ export default function useInstructorDetails(instructorId: string) {
     instructor,
     error,
     isLoading,
+    isError
   };
 }

@@ -73,7 +73,7 @@ function CourseDetails() {
               {course?.description || "description"}
             </p>
             <p className="text-lg font-[500]">
-              {t("common.duration")}: 7 {t("common.weeks")}
+              {t("common.duration")}: {course?.duration ? course.duration / 3600 : "0"} {t("common.hours")}
             </p>
             <div className="flex items-center gap-3  my-4">
               <p className="text-white px-2 rounded-lg bg-[--secondary]">
@@ -121,7 +121,7 @@ function CourseDetails() {
               </div>
             ))}
           </div>
-          {course?.reviews.map((review, index) => (
+          {course?.rating_info?.has_reviews && course?.reviews.map((review, index) => (
             <ReviewLeanerCourses
               key={index}
               variant="user"

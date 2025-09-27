@@ -19,7 +19,7 @@ export const getUserProfile=async ()=>{
 
 export const updateUserProfile=async (data:FormData)=>{
     try{
-        const res=await  axiosInstance.put("/profile",data,{
+        const res=await  axiosInstance.post("/profile",data,{
             headers:{"content-type":"multipart/form-data"}
         })
         if(res.status===200){

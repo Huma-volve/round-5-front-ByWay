@@ -1,4 +1,4 @@
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import StarIcon from "../../assets/images/icons/StarIcon.svg";
 import { useTranslation } from "react-i18next";
 import { Heart } from "lucide-react";
@@ -10,14 +10,18 @@ import useRemoveFavorites from "@/hooks/Favorites/useRemoveFavorites";
 import useAddToCart from "@/hooks/Cart/useAddToCart";
 import { toast } from "sonner";
 import CardCourseLoading from "./CardCourseLoading";
+import ErrorState from "../course/CourseCard/ErrorState";
+import type { AxiosError } from "axios";
 
 interface CardCourseProps {
   courses: CoursesHome[];
-  error: boolean;
+  isError: boolean;
+  error: AxiosError | null;
   isLoading: boolean;
 }
 
-function CardCourse({ courses, error, isLoading }: CardCourseProps) {
+function CardCourse({ courses, error, isError, isLoading }: CardCourseProps) {
+  console.log(courses);
   const { t } = useTranslation();
   const { favourites } = useFavourites();
   const { mutate: removeFavorite } = useRemoveFavorites();
@@ -65,10 +69,11 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
     });
   };
 
-  if (error) {
+  if (isError) {
+    const axiosError = error as AxiosError<{ message?: string }>;
     return (
-      <div className="flex items-center justify-center h-screen">
-        Error loading courses.
+      <div className="flex justify-center items-center">
+        <ErrorState message={axiosError?.response?.data?.message} />
       </div>
     );
   }
@@ -82,9 +87,7 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
       {courses.map((course) => (
         <div
           onClick={() => {
-            navigate(
-                `/courses/${course.id}`
-            );
+            navigate(`/courses/${course.id}`);
           }}
           key={course.id}
           className="cursor-pointer"
@@ -99,18 +102,18 @@ function CardCourse({ courses, error, isLoading }: CardCourseProps) {
                 loading="lazy"
               />
             </div>
-              <Heart
-                onClick={(e) => handleFavorite(course.id, e)}
-                className={`absolute -top-1 -left-1 size-[30px] p-1 
+            <Heart
+              onClick={(e) => handleFavorite(course.id, e)}
+              className={`absolute -top-1 -left-1 size-[30px] p-1 
                   rounded-full cursor-pointer shadow transition
                   ${
                     isFavoriteCourse(course.id)
                       ? "bg-red-800 text-white"
                       : "bg-white text-red-500 hover:bg-red-800 hover:text-white"
                   }`}
-                fill={isFavoriteCourse(course.id) ? "currentColor" : "none"}
-              />
-          
+              fill={isFavoriteCourse(course.id) ? "currentColor" : "none"}
+            />
+
             <div className="border-2 w-full border-[--category] rounded-2xl mt-3 px-4 py-3 shadow">
               <h5 className="font-[600] text-lg lg:text-lg xl:text-xl truncate">
                 {course.title}

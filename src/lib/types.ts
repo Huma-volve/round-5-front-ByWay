@@ -98,7 +98,12 @@ export interface CoursesHome {
   progress: string;
   course_image_url: string;
   course_id: number;
-  
+  duration: number;
+  rating_info: {
+    average: number;
+    total_reviews: number;
+    has_reviews: boolean;
+  };
   instructor: {
     id: number;
     name: string;
@@ -113,24 +118,25 @@ export interface CoursesHome {
   content: {
     id: number;
     name: string;
-    video_url: string 
-    title:string;
+    video_url: string;
+    title: string;
   }[];
   created_at: string;
   updated_at: string;
 }
+
 export interface CoursesHomeResponse {
-  data : {
-  courses : CoursesHome[];
-  pagination : {
-    current_page: number | undefined;
-    last_page: number | undefined;
-    per_page: number | undefined;
-    total: number | undefined;
-    from: number | undefined;
-    to: number | undefined
-    }
-  }
+  data: {
+    courses: CoursesHome[];
+    pagination: {
+      current_page: number | undefined;
+      last_page: number | undefined;
+      per_page: number | undefined;
+      total: number | undefined;
+      from: number | undefined;
+      to: number | undefined;
+    };
+  };
 }
 
 export interface MyCoursesLearner {
@@ -141,22 +147,42 @@ export interface MyCoursesLearner {
   progress: string;
   average_rating?: number;
   description?: string;
-} 
+}
 
+// interface coursesForInstructorDetails{
+//   id: number;
+//   title: string;
+//   price: string;
+//   image_url: string | null;
+//   average_rating: number;
+//   reviews_count: number;
+// }
 export interface instructorDetails {
-  id: number;
-  instructor: {
-    name: string;
-  };
-  profile: {
-    bio: string;
-  };
-  statistics: {
+  first_name: string;
+  last_name: string;
+  image?: string | null;
+  bio?: string;
+  about?: string;
+  twitter_link?: string;
+  facebook_link?: string;
+  linkedin_link?: string;
+  youtube_link?: string;
+
+  statistics?: {
     total_students: number;
     average_rating: number;
   };
-  courses: {
-    data: CoursesHome[];
+  courses: CoursesHome[];
+
+  reviews: {
+    data: {
+      id: number;
+      reviewer: string;
+      comment: string;
+      date: string;
+      user_image: string;
+      rating: number;
+    };
   };
 }
 export interface StatsHome {
@@ -296,8 +322,8 @@ export interface UpdateLessonData {
   order: number;
 }
 
-export interface CourseDataForInstructor{
-  data:{
+export interface CourseDataForInstructor {
+  data: {
     id: number;
     title: string;
     description: string;
@@ -305,8 +331,8 @@ export interface CourseDataForInstructor{
     category_id: number;
     image: File | null;
     video: File | null;
-    lessons:LessonDTO[]
-  }
+    lessons: LessonDTO[];
+  };
 }
 
 export interface LessonDTO {
@@ -373,16 +399,37 @@ export interface WithdrawalRequest {
 }
 
 export interface PaginationData {
-    currentPage: number | undefined;
-    totalPages: number | undefined;
-    handlePageChange: (newPage: number) => void;
+  currentPage: number | undefined;
+  totalPages: number | undefined;
+  handlePageChange: (newPage: number) => void;
 }
 
 interface breadCrumbItem {
   label: string;
-  link?:string;
+  link?: string;
 }
 
 export interface breadCrumbProps {
   items: breadCrumbItem[];
+}
+
+//additional types nasr added after editing the backend
+export interface InstructorData {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  about: string | null;
+  bio: string | null;
+  twitter_link: string | null;
+  linkedin_link: string | null;
+  youtube_link: string | null;
+  facebook_link: string | null;
+  role: string;
+  status: string;
+  nationality: string | null;
+  image: string;
+  total_reviews?: number;
+  average_rating?: number;
+  total_students?: number;
 }

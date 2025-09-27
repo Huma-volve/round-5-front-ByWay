@@ -67,6 +67,9 @@ export default function IncomeTable({
   const hasApiData = apiData !== undefined && apiData !== null;
   const isDataEmpty = hasApiData && apiData.length === 0;
 
+  // variable to hold the id of the column of type or method based on isAdmin
+  const typeColumnId = isAdmin ? "method" : "type";
+
   const data = useMemo<IncomeTableData[]>(() => {
     if (hasApiData && apiData.length > 0) {
       return apiData;
@@ -117,19 +120,19 @@ export default function IncomeTable({
         ),
       },
       {
-        accessorKey: "type",
+        accessorKey: typeColumnId,
         header: ({ column }) => (
           <Button
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             className="w-full justify-center"
           >
-            {t("instructor.income.table.paymentType")}
+            {!isAdmin ? t("instructor.income.table.paymentType") : t("instructor.income.table.paymentMethod")}
             <ArrowUpDown className="ml-2 h-4 w-4" />
           </Button>
         ),
         cell: ({ row }) => {
-          const type = row.getValue("type") as string;
+          const type = (row.getValue(typeColumnId)) as string;
           return (
             <div className="flex justify-center items-center">
               <span
