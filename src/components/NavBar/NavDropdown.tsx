@@ -13,6 +13,8 @@ import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 function NavDropdown({ icon }: { icon: ReactElement }) {
   const [role] = useLocalStorage("role", "");
+  const [instructorImage] = useLocalStorage("instructor_image", "");
+  const [learnerImage] = useLocalStorage("learner_image", "");
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -20,7 +22,21 @@ function NavDropdown({ icon }: { icon: ReactElement }) {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button className="p-2 rounded-lg hover:bg-gray-100 transition-colors focus:outline-none">
-          {icon}
+          {role === "instructor" && instructorImage ? (
+            <img
+              src={instructorImage}
+              alt="Instructor"
+              className="w-8 h-8 rounded-full"
+            />
+          ) : role === "learner" && learnerImage ? (
+            <img
+              src={learnerImage}
+              alt="Instructor"
+              className="w-8 h-8 rounded-full"
+            />
+          ) : (
+            icon
+          )}
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
@@ -38,8 +54,7 @@ function NavDropdown({ icon }: { icon: ReactElement }) {
             className="drop-item"
             to={`${role === "instructor" ? "/instructor" : "/profile"}`}
           >
-            {/*  */}
-            {role === "instructor" ? t("common.home") : t("common.profile")}
+            {t("common.profile")}
           </Link>
         </DropdownMenuItem>
 
