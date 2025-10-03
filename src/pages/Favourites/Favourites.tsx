@@ -114,23 +114,25 @@ export default function Favourites() {
                         title={
                           activeButton === "btn1"
                             ? fav.course.title
-                            : fav.course.user.name
+                            : fav.course.user.first_name + " " + fav.course.user.last_name
                         }
                       >
                         {activeButton === "btn1"
                           ? fav.course.title
-                          : fav.course.user.name}
+                          : fav.course.user.first_name + " " + fav.course.user.last_name}
                       </h3>
                       <h3
                         className="text-secondaryDark text-xs md:text-sm truncate max-w-[120px] sm:max-w-[200px] md:max-w-[250px]"
                         title={
                           activeButton === "btn1"
-                            ? fav.course.user.name
+                            ? 
+                            fav.course.user.first_name + " " + fav.course.user.last_name
                             : fav.course.title
                         }
                       >
                         {activeButton === "btn1"
-                          ? fav.course.user.name
+                          ? 
+                          fav.course.user.first_name + " " + fav.course.user.last_name
                           : fav.course.title}
                       </h3>
                     </div>

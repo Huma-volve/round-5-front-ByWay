@@ -57,13 +57,14 @@ export default function NotificationPage() {
               <NotifyCard
                 key={notify.id}
                 title={notify.title}
+                message={notify.message}
                 time={notify.created_at.slice(0, 10)}
                 latest={!notify.is_read}
                 id={notify.id}
                 onMarkRead={() => markAsRead(notify.id)}
                 onDelete={() => deleteNotification(notify.id)}
-              />
-            ))}
+                />
+              ))}
         </div>
       )}
     </div>

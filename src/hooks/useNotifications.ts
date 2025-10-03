@@ -15,6 +15,7 @@ import type {
 } from "@/lib/types";
 import type { AxiosError } from "axios";
 import { useLocalStorage } from "./useLocalStorage";
+import { toast } from "sonner";
 
 export function useNotifications() {
   const [role] = useLocalStorage("role", "");
@@ -83,6 +84,7 @@ export function useNotifications() {
       queryClient.setQueryData<NotificationItem[]>(["notifications", role], (old) =>
         old ? old.filter((n) => n.id !== id) : []
       );
+      toast.success("Deleted Successfully");
     },
   });
 

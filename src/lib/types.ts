@@ -254,7 +254,8 @@ export interface FavouriteResponse {
     updated_at: string;
     user: {
       id: number;
-      name: string;
+      first_name: string;
+      last_name: string;
     };
   };
 }
