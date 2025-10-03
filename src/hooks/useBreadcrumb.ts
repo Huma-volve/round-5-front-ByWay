@@ -105,55 +105,36 @@ export const useBreadcrumb = () => {
     // Build path progressively
     let buildPath = "";
     processedSegments.forEach((processedSegment, index) => {
-      const originalSegment = pathSegments[index];
-      buildPath += `/${originalSegment}`;
-      const isLast = index === processedSegments.length - 1;
+  const originalSegment = pathSegments[index] || "";
+  buildPath += `/${originalSegment}`;
+  const isLast = index === processedSegments.length - 1;
 
-      let translationKey = pathMapping[buildPath];
-      let fallbackLabel = processedSegment;
+  let translationKey = pathMapping[buildPath];
+  let fallbackLabel = processedSegment || "";
 
-      if (processedSegment === "course-id") {
-        // translationKey = "common.coursedetailes";
-        fallbackLabel = courseName ?? "";
-      }
-      if (processedSegment === "instructor-id") {
-        translationKey = "";
-        fallbackLabel = "";
-      }
-      if (processedSegment === "instructor-details") {
-        translationKey = "common.instructorDetails";
-        fallbackLabel = "Instructor Details";
-      }
-      if (buildPath.includes("/instructor/my-courses") && !translationKey) {
-        if (buildPath.endsWith("/manage")) {
-          translationKey = "instructor.courseManagement.title";
-          fallbackLabel = "Course Details";
-        } else if (buildPath.endsWith("/lessons")) {
-          translationKey = "instructor.lessons.title";
-          fallbackLabel = "Lessons";
-        } else if (buildPath.endsWith("/lessons/add")) {
-          translationKey = "instructor.lessons.addLessons";
-          fallbackLabel = "Add Lessons";
-        } else if (buildPath.includes("/lessons/edit/")) {
-          translationKey = "instructor.lessons.editLesson";
-          fallbackLabel = "Edit Lesson";
-        }
-      }
+  if (processedSegment === "course-id") {
+    fallbackLabel = courseName ?? "";
+  }
+  if (processedSegment === "instructor-id") {
+    translationKey = "";
+    fallbackLabel = "";
+  }
 
-      const label = translationKey
-        ? t(translationKey)
-        : fallbackLabel
-            .replace("-", " ")
-            .replace(/\b\w/g, (l) => l.toUpperCase());
+  const safeFallback = fallbackLabel || "";
+  const label = translationKey
+    ? t(translationKey)
+    : safeFallback
+        .replace("-", " ")
+        .replace(/\b\w/g, (l) => l.toUpperCase());
 
-      if (label != "") {
-        breadcrumbs.push({
-          label,
-          path: buildPath,
-          isActive: isLast,
-        });
-      }
+  if (label != "") {
+    breadcrumbs.push({
+      label,
+      path: buildPath,
+      isActive: isLast,
     });
+  }
+});
 
     return breadcrumbs;
   };
